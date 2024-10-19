@@ -314,7 +314,7 @@ padding:5px;
 
 
 
-.mp-bar {
+.limit-gauge {
   height: 25px;
   width: 150px;
   display: flex;
@@ -324,7 +324,7 @@ padding:5px;
   padding:5px;
 }
 
-.mp-bar div {
+.limit-gauge div {
   height: 25px;
   flex-grow: 1;
   background-color: #1d1e22;
@@ -332,46 +332,46 @@ display:flex;
 }
 
 @container style(--count: 1) {
-  .mp-bar div:nth-child(-n + 1) {
+  .limit-gauge div:nth-child(-n + 1) {
     background-color: #738cb2;
     height: 25px;
   }
 }
 @container style(--count: 2) {
-  .mp-bar div:nth-child(-n + 2) {
+  .limit-gauge div:nth-child(-n + 2) {
     background-color: #738cb2;
   }
 }
 @container style(--count: 3) {
-  .mp-bar div:nth-child(-n + 3) {
+  .limit-gauge div:nth-child(-n + 3) {
     background-color: #738cb2;
   }
 }
 @container style(--count: 4) {
-  .mp-bar div:nth-child(-n + 4) {
+  .limit-gauge div:nth-child(-n + 4) {
     background-color: #738cb2;
   }
 }
 @container style(--count: 5) {
-  .mp-bar div:nth-child(-n + 5) {
+  .limit-gauge div:nth-child(-n + 5) {
     background-color: #738cb2;
   }
 }
 
 @container style(--count: 6) {
-  .mp-bar div:nth-child(-n + 6) {
+  .limit-gauge div:nth-child(-n + 6) {
     background-color: #738cb2;
   }
 }
 
 @container style(--count: 7) {
-  .mp-bar div:nth-child(-n + 6) {
+  .limit-gauge div:nth-child(-n + 6) {
     background-color: #738cb2;
   }
 }
 
 @container style(--count: 8) {
-  .mp-bar div:nth-child(-n + 6) {
+  .limit-gauge div:nth-child(-n + 6) {
     background-color: #738cb2;
   }
 }
