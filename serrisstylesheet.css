@@ -96,7 +96,7 @@ flex:8;
  padding-left:20px;
  width: calc((var(--current-hp) / var(--max-hp)) * 93%);
  height: 30px;
- background-color: #760729;
+ background-color: #A5C9FF;
 
 
 }
@@ -177,7 +177,7 @@ margin-left:0px;
 }
 
 :root {
-  --disable-color: #760729;
+  --disable-color: #A5C9FF;
   --enable-color:  #de6800;
 }
 
@@ -227,88 +227,88 @@ padding:5px;
 }
 @container style(--count: 1) {
   .ip-bar div:nth-child(-n + 1) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 2) {
   .ip-bar div:nth-child(-n + 2) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 3) {
   .ip-bar div:nth-child(-n + 3) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 4) {
   .ip-bar div:nth-child(-n + 4) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 5) {
   .ip-bar div:nth-child(-n + 5) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 6) {
   .ip-bar div:nth-child(-n + 6) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 7) {
   .ip-bar div:nth-child(-n + 7) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 8) {
   .ip-bar div:nth-child(-n + 8) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 9) {
   .ip-bar div:nth-child(-n + 9) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 10) {
   .ip-bar div:nth-child(-n + 10) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 11) {
   .ip-bar div:nth-child(-n + 11) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 12) {
   .ip-bar div:nth-child(-n + 12) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 13) {
   .ip-bar div:nth-child(-n + 13) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 14) {
   .ip-bar div:nth-child(-n + 14) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 15) {
   .ip-bar div:nth-child(-n + 10) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 16) {
   .ip-bar div:nth-child(-n + 10) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
@@ -333,46 +333,46 @@ display:flex;
 
 @container style(--count: 1) {
   .mp-bar div:nth-child(-n + 1) {
-    background-color: #760729;
+    background-color: #A5C9FF;
     height: 25px;
   }
 }
 @container style(--count: 2) {
   .mp-bar div:nth-child(-n + 2) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 3) {
   .mp-bar div:nth-child(-n + 3) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 4) {
   .mp-bar div:nth-child(-n + 4) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 @container style(--count: 5) {
   .mp-bar div:nth-child(-n + 5) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 6) {
   .mp-bar div:nth-child(-n + 6) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 7) {
   .mp-bar div:nth-child(-n + 6) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
 @container style(--count: 8) {
   .mp-bar div:nth-child(-n + 6) {
-    background-color: #760729;
+    background-color: #A5C9FF;
   }
 }
 
@@ -386,7 +386,7 @@ display:flex;
   padding: 5px;
   margin: 5px;
   border-radius: 5px;
-  background-color: #760729;
+  background-color: #A5C9FF;
   color: white;
   flex-grow: 2;
   text-align:center;
