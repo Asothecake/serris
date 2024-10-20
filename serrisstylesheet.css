@@ -63,17 +63,51 @@ width: 100%;
 display: flex;
 justify-content: space-around;
 }
-
-.STATS p {
+ 
+.STATS.str {
 font-weight: 600;
 padding: 5px;
 margin: 5px;
 border-radius: 5px;
-background-color: #333;
+linear-gradient(to right, #E0666A 100%, #333 17%);
 color: white;
 flex-grow: 2;
 text-align:center;
 }
+
+.STATS.mag {
+font-weight: 600;
+padding: 5px;
+margin: 5px;
+border-radius: 5px;
+linear-gradient(to right, #6495ED 83%, #333 0%);
+color: white;
+flex-grow: 2;
+text-align:center;
+}
+
+.STATS.def {
+font-weight: 600;
+padding: 5px;
+margin: 5px;
+border-radius: 5px;
+linear-gradient(to right, lightgreen 100%, #333 0%);
+color: white;
+flex-grow: 2;
+text-align:center;
+}
+
+.STATS.agl {
+font-weight: 600;
+padding: 5px;
+margin: 5px;
+border-radius: 5px;
+linear-gradient(to right, #b163ff 33%, #333 66%);
+color: white;
+flex-grow: 2;
+text-align:center;
+}
+
 .healthbaraso {
  width: 100%;
  height: 30px;
