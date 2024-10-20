@@ -63,8 +63,8 @@ width: 100%;
 display: flex;
 justify-content: space-around;
 }
- 
-.stats p {
+
+.STATS p {
 font-weight: 600;
 padding: 5px;
 margin: 5px;
