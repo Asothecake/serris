@@ -58,13 +58,13 @@ text-align:center;
 }
 
 
-.STATS {
+.stataso {
 width: 100%;
 display: flex;
 justify-content: space-around;
 }
 
-.STATS p {
+.stataso p {
 font-weight: 600;
 padding: 5px;
 margin: 5px;
