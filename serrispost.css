@@ -1,4 +1,4 @@
-.post {
+.serris-post .post {
     text-align: justify;
     line-height: 1.4;
     font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
@@ -7,7 +7,7 @@
     color: #1f2636;
 }
 
-.character-box {
+.serris-post .character-box {
     background-color: #fafafa;
     border-bottom: 2px solid rgba(160, 160, 160, 0.5);
     border-right: 1px solid rgba(160, 160, 160, 0.5);
@@ -15,13 +15,13 @@
     border-radius: 8px;
 }
 
-sp {
+.serris-post sp {
     color: #697ecd;
     font-style: italic;
     font-weight: bold;
 }
 
-.bottom-section {
+.serris-post .bottom-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +33,7 @@ sp {
     gap: 20px;
 }
 
-.word-count {
+.serris-post .word-count {
     text-align: center;
     font-size: 14px;
     color: #1f2636;
@@ -45,16 +45,16 @@ sp {
     flex: 1;
 }
 
-.word-count span {
+.serris-post .word-count span {
     color: #697ecd;
     font-style: italic;
 }
 
-.image-box {
+.serris-post .image-box {
     flex-shrink: 0;
 }
 
-.image-box img {
+.serris-post .image-box img {
     border-radius: 50%;
     border: 1px solid rgba(160, 160, 160, 0.5);
 }
