@@ -21,6 +21,12 @@
     font-weight: bold;
 }
 
+.serris-character-box fp {
+    color: #5F9EA0;
+    font-style: italic;
+    font-weight: bold;
+}
+
 .serris-bottom-section {
     display: flex;
     justify-content: center;
