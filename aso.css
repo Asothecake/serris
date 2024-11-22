@@ -29,23 +29,27 @@
     gap: 10px;
 }
 
-/* Resource Bars (HP, IP, Limit) */
+/* Resource Section */
 .aso-resource-section {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    align-items: center;
 }
 
-.aso-resource-bar-container {
+/* HP Bar */
+.aso-hp-bar-container {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
 }
 
-.aso-hp-bar-container,
-.aso-resource-bar-wrapper,
-.aso-limit-bar-wrapper {
-    display: flex;
+.aso-hp-bar-container img {
+    width: 20px;
+    height: 20px;
+}
+
+.aso-hp-bar {
+    position: relative;
     height: 8px;
     background-color: rgba(105, 105, 105, 0.1);
     border: 1px solid rgba(105, 105, 105, 0.5);
@@ -56,14 +60,47 @@
 
 .aso-hp-bar-fill {
     height: 100%;
-    background-color: #e74c3c;
+    background-color: #e74c3c; /* Red for HP */
     transition: width 0.3s ease;
+}
+
+/* Resource Bar Group (IP and Limit) */
+.aso-resource-bar-group {
+    display: flex;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.aso-resource-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-grow: 1;
+}
+
+.aso-resource-bar-container img {
+    width: 20px;
+    height: 20px;
+}
+
+.aso-resource-bar-wrapper {
+    display: flex;
+    height: 8px;
+    background-color: rgba(105, 105, 105, 0.1);
+    border: 1px solid rgba(105, 105, 105, 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+    gap: 1px;
+    flex-grow: 1;
 }
 
 .aso-resource-unit {
     flex-grow: 1;
-    background-color: #38a169; /* Green for IP */
     transition: background-color 0.3s ease;
+}
+
+.aso-ip-bar-wrapper .aso-resource-unit {
+    background-color: #38a169; /* Green for IP */
 }
 
 .aso-limit-bar-wrapper .aso-resource-unit {
@@ -72,19 +109,6 @@
 
 .aso-resource-unit.unfilled {
     background-color: rgba(105, 105, 105, 0.1);
-}
-
-/* Resource Bar Group */
-.aso-resource-bar-group {
-    display: flex;
-    gap: 8px;
-}
-
-.aso-resource-bar-container img {
-    width: 20px;  /* Set to match the appropriate size */
-    height: 20px; /* Set to match the appropriate size */
-    margin-right: 4px;  /* Consistent margin with HP and IP icons */
-    vertical-align: middle;
 }
 
 /* Image Box */
