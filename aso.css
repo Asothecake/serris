@@ -29,7 +29,36 @@
     gap: 10px;
 }
 
-/* Resource Bars (HP, IP, Limit) */
+/* Resource Section for HP, IP, and Limit Bars */
+.aso-resource-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.aso-resource-bar-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.aso-resource-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    flex: 1;
+}
+
+.aso-resource-bar-container img {
+    width: 20px;  /* Set to match the appropriate size */
+    height: 20px; /* Set to match the appropriate size */
+    margin-right: 4px;  /* Consistent margin with HP and IP icons */
+    vertical-align: middle;
+}
+
 .aso-hp-bar-container {
     position: relative;
     height: 8px;
@@ -44,13 +73,6 @@
     height: 100%;
     background-color: #e74c3c;
     transition: width 0.3s ease;
-}
-
-.aso-resource-bar-container img {
-    width: 20px;  /* Set to match the appropriate size */
-    height: 20px; /* Set to match the appropriate size */
-    margin-right: 4px;  /* Consistent margin with HP and IP icons */
-    vertical-align: middle;
 }
 
 .aso-resource-bar-wrapper,
