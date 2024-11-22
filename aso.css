@@ -282,11 +282,19 @@
 }
 
 .aso-conditions-entry {
-    background: linear-gradient(to right, rgba(255, 99, 132, 0.05), rgba(255, 99, 132, 0.01));
+    background: linear-gradient(to right, 
+                                rgba(255, 99, 132, 0.02), /* Closer to background color at start */
+                                rgba(255, 99, 132, 0.3),  /* Stronger color in the middle */
+                                rgba(255, 99, 132, 0.02)  /* Closer to background color at end */
+                                );
 }
 
 .aso-cooldowns-entry {
-    background: linear-gradient(to right, rgba(54, 162, 235, 0.05), rgba(54, 162, 235, 0.01));
+    background: linear-gradient(to right, 
+                                rgba(54, 162, 235, 0.02), /* Closer to background color at start */
+                                rgba(54, 162, 235, 0.3),  /* Stronger color in the middle */
+                                rgba(54, 162, 235, 0.02)  /* Closer to background color at end */
+                                );
 }
 
 .aso-conditions-label,
