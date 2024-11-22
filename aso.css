@@ -46,6 +46,13 @@
     transition: width 0.3s ease;
 }
 
+.aso-resource-bar-container img {
+    width: 20px;  /* Set to match the appropriate size */
+    height: 20px; /* Set to match the appropriate size */
+    margin-right: 4px;  /* Consistent margin with HP and IP icons */
+    vertical-align: middle;
+}
+
 .aso-resource-bar-wrapper,
 .aso-limit-bar-wrapper {
     display: flex;
