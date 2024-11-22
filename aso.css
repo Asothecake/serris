@@ -1,4 +1,5 @@
-/* Outer container */
+/* CSS Styles for the Aso Template */
+
 .outer-aso-box {
     background-color: #f5f7fa;
     padding: 10px 15px;
@@ -8,7 +9,6 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* Post container */
 .aso-post-container {
     text-align: justify;
     line-height: 1.5;
@@ -18,7 +18,7 @@
     margin: 0;
 }
 
-/* Word count box */
+/* Word Count Box */
 .aso-word-count-box {
     display: flex;
     justify-content: space-between;
@@ -29,36 +29,7 @@
     gap: 10px;
 }
 
-/* Resource section and bar groups */
-.aso-resource-section {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex: 1;
-}
-
-.aso-resource-bar-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 6px;
-    flex: 1;
-}
-
-/* Resource bar container */
-.aso-resource-bar-container {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 11px;
-    flex: 1;
-}
-
-.aso-resource-bar-container img {
-    height: 14px;
-    margin-right: 4px;
-}
-
-/* HP bar container and fill */
+/* Resource Bars (HP, IP, Limit) */
 .aso-hp-bar-container {
     position: relative;
     height: 8px;
@@ -75,8 +46,8 @@
     transition: width 0.3s ease;
 }
 
-/* Resource bar wrapper and units */
-.aso-resource-bar-wrapper {
+.aso-resource-bar-wrapper,
+.aso-limit-bar-wrapper {
     display: flex;
     height: 8px;
     background-color: rgba(105, 105, 105, 0.1);
@@ -89,7 +60,7 @@
 
 .aso-resource-unit {
     flex-grow: 1;
-    background-color: #697ecd;
+    background-color: #e74c3c;
     transition: background-color 0.3s ease;
 }
 
@@ -97,7 +68,7 @@
     background-color: rgba(105, 105, 105, 0.1);
 }
 
-/* Image box styling */
+/* Image Box */
 .aso-image-box {
     flex-shrink: 0;
     margin-left: 16px;
@@ -113,7 +84,7 @@
     height: 65px;
 }
 
-/* Character text box */
+/* Character Box */
 .aso-character-box {
     background-color: #fafafa;
     margin-top: 8px;
@@ -125,13 +96,7 @@
     box-sizing: border-box;
 }
 
-.aso-character-box sp {
-    color: #697ecd;
-    font-style: italic;
-    font-weight: bold;
-}
-
-/* Stats, commands, and style buttons */
+/* Words Line Toggle (Stats, Commands, Style) */
 .aso-words-line {
     display: flex;
     justify-content: space-between;
@@ -148,7 +113,7 @@
     cursor: pointer;
 }
 
-/* Hidden and visible content sections */
+/* Hidden and Visible Content */
 .aso-content-hidden {
     display: none;
     font-size: 11px;
@@ -158,7 +123,7 @@
     display: block;
 }
 
-/* Stat bar styling */
+/* Stat Bars with Fade Effect and Individual Colors */
 .aso-stat-entry {
     display: flex;
     align-items: center;
@@ -173,7 +138,6 @@
     border-radius: 0;
 }
 
-/* Individual stat colors */
 .aso-stat-strength {
     background: linear-gradient(to left, rgba(255, 99, 132, 0), rgba(255, 99, 132, 0.2), rgba(255, 99, 132, 0));
 }
@@ -190,7 +154,6 @@
     background: linear-gradient(to left, rgba(54, 162, 235, 0), rgba(54, 162, 235, 0.2), rgba(54, 162, 235, 0));
 }
 
-/* Stat name, die, and value */
 .aso-stat-name {
     flex: 1;
     text-align: right;
@@ -213,7 +176,7 @@
     position: relative;
 }
 
-/* Commands container */
+/* Command Entries */
 .aso-command-entry {
     margin: 3px 0;
     padding: 4px 0;
@@ -235,7 +198,7 @@
     background: linear-gradient(to left, rgba(153, 102, 255, 0), rgba(153, 102, 255, 0.2), rgba(153, 102, 255, 0));
 }
 
-/* Style content */
+/* Styling for the Style container */
 .aso-style-content {
     padding: 10px;
     margin-top: 8px;
@@ -253,7 +216,7 @@
     padding-bottom: 4px;
 }
 
-/* Conditions and cooldowns box */
+/* Styling for Conditions and Cooldowns Box */
 .aso-conditions-box {
     background-color: #fafafa;
     margin-top: 10px;
@@ -275,23 +238,19 @@
 }
 
 .aso-conditions-entry {
-    background: linear-gradient(to right, rgba(255, 99, 132, 0.05), rgba(255, 99, 132, 0.02));
-}
-
-.aso-conditions-entry .label,
-.aso-cooldowns-entry .label {
-    opacity: 0.3;
-    text-transform: uppercase;
-    font-size: 12px;
-    color: #1f2636;
+    background: linear-gradient(to right, rgba(255, 99, 132, 0.05), rgba(255, 99, 132, 0.01));
 }
 
 .aso-cooldowns-entry {
-    background: linear-gradient(to right, rgba(54, 162, 235, 0.05), rgba(54, 162, 235, 0.02));
+    background: linear-gradient(to right, rgba(54, 162, 235, 0.05), rgba(54, 162, 235, 0.01));
 }
 
-.aso-cooldowns-entry .label {
+.aso-conditions-label,
+.aso-cooldowns-label {
     opacity: 0.25;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #1f2636;
 }
 
 .aso-entry-value {
