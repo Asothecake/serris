@@ -98,12 +98,12 @@
 
 /* IP Bar Colors */
 .aso-resource-bar-wrapper[data-type="ip"] .aso-resource-unit {
-    background-color: #4caf50; /* Green color for IP */
+    background-color: #66bb6a; /* More vibrant green color for IP */
 }
 
 /* Limit Bar Colors */
 .aso-limit-bar-wrapper[data-type="limit"] .aso-resource-unit {
-    background-color: #697ecd; /* Blueish color for Limit */
+    background-color: #42a5f5; /* More vibrant blue color for Limit */
 }
 
 /* Image Box */
