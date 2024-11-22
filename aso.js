@@ -11,42 +11,36 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".aso-hp-bar-container").forEach(container => {
         const current = parseInt(container.getAttribute("data-current"), 10);
         const max = parseInt(container.getAttribute("data-max"), 10);
-        if (!isNaN(current) && !isNaN(max) && max > 0) {
-            const fill = container.querySelector(".aso-hp-bar-fill");
-            const widthPercent = (current / max) * 100;
-            fill.style.width = widthPercent + "%";
-        }
+        const fill = container.querySelector(".aso-hp-bar-fill");
+        const widthPercent = (current / max) * 100;
+        fill.style.width = widthPercent + "%";
     });
 
     // Update IP bar
     document.querySelectorAll(".aso-resource-bar-wrapper").forEach(wrapper => {
         const current = parseInt(wrapper.getAttribute("data-current"), 10);
         const max = parseInt(wrapper.getAttribute("data-max"), 10);
-        if (!isNaN(current) && !isNaN(max) && max > 0) {
-            const units = wrapper.querySelectorAll(".aso-resource-unit");
-            units.forEach((unit, index) => {
-                if (index < current) {
-                    unit.classList.remove("unfilled");
-                } else {
-                    unit.classList.add("unfilled");
-                }
-            });
-        }
+        const units = wrapper.querySelectorAll(".aso-resource-unit");
+        units.forEach((unit, index) => {
+            if (index < current) {
+                unit.classList.remove("unfilled");
+            } else {
+                unit.classList.add("unfilled");
+            }
+        });
     });
 
-    // Update Limit bar
+    // Update Limit bar (with a unique class to avoid conflict with IP)
     document.querySelectorAll(".aso-limit-bar-wrapper").forEach(wrapper => {
         const current = parseInt(wrapper.getAttribute("data-current"), 10);
         const max = parseInt(wrapper.getAttribute("data-max"), 10);
-        if (!isNaN(current) && !isNaN(max) && max > 0) {
-            const units = wrapper.querySelectorAll(".aso-resource-unit");
-            units.forEach((unit, index) => {
-                if (index < current) {
-                    unit.classList.remove("unfilled");
-                } else {
-                    unit.classList.add("unfilled");
-                }
-            });
-        }
+        const units = wrapper.querySelectorAll(".aso-resource-unit");
+        units.forEach((unit, index) => {
+            if (index < current) {
+                unit.classList.remove("unfilled");
+            } else {
+                unit.classList.add("unfilled");
+            }
+        });
     });
 });
