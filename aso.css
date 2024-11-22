@@ -29,36 +29,7 @@
     gap: 10px;
 }
 
-/* Resource Section for HP, IP, and Limit Bars */
-.aso-resource-section {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex: 1;
-}
-
-.aso-resource-bar-group {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.aso-resource-bar-container {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 11px;
-    flex: 1;
-}
-
-.aso-resource-bar-container img {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-    vertical-align: middle;
-}
-
+/* Resource Bars (HP, IP, Limit) */
 .aso-hp-bar-container {
     position: relative;
     height: 8px;
@@ -75,7 +46,24 @@
     transition: width 0.3s ease;
 }
 
-.aso-resource-bar-wrapper,
+.aso-resource-bar-container img {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.aso-resource-bar-wrapper {
+    display: flex;
+    height: 8px;
+    background-color: rgba(105, 105, 105, 0.1);
+    border: 1px solid rgba(105, 105, 105, 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+    gap: 1px;
+    flex-grow: 1;
+}
+
 .aso-limit-bar-wrapper {
     display: flex;
     height: 8px;
@@ -87,30 +75,23 @@
     flex-grow: 1;
 }
 
+/* Resource units with specific colors */
 .aso-resource-unit {
     flex-grow: 1;
     transition: background-color 0.3s ease;
-}
-
-/* Updated Specific Colors for Each Resource Bar */
-
-/* HP Bar - Red */
-.aso-hp-bar-container .aso-hp-bar-fill {
-    background-color: #e74c3c; /* Red for HP */
-}
-
-/* IP Bar - Green */
-.aso-resource-bar-wrapper.ip-bar .aso-resource-unit {
-    background-color: #66bb6a !important; /* Green color for IP Bar */
 }
 
 .aso-resource-unit.unfilled {
     background-color: rgba(105, 105, 105, 0.1);
 }
 
-/* Limit Bar - Blue */
-.aso-limit-bar-wrapper.limit-bar .aso-resource-unit {
-    background-color: #42a5f5 !important; /* Blue color for Limit Bar */
+/* Filled resource units */
+.aso-resource-bar-wrapper .aso-resource-unit {
+    background-color: #76c361; /* Green color for IP bar */
+}
+
+.aso-limit-bar-wrapper .aso-resource-unit {
+    background-color: #697ecd; /* Blue color for Limit bar */
 }
 
 /* Image Box */
