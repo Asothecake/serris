@@ -29,61 +29,54 @@
     gap: 10px;
 }
 
-/* Resource Section */
+/* Resource Section for HP, IP, and Limit Bars */
 .aso-resource-section {
     display: flex;
-    gap: 8px;
-    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
 }
 
-/* HP Bar */
-.aso-hp-bar-container {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.aso-hp-bar-container img {
-    width: 20px;
-    height: 20px;
-}
-
-.aso-hp-bar {
-    position: relative;
-    height: 8px;
-    background-color: rgba(105, 105, 105, 0.1);
-    border: 1px solid rgba(105, 105, 105, 0.5);
-    border-radius: 4px;
-    overflow: hidden;
-    flex-grow: 1;
-}
-
-.aso-hp-bar-fill {
-    height: 100%;
-    background-color: #e74c3c; /* Red for HP */
-    transition: width 0.3s ease;
-}
-
-/* Resource Bar Group (IP and Limit) */
 .aso-resource-bar-group {
     display: flex;
-    gap: 8px;
-    flex-grow: 1;
+    gap: 6px;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .aso-resource-bar-container {
     display: flex;
     align-items: center;
     gap: 4px;
-    flex-grow: 1;
+    font-size: 11px;
+    flex: 1;
 }
 
 .aso-resource-bar-container img {
     width: 20px;
     height: 20px;
+    margin-right: 4px;
+    vertical-align: middle;
 }
 
-.aso-resource-bar-wrapper {
+.aso-hp-bar-container {
+    position: relative;
+    height: 8px;
+    background-color: rgba(105, 105, 105, 0.1);
+    border: 1px solid rgba(105, 105, 105, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.aso-hp-bar-fill {
+    height: 100%;
+    background-color: #e74c3c; /* Red color for HP */
+    transition: width 0.3s ease;
+}
+
+.aso-resource-bar-wrapper,
+.aso-limit-bar-wrapper {
     display: flex;
     height: 8px;
     background-color: rgba(105, 105, 105, 0.1);
@@ -99,16 +92,25 @@
     transition: background-color 0.3s ease;
 }
 
-.aso-ip-bar-wrapper .aso-resource-unit {
-    background-color: #38a169; /* Green for IP */
+/* Updated Specific Colors for Each Resource Bar */
+
+/* HP Bar - Red */
+.aso-hp-bar-container .aso-hp-bar-fill {
+    background-color: #e74c3c; /* Red for HP */
 }
 
-.aso-limit-bar-wrapper .aso-resource-unit {
-    background-color: #4299e1; /* Blue for Limit */
+/* IP Bar - Green */
+.aso-resource-bar-wrapper.ip-bar .aso-resource-unit {
+    background-color: #66bb6a !important; /* Green color for IP Bar */
 }
 
 .aso-resource-unit.unfilled {
     background-color: rgba(105, 105, 105, 0.1);
+}
+
+/* Limit Bar - Blue */
+.aso-limit-bar-wrapper.limit-bar .aso-resource-unit {
+    background-color: #42a5f5 !important; /* Blue color for Limit Bar */
 }
 
 /* Image Box */
