@@ -1,5 +1,6 @@
 /* CSS Styles for the Aso Template */
 
+/* General Box Styling */
 .outer-aso-box {
     background-color: #f5f7fa;
     padding: 10px 15px;
@@ -59,6 +60,7 @@
     vertical-align: middle;
 }
 
+/* HP Bar Styling */
 .aso-hp-bar-container {
     position: relative;
     height: 8px;
@@ -75,6 +77,7 @@
     transition: width 0.3s ease;
 }
 
+/* IP and Limit Bar Styling */
 .aso-resource-bar-wrapper,
 .aso-limit-bar-wrapper {
     display: flex;
@@ -94,23 +97,19 @@
 
 /* Updated Specific Colors for Each Resource Bar */
 
-/* HP Bar - Red */
-.aso-hp-bar-container .aso-hp-bar-fill {
-    background-color: #e74c3c; /* Red for HP */
-}
-
 /* IP Bar - Green */
-.aso-resource-bar-wrapper.ip-bar > .aso-resource-unit {
-    background-color: #66bb6a !important; /* Green for IP */
-}
-
-.aso-resource-unit.unfilled {
-    background-color: rgba(105, 105, 105, 0.1);
+.aso-resource-bar-wrapper .aso-resource-unit {
+    background-color: #66bb6a; /* Green for IP */
 }
 
 /* Limit Bar - Blue */
-.aso-limit-bar-wrapper.limit-bar > .aso-resource-unit {
-    background-color: #42a5f5 !important; /* Blue for Limit */
+.aso-limit-bar-wrapper .aso-resource-unit {
+    background-color: #42a5f5; /* Blue for Limit */
+}
+
+/* Unfilled Units */
+.aso-resource-unit.unfilled {
+    background-color: rgba(105, 105, 105, 0.1);
 }
 
 /* Image Box */
