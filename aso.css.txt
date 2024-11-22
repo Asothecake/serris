@@ -1,0 +1,299 @@
+/* Outer container */
+.outer-aso-box {
+    background-color: #f5f7fa;
+    padding: 10px 15px;
+    margin: 20px auto;
+    border-radius: 8px;
+    border: 1px solid rgba(160, 160, 160, 0.3);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Post container */
+.aso-post-container {
+    text-align: justify;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+    font-size: 12px;
+    color: #1f2636;
+    margin: 0;
+}
+
+/* Word count box */
+.aso-word-count-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 12px;
+    background-color: #fafafa;
+    border-radius: 8px 8px 0 0;
+    gap: 10px;
+}
+
+/* Resource section and bar groups */
+.aso-resource-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.aso-resource-bar-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    flex: 1;
+}
+
+/* Resource bar container */
+.aso-resource-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    flex: 1;
+}
+
+.aso-resource-bar-container img {
+    height: 14px;
+    margin-right: 4px;
+}
+
+/* HP bar container and fill */
+.aso-hp-bar-container {
+    position: relative;
+    height: 8px;
+    background-color: rgba(105, 105, 105, 0.1);
+    border: 1px solid rgba(105, 105, 105, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.aso-hp-bar-fill {
+    height: 100%;
+    background-color: #e74c3c;
+    transition: width 0.3s ease;
+}
+
+/* Resource bar wrapper and units */
+.aso-resource-bar-wrapper {
+    display: flex;
+    height: 8px;
+    background-color: rgba(105, 105, 105, 0.1);
+    border: 1px solid rgba(105, 105, 105, 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+    gap: 1px;
+    flex-grow: 1;
+}
+
+.aso-resource-unit {
+    flex-grow: 1;
+    background-color: #697ecd;
+    transition: background-color 0.3s ease;
+}
+
+.aso-resource-unit.unfilled {
+    background-color: rgba(105, 105, 105, 0.1);
+}
+
+/* Image box styling */
+.aso-image-box {
+    flex-shrink: 0;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aso-image-box img {
+    border-radius: 50%;
+    border: 1px solid rgba(160, 160, 160, 0.5);
+    width: 65px;
+    height: 65px;
+}
+
+/* Character text box */
+.aso-character-box {
+    background-color: #fafafa;
+    margin-top: 8px;
+    padding: 12px;
+    border-radius: 0 0 8px 8px;
+    overflow: auto;
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.aso-character-box sp {
+    color: #697ecd;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Stats, commands, and style buttons */
+.aso-words-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 4px;
+    width: 100%;
+}
+
+.aso-words-line span {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #697ecd;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* Hidden and visible content sections */
+.aso-content-hidden {
+    display: none;
+    font-size: 11px;
+}
+
+.aso-content-visible {
+    display: block;
+}
+
+/* Stat bar styling */
+.aso-stat-entry {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+    padding: 8px 0;
+    position: relative;
+    font-size: 13px;
+    font-weight: bold;
+    color: #1f2636;
+    background: linear-gradient(to left, rgba(245, 247, 250, 0), rgba(0, 0, 0, 0.05), rgba(245, 247, 250, 0));
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* Individual stat colors */
+.aso-stat-strength {
+    background: linear-gradient(to left, rgba(255, 99, 132, 0), rgba(255, 99, 132, 0.2), rgba(255, 99, 132, 0));
+}
+
+.aso-stat-defense {
+    background: linear-gradient(to left, rgba(75, 192, 192, 0), rgba(75, 192, 192, 0.2), rgba(75, 192, 192, 0));
+}
+
+.aso-stat-agility {
+    background: linear-gradient(to left, rgba(255, 205, 86, 0), rgba(255, 205, 86, 0.2), rgba(255, 205, 86, 0));
+}
+
+.aso-stat-magic {
+    background: linear-gradient(to left, rgba(54, 162, 235, 0), rgba(54, 162, 235, 0.2), rgba(54, 162, 235, 0));
+}
+
+/* Stat name, die, and value */
+.aso-stat-name {
+    flex: 1;
+    text-align: right;
+    font-family: 'Verdana', Geneva, sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    opacity: 0.4;
+    margin-right: 10px;
+}
+
+.aso-stat-die {
+    opacity: 0.7;
+    margin-right: 3px;
+}
+
+.aso-stat-value-box {
+    font-weight: bold;
+    font-size: 14px;
+    color: #697ecd;
+    position: relative;
+}
+
+/* Commands container */
+.aso-command-entry {
+    margin: 3px 0;
+    padding: 4px 0;
+    font-weight: bold;
+    font-size: 11px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    letter-spacing: 1px;
+    color: #3e4a61;
+    background: linear-gradient(to left, rgba(245, 247, 250, 0), rgba(0, 0, 0, 0.05), rgba(245, 247, 250, 0));
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.aso-command-entry:nth-child(odd) {
+    background: linear-gradient(to left, rgba(255, 159, 64, 0), rgba(255, 159, 64, 0.2), rgba(255, 159, 64, 0));
+}
+
+.aso-command-entry:nth-child(even) {
+    background: linear-gradient(to left, rgba(153, 102, 255, 0), rgba(153, 102, 255, 0.2), rgba(153, 102, 255, 0));
+}
+
+/* Style content */
+.aso-style-content {
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 12px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    color: #1f2636;
+    line-height: 1.6;
+    background: linear-gradient(to right, rgba(153, 102, 255, 0.02), rgba(153, 102, 255, 0.07));
+    border-radius: 4px;
+}
+
+.aso-style-content p {
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+    padding-bottom: 4px;
+}
+
+/* Conditions and cooldowns box */
+.aso-conditions-box {
+    background-color: #fafafa;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 11px;
+    color: #1f2636;
+    line-height: 1.6;
+}
+
+.aso-conditions-entry,
+.aso-cooldowns-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.aso-conditions-entry {
+    background: linear-gradient(to right, rgba(255, 99, 132, 0.05), rgba(255, 99, 132, 0.02));
+}
+
+.aso-conditions-entry .label,
+.aso-cooldowns-entry .label {
+    opacity: 0.3;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #1f2636;
+}
+
+.aso-cooldowns-entry {
+    background: linear-gradient(to right, rgba(54, 162, 235, 0.05), rgba(54, 162, 235, 0.02));
+}
+
+.aso-cooldowns-entry .label {
+    opacity: 0.25;
+}
+
+.aso-entry-value {
+    text-align: right;
+}
