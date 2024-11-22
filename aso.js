@@ -19,33 +19,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Update IP bar
-    document.querySelectorAll(".aso-resource-bar-wrapper.ip-bar").forEach(wrapper => {
+    document.querySelectorAll(".aso-resource-bar-wrapper").forEach(wrapper => {
         const current = parseInt(wrapper.getAttribute("data-current"), 10);
         const max = parseInt(wrapper.getAttribute("data-max"), 10);
         wrapper.innerHTML = ""; // Clear existing units
+
+        // Loop to create units for the resource bar
         for (let i = 0; i < max; i++) {
             const unit = document.createElement('div');
             unit.classList.add('aso-resource-unit');
             if (i >= current) {
                 unit.classList.add('unfilled');
             }
-            unit.classList.add('ip-bar-unit'); // Add specific class for IP bar
             wrapper.appendChild(unit);
         }
     });
 
     // Update Limit bar
-    document.querySelectorAll(".aso-limit-bar-wrapper.limit-bar").forEach(wrapper => {
+    document.querySelectorAll(".aso-limit-bar-wrapper").forEach(wrapper => {
         const current = parseInt(wrapper.getAttribute("data-current"), 10);
         const max = parseInt(wrapper.getAttribute("data-max"), 10);
         wrapper.innerHTML = ""; // Clear existing units
+
+        // Loop to create units for the limit bar
         for (let i = 0; i < max; i++) {
             const unit = document.createElement('div');
             unit.classList.add('aso-resource-unit');
             if (i >= current) {
                 unit.classList.add('unfilled');
             }
-            unit.classList.add('limit-bar-unit'); // Add specific class for Limit bar
             wrapper.appendChild(unit);
         }
     });
