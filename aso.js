@@ -1,8 +1,12 @@
 // JavaScript for toggling visibility of sections (Stats, Commands, Style)
-function toggleVisibility(id) {
-    const element = document.getElementById(id);
-    element.classList.toggle('aso-content-hidden');
-    element.classList.toggle('aso-content-visible');
+function toggleVisibility(element, className) {
+    // Find the closest container element that contains all relevant parts
+    const container = element.closest('.aso-post-container');
+    
+    // Find the relevant section within the container and toggle its visibility
+    const section = container.querySelector(`.${className}`);
+    section.classList.toggle('aso-content-hidden');
+    section.classList.toggle('aso-content-visible');
 }
 
 // JavaScript for updating the resource bar fill percentage dynamically
