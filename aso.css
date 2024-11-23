@@ -146,6 +146,12 @@
     font-weight: bold;
 }
 
+.aso-character-box fp {
+    color: #5F9EA0;
+    font-style: italic;
+    font-weight: bold;
+}
+
 /* Words Line Toggle (Stats, Commands, Style) */
 .aso-words-line {
     display: flex;
