@@ -17,13 +17,19 @@
 
 .serris-character-box sp {
     color: #697ecd;
-    font-style: italic;
+    font-style: normal;
     font-weight: bold;
 }
 
 .serris-character-box fp {
     color: #5F9EA0;
-    font-style: italic;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.serris-character-box ap {
+    color: #8B0000;
+    font-style: normal;
     font-weight: bold;
 }
 
