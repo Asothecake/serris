@@ -146,6 +146,12 @@
     font-weight: bold;
 }
 
+.serris-character-box kp {
+    color: #704342;
+    font-style: italic;
+    font-weight: bold;
+}
+
 /* Words Line Toggle (Stats, Commands, Style) */
 .serris-words-line {
     display: flex;
