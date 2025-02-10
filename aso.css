@@ -158,6 +158,19 @@
     font-weight: bold;
 }
 
+.aso-character-box kp {
+    color: #704342;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.aso-character-box mzp {
+    color: #00BFFF;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
 /* Words Line Toggle (Stats, Commands, Style) */
 .aso-words-line {
     display: flex;
