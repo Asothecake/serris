@@ -21,6 +21,12 @@
     font-weight: bold;
 }
 
+.aso-character-box kp {
+    color: #434270;
+    font-style: italic;
+    font-weight: bold;
+}
+
 .serris-character-box akp {
     color: #1B6F6B;
     font-style: normal;
@@ -44,6 +50,14 @@
     font-style: normal;
     font-weight: bold;
 }
+
+.aso-character-box mzp {
+    color: #00BFFF;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
 
 .serris-bottom-section {
     display: flex;
