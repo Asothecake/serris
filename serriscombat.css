@@ -152,6 +152,36 @@
     font-weight: bold;
 }
 
+.serris-character-box akp {
+    color: #1B6F6B;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.serris-character-box jp {
+    color: #7F5F3B;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.serris-character-box fp {
+    color: #5F9EA0;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.serris-character-box ap {
+    color: #8B0000;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.aso-character-box mzp {
+    color: #00BFFF;
+    font-style: italic;
+    font-weight: bold;
+}
+
 /* Words Line Toggle (Stats, Commands, Style) */
 .serris-words-line {
     display: flex;
