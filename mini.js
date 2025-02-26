@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll(".circa-button");
     const pages = document.querySelectorAll(".circa-content-page");
-    
+
     const hpInput = document.getElementById("hpInput");
     const hpBar = document.getElementById("hpFill");
 
@@ -23,22 +23,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Update HP bar when input changes
-    hpInput.addEventListener("input", () => {
-        let maxHp = parseInt(hpInput.getAttribute("max"));
-        let currentHp = parseInt(hpInput.value);
-        
-        if (currentHp > maxHp) {
-            hpInput.value = maxHp;
-            currentHp = maxHp;
-        }
-        
-        if (currentHp < 0) {
-            hpInput.value = 0;
+    // Function to update HP bar width dynamically
+    const updateHPBar = () => {
+        let maxHp = parseInt(hpInput.getAttribute("max"), 10);
+        let currentHp = parseInt(hpInput.value, 10);
+
+        if (isNaN(currentHp) || currentHp < 0) {
             currentHp = 0;
+            hpInput.value = 0;
+        }
+        if (currentHp > maxHp) {
+            currentHp = maxHp;
+            hpInput.value = maxHp;
         }
 
         let widthPercent = (currentHp / maxHp) * 100;
         hpBar.style.width = `${widthPercent}%`;
-    });
+    };
+
+    // Listen for changes in the input field
+    hpInput.addEventListener("input", updateHPBar);
+
+    // Set initial HP bar width
+    updateHPBar();
 });
