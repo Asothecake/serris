@@ -135,8 +135,9 @@ body {
     border: 2px solid #c2c2c2;
     padding: 2px;
     position: relative; /* Keeps it attached */
-    margin-top: -2px; /* Moves it closer to remove gap */
+    margin-top: -4px; /* Moves it closer to remove the last bit of the gap */
 }
+
 
 .circa-hp-bar-fill {
     height: 100%;
