@@ -15,7 +15,7 @@ body {
     max-width: 800px;
     margin: 40px auto;
     background-color: #fafafa;
-    position: relative; /* Ensure child absolute elements are relative to this */
+    position: relative; /* Allows absolute positioning of HP Bar */
 }
 
 /* Stat Box */
@@ -129,15 +129,15 @@ body {
 /* HP Bar - Integrated into the template */
 .circa-hp-bar-container {
     width: 100%; /* Full width */
-    height: 8px; /* Adjusted thickness */
+    height: 8px;
     background-color: #e1e1e1;
-    border-radius: 8px; /* Matches template */
+    border-radius: 8px;
     border: 1px solid #c2c2c2;
     padding: 2px;
-    margin-top: auto; /* Pushes it to the bottom */
-    position: relative; /* Keeps it inside the flexbox */
-    display: flex;
-    align-items: center;
+    position: absolute;
+    bottom: -4px; /* Overlaps the bottom border */
+    left: 0;
+    z-index: 10; /* Ensures it stays on top */
 }
 
 
