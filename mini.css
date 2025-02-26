@@ -78,15 +78,20 @@ body {
 
 /* Image Section */
 .circa-image-section {
+    display: flex;
+    flex-direction: column; /* Stack image and scrollbox vertically */
+    align-items: center; /* Center contents */
     flex: 0.7;
     text-align: center;
     margin-left: 10px;
+    max-width: 100%; /* Prevent overflow */
 }
 
+/* Adjust image size for better fit */
 .circa-image-section img {
-    width: 100%;
-    max-width: 400px;
-    height: 150px;
+    width: 90%; /* Adjust width to fit within the box */
+    max-width: 300px; /* Slightly smaller max width */
+    height: auto; /* Maintain aspect ratio */
     object-fit: cover;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
@@ -94,10 +99,9 @@ body {
 
 /* Scrollbox */
 .circa-scrollbox {
-    margin-top: 10px;
-    width: 100%;
-    max-width: 400px;
-    height: 120px;
+    width: 90%;
+    max-width: 300px; /* Matches the image */
+    height: 100px; /* Reduced height */
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     background-color: #fafafa;
@@ -128,16 +132,16 @@ body {
 /* HP Bar */
 /* HP Bar - Integrated into the template */
 .circa-hp-bar-container {
-    width: 100%; /* Full width */
-    height: 12px; /* Adjusted thickness */
+    width: 100%;
+    height: 12px;
     background-color: #e1e1e1;
-    border-radius: 8px; /* Matches template */
+    border-radius: 8px;
     border: 2px solid #c2c2c2;
     padding: 2px;
-    margin-top: auto; /* Pushes it to the bottom */
     position: relative; /* Keeps it inside the flexbox */
     display: flex;
     align-items: center;
+    margin-top: 10px; /* Ensures it's at the bottom */
 }
 
 
