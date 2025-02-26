@@ -1,38 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".circa-button");
-    const pages = document.querySelectorAll(".circa-content-page");
-    const hpBars = document.querySelectorAll(".circa-hp-bar-container");
+    const postContainers = document.querySelectorAll(".circa-flexbox");
 
-    // Function to toggle between stat pages
-    const togglePage = (pageName) => {
-        pages.forEach((page) => {
-            page.classList.toggle("active", page.getAttribute("data-page") === pageName);
-        });
-    };
+    postContainers.forEach((post) => {
+        const buttons = post.querySelectorAll(".circa-button");
+        const pages = post.querySelectorAll(".circa-content-page");
+        const hpContainer = post.querySelector(".circa-hp-bar-container");
 
-    // Button event listeners for stat pages
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const pageName = button.getAttribute("data-page");
-            togglePage(pageName);
-        });
-    });
-
-    // Function to update all HP bars dynamically
-    const updateHPBars = () => {
-        hpBars.forEach((hpContainer) => {
+        if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
             let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
 
-            if (isNaN(currentHp) || currentHp < 0) currentHp = 0;
-            if (currentHp > maxHp) currentHp = maxHp;
+            // Function to toggle between stat pages
+            const togglePage = (pageName) => {
+                pages.forEach((page) => {
+                    page.classList.toggle("active", page.getAttribute("data-page") === pageName);
+                });
+            };
 
-            let widthPercent = (currentHp / maxHp) * 100;
-            hpFill.style.width = `${widthPercent}%`;
-        });
-    };
+            // Attach button event listeners only for this post
+            buttons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const pageName = button.getAttribute("data-page");
+                    togglePage(pageName);
+                });
+            });
 
-    // Initial update on page load
-    updateHPBars();
+            // Function to update HP bar
+            const updateHPBar = () => {
+                let newCurrentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
+
+                if (isNaN(newCurrentHp) || newCurrentHp < 0) newCurrentHp = 0;
+                if (newCurrentHp > maxHp) newCurrentHp = maxHp;
+
+                let widthPercent = (newCurrentHp / maxHp) * 100;
+                hpFill.style.width = `${widthPercent}%`;
+            };
+
+            // Initial HP bar update
+            updateHPBar();
+        }
+    });
 });
