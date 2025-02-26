@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let maxHp = parseInt(hpInput.getAttribute("max"), 10);
         let currentHp = parseInt(hpInput.value, 10);
 
+        // Prevent out-of-range values
         if (isNaN(currentHp) || currentHp < 0) {
             currentHp = 0;
             hpInput.value = 0;
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             hpInput.value = maxHp;
         }
 
+        // Update HP bar width
         let widthPercent = (currentHp / maxHp) * 100;
         hpBar.style.width = `${widthPercent}%`;
     };
@@ -44,6 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Listen for changes in the input field
     hpInput.addEventListener("input", updateHPBar);
 
-    // Set initial HP bar width
+    // Set initial HP bar width on page load
     updateHPBar();
 });
