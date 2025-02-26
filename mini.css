@@ -134,15 +134,8 @@ body {
     border-radius: 8px; /* Matches template */
     border: 2px solid #c2c2c2;
     padding: 2px;
-    margin-top: 10px; /* Adds spacing */
-    
-    display: flex; /* Aligns the bar properly */
-    justify-content: flex-start; /* Aligns HP bar from left */
-    align-items: center; /* Centers the bar */
-    
-    position: absolute; /* Keep it inside the template */
-    bottom: 0; /* Attach to bottom of template */
-    left: 0;
+    position: relative; /* Keeps it attached */
+    margin-top: -2px; /* Moves it closer to remove gap */
 }
 
 .circa-hp-bar-fill {
