@@ -135,12 +135,14 @@ body {
     border: 2px solid #c2c2c2;
     padding: 5px;
     width: 100%;
+    max-width: 350px; /* Keep it clean and contained */
+    margin: 15px auto 0; /* Ensures spacing below the template */
 }
 
 .circa-hp-bar-fill {
-    height: 20px;
+    height: 15px; /* Adjusted for better fit */
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
-    width: 80%;
+    width: 80%; /* Dynamically adjusts */
     transition: width 0.5s ease;
     border-radius: 4px;
 }
@@ -152,4 +154,5 @@ body {
     padding: 2px;
     text-align: center;
     font-weight: bold;
+    display: none; /* Hides number input */
 }
