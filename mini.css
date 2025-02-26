@@ -134,9 +134,12 @@ body {
     border-radius: 8px; /* Matches template */
     border: 2px solid #c2c2c2;
     padding: 2px;
-    position: relative; /* Keeps it attached */
-    margin-top: -4px; /* Moves it closer to remove the last bit of the gap */
+    position: absolute; /* Ensures it is positioned relative to the flexbox */
+    bottom: -2px; /* Move it up to remove the gap */
+    left: 0;
+    margin-top: 0; /* Reset any spacing */
 }
+
 
 
 .circa-hp-bar-fill {
