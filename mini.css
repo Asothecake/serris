@@ -128,16 +128,16 @@ body {
 /* HP Bar */
 /* HP Bar - Integrated into the template */
 .circa-hp-bar-container {
-    width: 100%; /* Full width of template */
+    width: 100%; /* Full width */
     height: 12px; /* Adjusted thickness */
     background-color: #e1e1e1;
     border-radius: 8px; /* Matches template */
     border: 2px solid #c2c2c2;
     padding: 2px;
-    margin-top: -2px; /* Reduce gap between template and bar */
-    position: relative; /* Ensure it stays inside the template */
-    bottom: 0; /* Attach to bottom */
-    left: 0;
+    margin-top: auto; /* Pushes it to the bottom */
+    position: relative; /* Keeps it inside the flexbox */
+    display: flex;
+    align-items: center;
 }
 
 
