@@ -16,11 +16,9 @@ body {
     margin: 40px auto;
     background-color: #fafafa;
     position: relative; /* Ensure child absolute elements are relative to this */
-    justify-content: space-between;
-    align-items: flex-start;
 }
 
-/* Stat Box - Keeps it aligned on the left */
+/* Stat Box */
 .circa-statbox {
     flex: 0.3;
     padding: 10px;
@@ -78,31 +76,28 @@ body {
     transform: scale(1.05);
 }
 
-/* Right Section - Stacks image and text box above HP Bar */
-.circa-right-section {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center;
+/* Image Section */
+.circa-image-section {
     flex: 0.7;
     text-align: center;
-    max-width: 100%; /* Prevents overflow */
+    margin-left: 10px;
 }
 
-/* Image Section - Adjusted for better stacking */
 .circa-image-section img {
     width: 100%;
-    max-width: 350px; /* Slightly smaller to fit well */
-    height: auto;
+    max-width: 400px;
+    height: 150px;
     object-fit: cover;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
 }
 
-/* Scrollbox - Adjusted for stacking */
+/* Scrollbox */
 .circa-scrollbox {
+    margin-top: 10px;
     width: 100%;
-    max-width: 350px; /* Matches image */
-    height: 110px; /* Adjusted to prevent compression */
+    max-width: 400px;
+    height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     background-color: #fafafa;
@@ -111,21 +106,41 @@ body {
     box-sizing: border-box;
 }
 
-/* HP Bar - Now placed correctly */
-.circa-hp-bar-container {
-    width: 100%;
-    height: 12px;
-    background-color: #e1e1e1;
-    border-radius: 8px;
-    border: 2px solid #c2c2c2;
-    padding: 2px;
-    position: relative; /* Ensures it stays inside */
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+/* Pop-up Pages */
+.circa-content-page {
+    position: absolute;
+    top: 0;
+    left: 190px;
+    background-color: #fafafa;
+    border-radius: 15px;
+    padding: 20px;
+    display: none;
+    overflow: auto;
+    z-index: 500;
+    max-width: 600px;
+    height: 250px;
 }
 
-/* HP Fill */
+.circa-content-page.active {
+    display: block;
+}
+
+/* HP Bar */
+/* HP Bar - Integrated into the template */
+.circa-hp-bar-container {
+    width: 100%; /* Full width */
+    height: 12px; /* Adjusted thickness */
+    background-color: #e1e1e1;
+    border-radius: 8px; /* Matches template */
+    border: 2px solid #c2c2c2;
+    padding: 2px;
+    margin-top: auto; /* Pushes it to the bottom */
+    position: relative; /* Keeps it inside the flexbox */
+    display: flex;
+    align-items: center;
+}
+
+
 .circa-hp-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
@@ -134,12 +149,13 @@ body {
     border-radius: 4px;
 }
 
-/* Hide HP Value Display */
+
+/* HP Display */
 #hpValueDisplay {
     display: none;
 }
 
-/* Hide HP Input Field */
+
 #hpInput {
     width: 50px;
     border: 1px solid #c2c2c2;
@@ -147,5 +163,8 @@ body {
     padding: 2px;
     text-align: center;
     font-weight: bold;
-    display: none;
+    display: none; /* Hides number input */
 }
+
+
+Confirm your rollback and I'll proceed
