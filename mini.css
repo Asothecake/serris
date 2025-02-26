@@ -134,20 +134,25 @@ body {
     border-radius: 8px; /* Matches template */
     border: 2px solid #c2c2c2;
     padding: 2px;
-    margin-top: 15px; /* Increased spacing to move it down */
-    position: relative; /* Keeps it within the normal document flow */
+    margin-top: 10px; /* Adds spacing */
+    
+    display: flex; /* Aligns the bar properly */
+    justify-content: flex-start; /* Aligns HP bar from left */
+    align-items: center; /* Centers the bar */
+    
+    position: absolute; /* Keep it inside the template */
+    bottom: 0; /* Attach to bottom of template */
     left: 0;
 }
 
-
-/* HP Fill */
 .circa-hp-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
-    width: 100%;
+    width: 80%; /* Example width based on HP value */
     transition: width 0.5s ease;
-    border-radius: 8px;
+    border-radius: 4px;
 }
+
 
 /* HP Display */
 #hpValueDisplay {
