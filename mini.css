@@ -128,24 +128,19 @@ body {
 /* HP Bar */
 /* HP Bar - Integrated into the template */
 .circa-hp-bar-container {
-    width: 100%; /* Full width of template */
-    height: 12px; /* Adjusted thickness */
+    width: 100%;
+    height: 12px; /* Thin HP bar */
     background-color: #e1e1e1;
-    border-radius: 8px; /* Matches template */
+    border-radius: 8px;
     border: 2px solid #c2c2c2;
-    padding: 2px;
-    position: absolute;
-    bottom: 0; /* Attaches to bottom of .circa-flexbox */
-    left: 0;
-    margin: 0; /* Ensure no extra spacing */
+    margin-top: 0; /* Remove spacing */
+    padding: 0;
 }
-
-
 
 .circa-hp-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
-    width: 80%; /* Example width based on HP value */
+    width: 0%; /* Default width, will be updated by JS */
     transition: width 0.5s ease;
     border-radius: 4px;
 }
