@@ -126,27 +126,44 @@ body {
 }
 
 /* HP Bar */
+/* HP Bar - Integrated into the template */
 .circa-hp-bar-container {
-    width: calc(100% - 40px); /* Makes it span the full width of the template */
-    height: 12px; /* Slightly thicker for better visibility */
+    width: 100%; /* Full width of template */
+    height: 12px; /* Adjusted thickness */
     background-color: #e1e1e1;
-    border-radius: 15px; /* Matches the template's rounded edges */
+    border-radius: 8px; /* Matches template */
     border: 2px solid #c2c2c2;
-    margin-top: 10px; /* Adjust spacing to blend into the bottom */
     padding: 2px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%); /* Centers the bar */
+    margin-top: 10px; /* Spacing before attaching to bottom */
+    position: absolute;
+    bottom: 10px; /* Attach to the bottom of the template */
+    left: 0;
 }
 
 /* HP Fill */
 .circa-hp-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
-    width: 80%;
+    width: 100%;
     transition: width 0.5s ease;
-    border-radius: 15px;
+    border-radius: 8px;
 }
+
+/* HP Display */
+#hpValueDisplay {
+    position: absolute;
+    bottom: -18px; /* Adjust position to avoid overlapping */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #1f2636;
+    font-weight: bold;
+    background: #fafafa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #c2c2c2;
+}
+
 
 #hpInput {
     width: 50px;
