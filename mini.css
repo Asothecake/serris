@@ -132,7 +132,7 @@ body {
     height: 8px; /* Adjusted thickness */
     background-color: #e1e1e1;
     border-radius: 8px;
-    border: 1px solid #c2c2c2;
+    border: 2px solid #c2c2c2;
     padding: 0;
     position: absolute; /* Allows it to float over the template */
     bottom: -4px; /* Moves it slightly below the template */
