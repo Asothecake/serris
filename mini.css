@@ -134,11 +134,11 @@ body {
     border-radius: 8px; /* Matches template */
     border: 2px solid #c2c2c2;
     padding: 2px;
-    margin-top: 10px; /* Spacing before attaching to bottom */
-    position: absolute;
-    bottom: 10px; /* Attach to the bottom of the template */
+    margin-top: 15px; /* Increased spacing to move it down */
+    position: relative; /* Keeps it within the normal document flow */
     left: 0;
 }
+
 
 /* HP Fill */
 .circa-hp-bar-fill {
@@ -151,17 +151,7 @@ body {
 
 /* HP Display */
 #hpValueDisplay {
-    position: absolute;
-    bottom: -18px; /* Adjust position to avoid overlapping */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    color: #1f2636;
-    font-weight: bold;
-    background: #fafafa;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid #c2c2c2;
+    display: none;
 }
 
 
