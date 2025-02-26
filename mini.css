@@ -5,22 +5,22 @@ body {
     color: #e1e1e1;
 }
 
-/* Main Container */
+/* Container */
 .circa-flexbox {
     display: flex;
-    flex-wrap: nowrap; /* Keep stats on the left, other elements stacked */
+    flex-wrap: nowrap;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
-    padding: 15px;
+    padding: 20px;
     max-width: 800px;
     margin: 40px auto;
     background-color: #fafafa;
-    position: relative;
+    position: relative; /* Ensure child absolute elements are relative to this */
 }
 
-/* Left Side: Stat Box */
+/* Stat Box */
 .circa-statbox {
-    flex: 0.3; /* Keeps the stats box on the left */
+    flex: 0.3;
     padding: 10px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
@@ -50,7 +50,7 @@ body {
     border: 2px solid #c2c2c2;
 }
 
-/* Button Group */
+/* Button Styling */
 .circa-button-group {
     display: flex;
     flex-direction: column;
@@ -76,27 +76,17 @@ body {
     transform: scale(1.05);
 }
 
-/* Right Side: Image & Scrollbox */
-.circa-right-section {
-    flex: 0.7;
-    display: flex;
-    flex-direction: column; /* Stack image + scrollbox */
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-left: 15px; /* Ensure proper spacing */
-}
-
 /* Image Section */
 .circa-image-section {
-    width: 100%;
+    flex: 0.7;
     text-align: center;
+    margin-left: 10px;
 }
 
 .circa-image-section img {
     width: 100%;
-    max-width: 300px; /* Adjusted size */
-    height: 140px; /* Adjust height */
+    max-width: 400px;
+    height: 150px;
     object-fit: cover;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
@@ -104,9 +94,10 @@ body {
 
 /* Scrollbox */
 .circa-scrollbox {
+    margin-top: 10px;
     width: 100%;
-    max-width: 300px;
-    height: 100px; /* Reduce height for better layout */
+    max-width: 400px;
+    height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     background-color: #fafafa;
@@ -115,36 +106,56 @@ body {
     box-sizing: border-box;
 }
 
+/* Pop-up Pages */
+.circa-content-page {
+    position: absolute;
+    top: 0;
+    left: 190px;
+    background-color: #fafafa;
+    border-radius: 15px;
+    padding: 20px;
+    display: none;
+    overflow: auto;
+    z-index: 500;
+    max-width: 600px;
+    height: 250px;
+}
+
+.circa-content-page.active {
+    display: block;
+}
+
+/* HP Bar */
 /* HP Bar - Integrated into the template */
 .circa-hp-bar-container {
     width: 100%; /* Full width */
-    height: 10px; /* Adjusted thickness */
+    height: 12px; /* Adjusted thickness */
     background-color: #e1e1e1;
-    border-radius: 6px; /* Matches template */
+    border-radius: 8px; /* Matches template */
     border: 2px solid #c2c2c2;
-    margin-top: 5px; /* Reduced gap */
     padding: 2px;
-    position: relative;
+    margin-top: auto; /* Pushes it to the bottom */
+    position: relative; /* Keeps it inside the flexbox */
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
-/* HP Bar Fill */
+
 .circa-hp-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
-    width: 0%; /* Default width, updated by JS */
+    width: 0%; /* Default width, will be updated by JS */
     transition: width 0.5s ease;
     border-radius: 4px;
 }
 
-/* Hide HP Text Display */
+
+/* HP Display */
 #hpValueDisplay {
     display: none;
 }
 
-/* Hide HP Input */
+
 #hpInput {
     width: 50px;
     border: 1px solid #c2c2c2;
@@ -152,5 +163,6 @@ body {
     padding: 2px;
     text-align: center;
     font-weight: bold;
-    display: none; /* Hide input */
+    display: none; /* Hides number input */
 }
+
