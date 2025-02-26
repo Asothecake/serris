@@ -127,28 +127,25 @@ body {
 
 /* HP Bar */
 .circa-hp-bar-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: calc(100% - 40px); /* Makes it span the full width of the template */
+    height: 12px; /* Slightly thicker for better visibility */
     background-color: #e1e1e1;
-    border-radius: 8px;
+    border-radius: 15px; /* Matches the template's rounded edges */
     border: 2px solid #c2c2c2;
-    padding: 4px;
-    width: 100%;
-    max-width: 350px; /* Keeps it clean and contained */
-    margin: 5px auto 0; /* Reduced space */
-    position: absolute;
-    bottom: -15px; /* Moves it up to directly touch the template bottom */
+    margin-top: 10px; /* Adjust spacing to blend into the bottom */
+    padding: 2px;
+    position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* Centers the bar */
 }
 
+/* HP Fill */
 .circa-hp-bar-fill {
-    height: 8px; /* Thinner Bar */
+    height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
     width: 80%;
     transition: width 0.5s ease;
-    border-radius: 4px;
+    border-radius: 15px;
 }
 
 #hpInput {
