@@ -12,6 +12,8 @@ body {
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     padding: 20px;
+     margin-bottom: 0; /* Ensures no extra spacing */
+    padding-bottom: 0;
     max-width: 800px;
     margin: 40px auto;
     background-color: #fafafa;
@@ -125,20 +127,20 @@ body {
     display: block;
 }
 
-/* HP Bar */
-/* HP Bar - Integrated into the template */
+
 .circa-hp-bar-container {
-    width: 100%; /* Full width */
-    height: 8px;
+    width: 100%;
+    height: 8px; /* Adjusted thickness */
     background-color: #e1e1e1;
     border-radius: 8px;
     border: 1px solid #c2c2c2;
-    padding: 2px;
-    position: absolute;
-    bottom: -4px; /* Overlaps the bottom border */
-    left: 0;
-    z-index: 10; /* Ensures it stays on top */
+    padding: 0; /* Remove extra padding */
+    margin-top: -5px; /* Move it up to overlap with the border */
+    position: relative;
+    display: flex;
+    align-items: center;
 }
+
 
 
 .circa-hp-bar-fill {
