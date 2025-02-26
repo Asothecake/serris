@@ -14,7 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
             // Function to toggle between stat pages
             const togglePage = (pageName) => {
                 pages.forEach((page) => {
-                    page.classList.toggle("active", page.getAttribute("data-page") === pageName);
+                    // If it's already active, remove it. Otherwise, open it.
+                    if (page.getAttribute("data-page") === pageName) {
+                        page.classList.toggle("active");
+                    } else {
+                        page.classList.remove("active"); // Ensure only one is open at a time
+                    }
                 });
             };
 
