@@ -8,21 +8,19 @@ body {
 /* Main Container */
 .circa-flexbox {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center;
+    flex-wrap: nowrap; /* Keep stats on the left, other elements stacked */
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     padding: 15px;
-    max-width: 600px; /* Adjusted for better fit */
+    max-width: 800px;
     margin: 40px auto;
     background-color: #fafafa;
     position: relative;
 }
 
-/* Stat Box */
+/* Left Side: Stat Box */
 .circa-statbox {
-    width: 100%;
-    max-width: 250px; /* Reduced size */
+    flex: 0.3; /* Keeps the stats box on the left */
     padding: 10px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
@@ -33,6 +31,7 @@ body {
     font-size: 12px;
     color: #1f2636;
     gap: 15px;
+    max-width: 180px;
     position: relative;
 }
 
@@ -77,18 +76,27 @@ body {
     transform: scale(1.05);
 }
 
+/* Right Side: Image & Scrollbox */
+.circa-right-section {
+    flex: 0.7;
+    display: flex;
+    flex-direction: column; /* Stack image + scrollbox */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 15px; /* Ensure proper spacing */
+}
+
 /* Image Section */
 .circa-image-section {
     width: 100%;
-    max-width: 250px; /* Adjusted size */
     text-align: center;
-    margin-bottom: 5px; /* Reduce space */
 }
 
 .circa-image-section img {
     width: 100%;
-    max-width: 250px;
-    height: 140px; /* Adjust height to balance */
+    max-width: 300px; /* Adjusted size */
+    height: 140px; /* Adjust height */
     object-fit: cover;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
@@ -96,9 +104,8 @@ body {
 
 /* Scrollbox */
 .circa-scrollbox {
-    margin-top: 5px; /* Reduce spacing */
     width: 100%;
-    max-width: 250px; /* Adjusted width */
+    max-width: 300px;
     height: 100px; /* Reduce height for better layout */
     border: 2px solid #e1e1e1;
     border-radius: 15px;
@@ -108,25 +115,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Pop-up Pages */
-.circa-content-page {
-    position: absolute;
-    top: 0;
-    left: 190px;
-    background-color: #fafafa;
-    border-radius: 15px;
-    padding: 20px;
-    display: none;
-    overflow: auto;
-    z-index: 500;
-    max-width: 100%;
-    height: 220px; /* Adjusted for better fit */
-}
-
-.circa-content-page.active {
-    display: block;
-}
-
 /* HP Bar - Integrated into the template */
 .circa-hp-bar-container {
     width: 100%; /* Full width */
@@ -134,7 +122,7 @@ body {
     background-color: #e1e1e1;
     border-radius: 6px; /* Matches template */
     border: 2px solid #c2c2c2;
-    margin-top: auto; /* Push to bottom */
+    margin-top: 5px; /* Reduced gap */
     padding: 2px;
     position: relative;
     display: flex;
