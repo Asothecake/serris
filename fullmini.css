@@ -5,7 +5,7 @@ body {
     color: #e1e1e1;
 }
 
-/* Main Container */
+/* Container */
 .circa-flexbox {
     display: flex;
     flex-wrap: nowrap;
@@ -38,64 +38,22 @@ body {
     min-width: 70px;
 }
 
-/* Individual Stat Entry */
-.circa-stat-entry {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    gap: 4px;
-}
-
-/* Boxed Stat Value */
-.circa-value-box {
-    width: 34px;
-    height: 34px;
-    font-size: 12px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 34px;
-    border-radius: 8px;
-    border: 2px solid #3f3f3f;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    transform: rotate(-5deg);
-}
-
-/* Color Themes for Stats */
-.circa-stat-entry:nth-child(1) .circa-value-box { background-color: #f7b2b2; color: #5c2e2e; } /* STR - Soft Red */
-.circa-stat-entry:nth-child(2) .circa-value-box { background-color: #b2d6f7; color: #2e4c5c; } /* MAG - Soft Blue */
-.circa-stat-entry:nth-child(3) .circa-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
-.circa-stat-entry:nth-child(4) .circa-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
-
-/* Stat Label */
-.circa-stat-label {
-    font-size: 10px;
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    font-weight: bold;
-    color: #3f3f3f;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    letter-spacing: 2px;
-}
-
-/* Image Section */
+/* The Image Section */
 .circa-image-section {
     position: relative;
     width: 100%;
     max-width: 340px;
-    height: 150px; /* Ensure the height remains fixed */
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
-    background-color: #1f2636; /* Fallback color in case the image fails to load */
+    background-color: #1f2636;
 }
 
+/* Ensure the image stays contained */
 .circa-image-section img {
     width: 100%;
     height: 100%;
@@ -103,7 +61,34 @@ body {
     border-radius: 15px;
 }
 
+/* Page Buttons Inside Image Box */
+.circa-page-index {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+    z-index: 5;
+}
 
+/* Page Button Styling */
+.circa-page-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 9px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.circa-page-btn:hover,
+.circa-page-btn.active {
+    background: rgba(0, 0, 0, 0.8);
+}
 
 /* Scrollbox */
 .circa-scrollbox {
@@ -114,21 +99,7 @@ body {
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     background-color: #fafafa;
-    overflow: hidden;
-    padding: 10px;
-    box-sizing: border-box;
-    position: relative;
-}
-
-/* Scroll Pages (for content switching) */
-.circa-scroll-pages {
-    display: flex;
-    width: 400%;
-    transition: transform 0.5s ease-in-out;
-}
-
-.circa-scroll-page {
-    width: 25%;
+    overflow-y: auto;
     padding: 10px;
     box-sizing: border-box;
 }
@@ -155,34 +126,4 @@ body {
     width: 0%;
     transition: width 0.5s ease;
     border-radius: 4px;
-}
-
-/* Page Buttons - Now Positioned Inside the Image Box */
-.circa-page-index {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-    z-index: 5;
-}
-
-
-/* Style for Individual Page Buttons */
-.circa-page-btn {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 10px;
-    padding: 3px 6px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.circa-page-btn:hover,
-.circa-page-btn.active {
-    background: rgba(0, 0, 0, 0.8);
 }
