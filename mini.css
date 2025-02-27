@@ -23,7 +23,7 @@ body {
 
 /* Stat Box */
 .circa-statbox {
-    flex: 0.2; /* Makes it smaller, shifting left */
+    flex: 0.2; /* Reducing width further */
     padding: 10px;
     border: 0px solid #e1e1e1;
     border-radius: 15px;
@@ -33,25 +33,25 @@ body {
     background-color: #f9f9f9;
     font-size: 12px;
     color: #1f2636;
-    gap: 6px; /* Reduces space between stat entries */
-    max-width: 90px; /* Further reduces width */
+    gap: 14px; /* Increased spacing between stats */
+    max-width: 90px;
     min-width: 90px;
 }
 
 /* Stat Entry with Vertical Label */
 .circa-stat-entry {
     display: flex;
-    flex-direction: row; /* Positions box & label side by side */
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     position: relative;
     width: 100%;
-    gap: 4px; /* Space between the box and label */
+    gap: 4px;
 }
 
 /* The Boxed Stat Value */
 .circa-value-box {
-    width: 34px; /* Shrinks for a better fit */
+    width: 34px;
     height: 34px;
     font-size: 12px;
     font-weight: bold;
@@ -76,21 +76,21 @@ body {
     font-weight: bold;
     color: #3f3f3f;
     text-transform: uppercase;
-    writing-mode: vertical-rl; /* Makes text vertical */
-    text-orientation: upright; /* Ensures letters stay upright */
-    letter-spacing: 2px; /* Adds spacing between letters */
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 2px;
 }
 
 /* Image Section */
 .circa-image-section {
-    flex: 0.8; /* Increases width for a larger image */
+    flex: 0.8;
     text-align: center;
     margin-left: 10px;
 }
 
 .circa-image-section img {
     width: 100%;
-    max-width: 440px; /* Expanded */
+    max-width: 440px;
     height: 150px;
     object-fit: cover;
     border-radius: 15px;
@@ -101,7 +101,7 @@ body {
 .circa-scrollbox {
     margin-top: 10px;
     width: 100%;
-    max-width: 440px; /* Expanded */
+    max-width: 440px;
     height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
