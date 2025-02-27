@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             page.style.display = "none"; // Start hidden
         });
 
-        // Toggle function for stat, command, and style pages
+        // Toggle function for main buttons
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
                 event.stopPropagation(); // Prevents unwanted bubbling
@@ -39,14 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (targetPage) {
                     // Toggle active state
-                    const isOpen = targetPage.style.display === "block";
-
-                    // Close all other pages inside this post
-                    pages.forEach((page) => (page.style.display = "none"));
-
-                    // Show the selected page only if it wasn’t already open
-                    if (!isOpen) {
-                        targetPage.style.display = "block";
+                    if (targetPage.style.display === "block") {
+                        targetPage.style.display = "none"; // Close it if open
+                    } else {
+                        pages.forEach((page) => (page.style.display = "none")); // Close others
+                        targetPage.style.display = "block"; // Open selected
                     }
                 }
             });
