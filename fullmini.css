@@ -115,28 +115,30 @@ body {
 /* Page Index - New Labels */
 .circa-page-index {
     position: absolute;
-    left: -50px; /* Moves the labels so they sit half on the border */
+    left: -45px; /* Moves labels so they sit half inside, half outside */
     top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
+    z-index: 10;
 }
 
+
 .circa-page-btn {
-    width: 100px; /* Ensures equal width */
+    width: 90px; /* Consistent width */
     height: 24px;
     font-size: 12px;
     font-weight: bold;
     text-align: center;
     line-height: 24px;
     color: rgba(255, 255, 255, 0.8);
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
     cursor: pointer;
     transition: opacity 0.3s ease, background-color 0.3s ease;
     position: relative;
+    transform: translateX(-50%);
 }
-
 
 .circa-page-btn:hover {
     opacity: 1;
