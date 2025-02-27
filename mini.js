@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".circa-flexbox").forEach((post) => {
         const buttons = post.querySelectorAll(".circa-button");
-        const pages = post.querySelectorAll(".circa-content-page");
+        const expandableSections = post.querySelectorAll(".circa-expandable");
+        const imageSection = post.querySelector(".circa-image-section");
+        const scrollbox = post.querySelector(".circa-scrollbox");
         const hpContainer = post.querySelector(".circa-hp-bar-container");
 
+        // Function to update HP bar
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
@@ -19,28 +22,34 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar(); // Initial update
         }
 
-        // Function to toggle content pages
+        // Toggle function for main buttons
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
-                event.stopPropagation();
+                event.stopPropagation(); // Prevents unwanted bubbling
 
-                const pageName = button.getAttribute("data-page");
-                const targetPage = post.querySelector(`.circa-content-page[data-page="${pageName}"]`);
-                const isActive = targetPage.classList.contains("active");
+                const targetName = button.getAttribute("data-page");
+                const targetSection = post.querySelector(`.circa-expandable[data-page="${targetName}"]`);
 
-                // Reset all content pages inside this post
-                pages.forEach((page) => {
-                    page.classList.remove("active");
-                    page.style.display = "none";
-                });
+                if (targetSection) {
+                    const isActive = targetSection.classList.contains("active");
 
-                post.classList.remove("expanded");
+                    // Close all sections first
+                    expandableSections.forEach((section) => {
+                        section.classList.remove("active");
+                        section.style.display = "none";
+                    });
 
-                // If it wasn’t active before, open it and apply "expanded"
-                if (!isActive) {
-                    targetPage.classList.add("active");
-                    targetPage.style.display = "block";
-                    post.classList.add("expanded");
+                    // Reset flexbox state
+                    post.classList.remove("expanded");
+
+                    // If it wasn’t active before, open it
+                    if (!isActive) {
+                        targetSection.classList.add("active");
+                        targetSection.style.display = "block";
+
+                        // Hide the image section & scrollbox when expanding content
+                        post.classList.add("expanded");
+                    }
                 }
             });
         });
