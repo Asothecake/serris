@@ -107,57 +107,50 @@ body {
     box-sizing: border-box;
 }
 
-/* Pop-up Pages */
-
-.circa-content-page {
-    position: absolute;
-    background-color: #fafafa;
-    border-radius: 15px;
-    padding: 20px;
-    display: none; /* Initially hidden */
-    z-index: 10; /* Ensure it appears above other elements */
-    width: 100%; /* Adjust width as needed */
-    left: 0;
-    top: 100%; /* Position it directly below the buttons */
+/* 🔹 Expandable Sections (Replaces Pop-up Pages) */
+.circa-expandable {
+    display: none; /* Start hidden */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 2px solid #e1e1e1;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    margin-top: 10px;
 }
 
-.circa-content-page.active {
-    display: block; /* Remove !important */
+/* When active, it appears */
+.circa-expandable.active {
+    display: block;
 }
 
-
-
+/* 🔹 HP Bar (Floating Under the Template) */
 .circa-hp-bar-container {
     width: 100%;
-    height: 8px; /* Adjusted thickness */
+    height: 8px;
     background-color: #e1e1e1;
     border-radius: 8px;
     border: 2px solid #c2c2c2;
     padding: 0;
-    position: absolute; /* Allows it to float over the template */
-    bottom: -4px; /* Moves it slightly below the template */
+    position: absolute;
+    bottom: -4px;
     left: 0;
     display: flex;
     align-items: center;
-    z-index: 10; /* Ensures it stays above the template border */
+    z-index: 10;
 }
-
-
 
 .circa-hp-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
-    width: 0%; /* Default width, will be updated by JS */
+    width: 0%;
     transition: width 0.5s ease;
     border-radius: 4px;
 }
-
 
 /* HP Display */
 #hpValueDisplay {
     display: none;
 }
-
 
 #hpInput {
     width: 50px;
@@ -166,7 +159,5 @@ body {
     padding: 2px;
     text-align: center;
     font-weight: bold;
-    display: none; /* Hides number input */
+    display: none;
 }
-
-
