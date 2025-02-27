@@ -34,8 +34,8 @@ body {
     font-size: 12px;
     color: #1f2636;
     gap: 10px;
-    max-width: 126px; /* Reduced width (~30% smaller) */
-    min-width: 126px; /* Prevents shrinking too much */
+    max-width: 126px;
+    min-width: 126px;
 }
 
 /* Resource Display */
@@ -53,51 +53,33 @@ body {
     border: 2px solid #c2c2c2;
 }
 
-/* Stat Display (Updated Styling) */
+/* Stat Display (Uniform Design + Fading Underline) */
 .circa-stat-display {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     font-size: 14px;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-bottom: 2px solid transparent; /* Default border, replaced below */
-    position: relative;
-}
-
-/* Unique Styling for Each Stat */
-.circa-stat-display:nth-child(3) span:first-child { /* STR */
-    color: #d9534f; /* Strong red */
-    font-family: 'Impact', sans-serif;
-    text-transform: uppercase;
-}
-.circa-stat-display:nth-child(4) span:first-child { /* MAG */
-    color: #5bc0de; /* Magic blue */
     font-family: 'Georgia', serif;
-    font-style: italic;
-}
-.circa-stat-display:nth-child(5) span:first-child { /* AGL */
-    color: #5cb85c; /* Agile green */
-    font-family: 'Courier New', monospace;
-    letter-spacing: 1px;
-}
-.circa-stat-display:nth-child(6) span:first-child { /* DEF */
-    color: #f0ad4e; /* Defensive gold */
-    font-family: 'Arial Black', sans-serif;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    background-color: #e1e1e1;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid #c2c2c2;
+    margin-top: 5px;
+    position: relative;
+    color: #2b2b2b;
 }
 
-/* Pen-Stroke Effect Under Each Stat */
+/* Pen-stroke fading underline */
 .circa-stat-display::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 10%;
-    width: 80%;
+    left: 5%;
+    bottom: -3px;
+    width: 90%;
     height: 2px;
-    background: url('https://asothecake.github.io/assets/pen-stroke.png') no-repeat center;
-    background-size: contain;
+    background: linear-gradient(to right, #2b2b2b 0%, rgba(43, 43, 43, 0) 100%);
 }
 
 /* Image Section */
