@@ -52,6 +52,23 @@ body {
     position: relative;
 }
 
+/* Boxed Stat Values (Mimicking D12 Dice Aesthetic) */
+.circa-boxed-value {
+    display: inline-block;
+    padding: 5px 10px;
+    background: linear-gradient(to bottom, #dcdcdc 0%, #a9a9a9 100%);
+    color: #d32f2f;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 2px solid #4a4a4a;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform: rotate(-5deg);
+    text-align: center;
+    min-width: 40px;
+}
+
 /* Apply the same fading underline effect */
 .circa-resource::after,
 .circa-stat-display::after {
