@@ -26,25 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const pageName = button.getAttribute("data-page");
                 const targetPage = post.querySelector(`.circa-content-page[data-page="${pageName}"]`);
+                const isActive = targetPage.classList.contains("active");
 
-                if (targetPage) {
-                    const isActive = targetPage.classList.contains("active");
+                // Reset all content pages inside this post
+                pages.forEach((page) => {
+                    page.classList.remove("active");
+                    page.style.display = "none";
+                });
 
-                    // Close all content pages inside this specific post
-                    pages.forEach((page) => {
-                        page.classList.remove("active");
-                        page.style.display = "none";
-                    });
+                post.classList.remove("expanded");
 
-                    // Remove "expanded" from this post before applying changes
-                    post.classList.remove("expanded");
-
-                    // If it wasn’t active before, open it and apply the "expanded" class
-                    if (!isActive) {
-                        targetPage.classList.add("active");
-                        targetPage.style.display = "block";
-                        post.classList.add("expanded");
-                    }
+                // If it wasn’t active before, open it and apply "expanded"
+                if (!isActive) {
+                    targetPage.classList.add("active");
+                    targetPage.style.display = "block";
+                    post.classList.add("expanded");
                 }
             });
         });
