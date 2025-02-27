@@ -28,17 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 const targetPage = post.querySelector(`.circa-content-page[data-page="${pageName}"]`);
 
                 if (targetPage) {
-                    // Toggle visibility
-                    targetPage.classList.toggle("active");
-                    targetPage.style.display = targetPage.classList.contains("active") ? "block" : "none";
+                    const isActive = targetPage.classList.contains("active");
 
-                    // Close all other pages in the same post
+                    // Close all content pages first
                     pages.forEach((page) => {
-                        if (page !== targetPage) {
-                            page.classList.remove("active");
-                            page.style.display = "none";
-                        }
+                        page.classList.remove("active");
+                        page.style.display = "none";
                     });
+
+                    // If it wasn’t active before, open it
+                    if (!isActive) {
+                        targetPage.classList.add("active");
+                        targetPage.style.display = "block";
+                    }
                 }
             });
         });
