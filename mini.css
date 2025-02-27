@@ -108,22 +108,21 @@ body {
 }
 
 /* Pop-up Pages */
+
 .circa-content-page {
     position: absolute;
-    top: 0;
-    left: 190px;
     background-color: #fafafa;
     border-radius: 15px;
     padding: 20px;
-    display: none;
-    overflow: auto;
-    z-index: 500;
-    max-width: 600px;
-    height: 250px;
+    display: none; /* Initially hidden */
+    z-index: 10; /* Ensure it appears above other elements */
+    width: 100%; /* Adjust width as needed */
+    left: 0;
+    top: 100%; /* Position it directly below the buttons */
 }
 
 .circa-content-page.active {
-    display: block;
+    display: block !important; /* Ensure visibility */
 }
 
 
