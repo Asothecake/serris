@@ -26,12 +26,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.stopPropagation(); // Stop event bubbling
 
                 const pageName = button.getAttribute("data-page");
+
+                console.log("Button Clicked:", pageName); // Debugging log
+
                 pages.forEach((page) => {
                     if (page.getAttribute("data-page") === pageName) {
                         // Toggle only this post's page visibility
-                        page.classList.toggle("active");
-                    } else {
-                        page.classList.remove("active");
+                        if (page.classList.contains("active")) {
+                            page.classList.remove("active");
+                            console.log("Closed Page:", pageName); // Debugging log
+                        } else {
+                            pages.forEach(p => p.classList.remove("active")); // Close others
+                            page.classList.add("active");
+                            console.log("Opened Page:", pageName); // Debugging log
+                        }
                     }
                 });
             });
