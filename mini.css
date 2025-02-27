@@ -55,14 +55,14 @@ body {
     text-align: center;
 }
 
-/* Stat Name Placement (Angled Below) */
+/* Stat Name Placement (Now Parallel to Border) */
 .circa-stat-entry span {
     position: absolute;
-    bottom: -18px;
+    bottom: -16px;
     font-size: 10px; /* Adjusted for readability */
     font-weight: bold;
     text-transform: uppercase;
-    transform: rotate(-25deg); /* Matches box rotation */
+    transform: rotate(25deg); /* Corrected to be parallel */
 }
 
 /* Unique Colors for Dice */
