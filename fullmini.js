@@ -17,5 +17,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
             updateHPBar(); // Run on load
         }
+
+        // Scrollbox Pagination Logic
+        const scrollbox = post.querySelector(".circa-scrollbox");
+        const pagesContainer = scrollbox?.querySelector(".circa-scroll-pages");
+        const pageButtons = scrollbox?.querySelectorAll(".circa-page-btn");
+
+        if (scrollbox && pagesContainer && pageButtons) {
+            pageButtons.forEach((button, index) => {
+                button.addEventListener("click", () => {
+                    // Move the content by adjusting transform property
+                    pagesContainer.style.transform = `translateX(-${index * 100}%)`;
+
+                    // Highlight active button
+                    pageButtons.forEach((btn) => btn.classList.remove("active"));
+                    button.classList.add("active");
+                });
+            });
+
+            // Set default active page (Page 1)
+            pageButtons[0].classList.add("active");
+        }
     });
 });
