@@ -17,7 +17,13 @@ body {
     margin: 40px auto;
     background-color: #fafafa;
     position: relative;
-    flex-direction: column; /* Makes sure expandable sections stay inside */
+    flex-direction: column; /* Ensures expandable sections don't break layout */
+}
+
+/* Ensure proper layout on first load */
+.circa-image-section {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Hide image and scrollbox when expanded */
@@ -41,7 +47,78 @@ body {
     max-width: 180px;
 }
 
-/* Expandable Sections */
+/* Resource Display */
+.circa-resource {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #e1e1e1;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid #c2c2c2;
+}
+
+/* Button Styling */
+.circa-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.circa-button {
+    width: 90%;
+    padding: 10px;
+    background-color: #e1e1e1;
+    border: 2px solid #3f3f3f;
+    border-radius: 15px 20px 20px 15px;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    color: #1f2636;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.circa-button:hover {
+    transform: scale(1.05);
+}
+
+/* Image Section */
+.circa-image-section {
+    flex: 0.7;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.circa-image-section img {
+    width: 100%;
+    max-width: 400px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid #e1e1e1;
+}
+
+/* Scrollbox */
+.circa-scrollbox {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: 120px;
+    border: 2px solid #e1e1e1;
+    border-radius: 15px;
+    background-color: #fafafa;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* 🔹 Expandable Sections */
 .circa-expandable {
     display: none;
     padding: 10px;
@@ -51,9 +128,49 @@ body {
     width: 100%;
     margin-top: 10px;
     position: relative;
+    transition: all 0.3s ease-in-out; /* Smooth transition */
 }
 
 /* When active, it appears */
 .circa-expandable.active {
     display: block;
+}
+
+/* 🔹 HP Bar (Floating Under the Template) */
+.circa-hp-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: #e1e1e1;
+    border-radius: 8px;
+    border: 2px solid #c2c2c2;
+    padding: 0;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.circa-hp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff4d4d, #cc0000);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 4px;
+}
+
+/* HP Display */
+#hpValueDisplay {
+    display: none;
+}
+
+#hpInput {
+    width: 50px;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    padding: 2px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
 }
