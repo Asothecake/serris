@@ -122,8 +122,9 @@ body {
 }
 
 .circa-content-page.active {
-    display: block !important; /* Ensure visibility */
+    display: block; /* Remove !important */
 }
+
 
 
 .circa-hp-bar-container {
