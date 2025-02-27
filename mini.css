@@ -17,14 +17,8 @@ body {
     margin: 40px auto;
     background-color: #fafafa;
     position: relative;
-    flex-direction: row; /* Ensures proper layout */
-    align-items: flex-start; /* Keeps everything aligned */
-}
-
-/* Hide image and scrollbox when expanded */
-.circa-flexbox.expanded .circa-image-section,
-.circa-flexbox.expanded .circa-scrollbox {
-    display: none;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 /* Stat Box */
@@ -41,7 +35,7 @@ body {
     color: #1f2636;
     gap: 15px;
     max-width: 180px;
-    min-width: 180px; /* Prevents shrinking */
+    min-width: 180px;
 }
 
 /* Resource Display */
@@ -59,30 +53,25 @@ body {
     border: 2px solid #c2c2c2;
 }
 
-/* Button Styling */
-.circa-button-group {
+/* Stat Display (Replacing Buttons) */
+.circa-stat-display {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #e1e1e1;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid #c2c2c2;
+    margin-top: 5px;
 }
 
-.circa-button {
-    width: 90%;
-    padding: 10px;
-    background-color: #e1e1e1;
-    border: 2px solid #3f3f3f;
-    border-radius: 15px 20px 20px 15px;
-    cursor: pointer;
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+.circa-stat-display span {
     color: #1f2636;
     font-weight: bold;
-    text-align: center;
-    transition: transform 0.2s, background-color 0.3s;
-}
-
-.circa-button:hover {
-    transform: scale(1.05);
 }
 
 /* Image Section */
@@ -115,24 +104,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Expandable Sections */
-.circa-expandable {
-    display: none;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-top: 2px solid #e1e1e1;
-    border-radius: 0 0 10px 10px;
-    width: 100%;
-    margin-top: 10px;
-    position: relative;
-    transition: all 0.3s ease-in-out; /* Smooth transition */
-}
-
-/* When active, it appears */
-.circa-expandable.active {
-    display: block;
-}
-
 /* HP Bar (Floating Under the Template) */
 .circa-hp-bar-container {
     width: 100%;
@@ -155,19 +126,4 @@ body {
     width: 0%;
     transition: width 0.5s ease;
     border-radius: 4px;
-}
-
-/* HP Display */
-#hpValueDisplay {
-    display: none;
-}
-
-#hpInput {
-    width: 50px;
-    border: 1px solid #c2c2c2;
-    border-radius: 4px;
-    padding: 2px;
-    text-align: center;
-    font-weight: bold;
-    display: none;
 }
