@@ -1,60 +1,55 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("JavaScript is running...");
-
-    document.body.addEventListener("click", (event) => {
-        let button = event.target.closest(".circa-button");
-        if (!button) return;
-
-        console.log("Button clicked:", button.textContent);
-
-        let post = button.closest(".circa-flexbox");
-        if (!post) return;
-
+    document.querySelectorAll(".circa-flexbox").forEach((post) => {
+        const buttons = post.querySelectorAll(".circa-button");
         const expandableSections = post.querySelectorAll(".circa-expandable");
         const imageSection = post.querySelector(".circa-image-section");
         const scrollbox = post.querySelector(".circa-scrollbox");
-        const targetName = button.getAttribute("data-target");
-        const targetSection = post.querySelector(`.circa-expandable[data-page="${targetName}"]`);
+        const hpContainer = post.querySelector(".circa-hp-bar-container");
 
-        if (!targetSection) {
-            console.warn("Target section not found for:", targetName);
-            return;
+        // Function to update HP bar
+        if (hpContainer) {
+            let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
+            let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
+
+            const updateHPBar = () => {
+                let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
+                if (isNaN(currentHp) || currentHp < 0) currentHp = 0;
+                if (currentHp > maxHp) currentHp = maxHp;
+                let widthPercent = (currentHp / maxHp) * 100;
+                hpFill.style.width = `${widthPercent}%`;
+            };
+
+            updateHPBar(); // Initial update
         }
 
-        const isActive = targetSection.classList.contains("active");
+        // Toggle function for buttons
+        buttons.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                event.stopPropagation(); // Prevents unwanted bubbling
 
-        // Close all sections
-        expandableSections.forEach((section) => {
-            section.classList.remove("active");
-            section.style.display = "none";
+                const targetName = button.getAttribute("data-page");
+                const targetSection = post.querySelector(`.circa-expandable[data-page="${targetName}"]`);
+
+                if (targetSection) {
+                    const isActive = targetSection.classList.contains("active");
+
+                    // Close all sections within this instance
+                    expandableSections.forEach((section) => {
+                        section.classList.remove("active");
+                        section.style.display = "none";
+                    });
+
+                    // Reset flexbox state
+                    post.classList.remove("expanded");
+
+                    // If it wasn’t active before, open it
+                    if (!isActive) {
+                        targetSection.classList.add("active");
+                        targetSection.style.display = "block";
+                        post.classList.add("expanded"); // Hide image & scrollbox when expanded
+                    }
+                }
+            });
         });
-
-        // Reset state
-        post.classList.remove("expanded");
-
-        // Open new section if it wasn't active
-        if (!isActive) {
-            targetSection.classList.add("active");
-            targetSection.style.display = "block";
-            post.classList.add("expanded"); // Hide image/scrollbox
-        }
-    });
-
-    // Ensure no expandable sections are open on first load
-    document.querySelectorAll(".circa-expandable").forEach((section) => {
-        section.classList.remove("active");
-        section.style.display = "none";
-    });
-
-    // Ensure HP Bar initializes correctly
-    document.querySelectorAll(".circa-hp-bar-container").forEach((hpContainer) => {
-        let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
-        let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
-        let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
-
-        if (isNaN(currentHp) || currentHp < 0) currentHp = 0;
-        if (currentHp > maxHp) currentHp = maxHp;
-        let widthPercent = (currentHp / maxHp) * 100;
-        hpFill.style.width = `${widthPercent}%`;
     });
 });
