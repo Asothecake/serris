@@ -21,11 +21,11 @@ body {
     align-items: flex-start;
 }
 
-/* Stat Box */
+/* Stat Box - Now Thinner and Pushed Left */
 .circa-statbox {
-    flex: 0.3;
-    padding: 10px;
-    border: 2px solid #e1e1e1;
+    flex: 0.25;  /* Reduced size */
+    padding: 8px;
+    border: 0px solid #e1e1e1;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -33,9 +33,9 @@ body {
     background-color: #f9f9f9;
     font-size: 12px;
     color: #1f2636;
-    gap: 8px; /* Reduces space between stat entries */
-    max-width: 110px; /* Smaller width */
-    min-width: 110px;
+    gap: 6px; /* Reduces space between stat entries */
+    max-width: 100px; /* Adjusted width */
+    min-width: 100px;
 }
 
 /* Stat Entry with Tilted Label */
@@ -50,12 +50,12 @@ body {
 
 /* The Boxed Stat Value */
 .circa-value-box {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
+    width: 36px; /* Reduced size */
+    height: 36px;
+    font-size: 13px;
     font-weight: bold;
     text-align: center;
-    line-height: 40px;
+    line-height: 36px;
     border-radius: 10px;
     border: 2px solid #3f3f3f;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -70,7 +70,7 @@ body {
 
 /* The Tilted Label Underneath */
 .circa-stat-label {
-    font-size: 11px;
+    font-size: 10px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-weight: bold;
     color: #3f3f3f;
@@ -79,27 +79,27 @@ body {
     text-transform: uppercase;
 }
 
-/* Image Section */
+/* Image Section - Now Wider */
 .circa-image-section {
-    flex: 0.7;
+    flex: 0.75;  /* Increased to make it wider */
     text-align: center;
-    margin-left: 10px;
+    margin-left: 5px; /* Reduced margin for compact spacing */
 }
 
 .circa-image-section img {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px; /* Increased width */
     height: 150px;
     object-fit: cover;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
 }
 
-/* Scrollbox */
+/* Scrollbox - Now Wider */
 .circa-scrollbox {
     margin-top: 10px;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px; /* Matches Image Width */
     height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
