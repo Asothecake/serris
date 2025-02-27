@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollbox = post.querySelector(".circa-scrollbox");
         const hpContainer = post.querySelector(".circa-hp-bar-container");
 
-        // Update HP Bar
+        // Function to update HP bar
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
@@ -42,14 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Reset flexbox state
                     post.classList.remove("expanded");
 
-                    // If it wasn’t active before, open it
                     if (!isActive) {
+                        // Show the target section
                         targetSection.classList.add("active");
                         targetSection.style.display = "block";
 
-                        // Hide the image section & scrollbox when expanding content
+                        // Hide image & scrollbox
                         imageSection.style.display = "none";
                         scrollbox.style.display = "none";
+
+                        // Add expanded class to flexbox
+                        post.classList.add("expanded");
                     } else {
                         // Restore image and scrollbox when closing
                         imageSection.style.display = "block";
