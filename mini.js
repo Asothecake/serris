@@ -16,24 +16,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const targetName = button.getAttribute("data-target");
         const targetSection = post.querySelector(`.circa-expandable[data-page="${targetName}"]`);
 
-        if (targetSection) {
-            const isActive = targetSection.classList.contains("active");
+        if (!targetSection) {
+            console.warn("Target section not found for:", targetName);
+            return;
+        }
 
-            // Close all sections
-            expandableSections.forEach((section) => {
-                section.classList.remove("active");
-                section.style.display = "none";
-            });
+        const isActive = targetSection.classList.contains("active");
 
-            // Reset state
-            post.classList.remove("expanded");
+        // Close all sections
+        expandableSections.forEach((section) => {
+            section.classList.remove("active");
+            section.style.display = "none";
+        });
 
-            // Open new section if it wasn't active
-            if (!isActive) {
-                targetSection.classList.add("active");
-                targetSection.style.display = "block";
-                post.classList.add("expanded"); // Hide image/scrollbox
-            }
+        // Reset state
+        post.classList.remove("expanded");
+
+        // Open new section if it wasn't active
+        if (!isActive) {
+            targetSection.classList.add("active");
+            targetSection.style.display = "block";
+            post.classList.add("expanded"); // Hide image/scrollbox
         }
     });
 
