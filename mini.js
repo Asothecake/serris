@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollbox = post.querySelector(".circa-scrollbox");
         const hpContainer = post.querySelector(".circa-hp-bar-container");
 
+        // Ensure the post starts in the correct state on load
+        post.classList.remove("expanded"); // Ensure no sections are open initially
+        expandableSections.forEach((section) => {
+            section.classList.remove("active");
+            section.style.display = "none"; // Ensure sections are hidden initially
+        });
+
         // Function to update HP bar
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
@@ -27,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
             button.addEventListener("click", (event) => {
                 event.stopPropagation(); // Prevents unwanted bubbling
 
-                const targetName = button.getAttribute("data-page");
-                const targetSection = post.querySelector(`.circa-expandable[data-page="${targetName}"]`);
+                const targetName = button.getAttribute("data-target");
+                const targetSection = post.querySelector(`.circa-expandable#${targetName}`);
 
                 if (targetSection) {
                     const isActive = targetSection.classList.contains("active");
@@ -42,21 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Reset flexbox state
                     post.classList.remove("expanded");
 
+                    // If it wasn’t active before, open it
                     if (!isActive) {
-                        // Show the target section
                         targetSection.classList.add("active");
                         targetSection.style.display = "block";
-
-                        // Hide image & scrollbox
-                        imageSection.style.display = "none";
-                        scrollbox.style.display = "none";
-
-                        // Add expanded class to flexbox
-                        post.classList.add("expanded");
+                        post.classList.add("expanded"); // Hide image/scrollbox
                     } else {
-                        // Restore image and scrollbox when closing
-                        imageSection.style.display = "block";
-                        scrollbox.style.display = "block";
+                        // Restore image/scrollbox when closing section
+                        post.classList.remove("expanded");
                     }
                 }
             });
