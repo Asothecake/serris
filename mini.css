@@ -17,13 +17,8 @@ body {
     margin: 40px auto;
     background-color: #fafafa;
     position: relative;
-    flex-direction: column; /* Ensures expandable sections don't break layout */
-}
-
-/* Ensure proper layout on first load */
-.circa-image-section {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Ensures proper layout */
+    align-items: flex-start; /* Keeps everything aligned */
 }
 
 /* Hide image and scrollbox when expanded */
@@ -34,6 +29,7 @@ body {
 
 /* Stat Box */
 .circa-statbox {
+    flex: 0.3;
     padding: 10px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
@@ -45,6 +41,7 @@ body {
     color: #1f2636;
     gap: 15px;
     max-width: 180px;
+    min-width: 180px; /* Prevents shrinking */
 }
 
 /* Resource Display */
@@ -118,7 +115,7 @@ body {
     box-sizing: border-box;
 }
 
-/* 🔹 Expandable Sections */
+/* Expandable Sections */
 .circa-expandable {
     display: none;
     padding: 10px;
@@ -136,7 +133,7 @@ body {
     display: block;
 }
 
-/* 🔹 HP Bar (Floating Under the Template) */
+/* HP Bar (Floating Under the Template) */
 .circa-hp-bar-container {
     width: 100%;
     height: 8px;
