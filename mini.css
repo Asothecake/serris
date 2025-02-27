@@ -17,7 +17,13 @@ body {
     margin: 40px auto;
     background-color: #fafafa;
     position: relative;
-    flex-direction: column; /* Makes sure expandable sections stay inside */
+    flex-direction: column; /* Ensures expandable sections don't break layout */
+}
+
+/* 🔹 Ensure proper layout on first load */
+.circa-image-section {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Hide image and scrollbox when expanded */
@@ -41,7 +47,7 @@ body {
     max-width: 180px;
 }
 
-/* Expandable Sections */
+/* 🔹 Expandable Sections */
 .circa-expandable {
     display: none;
     padding: 10px;
@@ -51,6 +57,7 @@ body {
     width: 100%;
     margin-top: 10px;
     position: relative;
+    transition: all 0.3s ease-in-out; /* Smooth transition */
 }
 
 /* When active, it appears */
