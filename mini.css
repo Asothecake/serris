@@ -23,92 +23,83 @@ body {
 
 /* Stat Box */
 .circa-statbox {
-    flex: 0.2;
+    flex: 0.3;
     padding: 10px;
+    border: 2px solid #e1e1e1;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: transparent;
+    background-color: #f9f9f9;
     font-size: 12px;
     color: #1f2636;
-    gap: 12px;
-    min-width: 90px;
-    margin-left: -15px;
+    gap: 8px; /* Reduces space between stat entries */
+    max-width: 110px; /* Smaller width */
+    min-width: 110px;
 }
 
-/* Stat Entry (Dice-Like) */
+/* Stat Entry with Tilted Label */
 .circa-stat-entry {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
+    width: 100%;
+}
+
+/* The Boxed Stat Value */
+.circa-value-box {
     width: 40px;
     height: 40px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    background-color: #fafafa;
-    border: 3px solid #333;
+    text-align: center;
+    line-height: 40px;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    transform: rotate(-25deg);
-    text-align: center;
-    padding: 3px;  /* Adds a tiny margin inside */
+    border: 2px solid #3f3f3f;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform: rotate(-5deg);
 }
 
-/* Stat Name Placement (Now More Readable) */
-.circa-stat-entry span {
-    position: absolute;
-    bottom: -14px; /* Adjusted for better spacing */
-    font-size: 10px;
+/* Pastel Colors for Each Stat */
+.circa-stat-entry:nth-child(1) .circa-value-box { background-color: #f7b2b2; color: #5c2e2e; } /* STR - Soft Red */
+.circa-stat-entry:nth-child(2) .circa-value-box { background-color: #b2d6f7; color: #2e4c5c; } /* MAG - Soft Blue */
+.circa-stat-entry:nth-child(3) .circa-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
+.circa-stat-entry:nth-child(4) .circa-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
+
+/* The Tilted Label Underneath */
+.circa-stat-label {
+    font-size: 11px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-weight: bold;
+    color: #3f3f3f;
+    margin-top: 2px;
+    transform: rotate(-15deg);
     text-transform: uppercase;
-    transform: rotate(25deg);
-    padding: 2px 4px; /* Prevents overlap with border */
-    background: rgba(250, 250, 250, 0.8); /* Faint background for clarity */
 }
 
-/* Unique Colors for Dice */
-.circa-stat-entry[data-stat="STR"] {
-    background-color: #f8d7da;
-    border-color: #c82333;
-}
-
-.circa-stat-entry[data-stat="MAG"] {
-    background-color: #d6e4ff;
-    border-color: #1c3faa;
-}
-
-.circa-stat-entry[data-stat="AGL"] {
-    background-color: #d4f8c5;
-    border-color: #1c7c3a;
-}
-
-.circa-stat-entry[data-stat="DEF"] {
-    background-color: #f5e6a3;
-    border-color: #a67c00;
-}
-
-/* Image and Scrollbox Adjustments */
+/* Image Section */
 .circa-image-section {
-    flex: 0.8;
+    flex: 0.7;
     text-align: center;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .circa-image-section img {
     width: 100%;
-    max-width: 460px;
-    height: 157px;
+    max-width: 400px;
+    height: 150px;
     object-fit: cover;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
 }
 
+/* Scrollbox */
 .circa-scrollbox {
     margin-top: 10px;
     width: 100%;
-    max-width: 460px;
+    max-width: 400px;
     height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
@@ -117,12 +108,6 @@ body {
     padding: 10px;
     box-sizing: border-box;
 }
-
-/* Adjusts vertical placement */
-.circa-stat-entry:nth-child(1) { margin-top: 5px; }
-.circa-stat-entry:nth-child(2) { margin-top: 12px; }
-.circa-stat-entry:nth-child(3) { margin-top: 18px; }
-.circa-stat-entry:nth-child(4) { margin-top: 24px; }
 
 /* HP Bar (Floating Under the Template) */
 .circa-hp-bar-container {
