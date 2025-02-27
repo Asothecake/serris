@@ -38,61 +38,57 @@ body {
     min-width: 126px;
 }
 
-/* Resource Display (IP & Custom now match Stats) */
+/* Resource Display */
 .circa-resource {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     font-size: 14px;
-    font-family: 'Georgia', serif;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-weight: bold;
-    color: #2b2b2b;
+    background-color: #e1e1e1;
     padding: 5px;
-    position: relative;
+    border-radius: 8px;
+    border: 2px solid #c2c2c2;
 }
 
-/* Boxed Stat Values (Mimicking D12 Dice Aesthetic) */
-.circa-boxed-value {
-    display: inline-block;
-    padding: 5px 10px;
-    background: linear-gradient(to bottom, #dcdcdc 0%, #a9a9a9 100%);
-    color: #d32f2f;
-    font-family: 'Georgia', serif;
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 10px;
-    border: 2px solid #4a4a4a;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    transform: rotate(-5deg);
-    text-align: center;
-    min-width: 40px;
-}
-
-/* Apply the same fading underline effect */
-.circa-resource::after,
-.circa-stat-display::after {
-    content: "";
-    position: absolute;
-    left: 5%;
-    bottom: -3px;
-    width: 90%;
-    height: 2px;
-    background: linear-gradient(to right, #2b2b2b 0%, rgba(43, 43, 43, 0) 100%);
-}
-
-/* Stat Display (Now borderless + matches IP & Custom styling) */
-.circa-stat-display {
+/* Stat Entry with Tilted Label */
+.circa-stat-entry {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    font-size: 14px;
-    font-family: 'Georgia', serif;
-    font-weight: bold;
-    color: #2b2b2b;
-    padding: 5px;
+    justify-content: center;
     position: relative;
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* The Boxed Stat Value */
+.circa-value-box {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    background-color: #e1e1e1;
+    color: #1f2636;
+    border-radius: 12px;
+    border: 2px solid #3f3f3f;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    transform: rotate(-5deg);
+}
+
+/* The Tilted Label Underneath */
+.circa-stat-label {
+    font-size: 12px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-weight: bold;
+    color: #3f3f3f;
+    margin-top: 4px;
+    transform: rotate(-15deg);
+    text-transform: uppercase;
 }
 
 /* Image Section */
