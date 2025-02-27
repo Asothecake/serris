@@ -97,8 +97,9 @@ body {
     border: 2px solid #e1e1e1;
 }
 
-/* Scrollbox */
+/* Scrollbox with Pagination */
 .circa-scrollbox {
+    position: relative;
     margin-top: 10px;
     width: 100%;
     max-width: 440px;
@@ -106,9 +107,50 @@ body {
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     background-color: #fafafa;
-    overflow-y: auto;
+    overflow: hidden;
     padding: 10px;
     box-sizing: border-box;
+}
+
+/* Pages inside the scrollbox */
+.circa-scroll-pages {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 400%; /* Each page takes 100%, so 4 pages = 400% */
+}
+
+.circa-scroll-page {
+    width: 100%;
+    flex-shrink: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Page Index (Left side inside the scrollbox) */
+.circa-page-index {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.circa-page-btn {
+    font-size: 12px;
+    font-weight: bold;
+    color: #3f3f3f;
+    background-color: rgba(0, 0, 0, 0.1); /* Low opacity */
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.circa-page-btn:hover,
+.circa-page-btn.active {
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 1;
 }
 
 /* HP Bar (Floating Under the Template) */
