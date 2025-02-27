@@ -16,32 +16,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 hpFill.style.width = `${widthPercent}%`;
             };
 
-            // Update HP Bar on load
-            updateHPBar();
+            updateHPBar(); // Initial update
         }
 
-        // Toggle visibility for content pages per post
+        // Toggle content for this specific post
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
-                event.stopPropagation(); // Stop event bubbling
+                event.stopPropagation(); // Prevent event bubbling
 
                 const pageName = button.getAttribute("data-page");
+                const targetPage = post.querySelector(`.circa-content-page[data-page="${pageName}"]`);
 
-                console.log("Button Clicked:", pageName); // Debugging log
+                console.log("Button Clicked:", pageName, "Target Page Found:", !!targetPage);
 
-                pages.forEach((page) => {
-                    if (page.getAttribute("data-page") === pageName) {
-                        // Toggle only this post's page visibility
-                        if (page.classList.contains("active")) {
-                            page.classList.remove("active");
-                            console.log("Closed Page:", pageName); // Debugging log
-                        } else {
-                            pages.forEach(p => p.classList.remove("active")); // Close others
-                            page.classList.add("active");
-                            console.log("Opened Page:", pageName); // Debugging log
-                        }
+                if (targetPage) {
+                    // Close all pages in this post first
+                    pages.forEach((page) => page.classList.remove("active"));
+
+                    // Toggle the clicked one
+                    if (!targetPage.classList.contains("active")) {
+                        targetPage.classList.add("active");
+                        console.log("Opened Page:", pageName);
+                    } else {
+                        console.log("Closed Page:", pageName);
                     }
-                });
+                }
             });
         });
     });
