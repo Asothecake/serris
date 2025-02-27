@@ -1,8 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".circa-flexbox").forEach((post) => {
-        // =================== HP BAR UPDATE ===================
         const hpContainer = post.querySelector(".circa-hp-bar-container");
+        const scrollbox = post.querySelector(".circa-scrollbox");
+        const pages = post.querySelectorAll(".circa-scroll-page");
+        const pageIndexButtons = post.querySelectorAll(".circa-scroll-index span");
 
+        let currentPage = 0; // Start at Page 1 (index 0)
+
+        // Function to update HP bar for each post
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
@@ -18,28 +23,27 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar(); // Run on load
         }
 
-        // =================== SCROLLBOX PAGE NAVIGATION ===================
-        const scrollbox = post.querySelector(".circa-scrollbox");
-        const pagesContainer = scrollbox?.querySelector(".circa-scroll-pages");
-        const pageButtons = scrollbox?.querySelectorAll(".circa-page-btn");
+        // Ensure only one page is visible at a time
+        function updatePage() {
+            let offset = -currentPage * 100; // Moves page to correct position
+            scrollbox.style.transform = `translateX(${offset}%)`;
+            scrollbox.style.transition = "transform 0.4s ease-in-out"; // Smooth transition
 
-        if (scrollbox && pagesContainer && pageButtons) {
-            pageButtons.forEach((button, index) => {
-                button.addEventListener("click", () => {
-                    // Slide to the selected page
-                    pagesContainer.style.transform = `translateX(-${index * 100}%)`;
-
-                    // Ensure content remains inside the scrollbox
-                    pagesContainer.style.overflow = "hidden";
-
-                    // Highlight the active page button
-                    pageButtons.forEach((btn) => btn.classList.remove("active"));
-                    button.classList.add("active");
-                });
+            // Update active page index indicator
+            pageIndexButtons.forEach((btn, index) => {
+                btn.classList.toggle("active", index === currentPage);
             });
-
-            // Set default active page (Page 1)
-            pageButtons[0].classList.add("active");
         }
+
+        // Event listener for page index clicks
+        pageIndexButtons.forEach((btn, index) => {
+            btn.addEventListener("click", () => {
+                currentPage = index;
+                updatePage();
+            });
+        });
+
+        // Initialize the first page
+        updatePage();
     });
 });
