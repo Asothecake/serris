@@ -6,7 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollbox = post.querySelector(".circa-scrollbox");
         const hpContainer = post.querySelector(".circa-hp-bar-container");
 
-        // Function to update HP bar
+        // ✅ Ensuring a clean reset on load
+        post.classList.remove("expanded");
+        expandableSections.forEach((section) => {
+            section.classList.remove("active");
+            section.style.display = "none"; // Ensure sections are hidden initially
+        });
+
+        // ✅ Function to update HP bar
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
@@ -22,42 +29,31 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar(); // Initial update
         }
 
-        // Toggle function for main buttons
+        // ✅ Toggle function for buttons
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
-                event.stopPropagation(); // Prevents unwanted bubbling
+                event.stopPropagation();
 
-                const targetName = button.getAttribute("data-page");
-                const targetSection = post.querySelector(`.circa-expandable[data-page="${targetName}"]`);
+                const targetID = button.getAttribute("data-target");
+                const targetSection = post.querySelector(`.circa-expandable#${targetID}`);
 
-                if (targetSection) {
-                    const isActive = targetSection.classList.contains("active");
+                if (!targetSection) return;
 
-                    // Close all sections first
-                    expandableSections.forEach((section) => {
-                        section.classList.remove("active");
-                        section.style.display = "none";
-                    });
+                const isActive = targetSection.classList.contains("active");
 
-                    // Reset flexbox state
-                    post.classList.remove("expanded");
+                // ✅ Reset all sections before opening a new one
+                expandableSections.forEach((section) => {
+                    section.classList.remove("active");
+                    section.style.display = "none";
+                });
 
-                    if (!isActive) {
-                        // Show the target section
-                        targetSection.classList.add("active");
-                        targetSection.style.display = "block";
+                post.classList.remove("expanded"); // Ensure reset before applying new state
 
-                        // Hide image & scrollbox
-                        imageSection.style.display = "none";
-                        scrollbox.style.display = "none";
-
-                        // Add expanded class to flexbox
-                        post.classList.add("expanded");
-                    } else {
-                        // Restore image and scrollbox when closing
-                        imageSection.style.display = "block";
-                        scrollbox.style.display = "block";
-                    }
+                // ✅ If it wasn’t active before, open it
+                if (!isActive) {
+                    targetSection.classList.add("active");
+                    targetSection.style.display = "block";
+                    post.classList.add("expanded");
                 }
             });
         });
