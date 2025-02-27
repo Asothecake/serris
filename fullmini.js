@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".circa-flexbox").forEach((post) => {
+        // HP Bar Functionality
         const hpContainer = post.querySelector(".circa-hp-bar-container");
-
-        // Function to update HP bar for each post
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
@@ -18,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar(); // Run on load
         }
 
-        // Scrollbox Pagination Logic
+        // Scrollbox Page Navigation
         const scrollbox = post.querySelector(".circa-scrollbox");
         const pagesContainer = scrollbox?.querySelector(".circa-scroll-pages");
         const pageButtons = scrollbox?.querySelectorAll(".circa-page-btn");
@@ -26,10 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (scrollbox && pagesContainer && pageButtons) {
             pageButtons.forEach((button, index) => {
                 button.addEventListener("click", () => {
-                    // Move the content by adjusting transform property
+                    // Slide to the selected page
                     pagesContainer.style.transform = `translateX(-${index * 100}%)`;
 
-                    // Highlight active button
+                    // Highlight the active page button
                     pageButtons.forEach((btn) => btn.classList.remove("active"));
                     button.classList.add("active");
                 });
