@@ -84,15 +84,16 @@ body {
 /* Image Section */
 .circa-image-section {
     position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: 150px; /* Ensure the height remains fixed */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 340px;
-    height: 150px;
-    border-radius: 15px;
     overflow: hidden;
+    border-radius: 15px;
     border: 2px solid #e1e1e1;
+    background-color: #1f2636; /* Fallback color in case the image fails to load */
 }
 
 .circa-image-section img {
@@ -101,6 +102,7 @@ body {
     object-fit: cover;
     border-radius: 15px;
 }
+
 
 
 /* Scrollbox */
@@ -179,7 +181,6 @@ body {
     font-weight: bold;
     transition: background 0.3s;
 }
-
 
 .circa-page-btn:hover,
 .circa-page-btn.active {
