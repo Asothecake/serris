@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".circa-flexbox").forEach((post) => {
         const buttons = post.querySelectorAll(".circa-button");
-        const pages = post.querySelectorAll(".circa-expandable");
+        const pages = post.querySelectorAll(".circa-content-page");
         const hpContainer = post.querySelector(".circa-hp-bar-container");
-        const imageSection = post.querySelector(".circa-image-section");
 
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
@@ -20,29 +19,29 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar(); // Initial update
         }
 
-        // Toggle function for expandable sections
+        // Toggle function for main buttons
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
                 event.stopPropagation(); // Prevents unwanted bubbling
 
-                const targetId = button.getAttribute("data-target");
-                const targetPage = post.querySelector(`#${targetId}`);
+                const pageName = button.getAttribute("data-page");
+                const targetPage = post.querySelector(`.circa-content-page[data-page="${pageName}"]`);
                 const isActive = targetPage.classList.contains("active");
 
-                // Close all expandable sections first
+                // Close all content pages **inside this post only**
                 pages.forEach((page) => {
                     page.classList.remove("active");
                     page.style.display = "none";
                 });
 
-                // Remove "expanded" state from template
+                // Remove "expanded" from this post before applying changes
                 post.classList.remove("expanded");
 
-                // If it wasn’t active before, open it and hide image/scrollbox
+                // If it wasn’t active before, open it and apply the "expanded" class
                 if (!isActive) {
                     targetPage.classList.add("active");
                     targetPage.style.display = "block";
-                    post.classList.add("expanded"); // Hide image/scrollbox
+                    post.classList.add("expanded"); // Hides image & scrollbox
                 }
             });
         });
