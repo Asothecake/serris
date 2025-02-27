@@ -11,18 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
             let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
 
-            // Function to toggle between stat pages
+            // Function to toggle stat pages correctly per post
             const togglePage = (pageName) => {
                 pages.forEach((page) => {
                     if (page.getAttribute("data-page") === pageName) {
-                        page.classList.toggle("active"); // Toggle active state
-                    } else {
-                        page.classList.remove("active");
+                        if (page.classList.contains("active")) {
+                            page.classList.remove("active"); // Close if already open
+                        } else {
+                            pages.forEach((p) => p.classList.remove("active")); // Close others
+                            page.classList.add("active"); // Open selected page
+                        }
                     }
                 });
             };
 
-            // Attach button event listeners only for this post
+            // Attach button event listeners scoped to this post
             buttons.forEach((button) => {
                 button.addEventListener("click", () => {
                     const pageName = button.getAttribute("data-page");
