@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Toggle function for main buttons
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
-                event.stopPropagation(); // Prevents unwanted bubbling
+                event.stopPropagation(); // Prevent unwanted bubbling
 
                 const targetName = button.getAttribute("data-page");
                 const targetSection = post.querySelector(`.circa-expandable[data-page="${targetName}"]`);
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (targetSection) {
                     const isActive = targetSection.classList.contains("active");
 
-                    // Close all sections first
+                    // Close all expandable sections
                     expandableSections.forEach((section) => {
                         section.classList.remove("active");
                         section.style.display = "none";
@@ -42,13 +42,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Reset flexbox state
                     post.classList.remove("expanded");
 
-                    // If it wasn’t active before, open it
+                    // If the clicked section wasn't active, open it
                     if (!isActive) {
                         targetSection.classList.add("active");
                         targetSection.style.display = "block";
 
                         // Hide the image section & scrollbox when expanding content
+                        if (imageSection) imageSection.style.display = "none";
+                        if (scrollbox) scrollbox.style.display = "none";
+
                         post.classList.add("expanded");
+                    } else {
+                        // Restore image & scrollbox if no section is active
+                        if (imageSection) imageSection.style.display = "block";
+                        if (scrollbox) scrollbox.style.display = "block";
                     }
                 }
             });
