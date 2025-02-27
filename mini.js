@@ -19,16 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar(); // Initial update
         }
 
-        // Ensure correct positioning for each post
-        pages.forEach((page) => {
-            page.style.position = "absolute"; // Keeps content inside the template
-            page.style.left = "50%"; // Centers relative to the post
-            page.style.top = "90%"; // Positions below buttons
-            page.style.transform = "translateX(-50%)"; // Keeps alignment centered
-            page.style.zIndex = "10"; // Prevents overlap issues
-            page.style.display = "none"; // Start hidden
-        });
-
         // Toggle function for main buttons
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
@@ -38,13 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const targetPage = post.querySelector(`.circa-content-page[data-page="${pageName}"]`);
 
                 if (targetPage) {
-                    // Toggle active state
-                    if (targetPage.style.display === "block") {
-                        targetPage.style.display = "none"; // Close it if open
-                    } else {
-                        pages.forEach((page) => (page.style.display = "none")); // Close others
-                        targetPage.style.display = "block"; // Open selected
-                    }
+                    // Toggle visibility
+                    targetPage.classList.toggle("active");
+                    targetPage.style.display = targetPage.classList.contains("active") ? "block" : "none";
+
+                    // Close all other pages in the same post
+                    pages.forEach((page) => {
+                        if (page !== targetPage) {
+                            page.classList.remove("active");
+                            page.style.display = "none";
+                        }
+                    });
                 }
             });
         });
