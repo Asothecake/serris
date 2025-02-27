@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("JavaScript is running...");
+
     document.body.addEventListener("click", (event) => {
         let button = event.target.closest(".circa-button");
         if (!button) return;
+
+        console.log("Button clicked:", button.textContent);
 
         let post = button.closest(".circa-flexbox");
         if (!post) return;
