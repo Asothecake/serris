@@ -11,21 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
             let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
 
-            // Function to toggle between stat pages **for this post only**
+            // Function to toggle pages only for the current post
             const togglePage = (pageName) => {
                 pages.forEach((page) => {
                     if (page.getAttribute("data-page") === pageName) {
-                        if (page.classList.contains("active")) {
-                            page.classList.remove("active"); // Close if already open
-                        } else {
-                            pages.forEach((p) => p.classList.remove("active")); // Close other pages in this post
-                            page.classList.add("active"); // Open selected page
-                        }
+                        page.classList.toggle("active"); // Toggle only the clicked page
+                    } else {
+                        page.classList.remove("active"); // Close others in this post
                     }
                 });
             };
 
-            // Attach button event listeners **only for this post**
+            // Attach event listeners to buttons **only for this post**
             buttons.forEach((button) => {
                 button.addEventListener("click", (event) => {
                     event.stopPropagation(); // Prevent interference with other posts
@@ -34,18 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            // Function to update HP bar for this specific post
+            // Function to update the HP bar only for this post
             const updateHPBar = () => {
                 let newCurrentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
-
                 if (isNaN(newCurrentHp) || newCurrentHp < 0) newCurrentHp = 0;
                 if (newCurrentHp > maxHp) newCurrentHp = maxHp;
-
                 let widthPercent = (newCurrentHp / maxHp) * 100;
                 hpFill.style.width = `${widthPercent}%`;
             };
 
-            // Initial HP bar update
+            // Update HP bar when the page loads
             updateHPBar();
         }
     });
