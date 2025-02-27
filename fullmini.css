@@ -83,19 +83,25 @@ body {
 
 /* Image Section */
 .circa-image-section {
-    flex: 0.8;
-    text-align: center;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 340px;
+    height: 150px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #e1e1e1;
 }
 
 .circa-image-section img {
     width: 100%;
-    max-width: 340px;
-    height: 150px;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     border-radius: 15px;
-    border: 2px solid #e1e1e1;
 }
+
 
 /* Scrollbox */
 .circa-scrollbox {
@@ -157,24 +163,25 @@ body {
     transform: translateX(-50%);
     display: flex;
     gap: 5px;
-    z-index: 10;
+    z-index: 5;
 }
+
 
 /* Style for Individual Page Buttons */
 .circa-page-btn {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 10px;
-    padding: 5px 8px;
+    padding: 3px 6px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
     text-transform: uppercase;
     font-weight: bold;
+    transition: background 0.3s;
 }
+
 
 .circa-page-btn:hover,
 .circa-page-btn.active {
-    background: rgba(255, 255, 255, 0.8);
-    color: black;
+    background: rgba(0, 0, 0, 0.8);
 }
