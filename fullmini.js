@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".circa-flexbox").forEach((post) => {
+        // HP Bar Setup
         const hpContainer = post.querySelector(".circa-hp-bar-container");
         const hpFill = hpContainer?.querySelector(".circa-hp-bar-fill");
 
-        // Function to update HP bar
         if (hpContainer && hpFill) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
 
@@ -17,16 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
-        // Page switching functionality
+        // Page Switching Setup
         const scrollbox = post.querySelector(".circa-scrollbox");
-        const scrollContent = scrollbox?.querySelector(".circa-scroll-pages");
+        const scrollPages = scrollbox?.querySelector(".circa-scroll-pages");
         const pageButtons = post.querySelectorAll(".circa-page-btn");
 
-        if (scrollbox && scrollContent && pageButtons.length) {
+        if (scrollbox && scrollPages && pageButtons.length) {
             pageButtons.forEach((btn, index) => {
                 btn.addEventListener("click", () => {
-                    // Move the content by changing the transform property
-                    scrollContent.style.transform = `translateX(-${index * 100}%)`;
+                    // Move content by updating transform property
+                    scrollPages.style.transform = `translateX(-${index * 25}%)`;
 
                     // Update active button state
                     pageButtons.forEach(b => b.classList.remove("active"));
