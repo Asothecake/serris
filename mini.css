@@ -23,9 +23,8 @@ body {
 
 /* Stat Box */
 .circa-statbox {
-    flex: 0.3;
-    padding: 8px;
-    border: 0px solid #e1e1e1;
+    flex: 0.25;
+    padding: 5px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -36,8 +35,9 @@ body {
     gap: 3px;
     max-width: 90px;
     min-width: 90px;
-    height: 190px; /* Matches image + scrollbox */
+    height: 165px;
     justify-content: space-between;
+    margin-left: -10px;  /* Moves the stat dice slightly left */
 }
 
 /* Stat Entry with Tilted Label */
@@ -83,25 +83,27 @@ body {
 
 /* Image Section */
 .circa-image-section {
-    flex: 0.7;
+    flex: 0.75; /* Makes it take more space */
     text-align: center;
-    margin-left: 10px;
+    margin-left: 5px; /* Reduce gap between stat dice and image */
+    max-width: 450px; /* Makes image wider */
 }
 
 .circa-image-section img {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px; /* Matches scrollbox */
     height: 150px;
     object-fit: cover;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
 }
 
+
 /* Scrollbox */
 .circa-scrollbox {
     margin-top: 10px;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px; /* Matches image width */
     height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
