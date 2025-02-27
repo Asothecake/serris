@@ -19,7 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar(); // Initial update
         }
 
-        // Toggle content for this specific post
+        // Fix Positioning - Ensure pages stay inside the template
+        pages.forEach((page) => {
+            page.style.position = "absolute"; // Ensures content doesn't break layout
+            page.style.left = "50%"; // Center alignment
+            page.style.top = "100%"; // Appears just below the buttons
+            page.style.transform = "translateX(-50%)"; // Aligns properly in the flexbox
+            page.style.zIndex = "10"; // Ensures it appears over elements
+            page.style.display = "none"; // Hidden by default
+        });
+
+        // Toggle visibility for content pages per post
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
                 event.stopPropagation(); // Prevent event bubbling
@@ -27,18 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 const pageName = button.getAttribute("data-page");
                 const targetPage = post.querySelector(`.circa-content-page[data-page="${pageName}"]`);
 
-                console.log("Button Clicked:", pageName, "Target Page Found:", !!targetPage);
-
                 if (targetPage) {
+                    // Check if already open
+                    const isOpen = targetPage.style.display === "block";
+
                     // Close all pages in this post first
-                    pages.forEach((page) => page.classList.remove("active"));
+                    pages.forEach((page) => (page.style.display = "none"));
 
                     // Toggle the clicked one
-                    if (!targetPage.classList.contains("active")) {
-                        targetPage.classList.add("active");
-                        console.log("Opened Page:", pageName);
-                    } else {
-                        console.log("Closed Page:", pageName);
+                    if (!isOpen) {
+                        targetPage.style.display = "block";
                     }
                 }
             });
