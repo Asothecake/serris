@@ -115,33 +115,28 @@ body {
 /* Page Index - New Labels */
 .circa-page-index {
     position: absolute;
-    left: -50px; /* Moves it outside the scrollbox */
+    left: -60px; /* Moves the index to sit on the left border of the scrollbox */
     top: 0;
     display: flex;
     flex-direction: column;
     gap: 5px;
     z-index: 10;
-    align-items: center;
 }
 
 
-.circa-page-btn {
-    width: 90px; /* Wider for better text visibility */
-    height: 25px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.5); /* Keeps transparency */
-    text-align: center;
-    line-height: 25px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-    opacity: 0.6;
-    border: 1px solid rgba(255, 255, 255, 0.3);
 
-    position: relative;
-    right: -45px; /* Ensures half the button is inside, half outside */
+.circa-page-btn {
+    width: 100px; /* Ensure all buttons are the same size */
+    font-size: 12px;
+    text-align: center;
+    padding: 4px 8px;
+    background: rgba(20, 20, 20, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: opacity 0.3s ease, background 0.3s ease;
+    opacity: 0.5; /* Low opacity by default */
+    transform: translateX(50%); /* Half inside, half outside */
 }
 
 .circa-page-btn:hover {
@@ -151,7 +146,7 @@ body {
 
 .circa-page-btn.active {
     opacity: 1;
-    background-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.8);
     color: black;
 }
 
