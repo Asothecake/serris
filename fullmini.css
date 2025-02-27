@@ -5,7 +5,7 @@ body {
     color: #e1e1e1;
 }
 
-/* Container */
+/* Main Container */
 .circa-flexbox {
     display: flex;
     flex-wrap: nowrap;
@@ -38,7 +38,7 @@ body {
     min-width: 70px;
 }
 
-/* Stat Entry with Vertical Label */
+/* Individual Stat Entry */
 .circa-stat-entry {
     display: flex;
     flex-direction: row;
@@ -49,7 +49,7 @@ body {
     gap: 4px;
 }
 
-/* The Boxed Stat Value */
+/* Boxed Stat Value */
 .circa-value-box {
     width: 34px;
     height: 34px;
@@ -63,13 +63,13 @@ body {
     transform: rotate(-5deg);
 }
 
-/* Pastel Colors for Each Stat */
+/* Color Themes for Stats */
 .circa-stat-entry:nth-child(1) .circa-value-box { background-color: #f7b2b2; color: #5c2e2e; } /* STR - Soft Red */
 .circa-stat-entry:nth-child(2) .circa-value-box { background-color: #b2d6f7; color: #2e4c5c; } /* MAG - Soft Blue */
 .circa-stat-entry:nth-child(3) .circa-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
 .circa-stat-entry:nth-child(4) .circa-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
 
-/* The Vertical Stat Label */
+/* Stat Label */
 .circa-stat-label {
     font-size: 10px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
@@ -85,7 +85,7 @@ body {
 .circa-image-section {
     flex: 0.8;
     text-align: center;
-    margin-left: 10px;
+    position: relative;
 }
 
 .circa-image-section img {
@@ -99,7 +99,6 @@ body {
 
 /* Scrollbox */
 .circa-scrollbox {
-    position: relative;
     margin-top: 10px;
     width: 100%;
     max-width: 440px;
@@ -110,51 +109,14 @@ body {
     overflow: hidden;
     padding: 10px;
     box-sizing: border-box;
+    position: relative;
 }
 
-/* Page Index - New Labels */
-.circa-page-index {
-    position: absolute;
-    left: -60px; /* Moves the index to sit on the left border of the scrollbox */
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    z-index: 10;
-}
-
-
-
-.circa-page-btn {
-    width: 100px; /* Ensure all buttons are the same size */
-    font-size: 12px;
-    text-align: center;
-    padding: 4px 8px;
-    background: rgba(20, 20, 20, 0.8);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-    transition: opacity 0.3s ease, background 0.3s ease;
-    opacity: 0.5; /* Low opacity by default */
-    transform: translateX(50%); /* Half inside, half outside */
-}
-
-.circa-page-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    opacity: 1;
-}
-
-.circa-page-btn.active {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.8);
-    color: black;
-}
-
-/* Scrollbox Content */
-.circa-scroll-content {
+/* Scroll Pages (for content switching) */
+.circa-scroll-pages {
     display: flex;
     width: 400%;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-in-out;
 }
 
 .circa-scroll-page {
@@ -163,7 +125,7 @@ body {
     box-sizing: border-box;
 }
 
-/* HP Bar (Floating Under the Template) */
+/* HP Bar */
 .circa-hp-bar-container {
     width: 100%;
     height: 8px;
@@ -185,4 +147,34 @@ body {
     width: 0%;
     transition: width 0.5s ease;
     border-radius: 4px;
+}
+
+/* Page Buttons - Now Positioned Inside the Image Box */
+.circa-page-index {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 10;
+}
+
+/* Style for Individual Page Buttons */
+.circa-page-btn {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 10px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.circa-page-btn:hover,
+.circa-page-btn.active {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
 }
