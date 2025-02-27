@@ -38,23 +38,8 @@ body {
     min-width: 126px;
 }
 
-/* Resource Display */
+/* Resource Display (IP & Custom now match Stats) */
 .circa-resource {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-size: 14px;
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    font-weight: bold;
-    background-color: #e1e1e1;
-    padding: 5px;
-    border-radius: 8px;
-    border: 2px solid #c2c2c2;
-}
-
-/* Stat Display (Uniform Design + Fading Underline) */
-.circa-stat-display {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -62,16 +47,13 @@ body {
     font-size: 14px;
     font-family: 'Georgia', serif;
     font-weight: bold;
-    background-color: #e1e1e1;
-    padding: 5px;
-    border-radius: 8px;
-    border: 2px solid #c2c2c2;
-    margin-top: 5px;
-    position: relative;
     color: #2b2b2b;
+    padding: 5px;
+    position: relative;
 }
 
-/* Pen-stroke fading underline */
+/* Apply the same fading underline effect */
+.circa-resource::after,
 .circa-stat-display::after {
     content: "";
     position: absolute;
@@ -80,6 +62,20 @@ body {
     width: 90%;
     height: 2px;
     background: linear-gradient(to right, #2b2b2b 0%, rgba(43, 43, 43, 0) 100%);
+}
+
+/* Stat Display (Now borderless + matches IP & Custom styling) */
+.circa-stat-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    color: #2b2b2b;
+    padding: 5px;
+    position: relative;
 }
 
 /* Image Section */
