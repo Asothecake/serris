@@ -90,9 +90,9 @@ body {
 
 .circa-image-section img {
     width: 100%;
-    max-width: 440px;
+    max-width: 340px;
     height: 150px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
 }
