@@ -115,7 +115,7 @@ body {
 /* Page Index - New Labels */
 .circa-page-index {
     position: absolute;
-    left: -45px; /* Moves half of it outside */
+    left: -50px; /* Moves the labels so they sit half on the border */
     top: 10px;
     display: flex;
     flex-direction: column;
@@ -123,24 +123,30 @@ body {
 }
 
 .circa-page-btn {
-    width: 90px;
+    width: 100px; /* Ensures equal width */
     height: 24px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
-    color: #3f3f3f;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
     text-align: center;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
     cursor: pointer;
     transition: opacity 0.3s ease, background-color 0.3s ease;
+    position: relative;
 }
 
-.circa-page-btn:hover,
+
+.circa-page-btn:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 .circa-page-btn.active {
     opacity: 1;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
+    color: black;
 }
 
 /* Scrollbox Content */
