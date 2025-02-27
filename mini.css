@@ -33,9 +33,9 @@ body {
     background-color: #f9f9f9;
     font-size: 12px;
     color: #1f2636;
-    gap: 15px;
-    max-width: 180px;
-    min-width: 180px;
+    gap: 10px;
+    max-width: 126px; /* Reduced by ~30% */
+    min-width: 126px; /* Prevents shrinking too much */
 }
 
 /* Resource Display */
