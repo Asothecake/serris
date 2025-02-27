@@ -16,7 +16,8 @@ body {
     max-width: 800px;
     margin: 40px auto;
     background-color: #fafafa;
-    position: relative; /* Allows absolute positioning of HP Bar */
+    position: relative;
+    flex-direction: column; /* Makes sure expandable sections stay inside */
 }
 
 /* Hide image and scrollbox when expanded */
@@ -27,7 +28,6 @@ body {
 
 /* Stat Box */
 .circa-statbox {
-    flex: 0.3;
     padding: 10px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
@@ -39,18 +39,18 @@ body {
     color: #1f2636;
     gap: 15px;
     max-width: 180px;
-    position: relative;
 }
 
 /* Expandable Sections */
 .circa-expandable {
-    display: none; /* Start hidden */
+    display: none;
     padding: 10px;
     background-color: #f9f9f9;
     border-top: 2px solid #e1e1e1;
     border-radius: 0 0 10px 10px;
     width: 100%;
     margin-top: 10px;
+    position: relative;
 }
 
 /* When active, it appears */
