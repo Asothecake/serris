@@ -12,12 +12,10 @@ body {
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     padding: 20px;
-    padding-bottom: 10px;
     max-width: 800px;
     margin: 40px auto;
     background-color: #fafafa;
     position: relative;
-    flex-direction: row;
     align-items: flex-start;
 }
 
@@ -25,7 +23,6 @@ body {
 .circa-statbox {
     flex: 0.2;
     padding: 10px;
-    border: 0px solid #e1e1e1;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -33,60 +30,24 @@ body {
     background-color: #f9f9f9;
     font-size: 12px;
     color: #1f2636;
-    gap: 30px;
+    gap: 20px;
     max-width: 70px;
-    min-width: 70px;
 }
 
-/* The Image Section */
+/* Image Section */
 .circa-image-section {
+    flex: 0.8;
+    text-align: center;
     position: relative;
-    width: 150px; /* Set an appropriate width */
-    height: 150px; /* Ensure it has a defined height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 15px;
-    border: 2px solid #e1e1e1;
-    background-color: #1f2636;
 }
 
-/* Ensure the image stays contained */
 .circa-image-section img {
     width: 100%;
-    height: 100%;
+    max-width: 340px;
+    height: 150px;
     object-fit: cover;
     border-radius: 15px;
-}
-
-/* Page Buttons Inside Image Box */
-.circa-page-index {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 3px;
-    z-index: 5;
-}
-
-/* Page Button Styling */
-.circa-page-btn {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 9px;
-    padding: 2px 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.circa-page-btn:hover,
-.circa-page-btn.active {
-    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #e1e1e1;
 }
 
 /* Scrollbox */
@@ -103,6 +64,27 @@ body {
     box-sizing: border-box;
 }
 
+/* Page Buttons */
+.circa-page-index {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.circa-page-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.circa-page-btn.active {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
 /* HP Bar */
 .circa-hp-bar-container {
     width: 100%;
@@ -110,7 +92,6 @@ body {
     background-color: #e1e1e1;
     border-radius: 8px;
     border: 2px solid #c2c2c2;
-    padding: 0;
     position: absolute;
     bottom: -4px;
     left: 0;
