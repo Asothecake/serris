@@ -21,10 +21,10 @@ body {
     align-items: flex-start;
 }
 
-/* Stat Box - Now Thinner and Pushed Left */
+/* Stat Box */
 .circa-statbox {
-    flex: 0.25;  /* Reduced size */
-    padding: 8px;
+    flex: 0.2; /* Makes it smaller, shifting left */
+    padding: 10px;
     border: 0px solid #e1e1e1;
     border-radius: 15px;
     display: flex;
@@ -34,29 +34,30 @@ body {
     font-size: 12px;
     color: #1f2636;
     gap: 6px; /* Reduces space between stat entries */
-    max-width: 100px; /* Adjusted width */
-    min-width: 100px;
+    max-width: 90px; /* Further reduces width */
+    min-width: 90px;
 }
 
-/* Stat Entry with Tilted Label */
+/* Stat Entry with Vertical Label */
 .circa-stat-entry {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Positions box & label side by side */
     align-items: center;
     justify-content: center;
     position: relative;
     width: 100%;
+    gap: 4px; /* Space between the box and label */
 }
 
 /* The Boxed Stat Value */
 .circa-value-box {
-    width: 36px; /* Reduced size */
-    height: 36px;
-    font-size: 13px;
+    width: 34px; /* Shrinks for a better fit */
+    height: 34px;
+    font-size: 12px;
     font-weight: bold;
     text-align: center;
-    line-height: 36px;
-    border-radius: 10px;
+    line-height: 34px;
+    border-radius: 8px;
     border: 2px solid #3f3f3f;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     transform: rotate(-5deg);
@@ -68,38 +69,39 @@ body {
 .circa-stat-entry:nth-child(3) .circa-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
 .circa-stat-entry:nth-child(4) .circa-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
 
-/* The Tilted Label Underneath */
+/* The Vertical Stat Label */
 .circa-stat-label {
     font-size: 10px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-weight: bold;
     color: #3f3f3f;
-    margin-top: 2px;
-    transform: rotate(-15deg);
     text-transform: uppercase;
+    writing-mode: vertical-rl; /* Makes text vertical */
+    text-orientation: upright; /* Ensures letters stay upright */
+    letter-spacing: 2px; /* Adds spacing between letters */
 }
 
-/* Image Section - Now Wider */
+/* Image Section */
 .circa-image-section {
-    flex: 0.75;  /* Increased to make it wider */
+    flex: 0.8; /* Increases width for a larger image */
     text-align: center;
-    margin-left: 5px; /* Reduced margin for compact spacing */
+    margin-left: 10px;
 }
 
 .circa-image-section img {
     width: 100%;
-    max-width: 450px; /* Increased width */
+    max-width: 440px; /* Expanded */
     height: 150px;
     object-fit: cover;
     border-radius: 15px;
     border: 2px solid #e1e1e1;
 }
 
-/* Scrollbox - Now Wider */
+/* Scrollbox */
 .circa-scrollbox {
     margin-top: 10px;
     width: 100%;
-    max-width: 450px; /* Matches Image Width */
+    max-width: 440px; /* Expanded */
     height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
