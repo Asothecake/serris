@@ -19,6 +19,12 @@ body {
     position: relative; /* Allows absolute positioning of HP Bar */
 }
 
+/* Hide image and scrollbox when content is active */
+.circa-flexbox.expanded .circa-image-section {
+    display: none; /* Hide the image and scrollbox */
+}
+
+
 /* Stat Box */
 .circa-statbox {
     flex: 0.3;
