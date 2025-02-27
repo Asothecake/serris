@@ -11,29 +11,30 @@ document.addEventListener("DOMContentLoaded", () => {
             let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
 
-            // Function to toggle stat pages correctly per post
+            // Function to toggle between stat pages **for this post only**
             const togglePage = (pageName) => {
                 pages.forEach((page) => {
                     if (page.getAttribute("data-page") === pageName) {
                         if (page.classList.contains("active")) {
                             page.classList.remove("active"); // Close if already open
                         } else {
-                            pages.forEach((p) => p.classList.remove("active")); // Close others
+                            pages.forEach((p) => p.classList.remove("active")); // Close other pages in this post
                             page.classList.add("active"); // Open selected page
                         }
                     }
                 });
             };
 
-            // Attach button event listeners scoped to this post
+            // Attach button event listeners **only for this post**
             buttons.forEach((button) => {
-                button.addEventListener("click", () => {
+                button.addEventListener("click", (event) => {
+                    event.stopPropagation(); // Prevent interference with other posts
                     const pageName = button.getAttribute("data-page");
                     togglePage(pageName);
                 });
             });
 
-            // Function to update HP bar
+            // Function to update HP bar for this specific post
             const updateHPBar = () => {
                 let newCurrentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
 
