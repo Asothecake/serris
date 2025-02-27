@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const buttons = post.querySelectorAll(".circa-button");
         const pages = post.querySelectorAll(".circa-expandable");
         const hpContainer = post.querySelector(".circa-hp-bar-container");
+        const imageSection = post.querySelector(".circa-image-section");
 
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
@@ -26,21 +27,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const targetId = button.getAttribute("data-target");
                 const targetPage = post.querySelector(`#${targetId}`);
+                const isActive = targetPage.classList.contains("active");
 
-                if (targetPage) {
-                    const isActive = targetPage.classList.contains("active");
+                // Close all expandable sections first
+                pages.forEach((page) => {
+                    page.classList.remove("active");
+                    page.style.display = "none";
+                });
 
-                    // Close all expandable sections first
-                    pages.forEach((page) => {
-                        page.classList.remove("active");
-                        page.style.display = "none";
-                    });
+                // Remove "expanded" state from template
+                post.classList.remove("expanded");
 
-                    // If it wasn’t active before, open it
-                    if (!isActive) {
-                        targetPage.classList.add("active");
-                        targetPage.style.display = "block";
-                    }
+                // If it wasn’t active before, open it and hide image/scrollbox
+                if (!isActive) {
+                    targetPage.classList.add("active");
+                    targetPage.style.display = "block";
+                    post.classList.add("expanded"); // Hide image/scrollbox
                 }
             });
         });
