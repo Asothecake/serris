@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollbox = post.querySelector(".circa-scrollbox");
         const hpContainer = post.querySelector(".circa-hp-bar-container");
 
-        // Function to update HP bar
+        // Function to update HP bar for each post
         if (hpContainer) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
             let hpFill = hpContainer.querySelector(".circa-hp-bar-fill");
@@ -19,10 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 hpFill.style.width = `${widthPercent}%`;
             };
 
-            updateHPBar(); // Initial update
+            updateHPBar(); // Run on load
         }
 
-        // Toggle function for buttons
+        // Click event for buttons (ensuring independent post handling)
         buttons.forEach((button) => {
             button.addEventListener("click", (event) => {
                 event.stopPropagation(); // Prevents unwanted bubbling
@@ -33,16 +33,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (targetSection) {
                     const isActive = targetSection.classList.contains("active");
 
-                    // Close all sections within this instance
+                    // Close all sections inside this post only
                     expandableSections.forEach((section) => {
                         section.classList.remove("active");
                         section.style.display = "none";
                     });
 
-                    // Reset flexbox state
+                    // Reset state
                     post.classList.remove("expanded");
 
-                    // If it wasn’t active before, open it
+                    // Open the section if it wasn’t active before
                     if (!isActive) {
                         targetSection.classList.add("active");
                         targetSection.style.display = "block";
