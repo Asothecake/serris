@@ -41,9 +41,8 @@ body {
 /* The Image Section */
 .circa-image-section {
     position: relative;
-    width: 100%;
-    max-width: 340px;
-    height: 150px;
+    width: 150px; /* Set an appropriate width */
+    height: 150px; /* Ensure it has a defined height */
     display: flex;
     justify-content: center;
     align-items: center;
