@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".circa-flexbox").forEach((post) => {
-        // HP Bar Setup
         const hpContainer = post.querySelector(".circa-hp-bar-container");
         const hpFill = hpContainer?.querySelector(".circa-hp-bar-fill");
 
+        // Function to update HP bar
         if (hpContainer && hpFill) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
 
@@ -17,16 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
-        // Page Switching Setup
+        // Page switching functionality
         const scrollbox = post.querySelector(".circa-scrollbox");
-        const scrollPages = scrollbox?.querySelector(".circa-scroll-pages");
+        const scrollPages = scrollbox?.querySelectorAll(".circa-scroll-page");
         const pageButtons = post.querySelectorAll(".circa-page-btn");
 
-        if (scrollbox && scrollPages && pageButtons.length) {
+        if (scrollbox && scrollPages.length && pageButtons.length) {
             pageButtons.forEach((btn, index) => {
                 btn.addEventListener("click", () => {
-                    // Move content by updating transform property
-                    scrollPages.style.transform = `translateX(-${index * 25}%)`;
+                    // Hide all pages, show the selected one
+                    scrollPages.forEach(page => page.style.display = "none");
+                    scrollPages[index].style.display = "block";
 
                     // Update active button state
                     pageButtons.forEach(b => b.classList.remove("active"));
@@ -34,7 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            // Initialize first button as active
+            // Initialize first page as visible
+            scrollPages.forEach(page => page.style.display = "none");
+            scrollPages[0].style.display = "block";
             pageButtons[0].classList.add("active");
         }
     });
