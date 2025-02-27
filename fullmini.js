@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Page switching functionality
         const scrollbox = post.querySelector(".circa-scrollbox");
-        const scrollContent = scrollbox?.querySelector(".circa-scroll-content");
+        const scrollContent = scrollbox?.querySelector(".circa-scroll-pages");
         const pageButtons = post.querySelectorAll(".circa-page-btn");
 
         if (scrollbox && scrollContent && pageButtons.length) {
             pageButtons.forEach((btn, index) => {
                 btn.addEventListener("click", () => {
                     // Move the content by changing the transform property
-                    scrollContent.style.transform = `translateX(-${index * 25}%)`;
+                    scrollContent.style.transform = `translateX(-${index * 100}%)`;
 
                     // Update active button state
                     pageButtons.forEach(b => b.classList.remove("active"));
