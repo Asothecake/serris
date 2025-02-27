@@ -32,8 +32,8 @@ body {
     font-size: 12px;
     color: #1f2636;
     gap: 12px; /* Increased spacing between stats */
-    min-width: 105px;
-    margin-left: -10px; /* Moves stats slightly left */
+    min-width: 90px; /* Adjusted for better fit */
+    margin-left: -15px; /* Moves stats slightly left */
 }
 
 /* Stat Entry (Dice-Like) */
@@ -43,13 +43,13 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 50px;
-    height: 50px;
-    font-size: 18px;
+    width: 40px;  /* Reduced size */
+    height: 40px; /* Reduced size */
+    font-size: 16px; /* Adjusted for better fit */
     font-weight: bold;
     background-color: #fafafa;
     border: 3px solid #333;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     transform: rotate(-25deg); /* Increased rotation */
     text-align: center;
@@ -58,8 +58,8 @@ body {
 /* Stat Name Placement (Angled Below) */
 .circa-stat-entry span {
     position: absolute;
-    bottom: -15px;
-    font-size: 12px;
+    bottom: -18px;
+    font-size: 10px; /* Adjusted for readability */
     font-weight: bold;
     text-transform: uppercase;
     transform: rotate(-25deg); /* Matches box rotation */
@@ -95,7 +95,7 @@ body {
 
 .circa-image-section img {
     width: 100%;
-    max-width: 440px; /* Wider */
+    max-width: 460px; /* Slightly wider */
     height: 157px;
     object-fit: cover;
     border-radius: 15px;
@@ -105,7 +105,7 @@ body {
 .circa-scrollbox {
     margin-top: 10px;
     width: 100%;
-    max-width: 440px; /* Wider */
+    max-width: 460px; /* Slightly wider */
     height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
@@ -117,9 +117,9 @@ body {
 
 /* Adjusts vertical placement */
 .circa-stat-entry:nth-child(1) { margin-top: 5px; }
-.circa-stat-entry:nth-child(2) { margin-top: 10px; }
-.circa-stat-entry:nth-child(3) { margin-top: 15px; }
-.circa-stat-entry:nth-child(4) { margin-top: 20px; }
+.circa-stat-entry:nth-child(2) { margin-top: 12px; }
+.circa-stat-entry:nth-child(3) { margin-top: 18px; }
+.circa-stat-entry:nth-child(4) { margin-top: 24px; }
 
 /* HP Bar (Floating Under the Template) */
 .circa-hp-bar-container {
