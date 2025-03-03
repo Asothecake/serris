@@ -1,9 +1,63 @@
+/* Face Claim Tracker Container */
+.fc-container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Merriweather', serif;
+    color: #222;
+}
+
+/* Title */
+.fc-container h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Information Section */
+.fc-info {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Claim Type Legend */
+.fc-legend {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.fc-legend b {
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #e0e0e0;
+    transition: 0.3s;
+}
+
+/* Face Claim Type Colors */
+.fc-original { color: #008080; font-weight: bold; }
+.fc-canon { color: #4169e1; font-weight: bold; }
+.fc-npc { color: #8b0000; font-weight: bold; }
+
 /* Scrollable Section */
 .fc-scrollbox {
     display: flex;
     gap: 20px;
     justify-content: space-between;
-    align-items: stretch; /* Ensures equal height columns */
+    padding: 10px;
     margin-bottom: 15px;
 }
 
@@ -11,33 +65,21 @@
 .fc-column {
     flex: 1;
     min-width: 45%;
-    max-height: 400px; /* Adjustable height limit */
-    overflow-y: auto; /* Enables independent scrolling */
     background: #f9f9f9;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
 }
 
-/* Custom Scrollbar for Columns */
-.fc-column::-webkit-scrollbar {
-    width: 6px;
-}
-
-.fc-column::-webkit-scrollbar-thumb {
-    background: rgba(0, 128, 128, 0.6);
-    border-radius: 5px;
-}
-
-.fc-column::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
+/* Scrollbar for Equal Height */
+.fc-scroll {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 5px;
 }
 
 /* Column Titles */
 .fc-column h2 {
-    flex-shrink: 0; /* Keeps title fixed */
     font-family: 'Merriweather', serif;
     font-size: 18px;
     text-align: center;
@@ -47,12 +89,6 @@
 }
 
 /* Face Claim Entries */
-.fc-list {
-    flex-grow: 1; /* Ensures the list fills available space */
-    overflow-y: auto; /* Enables scrolling within the column */
-}
-
-/* Face Claim Entries Styling */
 .fc-list a {
     display: block;
     font-family: 'Playfair Display', serif;
@@ -68,4 +104,37 @@
     color: white;
     padding-left: 10px;
     border-radius: 5px;
+}
+
+/* Hover Effect for Visibility */
+.fc-list a:hover .fc-original {
+    background: #008080;
+    color: white;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+.fc-list a:hover .fc-canon {
+    background: #4169e1;
+    color: white;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+.fc-list a:hover .fc-npc {
+    background: #8b0000;
+    color: white;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+/* Claim Code Section */
+.fc-code {
+    text-align: center;
+    background: #333;
+    color: #00ffcc;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.2);
 }
