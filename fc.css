@@ -1,13 +1,13 @@
 /* General Styling */
 body {
-    font-family: 'Playfair Display', serif; /* Elegant and readable */
+    font-family: 'Merriweather', serif; /* Elegant, readable, fits fantasy theme */
     font-size: 14px;
     color: #222;
     background-color: #f4f4f4;
 }
 
 /* Face Claim Tracker Container */
-.face-claim-container {
+.hh-announce.hh-face-claim {
     width: 90%;
     max-width: 800px;
     margin: auto;
@@ -18,7 +18,7 @@ body {
 }
 
 /* Section Titles */
-.face-claim-container h1 {
+.hh-announce.hh-face-claim h1 {
     font-family: 'Merriweather', serif;
     font-size: 24px;
     text-transform: uppercase;
@@ -28,14 +28,14 @@ body {
 }
 
 /* Face Claim Categories */
-.face-claim-categories {
+.hh-fc-groups {
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 20px;
 }
 
-.face-claim-categories a {
+.hh-fc-groups b {
     font-family: 'Merriweather', serif;
     font-size: 16px;
     font-weight: bold;
@@ -48,36 +48,39 @@ body {
     transition: 0.3s;
 }
 
-.face-claim-categories a:hover {
+.hh-fc-groups b:hover {
     background: #008080;
     color: white;
 }
 
 /* Face Claim Listings */
-.face-claim-lists {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+#hh-face-claim-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.face-claim-list {
-    width: 45%;
+#hh-face-claim-table td {
+    width: 50%;
     padding: 10px;
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    vertical-align: top;
 }
 
-.face-claim-list h2 {
+/* Face Claim Headers */
+#hh-face-claim-table td:first-child,
+#hh-face-claim-table td:last-child {
     font-family: 'Merriweather', serif;
     font-size: 18px;
     text-align: center;
-    margin-bottom: 10px;
+    font-weight: bold;
     color: #444;
+    padding-bottom: 8px;
 }
 
 /* Face Claim Links */
-.face-claim-list a {
+.hh-fc-a-j a, .hh-fc-k-z a {
     display: block;
     font-family: 'Playfair Display', serif;
     font-size: 14px;
@@ -87,7 +90,7 @@ body {
     transition: 0.3s;
 }
 
-.face-claim-list a:hover {
+.hh-fc-a-j a:hover, .hh-fc-k-z a:hover {
     background: #008080;
     color: white;
     padding-left: 10px;
@@ -95,12 +98,12 @@ body {
 }
 
 /* Claim Code Box */
-.claim-box {
+.hh-announce-body .claim-box {
     margin-top: 20px;
     text-align: center;
 }
 
-.claim-box pre {
+.hh-announce-body .claim-box pre {
     font-family: 'Courier New', monospace;
     font-size: 14px;
     background: #333;
@@ -111,6 +114,6 @@ body {
     overflow-x: auto;
 }
 
-.claim-box pre:hover {
+.hh-announce-body .claim-box pre:hover {
     background: #444;
 }
