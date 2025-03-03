@@ -1,0 +1,78 @@
+.fc-container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.fc-info {
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ccc;
+}
+
+.fc-legend {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.fc-original { color: #76c361; }
+.fc-canon { color: #4287f5; }
+.fc-npc { color: #d16f6f; }
+
+.fc-scrollbox {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.fc-column {
+    width: 48%;
+    background: rgba(250, 250, 250, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.fc-column h2 {
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #ccc;
+}
+
+.fc-list {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.fc-list a {
+    display: block;
+    padding: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.fc-list a:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.fc-code {
+    text-align: center;
+    background: #222;
+    color: #fff;
+    padding: 8px;
+    font-size: 13px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
