@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".circa-flexbox").forEach((post) => {
+        // HP Bar Handling
         const hpContainer = post.querySelector(".circa-hp-bar-container");
         const hpFill = hpContainer?.querySelector(".circa-hp-bar-fill");
 
-        // Function to update HP bar
         if (hpContainer && hpFill) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
 
@@ -17,34 +17,31 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
-        // Page switching functionality
+        // Page Switching Handling
         const scrollbox = post.querySelector(".circa-scrollbox");
-        const scrollPages = scrollbox?.querySelectorAll(".circa-page");
+        const pages = scrollbox?.querySelectorAll(".circa-page");
         const pageButtons = post.querySelectorAll(".circa-page-btn");
 
-        if (scrollbox && scrollPages.length && pageButtons.length) {
-            pageButtons.forEach((btn, index) => {
-                btn.addEventListener("click", () => {
-                    changePage(index + 1, post);
+        if (scrollbox && pages.length && pageButtons.length) {
+            const changePage = (pageNumber) => {
+                // Hide all pages inside the same post
+                pages.forEach((page, index) => {
+                    page.style.display = (index + 1 === pageNumber) ? "block" : "none";
                 });
+
+                // Update active button state
+                pageButtons.forEach((btn, index) => {
+                    btn.classList.toggle("active", index + 1 === pageNumber);
+                });
+            };
+
+            // Initialize: Show Page 1 on load
+            changePage(1);
+
+            // Assign button event listeners
+            pageButtons.forEach((btn, index) => {
+                btn.addEventListener("click", () => changePage(index + 1));
             });
-
-            // Initialize first page as visible by default
-            scrollPages.forEach(page => page.style.display = "none");
-            scrollPages[0].style.display = "block";
-            pageButtons[0].classList.add("active");
-        }
-
-        // Function to change pages
-        function changePage(pageNumber, post) {
-            const pages = post.querySelectorAll('.circa-page');
-            const buttons = post.querySelectorAll('.circa-page-btn');
-
-            pages.forEach(page => page.style.display = 'none');
-            pages[pageNumber - 1].style.display = 'block';
-
-            buttons.forEach(btn => btn.classList.remove('active'));
-            buttons[pageNumber - 1].classList.add('active');
         }
     });
 });
