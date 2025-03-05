@@ -89,7 +89,7 @@ body {
     overflow: hidden; /* Prevents overflow */
     border-radius: 10px;
     border: 2px solid #e1e1e1;
-    padding: 0;
+    padding: 2px;
     margin: 0;
     border: none; /* If border is necessary, keep it inside */
 }
