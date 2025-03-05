@@ -215,14 +215,14 @@ body {
 .circa1-page .aroll {
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-size: 11px;
-    color: #361F26;
+    color: #462831;
     line-height: 1.4;
 }
 
 .circa1-page .commandz {
     font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
     font-size: 11px; /* Slightly smaller text */
-    color: #26361F; /* Darker text for contrast */
+    color: #314628; /* Darker text for contrast */
     line-height: 1.4; /* Slightly more spacing for readability */
 }
 
