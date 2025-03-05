@@ -166,6 +166,7 @@ body {
 .circa1-page-btn:hover {
     background-color: rgba(0, 0, 0, 0.9) !important;
     color: white !important;  /* Ensures the text color doesn't change */
+    border: none !important;
     box-shadow: none !important; /* Prevents unwanted shadows */
     text-decoration: none !important; /* Stops underlining if applied globally */
 }
