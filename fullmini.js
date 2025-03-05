@@ -43,5 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.addEventListener("click", () => changePage(index + 1));
             });
         }
+
+        // Custom Color Handling (Ensuring Individual Post Styling)
+        let bgColor = post.getAttribute("data-bg-color") || "#f9f9f9";
+        let scrollboxColor = post.getAttribute("data-scrollbox-color") || "#fafafa";
+        let textColor = post.getAttribute("data-text-color") || "black";
+
+        // Apply unique color settings per post
+        post.style.setProperty("--bg-color", bgColor);
+        post.style.setProperty("--scrollbox-color", scrollboxColor);
+        post.style.setProperty("--text-color", textColor);
     });
 });
