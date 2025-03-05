@@ -6,7 +6,7 @@ body {
 }
 
 /* Container */
-.circa-flexbox {
+.circa1-flexbox {
     display: flex;
     flex-wrap: nowrap;
     border: 2px solid #e1e1e1;
@@ -20,7 +20,7 @@ body {
 }
 
 /* Stat Box */
-.circa-statbox {
+.circa1-statbox {
     flex: 0.2;
     padding: 10px;
     border-radius: 15px;
@@ -35,13 +35,13 @@ body {
 }
 
 /* Image Section */
-.circa-image-container {
+.circa1-image-container {
     position: relative;
     display: inline-block;
     width: 100%;
     max-width: 340px;
 }
-.circa-image-container img {
+.circa1-image-container img {
     width: 100%;
     height: 150px;
     object-fit: contain; /* Ensure consistency */
@@ -49,14 +49,14 @@ body {
     border: 2px solid #e1e1e1;
 }
 
-.circa-image-section {
+.circa1-image-section {
     flex: 0.8;
     text-align: center;
     position: relative;
 }
 
 /* Scrollbox */
-.circa-scrollbox {
+.circa1-scrollbox {
     margin-top: 10px;
     width: 100%;
     max-width: 440px;
@@ -70,7 +70,7 @@ body {
 }
 
 /* Page Control Buttons */
-.circa-page-controls {
+.circa1-page-controls {
     position: absolute;
     bottom: 5px;
     left: 50%;
@@ -79,7 +79,7 @@ body {
     gap: 5px;
 }
 
-.circa-page-btn {
+.circa1-page-btn {
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     font-size: 10px;
@@ -89,28 +89,28 @@ body {
     border-radius: 5px;
 }
 
-.circa-page-btn:hover {
+.circa1-page-btn:hover {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-.circa-page-btn.active {
+.circa1-page-btn.active {
     background-color: rgba(255, 255, 255, 0.6);
     color: black;
 }
 
 /* Scrollbox Content Pages */
-.circa-page {
+.circa1-page {
     display: none;  /* All pages hidden by default */
     padding: 10px;
     background-color: #fafafa; /* Ensures no dark background */
 }
 
-.circa-page.active {
+.circa1-page.active {
     display: block; /* Only one visible at a time */
 }
 
 /* HP Bar */
-.circa-hp-bar-container {
+.circa1-hp-bar-container {
     width: 100%;
     height: 8px;
     background-color: #e1e1e1;
@@ -124,10 +124,11 @@ body {
     z-index: 10;
 }
 
-.circa-hp-bar-fill {
+.circa1-hp-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
     width: 0%;
     transition: width 0.5s ease;
     border-radius: 4px;
 }
+
