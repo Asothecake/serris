@@ -180,7 +180,7 @@ body {
 .circa1-page {
     display: none;  /* All pages hidden by default */
     background-color: #fafafa; /* Ensures no dark background */
-    padding: 5px; /* Remove extra spacing */
+    padding: 0px; /* Remove extra spacing */
     margin: 0; /* Ensure no margin is affecting the size */
     width: 100%; /* Make sure it fully fills the scrollbox */
     height: 100%; /* Allow full use of scrollbox height */
