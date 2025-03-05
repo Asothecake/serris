@@ -159,7 +159,7 @@ body {
     padding: 5px;
     border: none;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 3px !important;
     transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
@@ -179,9 +179,14 @@ body {
 /* Scrollbox Content Pages */
 .circa1-page {
     display: none;  /* All pages hidden by default */
-    padding: 10px;
     background-color: #fafafa; /* Ensures no dark background */
+    padding: 0; /* Remove extra spacing */
+    margin: 0; /* Ensure no margin is affecting the size */
+    width: 100%; /* Make sure it fully fills the scrollbox */
+    height: 100%; /* Allow full use of scrollbox height */
+    overflow: auto; /* Ensure scrolling works properly */
 }
+
 
 .circa1-page.active {
     display: block; /* Only one visible at a time */
