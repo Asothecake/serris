@@ -1,23 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".circa-flexbox").forEach((post) => {
     document.querySelectorAll(".circa1-flexbox").forEach((post) => {
         // HP Bar Handling
+        const hpContainer = post.querySelector(".circa-hp-bar-container");
+        const hpFill = hpContainer?.querySelector(".circa-hp-bar-fill");
         const hpContainer = post.querySelector(".circa1-hp-bar-container");
         const hpFill = hpContainer?.querySelector(".circa1-hp-bar-fill");
 
         if (hpContainer && hpFill) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
-
-            const updateHPBar = () => {
-                let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
-                currentHp = isNaN(currentHp) || currentHp < 0 ? 0 : Math.min(currentHp, maxHp);
-                let widthPercent = (currentHp / maxHp) * 100;
-                hpFill.style.width = `${widthPercent}%`;
-            };
-
-            updateHPBar();
+@@ -18,30 +18,30 @@
         }
 
         // Page Switching Handling
+        const scrollbox = post.querySelector(".circa-scrollbox");
+        const pages = scrollbox?.querySelectorAll(".circa-page");
+        const pageButtons = post.querySelectorAll(".circa-page-btn");
         const scrollbox = post.querySelector(".circa1-scrollbox");
         const pages = scrollbox?.querySelectorAll(".circa1-page");
         const pageButtons = post.querySelectorAll(".circa1-page-btn");
@@ -43,15 +41,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.addEventListener("click", () => changePage(index + 1));
             });
         }
-
-        // Custom Color Handling (Ensuring Individual Post Styling)
-        let bgColor = post.getAttribute("data-bg-color") || "#f9f9f9";
-        let scrollboxColor = post.getAttribute("data-scrollbox-color") || "#fafafa";
-        let textColor = post.getAttribute("data-text-color") || "black";
-
-        // Apply unique color settings per post
-        post.style.setProperty("--bg-color", bgColor);
-        post.style.setProperty("--scrollbox-color", scrollboxColor);
-        post.style.setProperty("--text-color", textColor);
     });
 });
