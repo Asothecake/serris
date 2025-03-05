@@ -136,8 +136,11 @@ body {
     border-radius: 15px;
     background-color: #fafafa;
     overflow-y: auto;
-    padding: 10px;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    padding: 0px;
     box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns content properly */
 }
 
 /* Page Control Buttons */
@@ -190,6 +193,18 @@ body {
 
 .circa1-page.active {
     display: block; /* Only one visible at a time */
+}
+
+.circa1-page * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures elements don’t cause overflow */
+}
+
+.circa1-page p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2; /* Reduce line spacing if needed */
 }
 
 /* HP Bar */
