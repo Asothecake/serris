@@ -187,11 +187,6 @@ body {
     overflow: auto; /* Ensure scrolling works properly */
 }
 
-.circa1-page p {
-    margin: 0;
-    padding: 0;
-}
-
 
 .circa1-page.active {
     display: block; /* Only one visible at a time */
