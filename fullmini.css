@@ -212,22 +212,14 @@ body {
     text-align: center; /* Align text properly */
 }
 
-.circa1-page a {
-    font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
-    font-size: 11px; /* Slightly smaller text */
-    color: #361F26; /* Darker text for contrast */
-    line-height: 1.4; /* Slightly more spacing for readability */
-    text-decoration: none; /* Optional: Remove underline if necessary */
-}
-
-.circa1-page .aroll {
+.circa1-page p .aroll {
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-size: 11px;
     color: #361F26;
     line-height: 1.4;
 }
 
-.circa1-page .commandz {
+.circa1-page p .commandz {
     font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
     font-size: 11px; /* Slightly smaller text */
     color: #26361F; /* Darker text for contrast */
