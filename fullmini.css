@@ -87,7 +87,6 @@ body {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    text-align: center;
 }
 
 .circa-page-btn:hover {
@@ -101,11 +100,13 @@ body {
 
 /* Scrollbox Content Pages */
 .circa-page {
+    display: none;  /* All pages hidden by default */
     padding: 10px;
-    display: none; /* Hide all pages by default */
+    background-color: #fafafa; /* Ensures no dark background */
 }
+
 .circa-page.active {
-    display: block; /* Show only active page */
+    display: block; /* Only one visible at a time */
 }
 
 /* HP Bar */
