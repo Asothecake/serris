@@ -219,6 +219,13 @@ body {
     line-height: 1.4; /* Slightly more spacing for readability */
 }
 
+.circa1-page commandz {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
+    font-size: 11px; /* Slightly smaller text */
+    color: #26361F; /* Darker text for contrast */
+    line-height: 1.4; /* Slightly more spacing for readability */
+}
+
 /* HP Bar */
 .circa1-hp-bar-container {
     width: 100%;
