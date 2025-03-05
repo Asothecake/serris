@@ -62,10 +62,10 @@ body {
 }
 
 /* Pastel Colors for Each Stat */
-.circa1-stat-entry:nth-child(1) .circa-value-box { background-color: #f7b2b2; color: #5c2e2e; } /* STR - Soft Red */
-.circa1-stat-entry:nth-child(2) .circa-value-box { background-color: #b2d6f7; color: #2e4c5c; } /* MAG - Soft Blue */
-.circa1-stat-entry:nth-child(3) .circa-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
-.circa1-stat-entry:nth-child(4) .circa-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
+.circa1-stat-entry:nth-child(1) .circa1-value-box { background-color: #f7b2b2; color: #5c2e2e; } /* STR - Soft Red */
+.circa1-stat-entry:nth-child(2) .circa1-value-box { background-color: #b2d6f7; color: #2e4c5c; } /* MAG - Soft Blue */
+.circa1-stat-entry:nth-child(3) .circa1-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
+.circa1-stat-entry:nth-child(4) .circa1-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
 
 /* The Vertical Stat Label */
 .circa1-stat-label {
