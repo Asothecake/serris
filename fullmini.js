@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".circa1-flexbox").forEach((post) => {
         // HP Bar Handling
         const hpContainer = post.querySelector(".circa1-hp-bar-container");
-        const hpFill = hpContainer?.querySelector(".circa1-hp-bar-fill");
+        const hpFill = hpContainer ? hpContainer.querySelector(".circa1-hp-bar-fill") : null;
 
         if (hpContainer && hpFill) {
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
                 currentHp = isNaN(currentHp) || currentHp < 0 ? 0 : Math.min(currentHp, maxHp);
                 let widthPercent = (currentHp / maxHp) * 100;
-                hpFill.style.width = ${widthPercent}%;
+                hpFill.style.width = `${widthPercent}%`; // ✅ Fixed backticks
             };
 
             updateHPBar();
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Page Switching Handling
         const scrollbox = post.querySelector(".circa1-scrollbox");
-        const pages = scrollbox?.querySelectorAll(".circa1-page");
+        const pages = scrollbox.querySelectorAll(".circa1-page"); // ✅ Removed unnecessary "?."
         const pageButtons = post.querySelectorAll(".circa1-page-btn");
 
         if (scrollbox && pages.length && pageButtons.length) {
