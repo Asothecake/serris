@@ -89,14 +89,20 @@ body {
     overflow: hidden; /* Prevents overflow */
     border-radius: 10px;
     border: 2px solid #e1e1e1;
+    padding: 0;
+    margin: 0;
+    border: none; /* If border is necessary, keep it inside */
 }
 
 .circa1-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
-    border: 2px solid #e1e1e1;
+    display: block; /* Removes extra space from inline elements */
+    margin: 0; /* Ensures no extra spacing */
+    padding: 0; /* Prevents any padding from affecting image */
+    border-radius: 10px; /* Matches container */
+    border: 0px solid transparent; /* Ensures no extra space */
     transition: opacity 0.5s ease-in-out; /* Smooth transition for fade effect */
 }
 
