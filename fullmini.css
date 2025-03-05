@@ -21,8 +21,9 @@ body {
 
 /* Stat Box */
 .circa1-statbox {
-    flex: 0.2;
+    flex: 0.2; /* Reduced width */
     padding: 10px;
+    border: 0px solid #e1e1e1;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -30,8 +31,52 @@ body {
     background-color: #f9f9f9;
     font-size: 12px;
     color: #1f2636;
-    gap: 20px;
-    flex-basis: 70px; /* Adjusted for better scaling */
+    gap: 30px; /* Increased spacing to align DEF with scrollbox */
+    max-width: 70px;
+    min-width: 70px;
+}
+
+/* Stat Entry with Vertical Label */
+.circa1-stat-entry {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    gap: 4px;
+}
+
+/* The Boxed Stat Value */
+.circa1-value-box {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 34px;
+    border-radius: 8px;
+    border: 2px solid #3f3f3f;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform: rotate(-5deg);
+}
+
+/* Pastel Colors for Each Stat */
+.circa1-stat-entry:nth-child(1) .circa-value-box { background-color: #f7b2b2; color: #5c2e2e; } /* STR - Soft Red */
+.circa1-stat-entry:nth-child(2) .circa-value-box { background-color: #b2d6f7; color: #2e4c5c; } /* MAG - Soft Blue */
+.circa1-stat-entry:nth-child(3) .circa-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
+.circa1-stat-entry:nth-child(4) .circa-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
+
+/* The Vertical Stat Label */
+.circa1-stat-label {
+    font-size: 10px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-weight: bold;
+    color: #3f3f3f;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 2px;
 }
 
 /* Image Section */
