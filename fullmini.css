@@ -12,8 +12,10 @@ body {
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     padding: 20px;
-    max-width: 495px !important;
-    width: 495px !important; /* Ensures it doesn't shrink or expand */
+    max-width: 495px;
+    width: 495px; /* Ensures it doesn't shrink or expand */
+    max-width: 495px;
+    width: 495px; /* Ensures it doesn't shrink or expand */
     height: auto; /* Allows content to dictate height */
     min-height: 320px; /* Adjust based on expected minimum size */
     margin: 40px auto;
@@ -23,7 +25,6 @@ body {
     box-sizing: border-box; /* Ensures padding doesn't affect width */
     overflow: hidden;
     white-space: normal;
-    flex-shrink: 0;
 }
 
 /* Stat Box */
@@ -104,6 +105,7 @@ body {
 .circa1-image-container img {
     aspect-ratio: 340 / 150; 
     width: 100%;
+    height: 100%;
     max-width: 100% !important;
     height: auto !important;
     min-height: 100%; 
@@ -258,10 +260,5 @@ body {
     width: 0%;
     transition: width 0.5s ease;
     border-radius: 4px;
-}
-
-.post {
-    max-width: 600px !important; /* Adjust as needed */
-    overflow: hidden;
 }
 ~
