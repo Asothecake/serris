@@ -183,7 +183,7 @@ body {
 .circa1-page {
     display: none;  /* All pages hidden by default */
     background-color: #fafafa; /* Ensures no dark background */
-    padding: 0; /* Remove extra spacing */
+    padding: 10px; /* Remove extra spacing */
     margin: 0; /* Ensure no margin is affecting the size */
     width: 100%; /* Make sure it fully fills the scrollbox */
     height: 100%; /* Allow full use of scrollbox height */
@@ -203,10 +203,13 @@ body {
 }
 
 .circa1-page p {
-    margin: 0;
-    padding: 0;
-    line-height: 1.2; /* If needed, reduce line spacing */
-    display: block;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
+    font-size: 11px; /* Slightly smaller text */
+    color: #1f2636; /* Darker text for contrast */
+    line-height: 1.4; /* Slightly more spacing for readability */
+    margin: 5px 0; /* Add slight spacing between paragraphs */
+    padding: 2px 5px; /* Ensure text doesn’t touch the edges */
+    text-align: left; /* Align text properly */
 }
 
 /* HP Bar */
