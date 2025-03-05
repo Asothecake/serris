@@ -215,8 +215,10 @@ body {
 .circa1-page .aroll {
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-size: 11px;
-    color: #462831;
+    color: #361F26; /* Ensure color contrast */
     line-height: 1.4;
+    font-weight: bold; /* If you want it to stand out */
+    display: inline; /* Ensures it stays inside the text flow */
 }
 
 .circa1-page .commandz {
