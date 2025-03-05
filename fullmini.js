@@ -19,26 +19,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Page switching functionality
         const scrollbox = post.querySelector(".circa-scrollbox");
-        const scrollPages = scrollbox?.querySelectorAll(".circa-scroll-page");
+        const scrollPages = scrollbox?.querySelectorAll(".circa-page");
         const pageButtons = post.querySelectorAll(".circa-page-btn");
 
         if (scrollbox && scrollPages.length && pageButtons.length) {
             pageButtons.forEach((btn, index) => {
                 btn.addEventListener("click", () => {
-                    // Hide all pages, show the selected one
-                    scrollPages.forEach(page => page.style.display = "none");
-                    scrollPages[index].style.display = "block";
-
-                    // Update active button state
-                    pageButtons.forEach(b => b.classList.remove("active"));
-                    btn.classList.add("active");
+                    changePage(index + 1, post);
                 });
             });
 
-            // Initialize first page as visible
+            // Initialize first page as visible by default
             scrollPages.forEach(page => page.style.display = "none");
             scrollPages[0].style.display = "block";
             pageButtons[0].classList.add("active");
+        }
+
+        // Function to change pages
+        function changePage(pageNumber, post) {
+            const pages = post.querySelectorAll('.circa-page');
+            const buttons = post.querySelectorAll('.circa-page-btn');
+
+            pages.forEach(page => page.style.display = 'none');
+            pages[pageNumber - 1].style.display = 'block';
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            buttons[pageNumber - 1].classList.add('active');
         }
     });
 });
