@@ -128,7 +128,6 @@ body {
 
 /* Scrollbox */
 .circa1-scrollbox {
-    margin-top: 10px;
     width: 100%;
     max-width: 440px;
     height: 120px;
@@ -136,11 +135,12 @@ body {
     border-radius: 15px;
     background-color: #fafafa;
     overflow-y: auto;
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-    padding: 0px;
-    box-sizing: border-box;
+    overflow-x: hidden; /* Remove horizontal scrolling */
+    padding: 0; /* Ensure no extra padding */
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Aligns content properly */
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 /* Page Control Buttons */
@@ -183,10 +183,11 @@ body {
 .circa1-page {
     display: none;  /* All pages hidden by default */
     background-color: #fafafa; /* Ensures no dark background */
-    padding: 0px; /* Remove extra spacing */
+    padding: 0; /* Remove extra spacing */
     margin: 0; /* Ensure no margin is affecting the size */
     width: 100%; /* Make sure it fully fills the scrollbox */
     height: 100%; /* Allow full use of scrollbox height */
+    box-sizing: border-box;
     overflow: auto; /* Ensure scrolling works properly */
 }
 
@@ -204,7 +205,8 @@ body {
 .circa1-page p {
     margin: 0;
     padding: 0;
-    line-height: 1.2; /* Reduce line spacing if needed */
+    line-height: 1.2; /* If needed, reduce line spacing */
+    display: block;
 }
 
 /* HP Bar */
