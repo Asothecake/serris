@@ -1,46 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
-        // HP Bar Handling
-        const hpContainer = post.querySelector(".verisaso-hp-bar-container");
-        const hpFill = hpContainer ? hpContainer.querySelector(".verisaso-hp-bar-fill") : null;
+        // 🌟 Processing Commands, Items, and Stat Actions
+        post.querySelectorAll(".verisaso-page span").forEach((element) => {
+            let commandClass = element.classList[0]; // Get class name dynamically
+            if (commandMappings[commandClass]) {
+                let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
+                let formattedOutput = commandMappings[commandClass](values);
+                if (formattedOutput) {
+                    element.innerHTML = `<b class="command">${formatCommandName(commandClass)}</b>: ${formattedOutput}`;
+                }
+            }
+        });
 
-        if (hpContainer && hpFill) {
-            let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
-
-            const updateHPBar = () => {
-                let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
-                currentHp = isNaN(currentHp) || currentHp < 0 ? 0 : Math.min(currentHp, maxHp);
-                let widthPercent = `${(currentHp / maxHp) * 100}%`;
-                hpFill.style.width = widthPercent;
-            };
-
-            updateHPBar();
-        }
-
-        // Page Switching Handling
-        const scrollbox = post.querySelector(".verisaso-scrollbox");
-        const pages = scrollbox.querySelectorAll(".verisaso-page");
-        const pageButtons = post.querySelectorAll(".verisaso-page-btn");
-
-        if (scrollbox && pages.length && pageButtons.length) {
-            const changePage = (pageNumber) => {
-                pages.forEach((page, index) => {
-                    page.style.display = (index + 1 === pageNumber) ? "block" : "none";
-                });
-
-                pageButtons.forEach((btn, index) => {
-                    btn.classList.toggle("active", index + 1 === pageNumber);
-                });
-            };
-
-            changePage(1);
-
-            pageButtons.forEach((btn, index) => {
-                btn.addEventListener("click", () => changePage(index + 1));
-            });
-        }
-
-        // 🌟 COMMAND & ACTION PROCESSING 🌟
+        // 🔹 COMMAND & ACTION PROCESSING 🔹
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
@@ -96,10 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
             },
 
             // 🏆 PROVISIONS 🏆
-            "remembrance": () => `Gains <span class="buff-status">Quick</span> for 3 Turns.`,
+            "remembrance": () => `Gains ${formatBuff("Quick")} for 3 Turns.`,
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
-            "esuna": (values) => `<span class="buff-status">${values[0]} to Cleanse</span>.`,
+            "esuna": (values) => `${formatBuff(values[0])} to Cleanse.`,
             "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
             "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
             "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
@@ -112,7 +84,20 @@ document.addEventListener("DOMContentLoaded", () => {
             "dodge": (values) => `<span class="stat-action">${values[0]} Dodge</span>.`,
             "raid": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
             "charge": (values) => `<span class="stat-action">${values[0]} Charge</span>.`,
-            "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`
+            "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
+
+        // 🔢 Utility Functions
+        function formatDamage(value, modifier) {
+            if (!value) return "";
+            let numbers = value.split("+").map(v => parseInt(v.trim())).filter(n => !isNaN(n));
+            if (numbers.length === 0) return "";
+            let total = numbers.reduce((sum, num) => sum + num, modifier);
+            return `<span class="damage">${total} (${numbers.join("+")}+${modifier})</span>`;
+        }
+
+        function formatCommandName(name) {
+            return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+        }
     });
 });
