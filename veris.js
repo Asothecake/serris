@@ -44,22 +44,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = calculateWithModifier(values[0], 4);
-                let heal = values[1] ? `${values[1]} HP Healed` : "";
+                let heal = values[1] ? `<span class="healing">${values[1]}</span> HP Healed` : "";
                 return `${dmg} Dark Damage${heal ? `, ${heal}` : ""}`;
             },
             "resurgence": () => "Veris Gains Chant and Resonance for 3 Turns, and generates 1 Abyss Charge.",
             "howling-echo": (values) => {
-                let corruption = values[0] ? `${values[0]} to inflict Corruption for 3 turns` : "";
-                let berserk = values[1] ? `${values[1]} to inflict Berserk for 3 turns` : "";
+                let corruption = values[0] ? `<span class="status">${values[0]}</span> to inflict Corruption for 3 turns` : "";
+                let berserk = values[1] ? `<span class="status">${values[1]}</span> to inflict Berserk for 3 turns` : "";
                 return [corruption, berserk].filter(Boolean).join(", ");
             },
             "shadow-veil": (values) => {
-                let cleanse = values[0] ? `${values[0]} Cleanses` : "";
+                let cleanse = values[0] ? `<span class="status">${values[0]}</span> Cleanses` : "";
                 let dmg = values[1] ? `${values[1]} Dark Damage` : "";
                 return [cleanse, dmg].filter(Boolean).join(", ");
             },
             "sanguine-blade": (values) => {
-                let weaken = values[0] ? `${values[0]} to inflict Weaken for 3 turns` : "";
+                let weaken = values[0] ? `<span class="status">${values[0]}</span> to inflict Weaken for 3 turns` : "";
                 let dmg = values[1] ? `${values[1]} Dark Damage` : "";
                 return `${weaken}, ${dmg}. Veris gains Dualcast for 3 turns.`;
             },
@@ -71,38 +71,48 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             "howl-of-the-abyss": () => "Veris gains Quick and access to: Tenebrous Fang, Umbral Claw, and Noctem Eclipse for 3 turns.",
             "tenebrous-fang": (values) => {
-                let heal = values[0] ? `${values[0]} HP Healed` : "";
+                let heal = values[0] ? `<span class="healing">${values[0]}</span> HP Healed` : "";
                 let darkDmg = calculateWithModifier(values[1], 2);
-                let tenebrousDmg = values[2] ? `${values[2]} Damage from Tenebrous` : "";
+                let tenebrousDmg = values[2] ? `<span class="damage">${values[2]}</span> Damage from Tenebrous` : "";
                 return [heal, darkDmg, tenebrousDmg].filter(Boolean).join(", ");
             },
             "umbral-swiftfoot": (values) => {
-                return values[0] ? `${values[0]} Dodge Roll` : "";
+                return values[0] ? `<span class="stat-action">${values[0]}</span> Dodge Roll` : "";
             },
             "noctem-eclipse": (values) => {
                 let darkDmg = calculateWithModifier(values[0], 4);
-                let tenebrousDmg = values[1] ? `${values[1]} Damage from Tenebrous` : "";
+                let tenebrousDmg = values[1] ? `<span class="damage">${values[1]}</span> Damage from Tenebrous` : "";
                 return `${darkDmg} Dark Damage${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
             },
         };
 
+        // Apply Formatting and Assign Proper Classes
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
             let commandClass = Object.keys(commandMappings).find(cmd => element.classList.contains(cmd));
             if (commandClass) {
                 let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
                 let formattedOutput = commandMappings[commandClass](values);
+
                 if (formattedOutput) {
-                    element.innerHTML = `<b>${commandClass.replace(/-/g, " ")}</b>: ${formattedOutput}`;
+                    element.innerHTML = `
+                        <span class="command">${capitalizeWords(commandClass.replace(/-/g, " "))}</span>: ${formattedOutput}
+                    `;
                 }
             }
         });
 
+        // Function to Capitalize Command Names Correctly
+        function capitalizeWords(str) {
+            return str.replace(/\b\w/g, (char) => char.toUpperCase());
+        }
+
+        // Function to Calculate and Format Modifiers
         function calculateWithModifier(value, modifier) {
             if (!value) return "";
             let numbers = value.split("+").map(v => parseInt(v.trim())).filter(n => !isNaN(n));
             if (numbers.length === 0) return "";
             let total = numbers.reduce((sum, num) => sum + num, modifier);
-            return `${total} (${numbers.join("+")}+${modifier})`;
+            return `<span class="damage">${total}</span> (${numbers.join("+")}+${modifier})`;
         }
     });
 });
