@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // 🌟 Effect and Buff Mappings
+        const effectStatuses = ["Corruption", "Berserk", "Weaken", "Blind", "Poison", "Silence"];
+        const buffStatuses = ["Dualcast", "Mine", "Regen", "Resonance", "Haste", "Combo+", "Shell", "Chant"];
+
         // 🔹 COMMAND & PROVISION PROCESSING
         const commandMappings = {
             "dark-calamity": (values) => {
@@ -47,49 +51,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 let heal = values[1] ? `<span class="healing">${values[1]} HP Healed</span>` : "";
                 return `${dmg} Dark Damage${heal ? `, ${heal}` : ""}`;
             },
-            "resurgence": () => "Veris Gains <span class='effect-status'>Chant and Resonance</span> for 3 Turns, and generates <span class='effect-status'>1 Abyss Charge</span>.",
+            "resurgence": () => `Veris Gains ${formatBuff("Chant and Resonance")} for 3 Turns, and generates <span class='effect-status'>1 Abyss Charge</span>.`,
             "howling-echo": (values) => {
-                let corruption = values[0] ? `<span class="effect-status">${values[0]} to inflict Corruption for 3 turns</span>` : "";
-                let berserk = values[1] ? `<span class="effect-status">${values[1]} to inflict Berserk for 3 turns</span>` : "";
+                let corruption = values[0] ? `${formatEffect(values[0])} to inflict ${formatEffect("Corruption")} for 3 turns` : "";
+                let berserk = values[1] ? `${formatEffect(values[1])} to inflict ${formatEffect("Berserk")} for 3 turns` : "";
                 return [corruption, berserk].filter(Boolean).join(", ");
             },
             "shadow-veil": (values) => {
-                let cleanse = values[0] ? `<span class="effect-status">${values[0]} Cleanses</span>` : "";
+                let cleanse = values[0] ? `${formatBuff(values[0])} Cleanses` : "";
                 let dmg = values[1] ? `<span class="damage">${values[1]} Dark Damage</span>` : "";
                 return [cleanse, dmg].filter(Boolean).join(", ");
             },
             "sanguine-blade": (values) => {
-                let weaken = values[0] ? `<span class="effect-status">${values[0]} to inflict Weaken for 3 turns</span>` : "";
+                let weaken = values[0] ? `${formatEffect(values[0])} to inflict ${formatEffect("Weaken")} for 3 turns` : "";
                 let dmg = values[1] ? `<span class="damage">${values[1]} Dark Damage</span>` : "";
-                return `${weaken}, ${dmg}. Veris gains <span class="effect-status">Dualcast</span> for 3 turns.`;
+                return `${weaken}, ${dmg}. Veris gains ${formatBuff("Dualcast")} for 3 turns.`;
             },
             "nightfall": (values) => {
                 let buff = values[0] && parseInt(values[0]) > 0
-                    ? "Veris gains <span class='effect-status'>Mine, Combo+, Dualcast, and Haste</span> for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns."
-                    : "Veris gains <span class='effect-status'>Shell, Regen, Dualcast, and Haste</span> for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns.";
+                    ? `Veris gains ${formatBuff("Mine, Combo+, Dualcast, and Haste")} for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns.`
+                    : `Veris gains ${formatBuff("Shell, Regen, Dualcast, and Haste")} for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns.`;
                 return buff;
             },
-            "howl-of-the-abyss": () => "Veris gains <span class='effect-status'>Quick</span> and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.",
+            "howl-of-the-abyss": () => `Veris gains ${formatBuff("Quick")} and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.`,
             "tenebrous-fang": (values) => {
                 let heal = values[0] ? `<span class="healing">${values[0]} HP Healed</span>` : "";
                 let darkDmg = formatDamage(values[1], 2);
                 let tenebrousDmg = values[2] ? `<span class="damage">${values[2]} Damage from Tenebrous</span>` : "";
                 return [heal, darkDmg, tenebrousDmg].filter(Boolean).join(", ");
             },
-            "umbral-swiftfoot": (values) => {
-                return values[0] ? `<span class="effect-status">${values[0]} Dodge Roll</span>` : "";
-            },
-            "noctem-eclipse": (values) => {
-                let darkDmg = formatDamage(values[0], 4);
-                let tenebrousDmg = values[1] ? `<span class="damage">${values[1]} Damage from Tenebrous</span>` : "";
-                return `${darkDmg} Dark Damage${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
-            },
 
             // 🏆 PROVISIONS PROCESSING 🏆
-            "remembrance": () => "Gains <span class='effect-status'>Quick</span> for 3 Turns.",
+            "remembrance": () => `Gains ${formatBuff("Quick")} for 3 Turns.`,
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
-            "esuna": (values) => `<span class="effect-status">${values[0]} to Cleanse</span>.`,
+            "esuna": (values) => `${formatBuff(values[0])} to Cleanse.`,
             "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
             "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
             "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
@@ -118,9 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return `<span class="damage">${total} (${numbers.join("+")}+${modifier})</span>`;
         }
 
-        // 🔠 Utility Function: Formats Command Names
-        function formatCommandName(name) {
-            return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
-        }
+        // 🎨 Utility Functions: Formatting
+        function formatEffect(status) { return `<span class="effect-status">${status}</span>`; }
+        function formatBuff(buff) { return `<span class="buff-status">${buff}</span>`; }
     });
 });
