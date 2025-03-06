@@ -209,7 +209,7 @@ width: 100%;
 }
 
 /* 🟢🟠 STATUS EFFECTS */
-.verisaso-page span.status {
+.verisaso-page span.effect-status {
     font-style: italic !important;
     color: #802020 !important;
 }
@@ -227,7 +227,7 @@ width: 100%;
 }
 
 .verisaso-page span, 
-.verisaso-page .status {
+.verisaso-page .effect-status {
     background: none !important;
     border: none !important;
     box-shadow: none !important;
@@ -269,3 +269,5 @@ width: 100%;
     transition: width 0.5s ease;
     border-radius: 4px;
 }
+
+
