@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
-        // HP Bar Handling (Isolated Per Post)
-        const hpContainer = post.querySelector(".verisaso-hp-bar-container");
-        const hpFill = hpContainer ? hpContainer.querySelector(".verisaso-hp-bar-fill") : null;
 
-        if (hpContainer && hpFill) {
+        // 🌟 HP Bar Handling
+        const hpContainer = post.querySelector(".verisaso-hp-bar-container");
+        if (hpContainer) {
+            const hpFill = hpContainer.querySelector(".verisaso-hp-bar-fill");
             let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
 
             const updateHPBar = () => {
@@ -16,67 +16,66 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
-        // Page Switching Handling (Scoped Per Post)
+        // 🌟 Page Switching Handling
         const scrollbox = post.querySelector(".verisaso-scrollbox");
-        const pages = scrollbox.querySelectorAll(".verisaso-page");
-        const pageButtons = post.querySelectorAll(".verisaso-page-btn");
+        if (scrollbox) {
+            const pages = scrollbox.querySelectorAll(".verisaso-page");
+            const pageButtons = post.querySelectorAll(".verisaso-page-btn");
 
-        if (scrollbox && pages.length && pageButtons.length) {
-            const changePage = (pageNumber) => {
-                pages.forEach((page, index) => {
-                    page.style.display = (index + 1 === pageNumber) ? "block" : "none";
-                });
+            if (pages.length && pageButtons.length) {
+                const changePage = (pageNumber) => {
+                    pages.forEach((page, index) => {
+                        page.style.display = index + 1 === pageNumber ? "block" : "none";
+                    });
+                    pageButtons.forEach((btn, index) => {
+                        btn.classList.toggle("active", index + 1 === pageNumber);
+                    });
+                };
 
+                changePage(1);
                 pageButtons.forEach((btn, index) => {
-                    btn.classList.toggle("active", index + 1 === pageNumber);
+                    btn.addEventListener("click", () => changePage(index + 1));
                 });
-            };
-
-            changePage(1);
-
-            pageButtons.forEach((btn, index) => {
-                btn.addEventListener("click", () => changePage(index + 1));
-            });
+            }
         }
 
-        // 🔹 COMMAND & ACTION PROCESSING (Scoped Per Post)
+        // 🌟 COMMAND, ITEM, AND STAT ACTION PROCESSING
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
                 let heal = values[1] ? `<span class="healing">${values[1]} HP Healed</span>` : "";
                 return `<span class="damage">${dmg} Damage</span>${heal ? `, ${heal}` : ""}`;
             },
-
-            "resurgence": () => 
-                "Veris Gains <span class='effect-status'>Chant and Resonance</span> for 3 Turns, and generates <span class='effect-status'>1 Abyss Charge</span>.",
-
+            "resurgence": () => `Veris Gains <span class='effect-status'>Chant and Resonance</span> for 3 Turns, and generates <span class='effect-status'>1 Abyss Charge</span>.`,
             "howling-echo": (values) => {
                 let corruption = values[0] ? `<span class="effect-status">${values[0]} to inflict Corruption for 3 turns</span>` : "";
                 let berserk = values[1] ? `<span class="effect-status">${values[1]} to inflict Berserk for 3 turns</span>` : "";
                 return [corruption, berserk].filter(Boolean).join(", ");
             },
-
             "shadow-veil": (values) => {
                 let cleanse = values[0] ? `<span class="effect-status">${values[0]} Cleanses</span>` : "";
                 let dmg = values[1] ? `<span class="damage">${values[1]} Damage</span>` : "";
                 return [cleanse, dmg].filter(Boolean).join(", ");
             },
-
             "sanguine-blade": (values) => {
                 let weaken = values[0] ? `<span class="effect-status">${values[0]} to inflict Weaken for 3 turns</span>` : "";
                 let dmg = values[1] ? `<span class="damage">${values[1]} Damage</span>` : "";
                 return `${weaken}, ${dmg}. Veris gains <span class="effect-status">Dualcast</span> for 3 turns.`;
             },
-
             "nightfall": (values) => {
                 return values[0] && parseInt(values[0]) > 0
                     ? "Veris gains <span class='effect-status'>Mine, Combo+, Dualcast, and Haste</span> for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns."
                     : "Veris gains <span class='effect-status'>Shell, Regen, Dualcast, and Haste</span> for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns.";
             },
-
-            "howl-of-the-abyss": () => 
-                "Veris gains <span class='effect-status'>Quick</span> and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.",
-
+            "howl-of-the-abyss": () => `Veris gains <span class='effect-status'>Quick</span> and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.`,
+            "tenebrous-fang": (values) => {
+                let heal = values[0] ? `<span class="healing">${values[0]} HP Healed</span>` : "";
+                let darkDmg = formatDamage(values[1], 2);
+                let tenebrousDmg = values[2] ? `<span class="damage">${values[2]} Damage from Tenebrous</span>` : "";
+                return [heal, `<span class="damage">${darkDmg} Damage</span>`, tenebrousDmg].filter(Boolean).join(", ");
+            },
+            "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
+            "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
             "strike": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
             "breach": (values) => `<span class="stat-action">${values[0]} Damage added to next Attack</span>.`,
             "dodge": (values) => `<span class="stat-action">${values[0]} Dodge</span>.`,
@@ -85,14 +84,16 @@ document.addEventListener("DOMContentLoaded", () => {
             "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
 
-        // Apply changes to each span inside the scrollbox (Scoped to Each Post)
+        // 🌟 Apply Formatting to Commands
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
-            let commandClass = element.classList[0]; // Get first class name dynamically
+            if (element.dataset.processed) return; // Prevent duplicate processing
+            let commandClass = element.classList[0];
             if (commandMappings[commandClass]) {
                 let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
                 let formattedOutput = commandMappings[commandClass](values);
                 if (formattedOutput) {
                     element.innerHTML = `<b class="command">${formatCommandName(commandClass)}</b>: ${formattedOutput}`;
+                    element.dataset.processed = "true"; // Mark as processed
                 }
             }
         });
