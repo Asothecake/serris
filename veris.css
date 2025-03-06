@@ -1,6 +1,3 @@
-# Rewriting the updated CSS after execution state reset
-
-updated_css = """
 /* General Styling */
 body {
     font-family: 'Verdana', Geneva, sans-serif;
@@ -16,31 +13,33 @@ body {
     border-radius: 15px;
     padding: 20px;
     max-width: 495px;
-    width: 495px;
-    height: auto;
-    min-height: 320px;
+    width: 495px; /* Ensures it doesn't shrink or expand */
+    max-width: 495px;
+    width: 495px; /* Ensures it doesn't shrink or expand */
+    height: auto; /* Allows content to dictate height */
+    min-height: 320px; /* Adjust based on expected minimum size */
     margin: 40px auto;
-    background-color: #2b2b2b; /* Updated to match Veris theme */
+    background-color: #fafafa;
     position: relative;
     align-items: flex-start;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
     overflow: hidden;
     white-space: normal;
 }
 
 /* Stat Box */
 .verisaso-statbox {
-    flex: 0.2;
+    flex: 0.2; /* Reduced width */
     padding: 10px;
     border: 0px solid #e1e1e1;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #232323; /* Darker background to match Veris theme */
+    background-color: #f9f9f9;
     font-size: 12px;
-    color: #e1e1e1; /* Light text for contrast */
-    gap: 30px;
+    color: #1f2636;
+    gap: 30px; /* Increased spacing to align DEF with scrollbox */
     max-width: 70px;
     min-width: 70px;
 }
@@ -70,18 +69,18 @@ body {
     transform: rotate(-5deg);
 }
 
-/* Updated Stat Colors */
-.verisaso-stat-entry:nth-child(1) .verisaso-value-box { background-color: #913d3d; color: #ffb3b3; } /* STR - Deep Red */
-.verisaso-stat-entry:nth-child(2) .verisaso-value-box { background-color: #3d5a91; color: #b3c6ff; } /* MAG - Deep Blue */
-.verisaso-stat-entry:nth-child(3) .verisaso-value-box { background-color: #3d9145; color: #b3ffb3; } /* AGL - Deep Green */
-.verisaso-stat-entry:nth-child(4) .verisaso-value-box { background-color: #91753d; color: #ffebb3; } /* DEF - Deep Gold */
+/* Pastel Colors for Each Stat */
+.verisaso-stat-entry:nth-child(1) .verisaso-value-box { background-color: #f7b2b2; color: #5c2e2e; } /* STR - Soft Red */
+.verisaso-stat-entry:nth-child(2) .verisaso-value-box { background-color: #b2d6f7; color: #2e4c5c; } /* MAG - Soft Blue */
+.verisaso-stat-entry:nth-child(3) .verisaso-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
+.verisaso-stat-entry:nth-child(4) .verisaso-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
 
-/* Vertical Stat Label */
+/* The Vertical Stat Label */
 .verisaso-stat-label {
     font-size: 10px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-weight: bold;
-    color: #e1e1e1;
+    color: #3f3f3f;
     text-transform: uppercase;
     writing-mode: vertical-rl;
     text-orientation: upright;
@@ -94,18 +93,46 @@ body {
     display: inline-block;
     width: 100%;
     max-width: 340px;
-    height: 150px;
-    overflow: hidden;
+    height: 150px; /* Ensuring a fixed height */
+    overflow: hidden; /* Prevents overflow */
     border-radius: 10px;
     border: 2px solid #e1e1e1;
     padding: 6px;
     margin: 0;
-    transition: opacity 0.5s ease-in-out;
+    border: none; /* If border is necessary, keep it inside */
 }
 
-/* Image Hover Effect */
+.verisaso-image-container img {
+    aspect-ratio: 340 / 150; 
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 100%; 
+    object-fit: cover;
+    display: block; /* Removes extra space from inline elements */
+    margin: 0; /* Ensures no extra spacing */
+    padding: 0; /* Prevents any padding from affecting image */
+    border-radius: 10px; /* Matches container */
+    border: 0px solid transparent; /* Ensures no extra space */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for fade effect */
+}
+
+.verisaso-image-section {
+    flex: 0.8;
+    text-align: center;
+    position: relative;
+}
+
+/* When hovering over image OR buttons, make buttons fully visible */
+.verisaso-image-container:hover .verisaso-page-controls,
+.verisaso-page-controls:hover {
+    opacity: 1; /* Make buttons fully visible */
+}
+
+/* When hovering over image, make it slightly transparent */
 .verisaso-image-container:hover img {
-    opacity: 0.6;
+    opacity: 0.6; /* Reduce opacity of the image when hovered */
 }
 
 /* Scrollbox */
@@ -115,10 +142,10 @@ body {
     height: 120px;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
-    background-color: #191919; /* Updated to match Veris theme */
+    background-color: #fafafa;
     overflow-y: auto;
-    overflow-x: hidden;
-    padding: 0;
+    overflow-x: hidden; /* Remove horizontal scrolling */
+    padding: 0; /* Ensure no extra padding */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -133,80 +160,90 @@ body {
     transform: translateX(-50%);
     display: flex;
     gap: 5px;
-    opacity: 0.8;
-    transition: opacity 0.5s ease-in-out;
+    opacity: 0.8;  /* Start with low opacity */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition */
 }
 
-/* Page Button Styles */
 .verisaso-page-btn {
-    background-color: #1c1c1c;
-    color: #e1e1e1;
-    font-size: 10px;
+    background-color: rgba(79, 79, 79, 1);
+    color: #fff;
+    font-size: 7px;
     padding: 5px;
     border: none;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 3px !important;
     transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .verisaso-page-btn:hover {
-    background-color: #444;
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    color: white !important;  /* Ensures the text color doesn't change */
+    border: none !important;
+    box-shadow: none !important; /* Prevents unwanted shadows */
+    text-decoration: none !important; /* Stops underlining if applied globally */
 }
 
-/* Active Page Button */
 .verisaso-page-btn.active {
-    background-color: #777;
+    background-color: rgba(255, 255, 255, 0.6);
     color: black;
 }
 
 /* Scrollbox Content Pages */
 .verisaso-page {
-    display: none;
-    background-color: #191919;
-    padding: 10px;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+    display: none;  /* All pages hidden by default */
+    background-color: #fafafa; /* Ensures no dark background */
+    padding: 10px; /* Remove extra spacing */
+    margin: 0; /* Ensure no margin is affecting the size */
+    width: 100%; /* Make sure it fully fills the scrollbox */
+    height: 100%; /* Allow full use of scrollbox height */
     box-sizing: border-box;
-    overflow: auto;
+    overflow: auto; /* Ensure scrolling works properly */
 }
 
+
 .verisaso-page.active {
-    display: block;
+    display: block; /* Only one visible at a time */
 }
 
 .verisaso-page * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures elements don’t cause overflow */
 }
 
-/* Command Text Formatting */
+.verisaso-page p {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
+    font-size: 11px; /* Slightly smaller text */
+    color: #1f2636; /* Darker text for contrast */
+    line-height: 1.4; /* Slightly more spacing for readability */
+    margin: 5px 0; /* Add slight spacing between paragraphs */
+    padding: 2px 5px; /* Ensure text doesn’t touch the edges */
+    text-align: center; /* Align text properly */
+}
+
+.verisaso-page .aroll {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 11px;
+    color: #800000 !important; /* Ensure color contrast */
+    line-height: 1.4;
+    font-weight: bold; /* If you want it to stand out */
+    display: inline; /* Ensures it stays inside the text flow */
+}
+
 .verisaso-page .commandz {
-    font-size: 12px;
-    font-weight: bold;
-    color: #d9a600; /* Gold for commands */
-}
-
-/* Item Action Text */
-.verisaso-page .item-action {
-    font-size: 12px;
-    font-weight: bold;
-    color: #b35e00; /* Dark Orange for items */
-}
-
-/* Stat Actions */
-.verisaso-page .stat-action {
-    font-size: 12px;
-    font-weight: normal;
-    color: #b38f00; /* Muted Gold for stat actions */
+    font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
+    font-size: 11px; /* Slightly smaller text */
+    color: #008000 !important; /* Darker text for contrast */
+    line-height: 1.4; /* Slightly more spacing for readability */
+    font-weight: bold; /* If you want it to stand out */
+    display: inline; /* Ensures it stays inside the text flow */
 }
 
 /* HP Bar */
 .verisaso-hp-bar-container {
     width: 100%;
     height: 8px;
-    background-color: #2b2b2b;
+    background-color: #e1e1e1;
     border-radius: 8px;
     border: 2px solid #c2c2c2;
     position: absolute;
@@ -217,7 +254,6 @@ body {
     z-index: 10;
 }
 
-/* HP Bar Fill */
 .verisaso-hp-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #ff4d4d, #cc0000);
@@ -225,24 +261,5 @@ body {
     transition: width 0.5s ease;
     border-radius: 4px;
 }
+~
 
-/* Healing Numbers */
-.verisaso-healing {
-    color: #62c462; /* Green for healing effects */
-    font-weight: bold;
-}
-
-/* Damage Numbers */
-.verisaso-damage {
-    color: #ff4d4d;
-    font-weight: bold;
-}
-"""
-
-# Saving the CSS file again
-css_path = "/mnt/data/verisaso_updated.css"
-with open(css_path, "w") as f:
-    f.write(updated_css)
-
-# Returning the file path for download
-css_path
