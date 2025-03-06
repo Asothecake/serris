@@ -52,6 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 let berserk = values[1] ? `<span class="effect-status">${values[1]} to inflict Berserk for 3 turns</span>` : "";
                 return [corruption, berserk].filter(Boolean).join(", ");
             },
+            "noctem-eclipse": (values) => {
+    let darkDmg = formatDamage(values[0], 4);
+    let tenebrousDmg = values[1] ? `<span class="damage">${values[1]} Damage from Tenebrous</span>` : "";
+    return `<span class="damage">${darkDmg} Damage</span>${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
+},
+"umbral-swiftfoot": (values) => {
+    return values[0] ? `<span class="effect-status">${values[0]} Dodge Roll</span>` : "";
+},
             "shadow-veil": (values) => {
                 let cleanse = values[0] ? `<span class="effect-status">${values[0]} Cleanses</span>` : "";
                 let dmg = values[1] ? `<span class="damage">${values[1]} Damage</span>` : "";
@@ -82,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
             "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
             "elixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored</span>.`,
+            "remembrance": () => `Gains <span class="effect-status">Quick</span> for 3 Turns.`,
             "megalixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored to All Allies</span>.`,
 
             // 🛡️ STAT ACTIONS (Added the missing ones)
