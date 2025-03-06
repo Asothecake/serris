@@ -184,6 +184,15 @@ width: 100%;
     height: 100%;
     box-sizing: border-box;
     overflow: auto;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
+    font-size: 11px; /* Slightly smaller text */
+    line-height: 1.4; /* Slightly more spacing for readability */
+    text-align: center; /* Align text properly */
+}
+
+.verisaso-page p {
+    margin: 5px 0; /* Add slight spacing between paragraphs */
+    padding: 2px 5px; /* Ensure text doesn’t touch the edges */
 }
 
 .verisaso-page.active {
@@ -191,39 +200,43 @@ width: 100%;
 }
 
 /* 🔴 DAMAGE NUMBERS */
-.verisaso-page span.damage {
-    color: #D43F3F !important;
-    font-weight: bold !important;
+.verisaso-page .damage {
+    font-weight: bold;
+    color: #D43F3F;
 }
 
 /* 🟢 HEALING NUMBERS */
-.verisaso-page span.healing {
-    color: #4CAF50 !important;
-    font-weight: bold !important;
+.verisaso-page .healing {
+    font-weight: bold;
+    color: #4CAF50;
 }
 
 /* 🔵 MANA RECOVERY */
-.verisaso-page span.mana {
-    color: #4267B2 !important;
-    font-weight: bold !important;
+.verisaso-page .mana {
+    font-weight: bold;
+    color: #4267B2;
 }
 
 /* 🟢🟠 STATUS EFFECTS */
-.verisaso-page span.effect-status {
-    font-style: italic !important;
-    color: #802020 !important;
+.verisaso-page .effect {
+    font-style: italic;
+    color: #802020;
 }
 
 /* 🔹 ITEMS (Teal, No Glow) */
-.verisaso-page span.item {
-    color: #3AAFA9 !important;
-    font-weight: bold !important;
+.verisaso-page .item {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 11px;
+    color: #3AAFA9;
+    font-weight: bold;
 }
 
 /* 🔸 STAT ACTIONS (Muted Gold, Less Bold) */
-.verisaso-page span.stat-action {
-    color: #A89044 !important;
-    font-weight: 600 !important;
+.verisaso-page .stat-action {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 11px;
+    color: #A89044;
+    font-weight: 600;
 }
 
 .verisaso-page span, 
@@ -235,16 +248,6 @@ width: 100%;
 
 .verisaso-page span:empty {
     display: none !important;
-}
-
-/* 🟡 COMMANDS (Golden Glow) */
-.verisaso-page span.command {
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    font-size: 12px;
-    color: #C9A933 !important;
-    font-weight: bold !important;
-    text-shadow: 0px 0px 4px rgba(201, 169, 51, 0.8);
-    text-transform: capitalize;
 }
 
 /* HP Bar */
