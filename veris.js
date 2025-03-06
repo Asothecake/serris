@@ -1,23 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
-        // 🌟 Processing Commands, Items, and Stat Actions - Per Post Only!
-        post.querySelectorAll(".verisaso-page span").forEach((element) => {
-            let commandClass = element.classList[0]; // Get class name dynamically
+        // 🩸 HP BAR HANDLING 🩸
+        const hpContainer = post.querySelector(".verisaso-hp-bar-container");
+        const hpFill = hpContainer ? hpContainer.querySelector(".verisaso-hp-bar-fill") : null;
 
-            // Prevent duplicate formatting
-            if (element.dataset.processed === "true") return;
-            
-            if (commandMappings[commandClass]) {
-                let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
-                let formattedOutput = commandMappings[commandClass](values);
-                if (formattedOutput) {
-                    element.innerHTML = `<b class="command">${formatCommandName(commandClass)}</b>: ${formattedOutput}`;
-                    element.dataset.processed = "true"; // Mark as processed
-                }
-            }
-        });
+        if (hpContainer && hpFill) {
+            let maxHp = parseInt(hpContainer.getAttribute("data-max-hp"), 10);
 
-        // 🔹 COMMAND & ACTION PROCESSING 🔹
+            const updateHPBar = () => {
+                let currentHp = parseInt(hpContainer.getAttribute("data-current-hp"), 10);
+                currentHp = isNaN(currentHp) || currentHp < 0 ? 0 : Math.min(currentHp, maxHp);
+                hpFill.style.width = `${(currentHp / maxHp) * 100}%`;
+            };
+
+            updateHPBar();
+        }
+
+        // 📜 PAGE SWITCHING 📜
+        const scrollbox = post.querySelector(".verisaso-scrollbox");
+        const pages = scrollbox.querySelectorAll(".verisaso-page");
+        const pageButtons = post.querySelectorAll(".verisaso-page-btn");
+
+        if (scrollbox && pages.length && pageButtons.length) {
+            const changePage = (pageNumber) => {
+                pages.forEach((page, index) => {
+                    page.style.display = index + 1 === pageNumber ? "block" : "none";
+                });
+
+                pageButtons.forEach((btn, index) => {
+                    btn.classList.toggle("active", index + 1 === pageNumber);
+                });
+            };
+
+            changePage(1); // Default to Page 1
+
+            pageButtons.forEach((btn, index) => {
+                btn.addEventListener("click", () => changePage(index + 1));
+            });
+        }
+
+        // 🔹 COMMAND, ITEM, & STAT ACTION PROCESSING 🔹
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
@@ -73,10 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
             },
 
             // 🏆 PROVISIONS 🏆
-            "remembrance": () => `Gains ${formatBuff("Quick")} for 3 Turns.`,
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
-            "esuna": (values) => `${formatBuff(values[0])} to Cleanse.`,
             "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
             "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
             "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
@@ -92,13 +112,22 @@ document.addEventListener("DOMContentLoaded", () => {
             "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
 
+        // 📌 APPLY COMMAND FORMATTING
+        post.querySelectorAll(".verisaso-page span").forEach((element) => {
+            let commandClass = element.classList[0];
+            if (commandMappings[commandClass]) {
+                let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
+                let formattedOutput = commandMappings[commandClass](values);
+                if (formattedOutput) {
+                    element.innerHTML = `<b class="command">${formatCommandName(commandClass)}</b>: ${formattedOutput}`;
+                }
+            }
+        });
+
         // 🔢 Utility Functions
         function formatDamage(value, modifier) {
             if (!value) return "";
-            let numbers = value.split("+").map(v => parseInt(v.trim())).filter(n => !isNaN(n));
-            if (numbers.length === 0) return "";
-            let total = numbers.reduce((sum, num) => sum + num, modifier);
-            return `<span class="damage">${total} (${numbers.join("+")}+${modifier})</span>`;
+            return `<span class="damage">${parseInt(value) + modifier} Damage</span>`;
         }
     });
 });
