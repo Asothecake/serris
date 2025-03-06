@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
+        
+        // 🌟 Utility Functions for Formatting
+        function formatEffect(status) { return `<span class="effect-status">${status}</span>`; }
+        function formatBuff(buff) { return `<span class="buff-status">${buff}</span>`; }
+
         // HP Bar Handling
         const hpContainer = post.querySelector(".verisaso-hp-bar-container");
         const hpFill = hpContainer ? hpContainer.querySelector(".verisaso-hp-bar-fill") : null;
@@ -49,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
                 let heal = values[1] ? `<span class="healing">${values[1]} HP Healed</span>` : "";
-                return `${dmg} Dark Damage${heal ? `, ${heal}` : ""}`;
+                return `${dmg} <span class="damage">Damage</span>${heal ? `, ${heal}` : ""}`;
             },
             "resurgence": () => `Veris Gains ${formatBuff("Chant and Resonance")} for 3 Turns, and generates <span class='effect-status'>1 Abyss Charge</span>.`,
             "howling-echo": (values) => {
@@ -59,45 +64,29 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             "shadow-veil": (values) => {
                 let cleanse = values[0] ? `${formatBuff(values[0])} Cleanses` : "";
-                let dmg = values[1] ? `<span class="damage">${values[1]} Dark Damage</span>` : "";
+                let dmg = values[1] ? `<span class="damage">${values[1]} Damage</span>` : "";
                 return [cleanse, dmg].filter(Boolean).join(", ");
             },
             "sanguine-blade": (values) => {
                 let weaken = values[0] ? `${formatEffect(values[0])} to inflict ${formatEffect("Weaken")} for 3 turns` : "";
-                let dmg = values[1] ? `<span class="damage">${values[1]} Dark Damage</span>` : "";
+                let dmg = values[1] ? `<span class="damage">${values[1]} Damage</span>` : "";
                 return `${weaken}, ${dmg}. Veris gains ${formatBuff("Dualcast")} for 3 turns.`;
-            },
-            "nightfall": (values) => {
-                let buff = values[0] && parseInt(values[0]) > 0
-                    ? `Veris gains ${formatBuff("Mine, Combo+, Dualcast, and Haste")} for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns.`
-                    : `Veris gains ${formatBuff("Shell, Regen, Dualcast, and Haste")} for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns.`;
-                return buff;
-            },
-            "howl-of-the-abyss": () => `Veris gains ${formatBuff("Quick")} and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.`,
-            "tenebrous-fang": (values) => {
-                let heal = values[0] ? `<span class="healing">${values[0]} HP Healed</span>` : "";
-                let darkDmg = formatDamage(values[1], 2);
-                let tenebrousDmg = values[2] ? `<span class="damage">${values[2]} Damage from Tenebrous</span>` : "";
-                return [heal, darkDmg, tenebrousDmg].filter(Boolean).join(", ");
             },
 
             // 🏆 PROVISIONS PROCESSING 🏆
-            "remembrance": () => `Gains ${formatBuff("Quick")} for 3 Turns.`,
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
             "esuna": (values) => `${formatBuff(values[0])} to Cleanse.`,
             "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
-            "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
-            "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
-            "elixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored</span>.`,
-            "megalixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored to All Allies</span>.`,
         };
 
         // Apply changes to each command span inside the scrollbox
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
             let commandClass = Object.keys(commandMappings).find(cmd => element.classList.contains(cmd));
+
             if (commandClass) {
                 let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
+                console.log(`Processing command: ${commandClass}`, values); // Debugging log
                 let formattedOutput = commandMappings[commandClass](values);
                 if (formattedOutput) {
                     element.innerHTML = `<b class="command">${formatCommandName(commandClass)}</b>: ${formattedOutput}`;
@@ -114,8 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return `<span class="damage">${total} (${numbers.join("+")}+${modifier})</span>`;
         }
 
-        // 🎨 Utility Functions: Formatting
-        function formatEffect(status) { return `<span class="effect-status">${status}</span>`; }
-        function formatBuff(buff) { return `<span class="buff-status">${buff}</span>`; }
+        // 🔠 Utility Function: Formats Command Names
+        function formatCommandName(name) {
+            return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+        }
     });
 });
