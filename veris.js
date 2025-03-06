@@ -43,68 +43,73 @@ document.addEventListener("DOMContentLoaded", () => {
         // 🔹 COMMAND PROCESSING
         const commandMappings = {
             "dark-calamity": (values) => {
-                let dmg = calculateWithModifier(values[0], 4);
+                let dmg = formatDamage(values[0], 4);
                 let heal = values[1] ? `<span class="healing">${values[1]} HP Healed</span>` : "";
-                return `<span class="damage">${dmg} Dark Damage</span>${heal ? `, ${heal}` : ""}`;
+                return `${dmg} Dark Damage${heal ? `, ${heal}` : ""}`;
             },
-            "resurgence": () => "Veris Gains Chant and Resonance for 3 Turns, and generates 1 Abyss Charge.",
+            "resurgence": () => "Veris Gains <span class='effect-status'>Chant and Resonance</span> for 3 Turns, and generates <span class='effect-status'>1 Abyss Charge</span>.",
             "howling-echo": (values) => {
-                let corruption = values[0] ? `<span class="status">${values[0]} to inflict Corruption for 3 turns</span>` : "";
-                let berserk = values[1] ? `<span class="status">${values[1]} to inflict Berserk for 3 turns</span>` : "";
+                let corruption = values[0] ? `<span class="effect-status">${values[0]} to inflict Corruption for 3 turns</span>` : "";
+                let berserk = values[1] ? `<span class="effect-status">${values[1]} to inflict Berserk for 3 turns</span>` : "";
                 return [corruption, berserk].filter(Boolean).join(", ");
             },
             "shadow-veil": (values) => {
-                let cleanse = values[0] ? `<span class="status">${values[0]} Cleanses</span>` : "";
+                let cleanse = values[0] ? `<span class="effect-status">${values[0]} Cleanses</span>` : "";
                 let dmg = values[1] ? `<span class="damage">${values[1]} Dark Damage</span>` : "";
                 return [cleanse, dmg].filter(Boolean).join(", ");
             },
             "sanguine-blade": (values) => {
-                let weaken = values[0] ? `<span class="status">${values[0]} to inflict Weaken for 3 turns</span>` : "";
+                let weaken = values[0] ? `<span class="effect-status">${values[0]} to inflict Weaken for 3 turns</span>` : "";
                 let dmg = values[1] ? `<span class="damage">${values[1]} Dark Damage</span>` : "";
-                return `${weaken}, ${dmg}. Veris gains <span class="status">Dualcast</span> for 3 turns.`;
+                return `${weaken}, ${dmg}. Veris gains <span class="effect-status">Dualcast</span> for 3 turns.`;
             },
             "nightfall": (values) => {
                 let buff = values[0] && parseInt(values[0]) > 0
-                    ? "Veris gains <span class='status'>Mine, Combo+, Dualcast, and Haste</span> for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns."
-                    : "Veris gains <span class='status'>Shell, Regen, Dualcast, and Haste</span> for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns.";
+                    ? "Veris gains <span class='effect-status'>Mine, Combo+, Dualcast, and Haste</span> for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns."
+                    : "Veris gains <span class='effect-status'>Shell, Regen, Dualcast, and Haste</span> for 3 turns. Strikes and Raids gain Dark Element and +1 modifiers for 3 turns.";
                 return buff;
             },
-            "howl-of-the-abyss": () => "Veris gains <span class='status'>Quick</span> and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.",
+            "howl-of-the-abyss": () => "Veris gains <span class='effect-status'>Quick</span> and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.",
             "tenebrous-fang": (values) => {
                 let heal = values[0] ? `<span class="healing">${values[0]} HP Healed</span>` : "";
-                let darkDmg = calculateWithModifier(values[1], 2);
+                let darkDmg = formatDamage(values[1], 2);
                 let tenebrousDmg = values[2] ? `<span class="damage">${values[2]} Damage from Tenebrous</span>` : "";
-                return [heal, `<span class="damage">${darkDmg} Dark Damage</span>`, tenebrousDmg].filter(Boolean).join(", ");
+                return [heal, darkDmg, tenebrousDmg].filter(Boolean).join(", ");
             },
             "umbral-swiftfoot": (values) => {
-                return values[0] ? `<span class="status">${values[0]} Dodge Roll</span>` : "";
+                return values[0] ? `<span class="effect-status">${values[0]} Dodge Roll</span>` : "";
             },
             "noctem-eclipse": (values) => {
-                let darkDmg = calculateWithModifier(values[0], 4);
+                let darkDmg = formatDamage(values[0], 4);
                 let tenebrousDmg = values[1] ? `<span class="damage">${values[1]} Damage from Tenebrous</span>` : "";
-                return `<span class="damage">${darkDmg} Dark Damage</span>${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
+                return `${darkDmg} Dark Damage${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
             },
         };
 
+        // Apply changes to each command span inside the scrollbox
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
             let commandClass = Object.keys(commandMappings).find(cmd => element.classList.contains(cmd));
             if (commandClass) {
                 let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
                 let formattedOutput = commandMappings[commandClass](values);
                 if (formattedOutput) {
-                    element.innerHTML = `<b class="command">${commandClass.replace(/-/g, " ")}</b>: ${formattedOutput}`;
-                } else {
-                    element.remove(); // ✅ Remove empty span to prevent blank space
+                    element.innerHTML = `<b class="command">${formatCommandName(commandClass)}</b>: ${formattedOutput}`;
                 }
             }
         });
 
-        function calculateWithModifier(value, modifier) {
+        // 🔢 Utility Function: Handles Number Formatting and Auto-Adds Modifier
+        function formatDamage(value, modifier) {
             if (!value) return "";
             let numbers = value.split("+").map(v => parseInt(v.trim())).filter(n => !isNaN(n));
             if (numbers.length === 0) return "";
             let total = numbers.reduce((sum, num) => sum + num, modifier);
             return `<span class="damage">${total} (${numbers.join("+")}+${modifier})</span>`;
+        }
+
+        // 🔠 Utility Function: Formats Command Names
+        function formatCommandName(name) {
+            return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
         }
     });
 });
