@@ -221,6 +221,10 @@ body {
     box-shadow: none !important;
 }
 
+.verisaso-page span:empty {
+    display: none !important;
+}
+
 /* 🟡 COMMANDS (Golden Glow) */
 .verisaso-page span.command {
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
