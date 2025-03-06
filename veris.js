@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // 🔹 COMMAND PROCESSING
+        // 🔹 COMMAND & PROVISION PROCESSING
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
@@ -84,6 +84,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 let tenebrousDmg = values[1] ? `<span class="damage">${values[1]} Damage from Tenebrous</span>` : "";
                 return `${darkDmg} Dark Damage${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
             },
+
+            // 🏆 PROVISIONS PROCESSING 🏆
+            "remembrance": () => "Gains <span class='effect-status'>Quick</span> for 3 Turns.",
+            "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
+            "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
+            "esuna": (values) => `<span class="effect-status">${values[0]} to Cleanse</span>.`,
+            "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
+            "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
+            "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
+            "elixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored</span>.`,
+            "megalixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored to All Allies</span>.`,
         };
 
         // Apply changes to each command span inside the scrollbox
