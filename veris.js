@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
-
+        
         // 🌟 HP Bar Handling
         const hpContainer = post.querySelector(".verisaso-hp-bar-container");
         if (hpContainer) {
@@ -74,8 +74,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 let tenebrousDmg = values[2] ? `<span class="damage">${values[2]} Damage from Tenebrous</span>` : "";
                 return [heal, `<span class="damage">${darkDmg} Damage</span>`, tenebrousDmg].filter(Boolean).join(", ");
             },
+            "umbral-swiftfoot": (values) => {
+                return values[0] ? `<span class="effect-status">${values[0]} Dodge Roll</span>` : "";
+            },
+            "noctem-eclipse": (values) => {
+                let darkDmg = formatDamage(values[0], 4);
+                let tenebrousDmg = values[1] ? `<span class="damage">${values[1]} Damage from Tenebrous</span>` : "";
+                return `<span class="damage">${darkDmg} Damage</span>${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
+            },
+            // 🏆 PROVISIONS
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
+            "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
+            "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
+            "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
+            "elixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored</span>.`,
+            // 🛡️ STAT ACTIONS
             "strike": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
             "breach": (values) => `<span class="stat-action">${values[0]} Damage added to next Attack</span>.`,
             "dodge": (values) => `<span class="stat-action">${values[0]} Dodge</span>.`,
@@ -86,29 +100,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 🌟 Apply Formatting to Commands
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
-            if (element.dataset.processed) return; // Prevent duplicate processing
+            if (element.dataset.processed) return;
             let commandClass = element.classList[0];
             if (commandMappings[commandClass]) {
                 let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
                 let formattedOutput = commandMappings[commandClass](values);
                 if (formattedOutput) {
                     element.innerHTML = `<b class="command">${formatCommandName(commandClass)}</b>: ${formattedOutput}`;
-                    element.dataset.processed = "true"; // Mark as processed
+                    element.dataset.processed = "true";
                 }
             }
         });
-
-        // 🔢 Utility Functions
-        function formatDamage(value, modifier) {
-            if (!value) return "";
-            let numbers = value.split("+").map(v => parseInt(v.trim())).filter(n => !isNaN(n));
-            if (numbers.length === 0) return "";
-            let total = numbers.reduce((sum, num) => sum + num, modifier);
-            return `<span class="damage">${total} (${numbers.join("+")}+${modifier})</span>`;
-        }
-
-        function formatCommandName(name) {
-            return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
-        }
     });
 });
