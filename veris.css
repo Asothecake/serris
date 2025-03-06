@@ -189,14 +189,36 @@ body {
     text-transform: capitalize; /* Fixes lowercase issue */
 }
 
-/* Ensure Damage, Healing, and Other Styles Work */
-.verisaso-page .damage { color: #D43F3F; font-weight: bold; }
-.verisaso-page .healing { color: #4CAF50; font-weight: bold; }
-.verisaso-page .mana { color: #4267B2; font-weight: bold; }
-.verisaso-page .status { color: #802020; font-style: italic; }
-.verisaso-page .item { color: #3AAFA9; font-weight: bold; }
-.verisaso-page .stat-action { color: #A89044; font-weight: 600; }
+.verisaso-page span.command {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    color: #C9A933 !important; /* Golden color */
+    font-weight: bold !important;
+    text-shadow: 0px 0px 4px rgba(201, 169, 51, 0.8) !important;
+    text-transform: capitalize !important;
+}
 
+.verisaso-page span.damage {
+    color: #D43F3F !important;
+    font-weight: bold;
+}
+.verisaso-page span.healing {
+    color: #4CAF50 !important;
+    font-weight: bold;
+}
+.verisaso-page span.mana {
+    color: #4267B2 !important;
+    font-weight: bold;
+}
+
+.verisaso-page span.status {
+    font-style: italic !important;
+    color: #802020 !important;
+}
+.verisaso-page span.item {
+    color: #3AAFA9 !important;
+    font-weight: bold !important;
+}
 
 /* 🔴 DAMAGE NUMBERS */
 .verisaso-page .damage {
