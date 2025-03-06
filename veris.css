@@ -144,22 +144,32 @@ body {
     justify-content: flex-start;
 }
 
+/* Scrollbar Track */
 .verisaso-scrollbox::-webkit-scrollbar {
-    width: 6px;
+    width: 8px !important; /* Ensures scrollbar width is applied */
+    height: 8px !important;
 }
 
 .verisaso-scrollbox::-webkit-scrollbar-track {
-    background: #1f2636;
-    border-radius: 10px;
+    background: #2a2b2d !important; /* Background of the scrollbar track */
+    border-radius: 10px !important;
 }
 
+/* Scrollbar Thumb */
 .verisaso-scrollbox::-webkit-scrollbar-thumb {
-    background: #b69f69;
-    border-radius: 10px;
+    background: linear-gradient(180deg, #b69f69, #8a6f3e) !important; /* Gold gradient */
+    border-radius: 10px !important;
+    border: 1px solid #3d3d3d !important; /* Ensures visibility */
 }
 
+/* Scrollbar Thumb on Hover */
 .verisaso-scrollbox::-webkit-scrollbar-thumb:hover {
-    background: #d4af37;
+    background: linear-gradient(180deg, #d7b56d, #a3814d) !important;
+}
+
+/* Scrollbar Corner */
+.verisaso-scrollbox::-webkit-scrollbar-corner {
+    background: #2a2b2d !important;
 }
 
 /* Page Control Buttons */
