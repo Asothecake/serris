@@ -1,0 +1,219 @@
+/* ============================== */
+/*          GENERAL STYLES        */
+/* ============================== */
+
+body {
+    font-family: 'Verdana', Geneva, sans-serif;
+    background-color: #1f2636;
+    color: #e1e1e1;
+}
+
+/* ============================== */
+/*          CONTAINER STYLES      */
+/* ============================== */
+
+.verisaso-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    border: 2px solid #e1e1e1;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 495px;
+    width: 495px; /* Ensures it remains fixed */
+    height: auto;
+    min-height: 320px;
+    margin: 40px auto;
+    background-color: #2E2B26; /* Updated to match Veris Theme */
+    position: relative;
+    align-items: flex-start;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: normal;
+}
+
+/* ============================== */
+/*           STAT BOX             */
+/* ============================== */
+
+.verisaso-statbox {
+    flex: 0.2;
+    padding: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1E1B18; /* Darker shade for contrast */
+    font-size: 12px;
+    color: #C9A933;
+    gap: 30px;
+    max-width: 70px;
+    min-width: 70px;
+}
+
+/* Stat Entry */
+.verisaso-stat-entry {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    gap: 4px;
+}
+
+/* Stat Value Box */
+.verisaso-value-box {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 34px;
+    border-radius: 8px;
+    border: 2px solid #3f3f3f;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform: rotate(-5deg);
+}
+
+/* Updated Stat Colors */
+.verisaso-stat-entry:nth-child(1) .verisaso-value-box { background-color: #8D2525; color: #FFD6D6; } /* STR */
+.verisaso-stat-entry:nth-child(2) .verisaso-value-box { background-color: #3A4F7A; color: #BBD6FF; } /* MAG */
+.verisaso-stat-entry:nth-child(3) .verisaso-value-box { background-color: #4A7A3A; color: #D6FFD6; } /* AGL */
+.verisaso-stat-entry:nth-child(4) .verisaso-value-box { background-color: #7A5E3A; color: #FFF0BB; } /* DEF */
+
+/* Vertical Stat Label */
+.verisaso-stat-label {
+    font-size: 10px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-weight: bold;
+    color: #C9A933;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 2px;
+}
+
+/* ============================== */
+/*       SCROLLBOX & PAGES        */
+/* ============================== */
+
+.verisaso-scrollbox {
+    width: 100%;
+    max-width: 440px;
+    height: 120px;
+    border: 2px solid #C9A933;
+    border-radius: 15px;
+    background-color: #1E1B18;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* Page Styling */
+.verisaso-page {
+    display: none;
+    background-color: #1E1B18;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.verisaso-page.active {
+    display: block;
+}
+
+.verisaso-page p {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 12px;
+    color: #C9A933;
+    line-height: 1.4;
+    margin: 5px 0;
+    padding: 2px 5px;
+    text-align: center;
+}
+
+/* ============================== */
+/*       ACTION STYLING           */
+/* ============================== */
+
+/* 🟡 COMMANDS (Gold, Glow Effect) */
+.verisaso-page .command {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 12px;
+    color: #C9A933;
+    font-weight: bold;
+    text-shadow: 0px 0px 4px rgba(201, 169, 51, 0.8);
+}
+
+/* 🔴 Damage Numbers */
+.verisaso-page .damage {
+    font-weight: bold;
+    color: #D43F3F;
+}
+
+/* 🟢 Healing Numbers */
+.verisaso-page .healing {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* 🔵 Mana Recovery */
+.verisaso-page .mana {
+    font-weight: bold;
+    color: #4267B2;
+}
+
+/* 🟢🟠 Status Effects (Italic, Dark Red) */
+.verisaso-page .status {
+    font-style: italic;
+    color: #802020;
+}
+
+/* 🔹 ITEMS (Teal, No Glow) */
+.verisaso-page .item {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 12px;
+    color: #3AAFA9;
+    font-weight: bold;
+}
+
+/* 🔸 STAT ACTIONS (Muted Gold, Less Bold) */
+.verisaso-page .stat-action {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 12px;
+    color: #A89044;
+    font-weight: 600;
+}
+
+/* ============================== */
+/*          HP BAR                */
+/* ============================== */
+
+.verisaso-hp-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: #3F3F3F;
+    border-radius: 8px;
+    border: 2px solid #C9A933;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.verisaso-hp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #D43F3F, #CC0000);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 4px;
+}
