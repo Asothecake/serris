@@ -74,8 +74,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 let tenebrousDmg = values[2] ? `<span class="damage">${values[2]} Damage from Tenebrous</span>` : "";
                 return [heal, `<span class="damage">${darkDmg} Damage</span>`, tenebrousDmg].filter(Boolean).join(", ");
             },
+
+            // 🏆 PROVISIONS (Added the missing ones)
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
+            "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
+            "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
+            "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
+            "elixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored</span>.`,
+            "megalixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored to All Allies</span>.`,
+
+            // 🛡️ STAT ACTIONS (Added the missing ones)
             "strike": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
             "breach": (values) => `<span class="stat-action">${values[0]} Damage added to next Attack</span>.`,
             "dodge": (values) => `<span class="stat-action">${values[0]} Dodge</span>.`,
