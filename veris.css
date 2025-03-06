@@ -88,10 +88,10 @@ body {
 .verisaso-image-container {
     position: relative;
     display: inline-block;
-    width: 100%;
+width: 100%;
     max-width: 340px;
-    height: 150px;
-    overflow: hidden;
+    height: 150px; /* Ensuring a fixed height */
+    overflow: hidden; /* Prevents overflow */
     border-radius: 10px;
     border: 2px solid #b69f69;
     padding: 6px;
@@ -112,6 +112,18 @@ body {
     border: 0px solid transparent;
     transition: opacity 0.5s ease-in-out;
 }
+
+/* When hovering over image OR buttons, make buttons fully visible */
+.circa1-image-container:hover .circa1-page-controls,
+.circa1-page-controls:hover {
+    opacity: 1; /* Make buttons fully visible */
+}
+
+/* When hovering over image, make it slightly transparent */
+.circa1-image-container:hover img {
+    opacity: 0.6; /* Reduce opacity of the image when hovered */
+}
+
 
 /* Scrollbox */
 .verisaso-scrollbox {
