@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
         
-        // 🩸 HP BAR FUNCTIONALITY 🩸
+        // 🩸 HP BAR FUNCTIONALITY (Per Post) 🩸
         const hpContainer = post.querySelector(".verisaso-hp-bar-container");
         const hpFill = hpContainer ? hpContainer.querySelector(".verisaso-hp-bar-fill") : null;
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
-        // 📜 PAGE SWITCHING FUNCTION 📜
+        // 📜 PAGE SWITCHING FUNCTION (Per Post) 📜
         const scrollbox = post.querySelector(".verisaso-scrollbox");
         const pages = scrollbox.querySelectorAll(".verisaso-page");
         const pageButtons = post.querySelectorAll(".verisaso-page-btn");
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // 🛠 COMMAND & ACTION MAPPINGS 🛠
+        // 🛠 COMMAND PROCESSING (Per Post) 🛠
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
@@ -111,29 +111,18 @@ document.addEventListener("DOMContentLoaded", () => {
             "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
 
-        // 🌟 APPLY COMMAND PROCESSING 🌟
+        // 🌟 APPLY COMMAND PROCESSING (Per Post) 🌟
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
             let commandClass = element.classList[0]; // Get class name dynamically
-            if (commandMappings[commandClass]) {
+            if (commandMappings[commandClass] && !element.dataset.processed) {
                 let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
                 let formattedOutput = commandMappings[commandClass](values);
                 if (formattedOutput) {
                     element.innerHTML = `<b class="command">${formatCommandName(commandClass)}</b>: ${formattedOutput}`;
+                    element.dataset.processed = "true"; // Prevent reprocessing
                 }
             }
         });
 
-        // 🔢 UTILITY FUNCTIONS
-        function formatDamage(value, modifier) {
-            if (!value) return "";
-            let numbers = value.split("+").map(v => parseInt(v.trim())).filter(n => !isNaN(n));
-            if (numbers.length === 0) return "";
-            let total = numbers.reduce((sum, num) => sum + num, modifier);
-            return `<span class="damage">${total} (${numbers.join("+")}+${modifier})</span>`;
-        }
-
-        function formatCommandName(name) {
-            return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
-        }
     });
 });
