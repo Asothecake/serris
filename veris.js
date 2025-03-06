@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
-        
-        // 🩸 HP BAR FUNCTIONALITY (Per Post) 🩸
+    document.querySelectorAll(".verisaso-flexbox").forEach((post, index) => {
+        // 🩸 Unique ID for Each Post to Prevent Overlaps
+        post.dataset.postIndex = index;  
+
+        // 🩸 HP BAR FUNCTIONALITY (Per Post)
         const hpContainer = post.querySelector(".verisaso-hp-bar-container");
         const hpFill = hpContainer ? hpContainer.querySelector(".verisaso-hp-bar-fill") : null;
 
@@ -18,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
-        // 📜 PAGE SWITCHING FUNCTION (Per Post) 📜
+        // 📜 PAGE SWITCHING FUNCTION (Per Post)
         const scrollbox = post.querySelector(".verisaso-scrollbox");
-        const pages = scrollbox.querySelectorAll(".verisaso-page");
+        const pages = scrollbox ? scrollbox.querySelectorAll(".verisaso-page") : [];
         const pageButtons = post.querySelectorAll(".verisaso-page-btn");
 
         if (scrollbox && pages.length && pageButtons.length) {
@@ -41,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // 🛠 COMMAND PROCESSING (Per Post) 🛠
+        // 🛠 COMMAND PROCESSING (Per Post)
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
@@ -111,9 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
             "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
 
-        // 🌟 APPLY COMMAND PROCESSING (Per Post) 🌟
+        // 🌟 APPLY COMMAND PROCESSING (Per Post)
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
-            let commandClass = element.classList[0]; // Get class name dynamically
+            let commandClass = element.classList[0];
             if (commandMappings[commandClass] && !element.dataset.processed) {
                 let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
                 let formattedOutput = commandMappings[commandClass](values);
