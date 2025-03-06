@@ -103,15 +103,14 @@ body {
     width: 100% !important;
     height: 100% !important;
     max-width: 100%;
-    height: auto;
     min-height: 100%; 
     object-fit: cover !important;
     display: block; /* Removes extra space from inline elements */
-    margin: 0; /* Ensures no extra spacing */
-    padding: 0; /* Prevents any padding from affecting image */
-    border-radius: 10px; /* Matches container */
-    border: 0px solid transparent; /* Ensures no extra space */
-    transition: opacity 0.5s ease-in-out; /* Smooth transition for fade effect */
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    border: 0px solid transparent;
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* Scrollbox */
@@ -156,10 +155,10 @@ body {
 
 .verisaso-page-btn:hover {
     background-color: rgba(0, 0, 0, 0.9) !important;
-    color: white !important;  /* Ensures the text color doesn't change */
+    color: white !important;
     border: none !important;
-    box-shadow: none !important; /* Prevents unwanted shadows */
-    text-decoration: none !important; /* Stops underlining if applied globally */
+    box-shadow: none !important;
+    text-decoration: none !important;
 }
 
 /* Scrollbox Content Pages */
@@ -179,86 +178,50 @@ body {
     display: block;
 }
 
-/* 🟡 COMMANDS (Golden Glow) */
-.verisaso-page .command {
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    font-size: 12px;
-    color: #C9A933; /* Golden color */
-    font-weight: bold;
-    text-shadow: 0px 0px 4px rgba(201, 169, 51, 0.8);
-    text-transform: capitalize; /* Fixes lowercase issue */
-}
-
-.verisaso-page span.command {
-    font-family: 'Trebuchet MS', Helvetica, sans-serif !important;
-    font-size: 12px !important;
-    color: #C9A933 !important; /* Golden color */
-    font-weight: bold !important;
-    text-shadow: 0px 0px 4px rgba(201, 169, 51, 0.8) !important;
-    text-transform: capitalize !important;
-}
-
+/* 🔴 DAMAGE NUMBERS */
 .verisaso-page span.damage {
     color: #D43F3F !important;
-    font-weight: bold;
-}
-.verisaso-page span.healing {
-    color: #4CAF50 !important;
-    font-weight: bold;
-}
-.verisaso-page span.mana {
-    color: #4267B2 !important;
-    font-weight: bold;
+    font-weight: bold !important;
 }
 
+/* 🟢 HEALING NUMBERS */
+.verisaso-page span.healing {
+    color: #4CAF50 !important;
+    font-weight: bold !important;
+}
+
+/* 🔵 MANA RECOVERY */
+.verisaso-page span.mana {
+    color: #4267B2 !important;
+    font-weight: bold !important;
+}
+
+/* 🟢🟠 STATUS EFFECTS */
 .verisaso-page span.status {
     font-style: italic !important;
     color: #802020 !important;
 }
+
+/* 🔹 ITEMS (Teal, No Glow) */
 .verisaso-page span.item {
     color: #3AAFA9 !important;
     font-weight: bold !important;
 }
 
-/* 🔴 DAMAGE NUMBERS */
-.verisaso-page .damage {
-    font-weight: bold;
-    color: #D43F3F;
-}
-
-/* 🟢 HEALING NUMBERS */
-.verisaso-page .healing {
-    font-weight: bold;
-    color: #4CAF50;
-}
-
-/* 🔵 MANA RECOVERY */
-.verisaso-page .mana {
-    font-weight: bold;
-    color: #4267B2;
-}
-
-/* 🟢🟠 STATUS EFFECTS */
-.verisaso-page .status {
-    font-style: italic;
-    color: #802020;
-}
-
-/* 🔹 ITEMS (Teal, No Glow) */
-.verisaso-page .item {
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    font-size: 12px;
-    color: #3AAFA9;
-    font-weight: bold;
-}
-
 /* 🔸 STAT ACTIONS (Muted Gold, Less Bold) */
-.verisaso-page .stat-action {
+.verisaso-page span.stat-action {
+    color: #A89044 !important;
+    font-weight: 600 !important;
+}
+
+/* 🟡 COMMANDS (Golden Glow) */
+.verisaso-page span.command {
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-size: 12px;
+    color: #C9A933 !important;
+    font-weight: bold !important;
+    text-shadow: 0px 0px 4px rgba(201, 169, 51, 0.8);
     text-transform: capitalize;
-    color: #A89044;
-    font-weight: 600;
 }
 
 /* HP Bar */
