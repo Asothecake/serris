@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
-        // 🩸 HP BAR HANDLING 🩸
+        // HP Bar Handling (Isolated Per Post)
         const hpContainer = post.querySelector(".verisaso-hp-bar-container");
         const hpFill = hpContainer ? hpContainer.querySelector(".verisaso-hp-bar-fill") : null;
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
-        // 📜 PAGE SWITCHING 📜
+        // Page Switching Handling (Scoped Per Post)
         const scrollbox = post.querySelector(".verisaso-scrollbox");
         const pages = scrollbox.querySelectorAll(".verisaso-page");
         const pageButtons = post.querySelectorAll(".verisaso-page-btn");
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (scrollbox && pages.length && pageButtons.length) {
             const changePage = (pageNumber) => {
                 pages.forEach((page, index) => {
-                    page.style.display = index + 1 === pageNumber ? "block" : "none";
+                    page.style.display = (index + 1 === pageNumber) ? "block" : "none";
                 });
 
                 pageButtons.forEach((btn, index) => {
@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             };
 
-            changePage(1); // Default to Page 1
+            changePage(1);
 
             pageButtons.forEach((btn, index) => {
                 btn.addEventListener("click", () => changePage(index + 1));
             });
         }
 
-        // 🔹 COMMAND, ITEM, & STAT ACTION PROCESSING 🔹
+        // 🔹 COMMAND & ACTION PROCESSING (Scoped Per Post)
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
@@ -77,33 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "howl-of-the-abyss": () => 
                 "Veris gains <span class='effect-status'>Quick</span> and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.",
 
-            "tenebrous-fang": (values) => {
-                let heal = values[0] ? `<span class="healing">${values[0]} HP Healed</span>` : "";
-                let darkDmg = formatDamage(values[1], 2);
-                let tenebrousDmg = values[2] ? `<span class="damage">${values[2]} Damage from Tenebrous</span>` : "";
-                return [heal, `<span class="damage">${darkDmg} Damage</span>`, tenebrousDmg].filter(Boolean).join(", ");
-            },
-
-            "umbral-swiftfoot": (values) => {
-                return values[0] ? `<span class="effect-status">${values[0]} Dodge Roll</span>` : "";
-            },
-
-            "noctem-eclipse": (values) => {
-                let darkDmg = formatDamage(values[0], 4);
-                let tenebrousDmg = values[1] ? `<span class="damage">${values[1]} Damage from Tenebrous</span>` : "";
-                return `<span class="damage">${darkDmg} Damage</span>${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
-            },
-
-            // 🏆 PROVISIONS 🏆
-            "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
-            "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
-            "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
-            "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
-            "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
-            "elixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored</span>.`,
-            "megalixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored to All Allies</span>.`,
-
-            // 🛡️ STAT ACTIONS 🛡️
             "strike": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
             "breach": (values) => `<span class="stat-action">${values[0]} Damage added to next Attack</span>.`,
             "dodge": (values) => `<span class="stat-action">${values[0]} Dodge</span>.`,
@@ -112,9 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
             "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
 
-        // 📌 APPLY COMMAND FORMATTING
+        // Apply changes to each span inside the scrollbox (Scoped to Each Post)
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
-            let commandClass = element.classList[0];
+            let commandClass = element.classList[0]; // Get first class name dynamically
             if (commandMappings[commandClass]) {
                 let values = element.textContent.split(",").map(v => v.trim()).filter(Boolean);
                 let formattedOutput = commandMappings[commandClass](values);
@@ -127,7 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // 🔢 Utility Functions
         function formatDamage(value, modifier) {
             if (!value) return "";
-            return `<span class="damage">${parseInt(value) + modifier} Damage</span>`;
+            let numbers = value.split("+").map(v => parseInt(v.trim())).filter(n => !isNaN(n));
+            if (numbers.length === 0) return "";
+            let total = numbers.reduce((sum, num) => sum + num, modifier);
+            return `<span class="damage">${total} (${numbers.join("+")}+${modifier})</span>`;
+        }
+
+        function formatCommandName(name) {
+            return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
         }
     });
 });
