@@ -9,37 +9,34 @@ body {
 .verisaso-flexbox {
     display: flex;
     flex-wrap: nowrap;
-    border: 2px solid #e1e1e1;
+    border: 2px solid #b69f69; /* Updated border color */
     border-radius: 15px;
     padding: 20px;
     max-width: 495px;
-    width: 495px; /* Ensures it doesn't shrink or expand */
-    max-width: 495px;
-    width: 495px; /* Ensures it doesn't shrink or expand */
-    height: auto; /* Allows content to dictate height */
-    min-height: 320px; /* Adjust based on expected minimum size */
+    width: 495px;
+    height: auto;
+    min-height: 320px;
     margin: 40px auto;
-    background-color: #fafafa;
+    background-color: #333335; /* Updated background */
     position: relative;
     align-items: flex-start;
-    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    box-sizing: border-box;
     overflow: hidden;
     white-space: normal;
 }
 
 /* Stat Box */
 .verisaso-statbox {
-    flex: 0.2; /* Reduced width */
+    flex: 0.2;
     padding: 10px;
-    border: 0px solid #e1e1e1;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f9f9f9;
+    background-color: #333335; /* Updated background */
     font-size: 12px;
-    color: #1f2636;
-    gap: 30px; /* Increased spacing to align DEF with scrollbox */
+    color: #b69f69;
+    gap: 30px;
     max-width: 70px;
     min-width: 70px;
 }
@@ -64,23 +61,23 @@ body {
     text-align: center;
     line-height: 34px;
     border-radius: 8px;
-    border: 2px solid #3f3f3f;
+    border: 2px solid #b69f69; /* Updated border */
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     transform: rotate(-5deg);
 }
 
 /* Pastel Colors for Each Stat */
-.verisaso-stat-entry:nth-child(1) .verisaso-value-box { background-color: #f7b2b2; color: #5c2e2e; } /* STR - Soft Red */
-.verisaso-stat-entry:nth-child(2) .verisaso-value-box { background-color: #b2d6f7; color: #2e4c5c; } /* MAG - Soft Blue */
-.verisaso-stat-entry:nth-child(3) .verisaso-value-box { background-color: #b2f7b2; color: #2e5c2e; } /* AGL - Soft Green */
-.verisaso-stat-entry:nth-child(4) .verisaso-value-box { background-color: #f7e6b2; color: #5c4c2e; } /* DEF - Soft Yellow */
+.verisaso-stat-entry:nth-child(1) .verisaso-value-box { background-color: #763c3c; color: #e6c6b2; } /* STR */
+.verisaso-stat-entry:nth-child(2) .verisaso-value-box { background-color: #37456a; color: #b2d6f7; } /* MAG */
+.verisaso-stat-entry:nth-child(3) .verisaso-value-box { background-color: #485739; color: #b2f7b2; } /* AGL */
+.verisaso-stat-entry:nth-child(4) .verisaso-value-box { background-color: #77693d; color: #f7e6b2; } /* DEF */
 
 /* The Vertical Stat Label */
 .verisaso-stat-label {
     font-size: 10px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-weight: bold;
-    color: #3f3f3f;
+    color: #b69f69;
     text-transform: uppercase;
     writing-mode: vertical-rl;
     text-orientation: upright;
@@ -93,46 +90,12 @@ body {
     display: inline-block;
     width: 100%;
     max-width: 340px;
-    height: 150px; /* Ensuring a fixed height */
-    overflow: hidden; /* Prevents overflow */
+    height: 150px;
+    overflow: hidden;
     border-radius: 10px;
-    border: 2px solid #e1e1e1;
+    border: 2px solid #b69f69;
     padding: 6px;
     margin: 0;
-    border: none; /* If border is necessary, keep it inside */
-}
-
-.verisaso-image-container img {
-    aspect-ratio: 340 / 150; 
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 100%; 
-    object-fit: cover;
-    display: block; /* Removes extra space from inline elements */
-    margin: 0; /* Ensures no extra spacing */
-    padding: 0; /* Prevents any padding from affecting image */
-    border-radius: 10px; /* Matches container */
-    border: 0px solid transparent; /* Ensures no extra space */
-    transition: opacity 0.5s ease-in-out; /* Smooth transition for fade effect */
-}
-
-.verisaso-image-section {
-    flex: 0.8;
-    text-align: center;
-    position: relative;
-}
-
-/* When hovering over image OR buttons, make buttons fully visible */
-.verisaso-image-container:hover .verisaso-page-controls,
-.verisaso-page-controls:hover {
-    opacity: 1; /* Make buttons fully visible */
-}
-
-/* When hovering over image, make it slightly transparent */
-.verisaso-image-container:hover img {
-    opacity: 0.6; /* Reduce opacity of the image when hovered */
 }
 
 /* Scrollbox */
@@ -140,12 +103,12 @@ body {
     width: 100%;
     max-width: 440px;
     height: 120px;
-    border: 2px solid #e1e1e1;
+    border: 2px solid #b69f69;
     border-radius: 15px;
-    background-color: #fafafa;
+    background-color: #333335;
     overflow-y: auto;
-    overflow-x: hidden; /* Remove horizontal scrolling */
-    padding: 0; /* Ensure no extra padding */
+    overflow-x: hidden;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -160,16 +123,16 @@ body {
     transform: translateX(-50%);
     display: flex;
     gap: 5px;
-    opacity: 0.8;  /* Start with low opacity */
-    transition: opacity 0.5s ease-in-out; /* Smooth transition */
+    opacity: 0.8;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .verisaso-page-btn {
-    background-color: rgba(79, 79, 79, 1);
-    color: #fff;
+    background-color: #4f3d27;
+    color: #e1d7c6;
     font-size: 7px;
     padding: 5px;
-    border: none;
+    border: 1px solid #b69f69;
     cursor: pointer;
     border-radius: 3px !important;
     transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -183,69 +146,46 @@ body {
     text-decoration: none !important; /* Stops underlining if applied globally */
 }
 
-.verisaso-page-btn.active {
-    background-color: rgba(255, 255, 255, 0.6);
-    color: black;
-}
-
 /* Scrollbox Content Pages */
 .verisaso-page {
-    display: none;  /* All pages hidden by default */
-    background-color: #fafafa; /* Ensures no dark background */
-    padding: 10px; /* Remove extra spacing */
-    margin: 0; /* Ensure no margin is affecting the size */
-    width: 100%; /* Make sure it fully fills the scrollbox */
-    height: 100%; /* Allow full use of scrollbox height */
+    display: none;
+    background-color: #2a2b2d;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
-    overflow: auto; /* Ensure scrolling works properly */
+    overflow: auto;
 }
-
 
 .verisaso-page.active {
-    display: block; /* Only one visible at a time */
+    display: block;
 }
 
-.verisaso-page * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Ensures elements don’t cause overflow */
-}
-
-.verisaso-page p {
-    font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
-    font-size: 11px; /* Slightly smaller text */
-    color: #1f2636; /* Darker text for contrast */
-    line-height: 1.4; /* Slightly more spacing for readability */
-    margin: 5px 0; /* Add slight spacing between paragraphs */
-    padding: 2px 5px; /* Ensure text doesn’t touch the edges */
-    text-align: center; /* Align text properly */
+/* Command Text Formatting */
+.verisaso-page .commandz {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    font-size: 11px;
+    color: #b69f69;
+    font-weight: bold;
+    display: inline;
 }
 
 .verisaso-page .aroll {
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-size: 11px;
-    color: #800000 !important; /* Ensure color contrast */
-    line-height: 1.4;
-    font-weight: bold; /* If you want it to stand out */
-    display: inline; /* Ensures it stays inside the text flow */
-}
-
-.verisaso-page .commandz {
-    font-family: 'Trebuchet MS', Helvetica, sans-serif; /* Match the template */
-    font-size: 11px; /* Slightly smaller text */
-    color: #008000 !important; /* Darker text for contrast */
-    line-height: 1.4; /* Slightly more spacing for readability */
-    font-weight: bold; /* If you want it to stand out */
-    display: inline; /* Ensures it stays inside the text flow */
+    color: #800000;
+    font-weight: bold;
+    display: inline;
 }
 
 /* HP Bar */
 .verisaso-hp-bar-container {
     width: 100%;
     height: 8px;
-    background-color: #e1e1e1;
+    background-color: #3d3d3d;
     border-radius: 8px;
-    border: 2px solid #c2c2c2;
+    border: 2px solid #b69f69;
     position: absolute;
     bottom: -4px;
     left: 0;
@@ -261,5 +201,3 @@ body {
     transition: width 0.5s ease;
     border-radius: 4px;
 }
-~
-
