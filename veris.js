@@ -79,13 +79,36 @@ document.addEventListener("DOMContentLoaded", () => {
             "howl-of-the-abyss": () => 
                 "Veris gains <span class='effect-status'>Quick</span> and access to: <span class='command'>Tenebrous Fang, Umbral Claw, and Noctem Eclipse</span> for 3 turns.",
 
+            "tenebrous-fang": (values) => {
+                let heal = values[0] ? `<span class="healing">${values[0]} HP Healed</span>` : "";
+                let darkDmg = formatDamage(values[1], 2);
+                let tenebrousDmg = values[2] ? `<span class="damage">${values[2]} Damage from Tenebrous</span>` : "";
+                return [heal, `<span class="damage">${darkDmg} Damage</span>`, tenebrousDmg].filter(Boolean).join(", ");
+            },
+
+            "umbral-swiftfoot": (values) => {
+                return values[0] ? `<span class="effect-status">${values[0]} Dodge Roll</span>` : "";
+            },
+
+            "noctem-eclipse": (values) => {
+                let darkDmg = formatDamage(values[0], 4);
+                let tenebrousDmg = values[1] ? `<span class="damage">${values[1]} Damage from Tenebrous</span>` : "";
+                return `<span class="damage">${darkDmg} Damage</span>${tenebrousDmg ? `, ${tenebrousDmg}` : ""}`;
+            },
+
             // 🏆 PROVISIONS 🏆
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
+            "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
+            "elixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored</span>.`,
 
             // 🛡️ STAT ACTIONS 🛡️
             "strike": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
-            "breach": (values) => `<span class="stat-action">${values[0]} Damage added to next Attack</span>.`
+            "breach": (values) => `<span class="stat-action">${values[0]} Damage added to next Attack</span>.`,
+            "dodge": (values) => `<span class="stat-action">${values[0]} Dodge</span>.`,
+            "raid": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
+            "charge": (values) => `<span class="stat-action">${values[0]} Charge</span>.`,
+            "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
 
         // 🌟 APPLY COMMAND PROCESSING 🌟
