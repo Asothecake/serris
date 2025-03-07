@@ -31,7 +31,7 @@ post.querySelectorAll(".verisaso-wolf-hp-bar-container").forEach((wolfBar) => {
     };
 
     updateWolfHPBar();
-});  
+});
 
 
         //  Page Switching Handling
