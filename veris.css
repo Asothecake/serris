@@ -262,20 +262,6 @@ body {
     visibility: hidden !important;
 }
 
-.verisaso-codebox {
-    background: #1e1e1e !important; /* Dark background for contrast */
-    color: #cfcfcf !important; /* Light text for readability */
-    padding: 10px !important;
-    border-radius: 5px !important;
-    font-family: "Courier New", monospace !important; /* Monospace for code */
-    font-size: 12px!important;
-    white-space: pre-wrap !important; /* Allows wrapping */
-    word-break: break-word !important;
-    border: 1px solid #444 !important; /* Subtle border */
-    max-width: 95% !important;
-    overflow-x: auto !important; /* Enables horizontal scrolling if needed */
-}
-
 
 /* HP Bar */
 .verisaso-hp-bar-container {
