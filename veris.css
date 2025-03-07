@@ -302,4 +302,28 @@ body {
     border-radius: 4px;
 }
 
+.verisaso-wolf-hp-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px; /* Ensure it matches Veris' HP bar width */
+    margin-top: 5px;
+}
+
+.verisaso-wolf-hp-bar-container {
+    width: 32%;
+    height: 6px; /* Adjust for proportional size */
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    display: none; /* Hidden by default */
+    position: relative;
+}
+
+.verisaso-wolf-hp-bar-fill {
+    height: 100%;
+    background-color: #C9A933;
+    border-radius: 3px;
+    transition: width 0.3s ease-in-out;
+}
+
 
