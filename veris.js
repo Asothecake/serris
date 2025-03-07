@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
 
-        // 🌟 HP Bar Handling
+        //  HP Bar Handling
         const hpContainer = post.querySelector(".verisaso-hp-bar-container");
         if (hpContainer) {
             const hpFill = hpContainer.querySelector(".verisaso-hp-bar-fill");
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
-        // 🌟 Page Switching Handling
+        //  Page Switching Handling
         const scrollbox = post.querySelector(".verisaso-scrollbox");
         if (scrollbox) {
             const pages = scrollbox.querySelectorAll(".verisaso-page");
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // 🌟 COMMAND, ITEM, AND STAT ACTION PROCESSING
+        //  COMMAND, ITEM, AND STAT ACTION PROCESSING
         const commandMappings = {
             "dark-calamity": (values) => {
                 let dmg = formatDamage(values[0], 4);
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return [heal, `<span class="damage">${darkDmg} Damage</span>`, tenebrousDmg].filter(Boolean).join(", ");
             },
 
-            // 🏆 PROVISIONS (Added the missing ones)
+            //  PROVISIONS (Added the missing ones)
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
             "ether": (values) => `<span class="mana">${values[0]} Charge</span>.`,
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "remembrance": () => `Gains <span class="effect-status">Quick</span> for 3 Turns.`,
             "megalixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored to All Allies</span>.`,
 
-            // 🛡️ STAT ACTIONS (Added the missing ones)
+            //  STAT ACTIONS 
             "strike": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
             "breach": (values) => `<span class="stat-action">${values[0]} Damage added to next Attack</span>.`,
             "dodge": (values) => `<span class="stat-action">${values[0]} Dodge</span>.`,
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
 
-        // 🌟 Apply Formatting to Commands
+        //  Apply Formatting to Commands
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
             if (element.dataset.processed) return; // Prevent duplicate processing
             let commandClass = element.classList[0];
