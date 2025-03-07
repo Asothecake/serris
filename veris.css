@@ -262,6 +262,20 @@ body {
     visibility: hidden !important;
 }
 
+.verisaso-codebox {
+    background: #1e1e1e;
+    color: #cfcfcf;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border: 1px solid #444;
+    max-width: 95%;
+    overflow-x: auto;
+}
+
 
 /* HP Bar */
 .verisaso-hp-bar-container {
