@@ -272,8 +272,11 @@ body {
     white-space: pre-wrap;
     word-break: break-word;
     border: 1px solid #444;
-    max-width: 95%;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
     overflow-x: auto;
+    resize: none;
 }
 
 
