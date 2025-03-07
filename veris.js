@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".verisaso-flexbox").forEach((post) => {
 
-     // 🌟 Veris' HP Bar Handling (Unchanged)
+        // 🌟 HP Bar Handling
+        //  HP Bar Handling
         const hpContainer = post.querySelector(".verisaso-hp-bar-container");
         if (hpContainer) {
             const hpFill = hpContainer.querySelector(".verisaso-hp-bar-fill");
@@ -16,24 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateHPBar();
         }
 
- // 🌟 Wolf HP Bars Handling (New Code, Separate)
-post.querySelectorAll(".verisaso-wolf-hp-bar-container").forEach((wolfBar) => {
-    const wolfFill = wolfBar.querySelector(".verisaso-wolf-hp-bar-fill");
-    let maxHp = parseInt(wolfBar.getAttribute("data-max-hp"), 10);
-
-    const updateWolfHPBar = () => {
-        let currentHp = parseInt(wolfBar.getAttribute("data-wolf-hp"), 10);
-        currentHp = isNaN(currentHp) || currentHp <= 0 ? 0 : Math.min(currentHp, maxHp);
-        wolfFill.style.width = `${(currentHp / maxHp) * 100}%`;
-
-        // Hide if HP is 0
-        wolfBar.style.display = currentHp === 0 ? "none" : "block";
-    };
-
-    updateWolfHPBar();
-});
-
-
+        // 🌟 Page Switching Handling
         //  Page Switching Handling
         const scrollbox = post.querySelector(".verisaso-scrollbox");
         if (scrollbox) {
@@ -57,6 +41,7 @@ post.querySelectorAll(".verisaso-wolf-hp-bar-container").forEach((wolfBar) => {
             }
         }
 
+        // 🌟 COMMAND, ITEM, AND STAT ACTION PROCESSING
         //  COMMAND, ITEM, AND STAT ACTION PROCESSING
         const commandMappings = {
             "dark-calamity": (values) => {
@@ -101,6 +86,7 @@ post.querySelectorAll(".verisaso-wolf-hp-bar-container").forEach((wolfBar) => {
                 return [heal, `<span class="damage">${darkDmg} Damage</span>`, tenebrousDmg].filter(Boolean).join(", ");
             },
 
+            // 🏆 PROVISIONS (Added the missing ones)
             //  PROVISIONS (Added the missing ones)
             "potion": (values) => `<span class="healing">${values[0]} HP Restored</span>.`,
             "hi-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored</span>.`,
@@ -111,6 +97,7 @@ post.querySelectorAll(".verisaso-wolf-hp-bar-container").forEach((wolfBar) => {
             "remembrance": () => `Gains <span class="effect-status">Quick</span> for 3 Turns.`,
             "megalixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored to All Allies</span>.`,
 
+            // 🛡️ STAT ACTIONS (Added the missing ones)
             //  STAT ACTIONS 
             "strike": (values) => `<span class="stat-action">${values[0]} Damage</span>.`,
             "breach": (values) => `<span class="stat-action">${values[0]} Damage added to next Attack</span>.`,
@@ -120,6 +107,7 @@ post.querySelectorAll(".verisaso-wolf-hp-bar-container").forEach((wolfBar) => {
             "cleanse": (values) => `<span class="stat-action">${values[0]} Cleanse</span>.`,
         };
 
+        // 🌟 Apply Formatting to Commands
         //  Apply Formatting to Commands
         post.querySelectorAll(".verisaso-page span").forEach((element) => {
             if (element.dataset.processed) return; // Prevent duplicate processing
