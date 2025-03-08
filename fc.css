@@ -28,30 +28,6 @@
     margin-bottom: 15px;
 }
 
-/* Claim Type Legend */
-.fc-legend {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.fc-legend b {
-    font-family: 'Merriweather', serif;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 6px 12px;
-    border-radius: 8px;
-    background: #e0e0e0;
-    transition: 0.3s;
-}
-
-/* Face Claim Type Colors */
-.fc-original { color: #008080; font-weight: bold; }
-.fc-canon { color: #4169e1; font-weight: bold; }
-.fc-npc { color: #8b0000; font-weight: bold; }
-
 /* Scrollable Section */
 .fc-scrollbox {
     display: flex;
@@ -90,15 +66,11 @@
 
 /* Face Claim Entries */
 .fc-entry {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Playfair Display', serif;
+    display: block;
     font-size: 14px;
     color: #333;
-    padding: 5px 10px;
+    padding: 2px 5px;
     transition: 0.3s;
-    border-bottom: 1px solid #ddd; /* Light divider between entries */
 }
 
 /* Face Claim Name */
@@ -106,7 +78,6 @@
     font-weight: bold;
     text-decoration: none;
     color: #008080;
-    flex-grow: 1;
 }
 
 /* Face Claim Series */
@@ -114,14 +85,13 @@
     font-style: italic;
     color: #666;
     font-size: 12px;
-    text-align: right;
 }
 
 /* Hover Effect */
 .fc-entry:hover {
     background: #008080;
     color: white;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .fc-entry:hover a {
