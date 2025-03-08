@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function autoSortFaceClaims() {
     let claims = Array.from(document.querySelectorAll(".fc-entry"));
 
-    // Sort alphabetically by the face claim name
+    // Sort alphabetically by face claim name
     claims.sort((a, b) => {
         let nameA = a.querySelector("a").textContent.trim().toLowerCase();
         let nameB = b.querySelector("a").textContent.trim().toLowerCase();
