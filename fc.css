@@ -89,43 +89,47 @@
 }
 
 /* Face Claim Entries */
-.fc-list a {
-    display: block;
+.fc-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-family: 'Playfair Display', serif;
     font-size: 14px;
     color: #333;
-    text-decoration: none;
-    padding: 5px;
+    padding: 5px 10px;
     transition: 0.3s;
+    border-bottom: 1px solid #ddd; /* Light divider between entries */
 }
 
-.fc-list a:hover {
+/* Face Claim Name */
+.fc-entry a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #008080;
+    flex-grow: 1;
+}
+
+/* Face Claim Series */
+.fc-series {
+    font-style: italic;
+    color: #666;
+    font-size: 12px;
+    text-align: right;
+}
+
+/* Hover Effect */
+.fc-entry:hover {
     background: #008080;
     color: white;
-    padding-left: 10px;
     border-radius: 5px;
 }
 
-/* Hover Effect for Visibility */
-.fc-list a:hover .fc-original {
-    background: #008080;
+.fc-entry:hover a {
     color: white;
-    border-radius: 5px;
-    padding: 2px 5px;
 }
 
-.fc-list a:hover .fc-canon {
-    background: #4169e1;
-    color: white;
-    border-radius: 5px;
-    padding: 2px 5px;
-}
-
-.fc-list a:hover .fc-npc {
-    background: #8b0000;
-    color: white;
-    border-radius: 5px;
-    padding: 2px 5px;
+.fc-entry:hover .fc-series {
+    color: #eee;
 }
 
 /* Claim Code Section */
@@ -161,3 +165,12 @@
     box-shadow: 0 0 5px rgba(0, 128, 128, 0.3);
 }
 
+/* Mobile Responsive */
+@media screen and (max-width: 600px) {
+    .fc-scrollbox {
+        flex-direction: column;
+    }
+    .fc-column {
+        min-width: 100%;
+    }
+}
