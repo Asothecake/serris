@@ -1,16 +1,39 @@
-.verisaso-writing {
+.veriswrite-container {
     background: rgba(255,255,255,0.1);
-    padding: 15px;
-    border-left: 4px solid #C9A933; /* Gold accent */
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #ddd;
+    border: 2px solid #C9A933; /* Gold border */
     max-width: 700px;
     margin: auto;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.veriswrite-header {
+    text-align: right;
+    font-weight: bold;
+    color: #C9A933;
+    font-size: 18px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #C9A933;
+}
+
+.veriswrite-flexbox {
+    min-height: 100px;
+    padding: 10px;
+    outline: none;
+    line-height: 1.6;
     text-align: justify;
 }
 
-.verisaso-writing .dialogue {
-    color: #C9A933; /* Gold color for dialogue */
+.veriswrite-dialogue {
+    color: #C9A933;
     font-weight: bold;
+}
+
+.veriswrite-footer {
+    text-align: right;
+    font-size: 12px;
+    padding-top: 5px;
+    border-top: 2px solid #C9A933;
+}
