@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "mega-potion": (values) => `<span class="healing">${parseInt(values[0]) + 2} HP Restored to all Allies</span>.`,
             "mega-ether": (values) => `<span class="mana">${values[0]} Charge to all Allies</span>.`,
             "elixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored</span>.`,
-            "remembrance": () => `Gains <span class="effect-status">Quick</span> for 3 Turns.`,
+            "remembrance": () => `Gains <span class="effect-status">Quick, Haste, and Combo+</span> for 3 Turns.`,
             "megalixir": (values) => `<span class="mana">${values[0]} Charge</span>, <span class="healing">${parseInt(values[1]) + 2} HP Restored to All Allies</span>.`,
 
             // 🛡️ STAT ACTIONS (Added the missing ones)
