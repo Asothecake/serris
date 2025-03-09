@@ -1,56 +1,59 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&display=swap');
+
+/* 🌟 Main VerisWrite Container */
 .veriswrite-container {
-    max-width: 600px;
-    background: #333335; /* Dark background matching Verisaso */
-    color: #ddd; /* Light text */
-    border: 2px solid #C9A933; /* Gold trim to match */
-    border-radius: 8px;
-    padding: 15px;
-    margin: auto;
-    font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
-    position: relative;
+    background: #333335;
+    border: 2px solid #222225;
+    padding: 15px;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 8px;
+    font-family: "Nunito", sans-serif; /* Matches Verisaso */
+    color: #d4d4d4;
 }
 
+/* 🎭 VerisWrite Header (Dramatic, Flairy Title) */
 .veriswrite-header {
-    position: absolute;
-    top: -14px; /* Stays above the box */
-    right: 10px; /* Right-aligned */
-    font-size: 22px; /* Bigger font */
+    font-family: "Ballet", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.8em;
+    text-align: right;
+    margin-bottom: -5px;
+    padding-right: 10px;
+    position: relative;
+    text-shadow: 
+        -1px -1px 0 #333335,  
+         1px -1px 0 #333335,
+        -1px  1px 0 #333335,
+         1px  1px 0 #333335; /* Dark outline */
+}
+
+/* ✍️ Writing Area */
+.veriswrite-content {
+    background: #1e1e1f;
+    padding: 15px;
+    border-radius: 6px;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+/* 🗨️ Dialogue Formatting */
+.veriswrite-content .dialogue {
+    color: #ffcc66;
     font-weight: bold;
-    font-family: 'Playfair Display', serif; /* Example dramatic font */
-    color: #C9A933; /* Gold text */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds depth */
-    border: none; /* Removes underline */
-    background: none; /* Removes background */
 }
 
-.veriswrite-header::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: #C9A933;
-    position: absolute;
-    bottom: -5px; /* Positioning border below the text */
-    left: 0;
-}
-
-.veriswrite-body {
-    padding: 10px;
-    text-align: justify;
-    line-height: 1.5;
-}
-
-.veriswrite-dialogue {
-    color: #C9A933;
-    font-style: italic;
-}
-
+/* 📏 Word Count Section */
 .veriswrite-footer {
     text-align: right;
-    font-size: 14px;
-    color: #aaa;
-    padding-top: 10px;
-    border-top: 1px solid #C9A933;
+    font-size: 0.9em;
+    margin-top: 10px;
+    border-top: 1px solid #555;
+    padding-top: 5px;
+    color: #bbb;
 }
