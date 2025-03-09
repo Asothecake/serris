@@ -14,14 +14,15 @@
 
 .veriswrite-header {
     position: absolute;
-    top: -14px; /* Moves the header above the flexbox */
-    right: 10px; /* Aligns text to the right */
-    font-size: 16px;
+    top: -14px; /* Stays above the box */
+    right: 10px; /* Right-aligned */
+    font-size: 22px; /* Bigger font */
     font-weight: bold;
-    padding: 5px 10px;
-    background: #333335; /* Background matches new flexbox color */
+    font-family: 'Playfair Display', serif; /* Example dramatic font */
     color: #C9A933; /* Gold text */
-    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds depth */
+    border: none; /* Removes underline */
+    background: none; /* Removes background */
 }
 
 .veriswrite-header::after {
