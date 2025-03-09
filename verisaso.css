@@ -1,39 +1,41 @@
 .veriswrite-container {
-    background: rgba(255,255,255,0.1);
-    border: 2px solid #C9A933; /* Gold border */
-    max-width: 700px;
+    max-width: 600px;
+    background: #222; /* Dark background matching Verisaso */
+    color: #ddd; /* Light text */
+    border: 2px solid #C9A933; /* Gold trim to match */
+    border-radius: 8px;
+    padding: 15px;
     margin: auto;
-    padding: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #ddd;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .veriswrite-header {
-    text-align: right;
-    font-weight: bold;
-    color: #C9A933;
+    text-align: center;
     font-size: 18px;
-    padding-bottom: 5px;
+    font-weight: bold;
+    padding: 5px;
+    background: #333; /* Slightly darker */
+    color: #C9A933;
     border-bottom: 2px solid #C9A933;
 }
 
-.veriswrite-flexbox {
-    min-height: 100px;
+.veriswrite-body {
     padding: 10px;
-    outline: none;
-    line-height: 1.6;
     text-align: justify;
+    line-height: 1.5;
 }
 
 .veriswrite-dialogue {
     color: #C9A933;
-    font-weight: bold;
+    font-style: italic;
 }
 
 .veriswrite-footer {
     text-align: right;
-    font-size: 12px;
-    padding-top: 5px;
-    border-top: 2px solid #C9A933;
+    font-size: 14px;
+    color: #aaa;
+    padding-top: 10px;
+    border-top: 1px solid #C9A933;
 }
