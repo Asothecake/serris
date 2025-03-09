@@ -1,0 +1,16 @@
+.verisaso-writing {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-left: 4px solid #C9A933; /* Gold accent */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ddd;
+    max-width: 700px;
+    margin: auto;
+    text-align: justify;
+}
+
+.verisaso-writing .dialogue {
+    color: #C9A933; /* Gold color for dialogue */
+    font-weight: bold;
