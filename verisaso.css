@@ -13,13 +13,15 @@
 }
 
 .veriswrite-header {
-    position: relative;
-    text-align: right; /* Aligns text to the right */
-    font-size: 18px;
+    position: absolute;
+    top: -14px; /* Moves the header above the flexbox */
+    right: 10px; /* Aligns text to the right */
+    font-size: 16px;
     font-weight: bold;
-    padding: 5px;
+    padding: 5px 10px;
+    background: #333335; /* Background matches new flexbox color */
     color: #C9A933; /* Gold text */
-    margin-bottom: -10px; /* Moves it above the border */
+    border-radius: 5px;
 }
 
 .veriswrite-header::after {
