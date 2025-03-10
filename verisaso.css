@@ -1,5 +1,5 @@
 /* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Carattere&display=swap');
 
 /* 🌟 Main VerisWrite Container */
 .veriswrite-container {
@@ -19,7 +19,7 @@
 
 /* 🎭 VerisWrite Header (Correct Placement) */
 .veriswrite-header {
-    font-family: "Ballet", cursive;
+    font-family: "Carattere", cursive;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
