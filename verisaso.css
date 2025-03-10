@@ -32,7 +32,6 @@
         -1px  1px 0 #333335,
          1px  1px 0 #333335; /* Dark outline */
     margin-bottom: -15px; /* Moves it to sit OVER the box */
-    background: #333335;
     display: inline-block;
     padding: 2px 8px;
     position: absolute;
