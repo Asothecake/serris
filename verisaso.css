@@ -6,26 +6,27 @@
     display: flex;
     flex-direction: column;
     background: #333335;
-    border: 2px solid #222225;
+    border: 2px solid #c9a933; /* GOLDEN BORDER */
     padding: 15px;
     max-width: 600px;
     margin: auto;
     border-radius: 8px;
     font-family: "Nunito", sans-serif; /* Matches Verisaso */
     color: #d4d4d4;
+    position: relative;
 }
 
-/* 🎭 VerisWrite Header (Dramatic, Flairy Title) */
+/* 🎭 VerisWrite Header (Top of Flexbox) */
 .veriswrite-header {
     font-family: "Ballet", cursive;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.8em;
+    font-size: 2em;
     text-align: right;
-    margin-bottom: -5px;
+    margin-bottom: 5px;
     padding-right: 10px;
-    position: relative;
+    color: #c9a933; /* Gold Color */
     text-shadow: 
         -1px -1px 0 #333335,  
          1px -1px 0 #333335,
@@ -33,13 +34,14 @@
          1px  1px 0 #333335; /* Dark outline */
 }
 
-/* ✍️ Writing Area */
+/* ✍️ Writing Area (Inside Golden Border) */
 .veriswrite-content {
     background: #1e1e1f;
     padding: 15px;
     border-radius: 6px;
     min-height: 120px;
     line-height: 1.6;
+    border: 1px solid #c9a933; /* GOLDEN BORDER */
 }
 
 /* 🗨️ Dialogue Formatting */
@@ -48,12 +50,12 @@
     font-weight: bold;
 }
 
-/* 📏 Word Count Section */
+/* 📏 Word Count Section (Bottom of Flexbox) */
 .veriswrite-footer {
     text-align: right;
     font-size: 0.9em;
     margin-top: 10px;
-    border-top: 1px solid #555;
+    border-top: 1px solid #c9a933; /* GOLDEN BORDER */
     padding-top: 5px;
     color: #bbb;
 }
