@@ -6,7 +6,8 @@
     display: flex;
     flex-direction: column;
     background: #333335;
-    border: 2px solid #c9a933; /* GOLDEN BORDER */
+    border: 2px solid #b69f69; /* Updated border color */
+    border-radius: 15px;
     padding: 10px;
     max-width: 600px;
     margin: auto;
