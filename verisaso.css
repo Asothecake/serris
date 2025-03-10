@@ -7,7 +7,7 @@
     flex-direction: column;
     background: #333335;
     border: 2px solid #c9a933; /* GOLDEN BORDER */
-    padding: 15px;
+    padding: 10px;
     max-width: 600px;
     margin: auto;
     border-radius: 8px;
@@ -16,22 +16,28 @@
     position: relative;
 }
 
-/* 🎭 VerisWrite Header (Top of Flexbox) */
+/* 🎭 VerisWrite Header (Correct Placement) */
 .veriswrite-header {
     font-family: "Ballet", cursive;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    font-size: 2em;
+    font-size: 2.2em;
     text-align: right;
-    margin-bottom: 5px;
-    padding-right: 10px;
+    padding-right: 12px;
     color: #c9a933; /* Gold Color */
     text-shadow: 
         -1px -1px 0 #333335,  
          1px -1px 0 #333335,
         -1px  1px 0 #333335,
          1px  1px 0 #333335; /* Dark outline */
+    margin-bottom: -15px; /* Moves it to sit OVER the box */
+    background: #333335;
+    display: inline-block;
+    padding: 2px 8px;
+    position: absolute;
+    top: -12px;
+    right: 15px;
 }
 
 /* ✍️ Writing Area (Inside Golden Border) */
