@@ -47,7 +47,8 @@
     border-radius: 6px;
     min-height: 120px;
     line-height: 1.6;
-    border: 1px solid #c9a933; /* GOLDEN BORDER */
+    border: 2px solid #b69f69;
+    border-radius: 15px;
 }
 
 /* 🗨️ Dialogue Formatting */
