@@ -50,6 +50,8 @@
     line-height: 1.6;
     border: 2px solid #b69f69;
     border-radius: 15px;
+    font-size: 10px;
+    text-align: justify;
 }
 
 /* 🗨️ Dialogue Formatting */
