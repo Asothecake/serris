@@ -198,13 +198,15 @@
 
 /* Stats Section */
 .aso-statsContent {
-    padding: 10px;
+    width: 100% !important;
+    max-width: none !important;  /* Prevents width restrictions */
+    padding: 0px !important;     /* Avoids extra padding affecting width */
+    display: block !important;   /* Ensures it behaves as a block-level element */
     margin-top: 8px;
     font-size: 12px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    width: 100%;
     border-radius: 4px;
     background: linear-gradient(to left, var(--gradient-light), var(--gradient-dark), var(--gradient-light));
 }
