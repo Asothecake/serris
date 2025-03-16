@@ -40,7 +40,7 @@
 
 .aso-image-box img {
     border-radius: 50%;
-    border: 1px solid rgba(160, 160, 160, 0.5);
+    border: 1px solid var(--border-color);
     width: 65px;
     height: 65px;
 }
@@ -156,19 +156,6 @@
     box-sizing: border-box;
 }
 
-/* Character Color Coding */
-.aso-character-box sp {
-    color: #697ecd;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box fp {
-    color: #5F9EA0;
-    font-style: italic;
-    font-weight: bold;
-}
-
 /* Toggle Line */
 .aso-words-line {
     display: flex;
@@ -186,17 +173,23 @@
     cursor: pointer;
 }
 
-/* Hidden & Visible Content */
-.aso-content-hidden {
-    display: none;
-    font-size: 11px;
-}
-
-.aso-content-visible {
-    display: block;
+/* Stats, Commands, and Style Sections with Fading Gradient Effect */
+.aso-statsContent, .aso-commandsContent, .aso-styleContent {
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 12px;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    border-radius: 4px;
 }
 
 /* Stats Section */
+.aso-statsContent {
+    background: linear-gradient(to left, var(--gradient-light), var(--gradient-dark), var(--gradient-light));
+}
+
+/* Individual Stat Bars */
 .aso-stat-entry {
     display: flex;
     align-items: center;
@@ -208,24 +201,27 @@
     background: linear-gradient(to left, var(--gradient-light), var(--gradient-dark), var(--gradient-light));
 }
 
-/* Stat Gradients */
 .aso-stat-strength {
-    background: linear-gradient(to left, var(--gradient-strength), rgba(255, 99, 132, 0));
+    background: linear-gradient(to left, var(--gradient-light), var(--gradient-strength), var(--gradient-light));
 }
 
 .aso-stat-defense {
-    background: linear-gradient(to left, var(--gradient-defense), rgba(75, 192, 192, 0));
+    background: linear-gradient(to left, var(--gradient-light), var(--gradient-defense), var(--gradient-light));
 }
 
 .aso-stat-agility {
-    background: linear-gradient(to left, var(--gradient-agility), rgba(255, 205, 86, 0));
+    background: linear-gradient(to left, var(--gradient-light), var(--gradient-agility), var(--gradient-light));
 }
 
 .aso-stat-magic {
-    background: linear-gradient(to left, var(--gradient-magic), rgba(54, 162, 235, 0));
+    background: linear-gradient(to left, var(--gradient-light), var(--gradient-magic), var(--gradient-light));
 }
 
-/* Command Entries */
+/* Commands Section */
+.aso-commandsContent {
+    background: linear-gradient(to right, var(--command-gradient-odd), var(--command-gradient-even));
+}
+
 .aso-command-entry:nth-child(odd) {
     background: linear-gradient(to left, var(--command-gradient-odd), rgba(255, 159, 64, 0));
 }
@@ -235,46 +231,22 @@
 }
 
 /* Style Section */
-.aso-style-content {
-    padding: 10px;
-    margin-top: 8px;
-    font-size: 12px;
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    color: var(--text-color);
-    line-height: 1.6;
+.aso-styleContent {
     background: linear-gradient(to right, var(--command-gradient-even), rgba(153, 102, 255, 0.07));
-    border-radius: 4px;
 }
 
 /* Conditions & Cooldowns */
 .aso-conditions-box {
-    background-color: var(--word-count-bg, #fafafa);
+    background-color: var(--word-count-bg);
     margin-top: 10px;
     padding: 10px 15px;
     border-radius: 6px;
 }
 
-/* Entry Layout */
-.aso-conditions-entry,
-.aso-cooldowns-entry {
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 0;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-/* Gradient Backgrounds with Fading */
 .aso-conditions-entry {
-    background: linear-gradient(to right, 
-                                var(--gradient-start-strength, rgba(255, 99, 132, 0.02)), 
-                                var(--gradient-mid-strength, rgba(255, 99, 132, 0.3)), 
-                                var(--gradient-end-strength, rgba(255, 99, 132, 0.02)));
+    background: linear-gradient(to right, var(--gradient-strength), rgba(255, 99, 132, 0.3), var(--gradient-strength));
 }
 
 .aso-cooldowns-entry {
-    background: linear-gradient(to right, 
-                                var(--gradient-start-magic, rgba(54, 162, 235, 0.02)), 
-                                var(--gradient-mid-magic, rgba(54, 162, 235, 0.3)), 
-                                var(--gradient-end-magic, rgba(54, 162, 235, 0.02)));
+    background: linear-gradient(to right, var(--gradient-magic), rgba(54, 162, 235, 0.3), var(--gradient-magic));
 }
