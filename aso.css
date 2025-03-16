@@ -209,21 +209,6 @@
     background: linear-gradient(to left, var(--gradient-light), var(--gradient-dark), var(--gradient-light));
 }
 
-
-.aso-stat-entry {
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    margin: 6px 0;
-    padding: 8px 0;
-    position: relative;
-    width: 100%;
-    font-size: 13px;
-    font-weight: bold;
-    color: var(--text-color);
-    background: linear-gradient(to left, var(--gradient-light), var(--gradient-dark), var(--gradient-light));
-}
-
 /* Stat Gradients */
 .aso-stat-strength {
     background: linear-gradient(to left, rgba(255, 99, 132, 0.02), var(--gradient-strength), rgba(255, 99, 132, 0.02));
