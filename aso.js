@@ -3,7 +3,7 @@ function toggleVisibility(element, className) {
     const container = element.closest('.aso-post-container');
     if (!container) return;
 
-    const section = container.querySelector(.${className});
+    const section = container.querySelector(`.${className}`);
     if (section) {
         section.classList.toggle('aso-content-hidden');
         section.classList.toggle('aso-content-visible');
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const max = parseInt(bar.getAttribute("data-max"), 10) || 1;
                 const fill = document.createElement('div');
                 fill.classList.add('aso-hp-bar-fill');
-                fill.style.width = ${(current / max) * 100}%;
+                fill.style.width = `${(current / max) * 100}%`;
                 fill.style.backgroundColor = getCSSVariable(bar, "--hp-bar-color", "#e74c3c");
                 bar.appendChild(fill);
             }
