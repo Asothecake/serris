@@ -10,25 +10,35 @@ function toggleVisibility(element, className) {
     }
 }
 
-// JavaScript for updating the resource bar fill percentage dynamically
-document.addEventListener("DOMContentLoaded", () => {
+// Function to safely retrieve CSS variables with a fallback
+function getCSSVariable(element, variable, fallback) {
+    let value = getComputedStyle(element).getPropertyValue(variable).trim();
+    return value.length > 0 ? value : fallback; 
+}
+
+// Ensure JavaScript executes after styles are fully applied
+window.addEventListener("load", () => {
     document.querySelectorAll(".aso-post-container").forEach(container => {
-        // Function to safely retrieve CSS variables
-        function getCSSVariable(element, variable, fallback) {
-            return getComputedStyle(element).getPropertyValue(variable).trim() || fallback;
-        }
+        console.log("Loaded Container:", container);
+
+        // Debug: Ensure variables exist
+        console.log("HP Bar Color:", getCSSVariable(container, "--hp-bar-color", "#e74c3c"));
+        console.log("IP Bar Color:", getCSSVariable(container, "--ip-bar-color", "#66bb6a"));
+        console.log("Limit Bar Color:", getCSSVariable(container, "--limit-bar-color", "#42a5f5"));
 
         // Update HP bar
         container.querySelectorAll(".aso-hp-bar-container").forEach(bar => {
-            if (!bar.querySelector('.aso-hp-bar-fill')) { // Prevent duplicate fills
-                const current = parseInt(bar.getAttribute("data-current"), 10) || 0;
-                const max = parseInt(bar.getAttribute("data-max"), 10) || 1;
-                const fill = document.createElement('div');
+            let fill = bar.querySelector('.aso-hp-bar-fill');
+            const current = parseInt(bar.getAttribute("data-current"), 10) || 0;
+            const max = parseInt(bar.getAttribute("data-max"), 10) || 1;
+
+            if (!fill) {
+                fill = document.createElement('div');
                 fill.classList.add('aso-hp-bar-fill');
-                fill.style.width = `${(current / max) * 100}%`;
-                fill.style.backgroundColor = getCSSVariable(bar, "--hp-bar-color", "#e74c3c");
                 bar.appendChild(fill);
             }
+            fill.style.width = `${(current / max) * 100}%`;
+            fill.style.backgroundColor = getCSSVariable(bar, "--hp-bar-color", "#e74c3c");
         });
 
         // Function to update resource bars (IP and Limit)
