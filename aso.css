@@ -204,6 +204,7 @@
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     color: var(--text-color);
     line-height: 1.6;
+    width: 100%;
     border-radius: 4px;
     background: linear-gradient(to left, var(--gradient-light), var(--gradient-dark), var(--gradient-light));
 }
@@ -215,6 +216,7 @@
     margin: 6px 0;
     padding: 8px 0;
     position: relative;
+    width: 100%;
     font-size: 13px;
     font-weight: bold;
     color: var(--text-color);
