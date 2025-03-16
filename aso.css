@@ -29,6 +29,22 @@
     box-shadow: 0px 4px 10px var(--shadow-color);
 }
 
+/* Image Box */
+.aso-image-box {
+    flex-shrink: 0;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aso-image-box img {
+    border-radius: 50%;
+    border: 1px solid rgba(160, 160, 160, 0.5);
+    width: 65px;
+    height: 65px;
+}
+
 /* Post Container */
 .aso-post-container {
     text-align: justify;
@@ -232,12 +248,13 @@
 
 /* Conditions & Cooldowns */
 .aso-conditions-box {
-    background-color: var(--word-count-bg);
+    background-color: var(--word-count-bg, #fafafa);
     margin-top: 10px;
     padding: 10px 15px;
     border-radius: 6px;
 }
 
+/* Entry Layout */
 .aso-conditions-entry,
 .aso-cooldowns-entry {
     display: flex;
@@ -247,10 +264,17 @@
     letter-spacing: 1px;
 }
 
+/* Gradient Backgrounds with Fading */
 .aso-conditions-entry {
-    background: linear-gradient(to right, var(--gradient-strength), rgba(255, 99, 132, 0.3), var(--gradient-strength));
+    background: linear-gradient(to right, 
+                                var(--gradient-start-strength, rgba(255, 99, 132, 0.02)), 
+                                var(--gradient-mid-strength, rgba(255, 99, 132, 0.3)), 
+                                var(--gradient-end-strength, rgba(255, 99, 132, 0.02)));
 }
 
 .aso-cooldowns-entry {
-    background: linear-gradient(to right, var(--gradient-magic), rgba(54, 162, 235, 0.3), var(--gradient-magic));
+    background: linear-gradient(to right, 
+                                var(--gradient-start-magic, rgba(54, 162, 235, 0.02)), 
+                                var(--gradient-mid-magic, rgba(54, 162, 235, 0.3)), 
+                                var(--gradient-end-magic, rgba(54, 162, 235, 0.02)));
 }
