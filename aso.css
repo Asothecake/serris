@@ -62,9 +62,8 @@
     padding: 8px 12px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
-    flex-wrap: nowrap;
 }
 
 /* Resource Bars */
