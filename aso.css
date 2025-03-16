@@ -1,19 +1,47 @@
-/* CSS Styles for the Aso Template */
+/* Root Variables for Customization */
+:root {
+    --bg-color: #f5f7fa;
+    --word-count-bg: #fafafa;
+    --hp-bar-color: #e74c3c;
+    --ip-bar-color: #66bb6a;
+    --limit-bar-color: #42a5f5;
+    --text-color: #1f2636;
+    --border-color: rgba(160, 160, 160, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    
+    --gradient-light: rgba(245, 247, 250, 0);
+    --gradient-dark: rgba(0, 0, 0, 0.05);
+    --gradient-strength: rgba(255, 99, 132, 0.2);
+    --gradient-defense: rgba(75, 192, 192, 0.2);
+    --gradient-agility: rgba(255, 205, 86, 0.2);
+    --gradient-magic: rgba(54, 162, 235, 0.2);
+    --command-gradient-odd: rgba(255, 159, 64, 0.2);
+    --command-gradient-even: rgba(153, 102, 255, 0.2);
+}
 
 /* General Box Styling */
 .outer-aso-box {
-    background-color: var(--bg-color, #f5f7fa);
-    color: var(--text-color, #1f2636);
-    border: 1px solid var(--border-color, rgba(160, 160, 160, 0.3));
+    background-color: var(--bg-color);
     padding: 10px 15px;
     margin: 20px auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 4px 10px var(--shadow-color);
+}
+
+/* Post Container */
+.aso-post-container {
+    text-align: justify;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+    font-size: 12px;
+    color: var(--text-color);
+    margin: 0;
 }
 
 /* Word Count Box */
 .aso-word-count-box {
-    background-color: var(--accent-color, #fafafa);
+    background-color: var(--word-count-bg);
     border-radius: 8px 8px 0 0;
     padding: 8px 12px;
     display: flex;
@@ -22,7 +50,7 @@
     gap: 10px;
 }
 
-/* Resource Section for HP, IP, and Limit Bars */
+/* Resource Bars */
 .aso-resource-section {
     display: flex;
     flex-direction: column;
@@ -52,7 +80,7 @@
     vertical-align: middle;
 }
 
-/* HP Bar Styling */
+/* HP Bar */
 .aso-hp-bar-container {
     position: relative;
     height: 8px;
@@ -65,11 +93,11 @@
 
 .aso-hp-bar-fill {
     height: 100%;
-    background-color: var(--hp-bar, #e74c3c);
+    background-color: var(--hp-bar-color);
     transition: width 0.3s ease;
 }
 
-/* IP and Limit Bar Styling */
+/* IP and Limit Bars */
 .aso-resource-bar-wrapper,
 .aso-limit-bar-wrapper {
     display: flex;
@@ -87,13 +115,12 @@
     transition: background-color 0.3s ease;
 }
 
-/* Updated Specific Colors for Each Resource Bar */
 .aso-resource-bar-wrapper .aso-resource-unit {
-    background-color: var(--ip-bar, #66bb6a);
+    background-color: var(--ip-bar-color);
 }
 
 .aso-limit-bar-wrapper .aso-resource-unit {
-    background-color: var(--limit-bar, #42a5f5);
+    background-color: var(--limit-bar-color);
 }
 
 /* Unfilled Units */
@@ -101,25 +128,9 @@
     background-color: rgba(105, 105, 105, 0.1);
 }
 
-/* Image Box */
-.aso-image-box {
-    flex-shrink: 0;
-    margin-left: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.aso-image-box img {
-    border-radius: 50%;
-    border: 1px solid rgba(160, 160, 160, 0.5);
-    width: 65px;
-    height: 65px;
-}
-
 /* Character Box */
 .aso-character-box {
-    background-color: var(--accent-color, #fafafa);
+    background-color: var(--word-count-bg);
     margin-top: 8px;
     padding: 12px;
     border-radius: 0 0 8px 8px;
@@ -129,7 +140,20 @@
     box-sizing: border-box;
 }
 
-/* Word Toggle */
+/* Character Color Coding */
+.aso-character-box sp {
+    color: #697ecd;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.aso-character-box fp {
+    color: #5F9EA0;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Toggle Line */
 .aso-words-line {
     display: flex;
     justify-content: space-between;
@@ -141,12 +165,12 @@
 .aso-words-line span {
     font-weight: bold;
     text-transform: uppercase;
-    color: var(--text-color, #697ecd);
+    color: #697ecd;
     font-size: 11px;
     cursor: pointer;
 }
 
-/* Hidden and Visible Content */
+/* Hidden & Visible Content */
 .aso-content-hidden {
     display: none;
     font-size: 11px;
@@ -156,7 +180,7 @@
     display: block;
 }
 
-/* Stat Bars with Gradients */
+/* Stats Section */
 .aso-stat-entry {
     display: flex;
     align-items: center;
@@ -164,27 +188,34 @@
     padding: 8px 0;
     font-size: 13px;
     font-weight: bold;
-    color: var(--text-color, #1f2636);
-    background: linear-gradient(to left, var(--gradient-light, rgba(245, 247, 250, 0)), var(--gradient-dark, rgba(0, 0, 0, 0.05)), var(--gradient-light, rgba(245, 247, 250, 0)));
+    color: var(--text-color);
+    background: linear-gradient(to left, var(--gradient-light), var(--gradient-dark), var(--gradient-light));
 }
 
-/* Command Entries with Gradients */
-.aso-command-entry {
-    margin: 3px 0;
-    padding: 4px 0;
-    font-weight: bold;
-    font-size: 11px;
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    letter-spacing: 1px;
-    color: var(--text-color, #3e4a61);
+/* Stat Gradients */
+.aso-stat-strength {
+    background: linear-gradient(to left, var(--gradient-strength), rgba(255, 99, 132, 0));
 }
 
+.aso-stat-defense {
+    background: linear-gradient(to left, var(--gradient-defense), rgba(75, 192, 192, 0));
+}
+
+.aso-stat-agility {
+    background: linear-gradient(to left, var(--gradient-agility), rgba(255, 205, 86, 0));
+}
+
+.aso-stat-magic {
+    background: linear-gradient(to left, var(--gradient-magic), rgba(54, 162, 235, 0));
+}
+
+/* Command Entries */
 .aso-command-entry:nth-child(odd) {
-    background: linear-gradient(to left, rgba(255, 159, 64, 0), var(--command-odd, rgba(255, 159, 64, 0.2)), rgba(255, 159, 64, 0));
+    background: linear-gradient(to left, var(--command-gradient-odd), rgba(255, 159, 64, 0));
 }
 
 .aso-command-entry:nth-child(even) {
-    background: linear-gradient(to left, rgba(153, 102, 255, 0), var(--command-even, rgba(153, 102, 255, 0.2)), rgba(153, 102, 255, 0));
+    background: linear-gradient(to left, var(--command-gradient-even), rgba(153, 102, 255, 0));
 }
 
 /* Style Section */
@@ -193,47 +224,33 @@
     margin-top: 8px;
     font-size: 12px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    color: var(--text-color, #1f2636);
+    color: var(--text-color);
     line-height: 1.6;
-    background: linear-gradient(to right, var(--command-even, rgba(153, 102, 255, 0.02)), var(--command-even, rgba(153, 102, 255, 0.07)));
+    background: linear-gradient(to right, var(--command-gradient-even), rgba(153, 102, 255, 0.07));
     border-radius: 4px;
-}
-
-.aso-style-content p {
-    margin-bottom: 8px;
-    border-bottom: 1px solid rgba(160, 160, 160, 0.2);
-    padding-bottom: 4px;
 }
 
 /* Conditions & Cooldowns */
 .aso-conditions-box {
-    background-color: var(--accent-color, #fafafa);
+    background-color: var(--word-count-bg);
     margin-top: 10px;
     padding: 10px 15px;
     border-radius: 6px;
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    font-size: 11px;
-    color: var(--text-color, #1f2636);
-    line-height: 1.6;
 }
 
-/* Condition Box Gradients */
+.aso-conditions-entry,
+.aso-cooldowns-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
 .aso-conditions-entry {
-    background: linear-gradient(to right, rgba(255, 99, 132, 0.02), var(--gradient-dark, rgba(255, 99, 132, 0.3)), rgba(255, 99, 132, 0.02));
+    background: linear-gradient(to right, var(--gradient-strength), rgba(255, 99, 132, 0.3), var(--gradient-strength));
 }
 
 .aso-cooldowns-entry {
-    background: linear-gradient(to right, rgba(54, 162, 235, 0.02), var(--gradient-dark, rgba(54, 162, 235, 0.3)), rgba(54, 162, 235, 0.02));
-}
-
-.aso-conditions-label,
-.aso-cooldowns-label {
-    opacity: 0.25;
-    text-transform: uppercase;
-    font-size: 12px;
-    color: var(--text-color, #1f2636);
-}
-
-.aso-entry-value {
-    text-align: right;
+    background: linear-gradient(to right, var(--gradient-magic), rgba(54, 162, 235, 0.3), var(--gradient-magic));
 }
