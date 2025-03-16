@@ -255,8 +255,10 @@
 .aso-stat-value-box {
     font-weight: bold;
     font-size: 14px;
+    color: var(--stat-value-color, #697ecd); /* Uses variable with fallback */
     position: relative;
 }
+
 
 /* Commands Section */
 .aso-commandsContent {
