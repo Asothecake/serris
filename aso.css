@@ -1,7 +1,7 @@
 /* CSS Styles for the Aso Template */
 
 /* General Box Styling */
-.outer-aso-box {
+.aso-template-2 .outer-aso-box {
     background-color: #f5f7fa;
     padding: 10px 15px;
     margin: 20px auto;
@@ -10,7 +10,7 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-.aso-post-container {
+.aso-template-2 .aso-post-container {
     text-align: justify;
     line-height: 1.5;
     font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
@@ -20,7 +20,7 @@
 }
 
 /* Word Count Box */
-.aso-word-count-box {
+.aso-template-2 .aso-word-count-box {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -31,21 +31,21 @@
 }
 
 /* Resource Section for HP, IP, and Limit Bars */
-.aso-resource-section {
+.aso-template-2 .aso-resource-section {
     display: flex;
     flex-direction: column;
     gap: 6px;
     flex: 1;
 }
 
-.aso-resource-bar-group {
+.aso-template-2 .aso-resource-bar-group {
     display: flex;
     gap: 6px;
     align-items: center;
     margin-top: 10px;
 }
 
-.aso-resource-bar-container {
+.aso-template-2 .aso-resource-bar-container {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -53,7 +53,7 @@
     flex: 1;
 }
 
-.aso-resource-bar-container img {
+.aso-template-2 .aso-resource-bar-container img {
     width: 20px;
     height: 20px;
     margin-right: 4px;
@@ -61,7 +61,7 @@
 }
 
 /* HP Bar Styling */
-.aso-hp-bar-container {
+.aso-template-2 .aso-hp-bar-container {
     position: relative;
     height: 8px;
     background-color: rgba(105, 105, 105, 0.1);
@@ -71,15 +71,15 @@
     flex-grow: 1;
 }
 
-.aso-hp-bar-fill {
+.aso-template-2 .aso-hp-bar-fill {
     height: 100%;
     background-color: #e74c3c; /* Red for HP */
     transition: width 0.3s ease;
 }
 
 /* IP and Limit Bar Styling */
-.aso-resource-bar-wrapper,
-.aso-limit-bar-wrapper {
+.aso-template-2 .aso-resource-bar-wrapper,
+.aso-template-2 .aso-limit-bar-wrapper {
     display: flex;
     height: 8px;
     background-color: rgba(105, 105, 105, 0.1);
@@ -90,7 +90,7 @@
     flex-grow: 1;
 }
 
-.aso-resource-unit {
+.aso-template-2 .aso-resource-unit {
     flex-grow: 1;
     transition: background-color 0.3s ease;
 }
@@ -98,22 +98,22 @@
 /* Updated Specific Colors for Each Resource Bar */
 
 /* IP Bar - Green */
-.aso-resource-bar-wrapper .aso-resource-unit {
+.aso-template-2 .aso-resource-bar-wrapper .aso-resource-unit {
     background-color: #66bb6a; /* Green for IP */
 }
 
 /* Limit Bar - Blue */
-.aso-limit-bar-wrapper .aso-resource-unit {
+.aso-template-2 .aso-limit-bar-wrapper .aso-resource-unit {
     background-color: #42a5f5; /* Blue for Limit */
 }
 
 /* Unfilled Units */
-.aso-resource-unit.unfilled {
+.aso-template-2 .aso-resource-unit.unfilled {
     background-color: rgba(105, 105, 105, 0.1);
 }
 
 /* Image Box */
-.aso-image-box {
+.aso-template-2 .aso-image-box {
     flex-shrink: 0;
     margin-left: 16px;
     display: flex;
@@ -121,7 +121,7 @@
     justify-content: center;
 }
 
-.aso-image-box img {
+.aso-template-2 .aso-image-box img {
     border-radius: 50%;
     border: 1px solid rgba(160, 160, 160, 0.5);
     width: 65px;
@@ -129,7 +129,7 @@
 }
 
 /* Character Box */
-.aso-character-box {
+.aso-template-2 .aso-character-box {
     background-color: #fafafa;
     margin-top: 8px;
     padding: 12px;
@@ -140,119 +140,8 @@
     box-sizing: border-box;
 }
 
-.aso-character-box sp {
-    color: #697ecd;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box fp {
-    color: #5F9EA0;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box kp {
-    color: #434270;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box akp {
-    color: #704342;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box mzp {
-    color: #00BFFF;
-    font-style: italic;
-    font-weight: bold;
-}
-
-
-/* Words Line Toggle (Stats, Commands, Style) */
-.aso-words-line {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    margin-top: 4px;
-    width: 100%;
-}
-
-.aso-words-line span {
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #697ecd;
-    font-size: 11px;
-    cursor: pointer;
-}
-
-/* Hidden and Visible Content */
-.aso-content-hidden {
-    display: none;
-    font-size: 11px;
-}
-
-.aso-content-visible {
-    display: block;
-}
-
-/* Stat Bars with Fade Effect and Individual Colors */
-.aso-stat-entry {
-    display: flex;
-    align-items: center;
-    margin: 6px 0;
-    padding: 8px 0;
-    position: relative;
-    font-size: 13px;
-    font-weight: bold;
-    color: #1f2636;
-    background: linear-gradient(to left, rgba(245, 247, 250, 0), rgba(0, 0, 0, 0.05), rgba(245, 247, 250, 0));
-    box-shadow: none;
-    border-radius: 0;
-}
-
-.aso-stat-strength {
-    background: linear-gradient(to left, rgba(255, 99, 132, 0), rgba(255, 99, 132, 0.2), rgba(255, 99, 132, 0));
-}
-
-.aso-stat-defense {
-    background: linear-gradient(to left, rgba(75, 192, 192, 0), rgba(75, 192, 192, 0.2), rgba(75, 192, 192, 0));
-}
-
-.aso-stat-agility {
-    background: linear-gradient(to left, rgba(255, 205, 86, 0), rgba(255, 205, 86, 0.2), rgba(255, 205, 86, 0));
-}
-
-.aso-stat-magic {
-    background: linear-gradient(to left, rgba(54, 162, 235, 0), rgba(54, 162, 235, 0.2), rgba(54, 162, 235, 0));
-}
-
-.aso-stat-name {
-    flex: 1;
-    text-align: right;
-    font-family: 'Verdana', Geneva, sans-serif;
-    font-size: 14px;
-    letter-spacing: 3px;
-    opacity: 0.4;
-    margin-right: 10px;
-}
-
-.aso-stat-die {
-    opacity: 0.7;
-    margin-right: 3px;
-}
-
-.aso-stat-value-box {
-    font-weight: bold;
-    font-size: 14px;
-    color: #697ecd;
-    position: relative;
-}
-
 /* Command Entries */
-.aso-command-entry {
+.aso-template-2 .aso-command-entry {
     margin: 3px 0;
     padding: 4px 0;
     font-weight: bold;
@@ -265,16 +154,16 @@
     border-radius: 0;
 }
 
-.aso-command-entry:nth-child(odd) {
+.aso-template-2 .aso-command-entry:nth-child(odd) {
     background: linear-gradient(to left, rgba(255, 159, 64, 0), rgba(255, 159, 64, 0.2), rgba(255, 159, 64, 0));
 }
 
-.aso-command-entry:nth-child(even) {
+.aso-template-2 .aso-command-entry:nth-child(even) {
     background: linear-gradient(to left, rgba(153, 102, 255, 0), rgba(153, 102, 255, 0.2), rgba(153, 102, 255, 0));
 }
 
 /* Styling for the Style container */
-.aso-style-content {
+.aso-template-2 .aso-style-content {
     padding: 10px;
     margin-top: 8px;
     font-size: 12px;
@@ -285,14 +174,8 @@
     border-radius: 4px;
 }
 
-.aso-style-content p {
-    margin-bottom: 8px;
-    border-bottom: 1px solid rgba(160, 160, 160, 0.2);
-    padding-bottom: 4px;
-}
-
-/* Styling for Conditions and Cooldowns Box */
-.aso-conditions-box {
+/* Conditions and Cooldowns Box */
+.aso-template-2 .aso-conditions-box {
     background-color: #fafafa;
     margin-top: 10px;
     padding: 10px 15px;
@@ -303,8 +186,8 @@
     line-height: 1.6;
 }
 
-.aso-conditions-entry,
-.aso-cooldowns-entry {
+.aso-template-2 .aso-conditions-entry,
+.aso-template-2 .aso-cooldowns-entry {
     display: flex;
     justify-content: space-between;
     padding: 4px 0;
@@ -312,30 +195,28 @@
     letter-spacing: 1px;
 }
 
-.aso-conditions-entry {
+.aso-template-2 .aso-conditions-entry {
     background: linear-gradient(to right, 
-                                rgba(255, 99, 132, 0.02), /* Closer to background color at start */
-                                rgba(255, 99, 132, 0.3),  /* Stronger color in the middle */
-                                rgba(255, 99, 132, 0.02)  /* Closer to background color at end */
-                                );
+                                rgba(255, 99, 132, 0.02), 
+                                rgba(255, 99, 132, 0.3),  
+                                rgba(255, 99, 132, 0.02));
 }
 
-.aso-cooldowns-entry {
+.aso-template-2 .aso-cooldowns-entry {
     background: linear-gradient(to right, 
-                                rgba(54, 162, 235, 0.02), /* Closer to background color at start */
-                                rgba(54, 162, 235, 0.3),  /* Stronger color in the middle */
-                                rgba(54, 162, 235, 0.02)  /* Closer to background color at end */
-                                );
+                                rgba(54, 162, 235, 0.02), 
+                                rgba(54, 162, 235, 0.3),  
+                                rgba(54, 162, 235, 0.02));
 }
 
-.aso-conditions-label,
-.aso-cooldowns-label {
+.aso-template-2 .aso-conditions-label,
+.aso-template-2 .aso-cooldowns-label {
     opacity: 0.25;
     text-transform: uppercase;
     font-size: 12px;
     color: #1f2636;
 }
 
-.aso-entry-value {
+.aso-template-2 .aso-entry-value {
     text-align: right;
 }
