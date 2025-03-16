@@ -284,7 +284,6 @@
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     letter-spacing: 1px;
     color: var(--text-color);
-    background: linear-gradient(to left, var(--gradient-light), var(--gradient-dark), var(--gradient-light));
 }
 
 .aso-command-entry:nth-child(odd) {
