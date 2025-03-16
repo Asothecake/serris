@@ -237,6 +237,28 @@
     background: linear-gradient(to left, rgba(54, 162, 235, 0.02), var(--gradient-magic), rgba(54, 162, 235, 0.02));
 }
 
+.aso-stat-name {
+    flex: 1;
+    text-align: right;
+    font-family: 'Verdana', Geneva, sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    opacity: 0.4;
+    margin-right: 10px;
+}
+
+.aso-stat-die {
+    opacity: 0.7;
+    margin-right: 3px;
+}
+
+.aso-stat-value-box {
+    font-weight: bold;
+    font-size: 14px;
+    color: #697ecd;
+    position: relative;
+}
+
 /* Commands Section */
 .aso-commandsContent {
     padding: 10px;
