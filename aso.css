@@ -2,31 +2,23 @@
 
 /* General Box Styling */
 .outer-aso-box {
-    background-color: #f5f7fa;
+    background-color: var(--bg-color, #f5f7fa);
+    color: var(--text-color, #1f2636);
+    border: 1px solid var(--border-color, rgba(160, 160, 160, 0.3));
     padding: 10px 15px;
     margin: 20px auto;
     border-radius: 8px;
-    border: 1px solid rgba(160, 160, 160, 0.3);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.aso-post-container {
-    text-align: justify;
-    line-height: 1.5;
-    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
-    font-size: 12px;
-    color: #1f2636;
-    margin: 0;
 }
 
 /* Word Count Box */
 .aso-word-count-box {
+    background-color: var(--accent-color, #fafafa);
+    border-radius: 8px 8px 0 0;
+    padding: 8px 12px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 8px 12px;
-    background-color: #fafafa;
-    border-radius: 8px 8px 0 0;
     gap: 10px;
 }
 
@@ -73,7 +65,7 @@
 
 .aso-hp-bar-fill {
     height: 100%;
-    background-color: #e74c3c; /* Red for HP */
+    background-color: var(--hp-bar, #e74c3c);
     transition: width 0.3s ease;
 }
 
@@ -96,15 +88,12 @@
 }
 
 /* Updated Specific Colors for Each Resource Bar */
-
-/* IP Bar - Green */
 .aso-resource-bar-wrapper .aso-resource-unit {
-    background-color: #66bb6a; /* Green for IP */
+    background-color: var(--ip-bar, #66bb6a);
 }
 
-/* Limit Bar - Blue */
 .aso-limit-bar-wrapper .aso-resource-unit {
-    background-color: #42a5f5; /* Blue for Limit */
+    background-color: var(--limit-bar, #42a5f5);
 }
 
 /* Unfilled Units */
@@ -130,7 +119,7 @@
 
 /* Character Box */
 .aso-character-box {
-    background-color: #fafafa;
+    background-color: var(--accent-color, #fafafa);
     margin-top: 8px;
     padding: 12px;
     border-radius: 0 0 8px 8px;
@@ -140,38 +129,7 @@
     box-sizing: border-box;
 }
 
-.aso-character-box sp {
-    color: #697ecd;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box fp {
-    color: #5F9EA0;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box kp {
-    color: #434270;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box akp {
-    color: #704342;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.aso-character-box mzp {
-    color: #00BFFF;
-    font-style: italic;
-    font-weight: bold;
-}
-
-
-/* Words Line Toggle (Stats, Commands, Style) */
+/* Word Toggle */
 .aso-words-line {
     display: flex;
     justify-content: space-between;
@@ -183,7 +141,7 @@
 .aso-words-line span {
     font-weight: bold;
     text-transform: uppercase;
-    color: #697ecd;
+    color: var(--text-color, #697ecd);
     font-size: 11px;
     cursor: pointer;
 }
@@ -198,60 +156,19 @@
     display: block;
 }
 
-/* Stat Bars with Fade Effect and Individual Colors */
+/* Stat Bars with Gradients */
 .aso-stat-entry {
     display: flex;
     align-items: center;
     margin: 6px 0;
     padding: 8px 0;
-    position: relative;
     font-size: 13px;
     font-weight: bold;
-    color: #1f2636;
-    background: linear-gradient(to left, rgba(245, 247, 250, 0), rgba(0, 0, 0, 0.05), rgba(245, 247, 250, 0));
-    box-shadow: none;
-    border-radius: 0;
+    color: var(--text-color, #1f2636);
+    background: linear-gradient(to left, var(--gradient-light, rgba(245, 247, 250, 0)), var(--gradient-dark, rgba(0, 0, 0, 0.05)), var(--gradient-light, rgba(245, 247, 250, 0)));
 }
 
-.aso-stat-strength {
-    background: linear-gradient(to left, rgba(255, 99, 132, 0), rgba(255, 99, 132, 0.2), rgba(255, 99, 132, 0));
-}
-
-.aso-stat-defense {
-    background: linear-gradient(to left, rgba(75, 192, 192, 0), rgba(75, 192, 192, 0.2), rgba(75, 192, 192, 0));
-}
-
-.aso-stat-agility {
-    background: linear-gradient(to left, rgba(255, 205, 86, 0), rgba(255, 205, 86, 0.2), rgba(255, 205, 86, 0));
-}
-
-.aso-stat-magic {
-    background: linear-gradient(to left, rgba(54, 162, 235, 0), rgba(54, 162, 235, 0.2), rgba(54, 162, 235, 0));
-}
-
-.aso-stat-name {
-    flex: 1;
-    text-align: right;
-    font-family: 'Verdana', Geneva, sans-serif;
-    font-size: 14px;
-    letter-spacing: 3px;
-    opacity: 0.4;
-    margin-right: 10px;
-}
-
-.aso-stat-die {
-    opacity: 0.7;
-    margin-right: 3px;
-}
-
-.aso-stat-value-box {
-    font-weight: bold;
-    font-size: 14px;
-    color: #697ecd;
-    position: relative;
-}
-
-/* Command Entries */
+/* Command Entries with Gradients */
 .aso-command-entry {
     margin: 3px 0;
     padding: 4px 0;
@@ -259,29 +176,26 @@
     font-size: 11px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     letter-spacing: 1px;
-    color: #3e4a61;
-    background: linear-gradient(to left, rgba(245, 247, 250, 0), rgba(0, 0, 0, 0.05), rgba(245, 247, 250, 0));
-    box-shadow: none;
-    border-radius: 0;
+    color: var(--text-color, #3e4a61);
 }
 
 .aso-command-entry:nth-child(odd) {
-    background: linear-gradient(to left, rgba(255, 159, 64, 0), rgba(255, 159, 64, 0.2), rgba(255, 159, 64, 0));
+    background: linear-gradient(to left, rgba(255, 159, 64, 0), var(--command-odd, rgba(255, 159, 64, 0.2)), rgba(255, 159, 64, 0));
 }
 
 .aso-command-entry:nth-child(even) {
-    background: linear-gradient(to left, rgba(153, 102, 255, 0), rgba(153, 102, 255, 0.2), rgba(153, 102, 255, 0));
+    background: linear-gradient(to left, rgba(153, 102, 255, 0), var(--command-even, rgba(153, 102, 255, 0.2)), rgba(153, 102, 255, 0));
 }
 
-/* Styling for the Style container */
+/* Style Section */
 .aso-style-content {
     padding: 10px;
     margin-top: 8px;
     font-size: 12px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    color: #1f2636;
+    color: var(--text-color, #1f2636);
     line-height: 1.6;
-    background: linear-gradient(to right, rgba(153, 102, 255, 0.02), rgba(153, 102, 255, 0.07));
+    background: linear-gradient(to right, var(--command-even, rgba(153, 102, 255, 0.02)), var(--command-even, rgba(153, 102, 255, 0.07)));
     border-radius: 4px;
 }
 
@@ -291,41 +205,25 @@
     padding-bottom: 4px;
 }
 
-/* Styling for Conditions and Cooldowns Box */
+/* Conditions & Cooldowns */
 .aso-conditions-box {
-    background-color: #fafafa;
+    background-color: var(--accent-color, #fafafa);
     margin-top: 10px;
     padding: 10px 15px;
     border-radius: 6px;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     font-size: 11px;
-    color: #1f2636;
+    color: var(--text-color, #1f2636);
     line-height: 1.6;
 }
 
-.aso-conditions-entry,
-.aso-cooldowns-entry {
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 0;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
+/* Condition Box Gradients */
 .aso-conditions-entry {
-    background: linear-gradient(to right, 
-                                rgba(255, 99, 132, 0.02), /* Closer to background color at start */
-                                rgba(255, 99, 132, 0.3),  /* Stronger color in the middle */
-                                rgba(255, 99, 132, 0.02)  /* Closer to background color at end */
-                                );
+    background: linear-gradient(to right, rgba(255, 99, 132, 0.02), var(--gradient-dark, rgba(255, 99, 132, 0.3)), rgba(255, 99, 132, 0.02));
 }
 
 .aso-cooldowns-entry {
-    background: linear-gradient(to right, 
-                                rgba(54, 162, 235, 0.02), /* Closer to background color at start */
-                                rgba(54, 162, 235, 0.3),  /* Stronger color in the middle */
-                                rgba(54, 162, 235, 0.02)  /* Closer to background color at end */
-                                );
+    background: linear-gradient(to right, rgba(54, 162, 235, 0.02), var(--gradient-dark, rgba(54, 162, 235, 0.3)), rgba(54, 162, 235, 0.02));
 }
 
 .aso-conditions-label,
@@ -333,7 +231,7 @@
     opacity: 0.25;
     text-transform: uppercase;
     font-size: 12px;
-    color: #1f2636;
+    color: var(--text-color, #1f2636);
 }
 
 .aso-entry-value {
