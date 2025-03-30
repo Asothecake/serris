@@ -57,15 +57,15 @@
 
 /* Word Count Box */
 .aso-word-count-box {
-    background-color: var(--word-count-bg);
-    border-radius: 8px 8px 0 0;
-    padding: 8px 12px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
-}
+     background-color: var(--word-count-bg);
+     border-radius: 8px 8px 0 0;
+     padding: 8px 12px;
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+     gap: 10px;
+ }
 
 /* Resource Bars */
 .aso-resource-section {
