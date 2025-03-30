@@ -65,6 +65,11 @@
      justify-content: space-between;
      align-items: flex-start;
      gap: 10px;
+    flex-wrap: wrap;               /* <-- Allow content to wrap if it can't fit */
+    box-sizing: border-box;        /* <-- Prevent padding from breaking width */
+    overflow: hidden;              /* <-- Contain overflow */
+     min-width: 0;                 /* <-- Prevent child from forcing width */
+    flex-shrink: 1;     
  }
 
 /* Resource Bars */
