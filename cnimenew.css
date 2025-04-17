@@ -1,0 +1,246 @@
+.cinema-placeholder {
+  display: none;
+}
+
+.cinema-wrapper {
+  --primary-color: white;
+  --accent-color: purple;
+  --text-color: black;
+
+  width: 100%;
+  max-width: 450px;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: normal;
+
+  border: 1px solid black;
+  background-color: var(--accent-color);
+  padding: 2px;
+}
+
+.cinema-body {
+  border: 2px solid black;
+  background-color: var(--primary-color);
+  overflow: hidden;
+}
+
+.cinema-bio {
+  display: flex;
+  flex-direction: column;
+}
+
+.cinema-name {
+  text-align: right;
+  font-size: xx-large;
+  margin: 0.4rem;
+  font-family: "Poiret One", sans-serif;
+  color: var(--accent-color);
+  text-shadow: var(--primary-color) 1px 1px;
+  position: relative;
+  z-index: 2;
+}
+
+.cinema-reel {
+  width: 500px;
+  margin-left: -25px;
+  transform: rotate(6deg);
+  background-color: black;
+  box-shadow: 4px 10px var(--accent-color);
+  transition: all 1s ease;
+}
+
+.box-reel {
+  margin-left: -2.5%;
+  width: 105%;
+  height: 15px;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.box-reel div {
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-color);
+}
+
+.img-reel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-reel .image {
+  background-size: cover;
+  width: 125px;
+  height: 125px;
+  transition: all 1s ease;
+  margin: 0 15px;
+}
+.img-reel .image-only {
+  width: 200px;
+  height: 200px;
+}
+
+.tall {
+  transform: rotate(-76deg);
+  margin-left: -100px;
+  margin-top: -25px;
+  transition: all 1s ease;
+}
+.tall .img-reel .image {
+  transform: rotate(90deg);
+  width: 150px;
+  height: 150px;
+  transition: all 1s ease;
+}
+.tall .img-reel .image-only {
+  width: 250px;
+  height: 250px;
+}
+
+.cinema-fluff {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -120px;
+  z-index: 2;
+  align-items: end;
+  text-align: right;
+}
+.cinema-fluff p {
+  margin-block-start: 0.2rem;
+  margin-block-end: 0.2rem;
+  padding: 0.2rem 0.4rem;
+  width: 100px;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  text-shadow: black 1px 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    var(--accent-color)
+  );
+}
+
+.cinema-interact {
+  display: flex;
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 5;
+}
+
+.cinema-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.cinema-buttons button,
+.cinema-buttons button:hover {
+  border: none;
+  margin: 0;
+  margin-block-start: 0.2rem;
+  margin-block-end: 0.2rem;
+  padding: 0.2rem 0.4rem;
+  width: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  text-transform: none;
+  letter-spacing: normal;
+  text-shadow: black 1px 1px;
+  background-color: transparent;
+  background-image: linear-gradient(
+    to left,
+    rgba(255, 0, 0, 0),
+    var(--accent-color)
+  );
+}
+.cinema-buttons button:hover {
+  opacity: 0.8;
+}
+
+.cinema-window {
+  flex-grow: 1;
+  border: 3px dashed var(--accent-color);
+  border-radius: 8px;
+  margin: 0 1rem;
+  padding: 1rem;
+  font-size: 0.7rem;
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color),
+    rgba(255, 255, 255, 0.6)
+  );
+  backdrop-filter: blur(10px);
+}
+.cinema-window hr {
+  border-block-color: var(--accent-color);
+}
+
+.cinema-section {
+  display: none;
+  color: var(--text-color);
+}
+
+.cinema-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+}
+.cinema-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+.cinema-stat {
+  width: 35px;
+  height: 35px;
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px -1px var(--accent-color);
+
+  font-family: "Poiret One", sans-serif;
+  color: var(--accent-color);
+  text-shadow: black 1px 1px;
+  font-size: 1.2rem;
+}
+.cinema-stat-label {
+  color: var(--accent-color);
+  text-shadow: black 0.5px 0.5px;
+  font-size: 0.5rem;
+}
+.cinema-header {
+  margin-top: 0.2rem;
+  border-bottom: 1px solid var(--accent-color);
+}
+.cinema-footer {
+  border-top: 1px solid var(--accent-color);
+  margin-bottom: 0.6rem;
+  text-align: right;
+}
+.cinema-footer a {
+  text-decoration: none;
+}
+.cinema-header b {
+  padding: 0 0.2rem;
+  border-radius: 8px 8px 0px 0px;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+.cinema-footer b {
+  padding: 0 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0 0 8px 8px;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
+.alias-mode .cinema-stat {
+  box-shadow: 0 0 5px var(--accent-color);
+}
