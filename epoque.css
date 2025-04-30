@@ -134,9 +134,8 @@
 
 /* ACTIONS - INDENTED */
 .epoque-actions {
-  margin-left: -30px; /* shift left under diagonal */
-  padding-left: 0;
-  width: calc(100% + 30px); /* expand to compensate for negative margin */
+  margin-left: -50px;
+  width: calc(100% + 50px);
 }
 
 
