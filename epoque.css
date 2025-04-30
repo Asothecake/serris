@@ -1,4 +1,4 @@
-/* ===== Epoque v1.3 (No Clip, Diagonal Gradient Fade) ===== */
+/* ===== Epoque v1.3 (Image Fade Only) ===== */
 
 .epoque-container {
   display: flex;
@@ -13,8 +13,7 @@
   box-shadow: 0 0 0 2px #1a1a1a, 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-
-/* LEFT PANEL (no clip-path, fade only) */
+/* LEFT PANEL (Fade-only) */
 .epoque-left {
   position: relative;
   width: 40%;
@@ -24,30 +23,28 @@
   justify-content: center;
 }
 
-/* Gradient Overlay */
-.epoque-left::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom right,                   /* this is the key change */
-    rgba(44, 44, 44, 1) 0%,
-    rgba(44, 44, 44, 0.25) 50%,
-    rgba(44, 44, 44, 0) 100%
-  );
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* Image Positioned Under Overlay */
+/* Image with Fade */
 .epoque-image {
   width: 100%;
   height: auto;
   object-fit: cover;
-  z-index: 1;
-  position: relative; /* <-- Needed to make z-index take effect */
   pointer-events: none;
   user-select: none;
+  position: relative;
+
+  /* Gradient fade mask */
+  mask-image: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.25) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.25) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
 
 /* RIGHT PANEL */
@@ -59,7 +56,6 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
 
 /* STATS ROW */
 .epoque-topstats {
@@ -89,7 +85,6 @@
   display: block;
 }
 
-
 /* META TWO-COLUMN */
 .epoque-meta {
   display: flex;
@@ -110,7 +105,6 @@
   font-weight: bold;
   margin-right: 4px;
 }
-
 
 /* HP BAR */
 .epoque-hpbar-wrap {
@@ -141,13 +135,11 @@
   transition: width 0.6s ease-in-out;
 }
 
-
 /* Divider Line */
 .epoque-divider {
   border-top: 1px solid #c5b077;
   margin: 6px 0;
 }
-
 
 /* ACTIONS - INDENTED */
 .epoque-actions {
@@ -166,7 +158,6 @@
   margin-right: 5px;
   padding-left: 5px;
 }
-
 
 /* FOOTER */
 .epoque-footer {
