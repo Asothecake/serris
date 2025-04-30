@@ -1,4 +1,3 @@
-<script>
 document.querySelectorAll('.epoque-container').forEach(container => {
   const fill = container.querySelector('.epoque-hp-fill');
   const current = parseInt(container.dataset.epoqueHp);
@@ -8,4 +7,3 @@ document.querySelectorAll('.epoque-container').forEach(container => {
     fill.style.width = percent + '%';
   }
 });
-</script>
