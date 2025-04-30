@@ -150,8 +150,8 @@
 
 /* ACTIONS - INDENTED */
 .epoque-actions {
-  margin-left: -50px;
-  width: calc(100% + 50px);
+  margin-left: -70px;
+  width: calc(100% + 70px);
     background: rgba(44, 44, 44, 0.95); /* Matches base panel color with near-opaque */
   padding: 10px;
   border-radius: 6px;
