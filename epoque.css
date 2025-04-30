@@ -149,20 +149,15 @@
 }
 
 /* ACTIONS PANEL */
+/* ACTIONS - INDENTED (Stable, Clean Layout) */
 .epoque-actions {
   margin-left: -70px;
   width: calc(100% + 70px);
-  background: rgba(44, 44, 44, 0.95);
-  padding: 10px;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
 }
 
 .epoque-actions .epoque-field {
   margin: 4px 0;
-  background: rgba(44, 44, 44, 0.95);
+  background: rgba(44, 44, 44, 0.95); /* Matches base bg */
   padding: 4px 6px;
   border-radius: 4px;
   min-height: 18px;
