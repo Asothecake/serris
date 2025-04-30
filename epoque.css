@@ -1,8 +1,8 @@
-/* ===== Epoque v1.2 ===== */
+/* ===== Epoque v1.3 (No Clip, Diagonal Gradient Fade) ===== */
 
 .epoque-container {
   display: flex;
-  max-width: 650px; /* or whatever your board comfortably fits */
+  max-width: 650px;
   margin: 20px auto;
   border: 2px solid #c5b077;
   background: #2c2c2c;
@@ -14,14 +14,14 @@
 }
 
 
-/* LEFT PANEL */
+/* LEFT PANEL (no clip-path, fade only) */
 .epoque-left {
   position: relative;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 40.31%, 0% 99.4%);
   overflow: hidden;
   display: flex;
   align-items: stretch;
   justify-content: center;
+  width: 40%;
   height: auto;
 }
 
@@ -30,7 +30,7 @@
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: linear-gradient(315deg, rgba(30,30,30,1) 0%, rgba(30,30,30,0) 60%);
+  background: linear-gradient(315deg, #2c2c2c 0%, rgba(44, 44, 44, 0) 60%);
   z-index: 2;
   pointer-events: none;
 }
@@ -42,8 +42,8 @@
   object-fit: cover;
   pointer-events: none;
   user-select: none;
+  z-index: 1;
 }
-
 
 
 /* RIGHT PANEL */
@@ -55,6 +55,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 
 /* STATS ROW */
 .epoque-topstats {
@@ -84,6 +85,7 @@
   display: block;
 }
 
+
 /* META TWO-COLUMN */
 .epoque-meta {
   display: flex;
@@ -104,6 +106,7 @@
   font-weight: bold;
   margin-right: 4px;
 }
+
 
 /* HP BAR */
 .epoque-hpbar-wrap {
@@ -134,18 +137,19 @@
   transition: width 0.6s ease-in-out;
 }
 
+
 /* Divider Line */
 .epoque-divider {
   border-top: 1px solid #c5b077;
   margin: 6px 0;
 }
 
+
 /* ACTIONS - INDENTED */
 .epoque-actions {
   margin-left: -50px;
   width: calc(100% + 50px);
 }
-
 
 .epoque-actions .epoque-field {
   margin: 4px 0;
@@ -158,6 +162,7 @@
   margin-right: 5px;
   padding-left: 5px;
 }
+
 
 /* FOOTER */
 .epoque-footer {
