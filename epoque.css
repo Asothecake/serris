@@ -153,7 +153,15 @@
 .epoque-actions {
   margin-left: -70px;
   width: calc(100% + 70px);
+  background: rgba(44, 44, 44, 0.95);
+  padding: 10px;
+  border-radius: 6px;
+  /* CRITICAL FIX */
+  display: flex;              /* CORRECT */
+  flex-direction: column;     /* Needed to stack fields vertically */
+  gap: 4px;                   /* Adds spacing between fields */
 }
+
 
 .epoque-actions .epoque-field {
   margin: 4px 0;
