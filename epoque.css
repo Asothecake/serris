@@ -165,7 +165,7 @@
   margin: 4px 0;
   padding: 4px 6px;
   border-radius: 4px;
- background: rgba(44, 44, 44, 1.0);  /* safe dark overlay */
+ background: rgba(44, 44, 44, 0.8);  /* safe dark overlay */
 }
  
  .epoque-field::before {
