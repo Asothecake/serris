@@ -19,7 +19,7 @@
   width: 40%;
   position: relative;
   background: #1e1e1e;
-  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 94.76% 0%, 93.97% 52.17%, 54.56% 100%, 0% 100%);
   overflow: hidden;
   display: flex;
   align-items: stretch;
