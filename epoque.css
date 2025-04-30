@@ -34,25 +34,29 @@
   user-select: none;
   position: relative;
 
-  /* Fade from top-left (visible) to bottom-right (invisible) */
   -webkit-mask-image: linear-gradient(
     to bottom right,
-    rgba(0, 0, 0, 1) 0%,     /* top-left: fully visible */
-    rgba(0, 0, 0, 0.6) 50%,  /* middle: semi-transparent */
-    rgba(0, 0, 0, 0) 100%    /* bottom-right: fully transparent */
+    rgba(0, 0, 0, 1) 0%,     /* top-left fully visible */
+    rgba(0, 0, 0, 1) 30%,    /* still fully visible a bit further in */
+    rgba(0, 0, 0, 0.5) 45%,  /* start fading */
+    rgba(0, 0, 0, 0.15) 55%, /* very faint image */
+    rgba(0, 0, 0, 0) 65%     /* fully transparent by lower right */
   );
   -webkit-mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
 
   mask-image: linear-gradient(
     to bottom right,
-    rgba(0, 0, 0, 1) 0%,     
-    rgba(0, 0, 0, 0.6) 50%,  
-    rgba(0, 0, 0, 0) 100%    
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0.5) 45%,
+    rgba(0, 0, 0, 0.15) 55%,
+    rgba(0, 0, 0, 0) 65%
   );
   mask-size: 100% 100%;
   mask-repeat: no-repeat;
 }
+
 
 /* RIGHT PANEL */
 .epoque-right {
