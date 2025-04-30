@@ -134,8 +134,8 @@
 
 /* ACTIONS - INDENTED */
 .epoque-actions {
+  padding-left: 0;
   margin-left: -20px;
-  padding-left: 20px;
 }
 
 .epoque-actions .epoque-field {
@@ -147,6 +147,7 @@
   color: #c5b077;
   font-weight: bold;
   margin-right: 5px;
+  padding-left: 5px;
 }
 
 /* FOOTER */
