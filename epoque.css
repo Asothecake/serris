@@ -2,17 +2,17 @@
 
 .epoque-container {
   display: flex;
+  max-width: 650px; /* or whatever your board comfortably fits */
+  margin: 20px auto;
   border: 2px solid #c5b077;
   background: #2c2c2c;
   font-family: 'Arial', sans-serif;
   color: #d9d1b0;
-  margin: 20px auto;
   overflow: hidden;
   border-radius: 12px;
-  max-width: 600px;
   box-shadow: 0 0 0 2px #1a1a1a, 0 0 5px rgba(0, 0, 0, 0.5);
-  height: 500px;
 }
+
 
 /* LEFT PANEL */
 .epoque-left {
@@ -24,15 +24,18 @@
   display: flex;
   align-items: stretch;
   justify-content: center;
+  height: auto;
 }
 
 .epoque-image {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 100%;
   object-fit: cover;
   pointer-events: none;
   user-select: none;
 }
+
 
 
 /* RIGHT PANEL */
