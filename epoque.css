@@ -25,7 +25,14 @@
   align-items: stretch;
   justify-content: center;
   height: auto;
-  box-shadow: inset -5px 0 5px -3px rgba(0, 0, 0, 0.4);
+  box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+  border-right: 2px solid #c5b077;
+}
+
+.epoque-container:hover .epoque-left {
+  opacity: 1;
 }
 
 .epoque-image {
