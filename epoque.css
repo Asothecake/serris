@@ -1,3 +1,5 @@
+/* ===== Epoque v1.2 ===== */
+
 .epoque-container {
   display: flex;
   border: 2px solid #c5b077;
@@ -9,24 +11,23 @@
   border-radius: 12px;
   max-width: 600px;
   box-shadow: 0 0 0 2px #1a1a1a, 0 0 5px rgba(0, 0, 0, 0.5);
+  height: 500px;
 }
 
 /* LEFT PANEL */
 .epoque-left {
   width: 40%;
   background: #1e1e1e;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
+  position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  mask-image: linear-gradient(to bottom left, black 60%, transparent 100%);
 }
 
 .epoque-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  border-radius: 0 0 0 8px;
+  display: block;
 }
 
 /* RIGHT PANEL */
@@ -67,12 +68,18 @@
   display: block;
 }
 
-/* META */
+/* META TWO-COLUMN */
 .epoque-meta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 20px;
   margin-bottom: 10px;
+}
+
+.epoque-meta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .epoque-info::before {
@@ -117,7 +124,12 @@
   margin: 6px 0;
 }
 
-/* ACTIONS */
+/* ACTIONS - INDENTED */
+.epoque-actions {
+  margin-left: -20px;
+  padding-left: 20px;
+}
+
 .epoque-actions .epoque-field {
   margin: 4px 0;
 }
@@ -135,4 +147,5 @@
   color: #888;
   font-size: 12px;
   margin-top: 10px;
+  padding-right: 4px;
 }
