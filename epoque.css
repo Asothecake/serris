@@ -24,30 +24,31 @@
   justify-content: center;
 }
 
+/* Gradient Overlay */
 .epoque-left::before {
   content: '';
   position: absolute;
   inset: 0;
+  background: linear-gradient(
+    315deg,
+    rgba(44, 44, 44, 1) 0%,
+    rgba(44, 44, 44, 0.25) 50%,
+    rgba(44, 44, 44, 0) 100%
+  );
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(
-    to top left,
-    rgba(44, 44, 44, 0) 0%,
-    rgba(44, 44, 44, 0.25) 50%,
-    rgba(44, 44, 44, 1) 90%,
-    rgba(44, 44, 44, 1) 100%
-  );
 }
 
+/* Image Positioned Under Overlay */
 .epoque-image {
   width: 100%;
   height: auto;
   object-fit: cover;
   z-index: 1;
+  position: relative; /* <-- Needed to make z-index take effect */
   pointer-events: none;
   user-select: none;
 }
-
 
 /* RIGHT PANEL */
 .epoque-right {
