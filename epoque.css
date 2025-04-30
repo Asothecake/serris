@@ -158,23 +158,18 @@
   background: rgba(44, 44, 44, 0.95); /* Matches panel with strong fade */
   padding: 10px;
   border-radius: 6px;
-  display: block;
+  display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.epoque-actions .epoque-field {
+.epoque-field {
   margin: 4px 0;
-    background: rgba(44, 44, 44, 0.95); /* Apply background to each line */
+  background: rgba(44, 44, 44, 0.95);
   padding: 4px 6px;
   border-radius: 4px;
   min-height: 18px;
   display: block;
-}
-
-.epoque-field {
-  min-height: 18px; /* Ensures each row has height even if it's empty */
-    display: block;
 }
 
 .epoque-field::before {
