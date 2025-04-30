@@ -69,6 +69,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  gap: 10px;
 }
 
 .epoque-stat {
@@ -127,18 +128,20 @@
 }
 
 .epoque-hpbar {
-  background: #444;
-  border: 1px solid #c5b077;
-  height: 10px;
+  background: #2a2a2a;
+  border: none;
+  height: 6px; /* Reduced height */
   width: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
 }
 
 .epoque-hp-fill {
-  background: #4dcbe5;
+  background: linear-gradient(to right, #04d9d9, #0070dd); /* Teal to blue */
   height: 100%;
   width: 0;
+  border-radius: 10px 0 0 10px; /* Rounded on left, sharp on right */
   transition: width 0.6s ease-in-out;
 }
 
@@ -152,9 +155,12 @@
 .epoque-actions {
   margin-left: -70px;
   width: calc(100% + 70px);
-    background: rgba(44, 44, 44, 0.95); /* Matches base panel color with near-opaque */
+  background: rgba(44, 44, 44, 0.95); /* Matches panel with strong fade */
   padding: 10px;
   border-radius: 6px;
+  display: block;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .epoque-actions .epoque-field {
@@ -163,6 +169,7 @@
 
 .epoque-field {
   min-height: 18px; /* Ensures each row has height even if it's empty */
+    display: block;
 }
 
 .epoque-field::before {
