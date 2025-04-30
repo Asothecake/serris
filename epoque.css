@@ -158,9 +158,12 @@
    width: calc(100% + 50px);
  }
  
- .epoque-actions .epoque-field {
-   margin: 4px 0;
- }
+.epoque-actions .epoque-field {
+  margin: 4px 0;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: rgba(30, 30, 30, 0.9); /* safe dark overlay */
+}
  
  .epoque-field::before {
    content: attr(data-label);
