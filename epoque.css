@@ -155,11 +155,14 @@
     background: rgba(44, 44, 44, 0.95); /* Matches base panel color with near-opaque */
   padding: 10px;
   border-radius: 6px;
-   min-height: 18px;
 }
 
 .epoque-actions .epoque-field {
   margin: 4px 0;
+}
+
+.epoque-field {
+  min-height: 18px; /* Ensures each row has height even if it's empty */
 }
 
 .epoque-field::before {
