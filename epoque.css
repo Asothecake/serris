@@ -32,16 +32,14 @@
   width: 100%; height: 100%;
   background: linear-gradient(
     to top left,
-    rgba(44, 44, 44, 0) 0%,    /* start fully transparent */
-    rgba(44, 44, 44, 0.25) 40%,/* slow fade */
-    rgba(44, 44, 44, 1) 75%,   /* fast fade after 40% */
-    rgba(44, 44, 44, 1) 100%
+    rgba(44, 44, 44, 0) 0%,     /* Bottom-right starts fully transparent */
+    rgba(44, 44, 44, 0.25) 40%, /* Soft gradual fade */
+    rgba(44, 44, 44, 1) 75%,    /* Rapid ramp to full opacity */
+    rgba(44, 44, 44, 1) 100%    /* Top-left fully opaque */
   );
   z-index: 3;
   pointer-events: none;
 }
-
-
 
 .epoque-image {
   width: 100%;
