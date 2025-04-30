@@ -155,6 +155,7 @@
     background: rgba(44, 44, 44, 0.95); /* Matches base panel color with near-opaque */
   padding: 10px;
   border-radius: 6px;
+   min-height: 18px;
 }
 
 .epoque-actions .epoque-field {
