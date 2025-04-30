@@ -19,12 +19,14 @@
   width: 40%;
   position: relative;
   background: #1e1e1e;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
+  clip-path: polygon(0 20%, 100% 0%, 0% 100%);
   overflow: hidden;
   display: flex;
   align-items: stretch;
   justify-content: center;
   height: auto;
+  border-right: 2px solid #c5b077;
+  box-shadow: inset -5px 0 5px -3px rgba(0, 0, 0, 0.4);
 }
 
 .epoque-image {
