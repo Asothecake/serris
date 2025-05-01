@@ -177,11 +177,11 @@
 
 
 .epoque-actions::-webkit-scrollbar {
-  width: 4px;
+  width: 2px;
 }
 .epoque-actions::-webkit-scrollbar-thumb {
   background-color: var(--epoque-accent);
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 .epoque-actions .epoque-field {
