@@ -173,18 +173,7 @@
   overflow-y: auto;
   padding-right: 4px;
   scrollbar-width: thin;
-}
-
-.epoque-actions::-webkit-scrollbar {
-  width: 1px;
-}
-.epoque-actions::-webkit-scrollbar-thumb {
-  background-color: var(--epoque-accent) !important;
-  border-radius: 0px;
-}
-
-.epoque-actions::-webkit-scrollbar-track {
-  background: transparent !important;
+  scrollbar-color: var(--epoque-accent) transparent;
 }
 
 .epoque-actions .epoque-field {
