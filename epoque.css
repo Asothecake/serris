@@ -13,22 +13,23 @@
   display: flex;
   max-width: 650px;
   margin: 20px auto;
-  border: 2px solid var(--color-accent);
-  background: var(--color-bg);
+  border: 2px solid var(--epoque-border, #c5b077);
+  background: var(--epoque-bg, #2c2c2c);
   font-family: 'Arial', sans-serif;
-  color: var(--color-text);
+  color: var(--epoque-text, #d9d1b0);
   overflow: hidden;
   border-radius: 12px;
 }
 
 .epoque-left {
   position: relative;
-  width: 40%;
-  aspect-ratio: 4 / 5;
+  width: 190px;
+  height: 420px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .epoque-image {
@@ -49,9 +50,6 @@
     rgba(0, 0, 0, 0.15) 90%,
     rgba(0, 0, 0, 0) 100%
   );
-  -webkit-mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-
   mask-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 1) 0%,
@@ -60,14 +58,14 @@
     rgba(0, 0, 0, 0.15) 90%,
     rgba(0, 0, 0, 0) 100%
   );
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
   mask-size: 100% 100%;
   mask-repeat: no-repeat;
 }
 
-
-
 .epoque-right {
-  width: 60%;
+  flex: 1;
   padding: 15px;
   box-sizing: border-box;
   display: flex;
