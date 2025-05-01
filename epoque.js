@@ -11,17 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Theming via CSS variables
+  // Theming via CSS variables (synced with --epoque-* vars)
   document.querySelectorAll(".epoque-container").forEach(container => {
     const themeVars = {
-      "--color-bg": container.dataset.bg,
-      "--color-accent": container.dataset.accent,
-      "--color-text": container.dataset.text,
-      "--color-hp-bg": container.dataset.hpBg,
-      "--color-hp-fill-start": container.dataset.hpStart,
-      "--color-hp-fill-end": container.dataset.hpEnd,
-      "--color-field-bg": container.dataset.fieldBg,
-      "--color-muted": container.dataset.muted
+      "--epoque-bg": container.dataset.bg,
+      "--epoque-accent": container.dataset.accent,
+      "--epoque-border": container.dataset.border,
+      "--epoque-text": container.dataset.text,
+      "--epoque-hp-bg": container.dataset.hpBg,
+      "--epoque-hp-start": container.dataset.hpStart,
+      "--epoque-hp-end": container.dataset.hpEnd,
+      "--epoque-field-bg": container.dataset.fieldBg,
+      "--epoque-muted": container.dataset.muted
     };
 
     for (const [key, val] of Object.entries(themeVars)) {
