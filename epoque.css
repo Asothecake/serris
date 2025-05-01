@@ -23,13 +23,12 @@
 
 .epoque-left {
   position: relative;
-  width: 190px;
+  flex: 0 0 190px; /* ← fixed width */
   height: 420px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .epoque-image {
@@ -65,7 +64,7 @@
 }
 
 .epoque-right {
-  flex: 1;
+  flex: 1; /* ← takes remaining space */
   padding: 15px;
   box-sizing: border-box;
   display: flex;
