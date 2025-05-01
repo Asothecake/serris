@@ -10,6 +10,7 @@
   --epoque-muted: #888;
 }
 
+/* ===== Epoque Layout ===== */
 .epoque-container {
   display: flex;
   width: 100%;
@@ -24,7 +25,7 @@
   overflow: hidden;
 }
 
-/* Image Left */
+/* Left Side (Image) */
 .epoque-left {
   flex: 0 0 190px;
   height: 100%;
@@ -66,7 +67,7 @@
   mask-repeat: no-repeat;
 }
 
-/* Content Right */
+/* Right Side (Content) */
 .epoque-right {
   flex: 1;
   height: 100%;
@@ -75,6 +76,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+   min-width: 0;
 }
 
 /* Top Stats */
@@ -86,7 +88,7 @@
 }
 
 .epoque-stat {
-  background: var(--epoque-stat-bg, #3b3b3b);
+  background: #3b3b3b;
   padding: 10px;
   border-radius: 8px;
   border: 2px solid var(--epoque-accent);
@@ -157,28 +159,16 @@
   transition: width 0.6s ease-in-out;
 }
 
-/* Divider */
+/* Divider Line */
 .epoque-divider {
   border-top: 1px solid var(--epoque-accent);
   margin: 6px 0;
 }
 
-/* Scrollable Actions */
+/* Actions Area */
 .epoque-actions {
   margin-left: -50px;
   width: calc(100% + 50px);
-  max-height: 150px;
-  overflow-y: auto;
-  padding-right: 6px;
-  scrollbar-width: thin;
-}
-
-.epoque-actions::-webkit-scrollbar {
-  width: 6px;
-}
-.epoque-actions::-webkit-scrollbar-thumb {
-  background-color: var(--epoque-accent);
-  border-radius: 3px;
 }
 
 .epoque-actions .epoque-field {
