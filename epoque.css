@@ -34,7 +34,8 @@
 .epoque-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+   object-fit: cover;
+  object-position: center left;
   display: block;
   pointer-events: none;
   user-select: none;
