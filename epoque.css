@@ -169,12 +169,12 @@
 .epoque-actions {
   margin-left: -50px;
   width: calc(100% + 50px);
-  max-height: 150px; /* Adjust as needed */
+  flex-grow: 1;
   overflow-y: auto;
   padding-right: 4px;
   scrollbar-width: thin;
-  flex-shrink: 0;
 }
+
 
 .epoque-actions::-webkit-scrollbar {
   width: 4px;
