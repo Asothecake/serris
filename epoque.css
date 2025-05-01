@@ -88,7 +88,7 @@
 }
 
 .epoque-stat {
-  background: #3b3b3b;
+  background: var(--epoque-stat-bg, #3b3b3b); /* fallback included */
   padding: 10px;
   border-radius: 8px;
   border: 2px solid var(--epoque-accent);
@@ -172,7 +172,7 @@
 }
 
 .epoque-actions-wrapper {
-  max-height: 140px; /* Adjust as needed to fit comfortably */
+  max-height: 140px;
   overflow-y: auto;
   padding-right: 4px;
   scrollbar-width: thin;
@@ -181,6 +181,7 @@
 .epoque-actions-wrapper::-webkit-scrollbar {
   width: 4px;
 }
+
 .epoque-actions-wrapper::-webkit-scrollbar-thumb {
   background-color: var(--epoque-accent);
   border-radius: 2px;
