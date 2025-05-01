@@ -71,27 +71,27 @@
 .epoque-right {
   flex: 1;
   height: 100%;
-  padding: 15px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* disables outer overflow again */
 }
 
 .epoque-scroll {
+  flex: 1;
   overflow-y: auto;
-  height: 100%;
+  padding: 15px;
   display: flex;
   flex-direction: column;
+  gap: 8px; /* optional spacing */
   scrollbar-width: thin;
 }
 
 .epoque-scroll::-webkit-scrollbar {
-  width: 6px;
+  width: 1px;
 }
 .epoque-scroll::-webkit-scrollbar-thumb {
   background-color: var(--epoque-accent);
-  border-radius: 3px;
+  border-radius: 1px;
 }
 
 /* Top Stats */
