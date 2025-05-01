@@ -11,19 +11,20 @@
 
 .epoque-container {
   display: flex;
+  flex-wrap: wrap; /* ← stops overflow cutoff */
   max-width: 650px;
   margin: 20px auto;
   border: 2px solid var(--epoque-border, #c5b077);
   background: var(--epoque-bg, #2c2c2c);
-  font-family: 'Arial', sans-serif;
   color: var(--epoque-text, #d9d1b0);
-  overflow: hidden;
+  font-family: 'Arial', sans-serif;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .epoque-left {
   position: relative;
-  flex: 0 0 190px; /* ← fixed width */
+  flex: 0 0 190px;
   height: 420px;
   overflow: hidden;
   display: flex;
