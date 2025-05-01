@@ -171,6 +171,21 @@
   width: calc(100% + 50px);
 }
 
+.epoque-actions-wrapper {
+  max-height: 140px; /* Adjust as needed to fit comfortably */
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+}
+
+.epoque-actions-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.epoque-actions-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--epoque-accent);
+  border-radius: 2px;
+}
+
 .epoque-actions .epoque-field {
   margin: 4px 0;
   padding: 4px 6px;
