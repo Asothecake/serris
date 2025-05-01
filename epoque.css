@@ -175,12 +175,11 @@
   scrollbar-width: thin;
 }
 
-
 .epoque-actions::-webkit-scrollbar {
   width: 2px;
 }
 .epoque-actions::-webkit-scrollbar-thumb {
-  background-color: var(--epoque-accent);
+  background-color: var(--epoque-accent) !important;
   border-radius: 1px;
 }
 
