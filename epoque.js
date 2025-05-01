@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "--epoque-hp-start": container.dataset.hpStart,
       "--epoque-hp-end": container.dataset.hpEnd,
       "--epoque-field-bg": container.dataset.fieldBg,
-      "--epoque-muted": container.dataset.muted
+      "--epoque-muted": container.dataset.muted,
+      "--epoque-stat-bg": container.dataset.statBg,
     };
 
     for (const [key, val] of Object.entries(themeVars)) {
