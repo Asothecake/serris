@@ -212,16 +212,10 @@
   overflow-y: auto;
   padding: 10px;
   z-index: 10;
-  font-size: 12px;
-  font-family: 'Arial', sans-serif;
-  border-right: 1px solid var(--epoque-border);
-  display: none; /* prevents flash on load */
+  display: flex;
   flex-direction: column;
-  gap: 0;
-}
-
-.epoque-commands-overlay.show {
-  display: flex !important;
+  gap: 4px;
+  font-size: 12px;
 }
 
 .epoque-commands-overlay.hidden {
@@ -229,14 +223,9 @@
 }
 
 .epoque-command {
-  padding: 6px 8px;
+  padding: 3px 6px;
   background: var(--epoque-field-bg);
-  border-bottom: 1px solid var(--epoque-border);
   transition: background 0.3s, opacity 0.3s;
-  line-height: 1.4;
-  font-weight: 500;
-  word-break: break-word;
-  font-family: 'Arial', sans-serif;
 }
 
 .epoque-command:nth-child(even) {
@@ -251,6 +240,8 @@
   opacity: 1;
   font-weight: bold;
 }
+
+
 
 /* Footer */
 .epoque-footer {
