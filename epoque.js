@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".epoque-container").forEach(container => {
-    // 1. HP Bar Handling
+    // HP Bar
     const hpFill = container.querySelector(".epoque-hp-fill");
-    const current = parseInt(container.getAttribute("data-epoque-hp"), 10);
-    const max = parseInt(container.getAttribute("data-epoque-max"), 10);
+    const current = parseInt(container.dataset.epoqueHp, 10);
+    const max = parseInt(container.dataset.epoqueMax, 10);
     if (!isNaN(current) && !isNaN(max) && max > 0) {
-      hpFill.style.width = `${(current / max) * 100}%`;
+      const percent = Math.max(0, Math.min((current / max) * 100, 100));
+      hpFill.style.width = `${percent}%`;
     }
 
-    // 2. Theming
+    // Theming
     const themeVars = {
       "--epoque-bg": container.dataset.bg,
       "--epoque-accent": container.dataset.accent,
@@ -21,11 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
       "--epoque-muted": container.dataset.muted,
       "--epoque-stat-bg": container.dataset.statBg,
     };
-    for (const [key, val] of Object.entries(themeVars)) {
+    Object.entries(themeVars).forEach(([key, val]) => {
       if (val) container.style.setProperty(key, val);
-    }
+    });
 
-    // 3. Command Panel Toggle
+    // Command Toggle
     const toggleBtn = container.querySelector(".toggle-commands");
     const commandOverlay = container.querySelector(".epoque-commands-overlay");
     const statBlocks = container.querySelectorAll(".epoque-stat");
@@ -41,14 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // 4. Stat Filtering
+    // Stat Filter
     statBlocks.forEach(stat => {
       stat.addEventListener("click", () => {
-        if (!commandOverlay || commandOverlay.classList.contains("hidden")) return;
         const label = stat.querySelector("label")?.innerText;
-        const commands = commandOverlay.querySelectorAll(".epoque-command");
-        if (!label) return;
+        if (!label || !commandOverlay || commandOverlay.classList.contains("hidden")) return;
 
+        const commands = commandOverlay.querySelectorAll(".epoque-command");
         if (lastStat === label) {
           commands.forEach(cmd => cmd.classList.remove("dimmed", "highlighted"));
           lastStat = null;
