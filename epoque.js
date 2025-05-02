@@ -32,44 +32,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Command Toggle + Stat Filter
+  // Command Toggle + Stat Filter (Delayed to ensure DOM presence)
   document.querySelectorAll(".epoque-container").forEach(container => {
-    const toggleBtn = container.querySelector(".toggle-commands");
-    const commandOverlay = container.querySelector(".epoque-commands-overlay");
-    const statBlocks = container.querySelectorAll(".epoque-stat");
+    setTimeout(() => {
+      const toggleBtn = container.querySelector(".toggle-commands");
+      const commandOverlay = container.querySelector(".epoque-commands-overlay");
+      const statBlocks = container.querySelectorAll(".epoque-stat");
 
-    let lastStat = null;
+      let lastStat = null;
 
-    // Toggle visibility
-    toggleBtn?.addEventListener("click", () => {
-      commandOverlay?.classList.toggle("hidden");
-    });
+      if (!toggleBtn || !commandOverlay) return;
 
-    // Filter by stat
-    statBlocks.forEach(stat => {
-      stat.addEventListener("click", () => {
-        const label = stat.querySelector("label")?.innerText;
-        if (!label || !commandOverlay || commandOverlay.classList.contains("hidden")) return;
+      toggleBtn.addEventListener("click", () => {
+        commandOverlay.classList.toggle("hidden");
+      });
 
-        const commands = commandOverlay.querySelectorAll(".epoque-command");
+      statBlocks.forEach(stat => {
+        stat.addEventListener("click", () => {
+          const label = stat.querySelector("label")?.innerText;
+          if (!label || commandOverlay.classList.contains("hidden")) return;
 
-        // Toggle off filter if clicking same stat again
-        if (lastStat === label) {
+          const commands = commandOverlay.querySelectorAll(".epoque-command");
+
+          if (lastStat === label) {
+            commands.forEach(cmd => cmd.classList.remove("dimmed", "highlighted"));
+            lastStat = null;
+            return;
+          }
+
+          lastStat = label;
           commands.forEach(cmd => {
-            cmd.classList.remove("dimmed", "highlighted");
+            const match = cmd.dataset.stat === label;
+            cmd.classList.toggle("highlighted", match);
+            cmd.classList.toggle("dimmed", !match);
           });
-          lastStat = null;
-          return;
-        }
-
-        // Apply new filter
-        lastStat = label;
-        commands.forEach(cmd => {
-          const match = cmd.dataset.stat === label;
-          cmd.classList.toggle("highlighted", match);
-          cmd.classList.toggle("dimmed", !match);
         });
       });
-    });
+    }, 0);
   });
 });
