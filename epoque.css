@@ -216,16 +216,19 @@
   flex-direction: column;
   gap: 4px;
   font-size: 12px;
-}
-
-.epoque-commands-overlay.hidden {
-  display: none;
+  font-family: 'Arial', sans-serif;
+  border-right: 1px solid var(--epoque-border);
 }
 
 .epoque-command {
-  padding: 3px 6px;
+  padding: 6px 8px;
   background: var(--epoque-field-bg);
+  border-bottom: 1px solid var(--epoque-border);
   transition: background 0.3s, opacity 0.3s;
+  line-height: 1.4;
+  font-weight: 500;
+  cursor: default;
+  word-break: break-word;
 }
 
 .epoque-command:nth-child(even) {
@@ -240,8 +243,6 @@
   opacity: 1;
   font-weight: bold;
 }
-
-
 
 /* Footer */
 .epoque-footer {
