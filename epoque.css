@@ -202,6 +202,7 @@
 }
 
 .epoque-commands-overlay {
+  display: none; /* make sure it's default hidden */
   position: absolute;
   top: 0;
   left: 0;
@@ -212,14 +213,13 @@
   overflow-y: auto;
   padding: 10px;
   z-index: 10;
-  display: flex;
   flex-direction: column;
   gap: 4px;
   font-size: 12px;
 }
 
-.epoque-commands-overlay.hidden {
-  display: none;
+.epoque-commands-overlay.show {
+  display: flex !important;
 }
 
 .epoque-command {
