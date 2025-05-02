@@ -1,3 +1,4 @@
+
 :root {
   --epoque-bg: #2c2c2c;
   --epoque-accent: #c5b077;
@@ -202,7 +203,6 @@
 }
 
 .epoque-commands-overlay {
-  display: none; /* make sure it's default hidden */
   position: absolute;
   top: 0;
   left: 0;
@@ -213,13 +213,14 @@
   overflow-y: auto;
   padding: 10px;
   z-index: 10;
+  display: flex;
   flex-direction: column;
   gap: 4px;
   font-size: 12px;
 }
 
-.epoque-commands-overlay.show {
-  display: flex !important;
+.epoque-commands-overlay.hidden {
+  display: none;
 }
 
 .epoque-command {
