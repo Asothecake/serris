@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Theming via CSS variables (synced with --epoque-* vars)
+  // Theming via CSS variables
   document.querySelectorAll(".epoque-container").forEach(container => {
     const themeVars = {
       "--epoque-bg": container.dataset.bg,
@@ -29,5 +29,46 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const [key, val] of Object.entries(themeVars)) {
       if (val) container.style.setProperty(key, val);
     }
+  });
+
+  // Command Toggle + Stat Filter
+  document.querySelectorAll(".epoque-container").forEach(container => {
+    const toggleBtn = container.querySelector(".toggle-commands");
+    const commandOverlay = container.querySelector(".epoque-commands-overlay");
+    const statBlocks = container.querySelectorAll(".epoque-stat");
+
+    let lastStat = null;
+
+    // Toggle visibility
+    toggleBtn?.addEventListener("click", () => {
+      commandOverlay.classList.toggle("hidden");
+    });
+
+    // Filter by stat
+    statBlocks.forEach(stat => {
+      stat.addEventListener("click", () => {
+        const label = stat.querySelector("label")?.innerText;
+        if (!label || !commandOverlay || commandOverlay.classList.contains("hidden")) return;
+
+        const commands = commandOverlay.querySelectorAll(".epoque-command");
+
+        // Toggle off filter if clicking same stat again
+        if (lastStat === label) {
+          commands.forEach(cmd => {
+            cmd.classList.remove("dimmed", "highlighted");
+          });
+          lastStat = null;
+          return;
+        }
+
+        // Apply new filter
+        lastStat = label;
+        commands.forEach(cmd => {
+          const match = cmd.dataset.stat === label;
+          cmd.classList.toggle("highlighted", match);
+          cmd.classList.toggle("dimmed", !match);
+        });
+      });
+    });
   });
 });
