@@ -227,6 +227,11 @@
   padding: 3px 6px;
   background: var(--epoque-field-bg);
   transition: background 0.3s, opacity 0.3s;
+    border-bottom: 1px solid var(--epoque-border);
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 4px 6px;
 }
 
 .epoque-command:nth-child(even) {
