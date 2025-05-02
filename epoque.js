@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   // Dynamic HP Bar Filler
   document.querySelectorAll(".epoque-container").forEach(container => {
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Command Toggle + Stat Filter (Delayed to ensure DOM presence)
+  // Command Toggle + Stat Filter (Ensures isolation per post)
   document.querySelectorAll(".epoque-container").forEach(container => {
     setTimeout(() => {
       const toggleBtn = container.querySelector(".toggle-commands");
@@ -68,6 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         });
       });
-    }, 0);
+    }, 0); // Ensure execution after DOM settles
   });
 });
