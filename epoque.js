@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Dynamic HP Bar Filler + Theming
   document.querySelectorAll(".epoque-container").forEach(container => {
-    // HP Bar fill
+    // Set HP bar
     const hpFill = container.querySelector(".epoque-hp-fill");
-    const current = parseInt(container.getAttribute("data-epoque-hp"), 10);
-    const max = parseInt(container.getAttribute("data-epoque-max"), 10);
-    if (!isNaN(current) && !isNaN(max) && max > 0) {
-      const percent = Math.max(0, Math.min((current / max) * 100, 100));
-      hpFill.style.width = `${percent}%`;
+    const current = parseInt(container.dataset.epoqueHp, 10);
+    const max = parseInt(container.dataset.epoqueMax, 10);
+    if (hpFill && !isNaN(current) && !isNaN(max) && max > 0) {
+      hpFill.style.width = `${Math.min(100, (current / max) * 100)}%`;
     }
 
-    // Theme variables
+    // Apply theme
     const themeVars = {
       "--epoque-bg": container.dataset.bg,
       "--epoque-accent": container.dataset.accent,
@@ -23,44 +21,45 @@ document.addEventListener("DOMContentLoaded", () => {
       "--epoque-muted": container.dataset.muted,
       "--epoque-stat-bg": container.dataset.statBg,
     };
-    for (const [key, val] of Object.entries(themeVars)) {
-      if (val) container.style.setProperty(key, val);
+    for (const [key, value] of Object.entries(themeVars)) {
+      if (value) container.style.setProperty(key, value);
     }
 
-    // Command toggle and stat filter (scoped per container)
-    const toggleBtn = container.querySelector(".toggle-commands");
-    const commandOverlay = container.querySelector(".epoque-commands-overlay");
-    const statBlocks = container.querySelectorAll(".epoque-stat");
-    let lastStat = null;
+    // Handle commands overlay toggle and stat filtering
+    const toggle = container.querySelector(".toggle-commands");
+    const overlay = container.querySelector(".epoque-commands-overlay");
+    const stats = container.querySelectorAll(".epoque-stat");
 
-    if (toggleBtn && commandOverlay) {
-      toggleBtn.addEventListener("click", () => {
-        commandOverlay.classList.toggle("hidden");
-        // Reset filters when opening/closing
-        commandOverlay.querySelectorAll(".epoque-command").forEach(cmd => {
-          cmd.classList.remove("dimmed", "highlighted");
-        });
-        lastStat = null;
+    if (!toggle || !overlay) return;
+
+    let activeStat = null;
+
+    toggle.addEventListener("click", () => {
+      overlay.classList.toggle("hidden");
+      overlay.querySelectorAll(".epoque-command").forEach(cmd => {
+        cmd.classList.remove("highlighted", "dimmed");
       });
-    }
+      activeStat = null;
+    });
 
-    statBlocks.forEach(stat => {
+    stats.forEach(stat => {
       stat.addEventListener("click", () => {
-        const label = stat.querySelector("label")?.innerText;
-        if (!label || commandOverlay.classList.contains("hidden")) return;
+        if (overlay.classList.contains("hidden")) return;
 
-        const commands = commandOverlay.querySelectorAll(".epoque-command");
+        const statLabel = stat.querySelector("label")?.innerText;
+        const commands = overlay.querySelectorAll(".epoque-command");
+        if (!statLabel) return;
 
-        if (lastStat === label) {
-          commands.forEach(cmd => cmd.classList.remove("dimmed", "highlighted"));
-          lastStat = null;
+        if (statLabel === activeStat) {
+          commands.forEach(cmd => cmd.classList.remove("highlighted", "dimmed"));
+          activeStat = null;
         } else {
           commands.forEach(cmd => {
-            const match = cmd.dataset.stat === label;
+            const match = cmd.dataset.stat === statLabel;
             cmd.classList.toggle("highlighted", match);
             cmd.classList.toggle("dimmed", !match);
           });
-          lastStat = label;
+          activeStat = statLabel;
         }
       });
     });
