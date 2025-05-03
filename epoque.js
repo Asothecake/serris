@@ -66,6 +66,17 @@
         });
       });
     });
+
+    // Cooldown auto-dim
+    const cooldownField = container.querySelector(".epoque-field[data-label='Cooldowns:']");
+    if (cooldownField && commandOverlay) {
+      const cooldowns = cooldownField.textContent.split(',').map(c => c.trim().toLowerCase());
+      commandOverlay.querySelectorAll(".epoque-command").forEach(cmd => {
+        if (cooldowns.includes(cmd.textContent.trim().toLowerCase())) {
+          cmd.classList.add("dimmed");
+        }
+      });
+    }
   }
 
   // Initialize all current containers
