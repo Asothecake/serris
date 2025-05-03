@@ -211,7 +211,8 @@
   background: var(--epoque-bg);
   color: var(--epoque-text);
   overflow-y: auto;
-  padding: 10px 12px;
+  padding: 10px;
+  padding-bottom: 20px;
   box-sizing: border-box;
   z-index: 10;
   display: flex;
