@@ -1,5 +1,4 @@
 (function () {
-  // Avoid running multiple times globally
   if (window.epoqueInit) return;
   window.epoqueInit = true;
 
@@ -38,26 +37,55 @@
     const toggleBtn = container.querySelector(".toggle-commands");
     const commandOverlay = container.querySelector(".epoque-commands-overlay");
     const statBlocks = container.querySelectorAll(".epoque-stat");
+    const commands = commandOverlay?.querySelectorAll(".epoque-command") || [];
     let lastStat = null;
 
+    // Cooldown parsing
+    const cooldownField = container.querySelector(".epoque-field[data-label^='Cooldowns']");
+    const cooldownList = [];
+    if (cooldownField) {
+      const cdText = cooldownField.textContent;
+      if (cdText) {
+        cooldownList.push(...cdText.split(",").map(cd => cd.trim().toLowerCase()));
+      }
+    }
+
+    // Initial cooldown dimming
+    commands.forEach(cmd => {
+      const name = cmd.textContent.trim().toLowerCase();
+      if (cooldownList.includes(name)) {
+        cmd.classList.add("dimmed");
+      }
+    });
+
+    // Toggle button
     toggleBtn?.addEventListener("click", () => {
       commandOverlay?.classList.toggle("hidden");
     });
 
+    // Stat filters
     statBlocks.forEach(stat => {
       stat.addEventListener("click", () => {
         const label = stat.querySelector("label")?.innerText;
         if (!label || !commandOverlay || commandOverlay.classList.contains("hidden")) return;
-        const commands = commandOverlay.querySelectorAll(".epoque-command");
 
-        // Toggle off filter if clicking the same stat again
+        // Remove highlight
         if (lastStat === label) {
           commands.forEach(cmd => cmd.classList.remove("dimmed", "highlighted"));
           lastStat = null;
+
+          // Reapply cooldowns
+          commands.forEach(cmd => {
+            const name = cmd.textContent.trim().toLowerCase();
+            if (cooldownList.includes(name)) {
+              cmd.classList.add("dimmed");
+            }
+          });
+
           return;
         }
 
-        // Apply filter
+        // Apply stat filter
         lastStat = label;
         commands.forEach(cmd => {
           const match = cmd.dataset.stat === label;
@@ -66,25 +94,13 @@
         });
       });
     });
-
-    // Cooldown auto-dim
-    const cooldownField = container.querySelector(".epoque-field[data-label='Cooldowns:']");
-    if (cooldownField && commandOverlay) {
-      const cooldowns = cooldownField.textContent.split(',').map(c => c.trim().toLowerCase());
-      commandOverlay.querySelectorAll(".epoque-command").forEach(cmd => {
-        if (cooldowns.includes(cmd.textContent.trim().toLowerCase())) {
-          cmd.classList.add("dimmed");
-        }
-      });
-    }
   }
 
-  // Initialize all current containers
+  // Run for all
   function runInit() {
     document.querySelectorAll(".epoque-container").forEach(initEpoqueTemplate);
   }
 
-  // Safe for delayed DOM (e.g. JCINK)
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", runInit);
   } else {
