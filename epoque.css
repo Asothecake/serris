@@ -16,9 +16,9 @@
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  max-width: min(489px, calc(100% - 10px));
+  max-width: 489px;
   height: 420px;
-  margin: 0 auto;
+  margin: 0px auto; 
   background: var(--epoque-bg);
   color: var(--epoque-text);
   border: 2px solid var(--epoque-border);
