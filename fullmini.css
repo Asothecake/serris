@@ -12,10 +12,8 @@ aso-body {
     border: 2px solid #e1e1e1;
     border-radius: 15px;
     padding: 20px;
-    max-width: 495px;
-    width: 495px; /* Ensures it doesn't shrink or expand */
-    max-width: 495px;
-    width: 495px; /* Ensures it doesn't shrink or expand */
+    max-width: 490px;
+    width: 490px; /* Ensures it doesn't shrink or expand */
     height: auto; /* Allows content to dictate height */
     min-height: 320px; /* Adjust based on expected minimum size */
     margin: 40px auto;
