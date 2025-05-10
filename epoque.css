@@ -15,9 +15,9 @@
 .epoque-container {
   display: flex;
   width: 100%;
-  max-width: 740px;
+  max-width: 580px; 
   height: 420px;
-  margin: 20px auto;
+  margin: 0px auto; 
   background: var(--epoque-bg);
   color: var(--epoque-text);
   border: 2px solid var(--epoque-border);
