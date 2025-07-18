@@ -303,7 +303,7 @@
   }
 
   .epoque-actions {
-    overflow: hidden;
+    overflow: visible;
     max-height: 100%;
     margin-left: 0;
     width: 100%;
