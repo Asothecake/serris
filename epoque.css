@@ -273,12 +273,12 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    overflow-y: hidden; /* This disables vertical scrolling */
+    overflow: none; 
   }
 
   .epoque-container {
     height: 100vh !important; /* Stretch to full screen height */
-    overflow-y: auto; /* Enable scrolling **within** container if needed */
+    overflow: none; /* Enable scrolling **within** container if needed */
     padding: 10px;
     box-sizing: border-box;
     display: flex;
@@ -289,7 +289,7 @@
   .epoque-right {
     flex: 1;
     max-height: 50%;
-    overflow: hidden;
+    overflow: none;
   }
 
   .epoque-image {
