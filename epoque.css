@@ -270,29 +270,30 @@
 
 @media (max-width: 767px) {
   html, body {
+    height: auto;
     padding: 0;
     margin: 0;
     overflow: visible; 
   }
 
-  .epoque-container {
-    max-height: none;
+ .epoque-container {
+    display: block;              /* ✅ Remove flex on mobile */
     width: 100% !important;
     max-width: 100% !important;
+    height: auto !important;     /* ✅ Allow natural height */
+    max-height: none !important;
+    border-radius: 0;
+    border: none;
     overflow: visible;
-    display: flex;
-    flex-direction: column;
-    border-radius: 0; /* optional: edge-to-edge on mobile */
-    border: none;     /* optional: cleaner mobile look */
   }
 
   .epoque-left,
   .epoque-right {
-    flex: 1;
+    display: block;
     width: 100% !important;
     max-width: 100% !important;
+    height: auto;
     max-height: none;
-    overflow: none;
   }
 
   .epoque-image {
@@ -310,8 +311,8 @@
 
   .epoque-commands-overlay {
     max-height: none;
+    overflow: visible;
   }
 }
-
 
 
