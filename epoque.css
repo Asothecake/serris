@@ -267,3 +267,45 @@
   font-weight: bold;
   margin-left: 4px;
 }
+
+@media (max-width: 767px) {
+  .epoque-container {
+    flex-direction: column;       /* Stack left/right sections */
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    padding: 10px;
+    overflow-x: hidden;
+  }
+
+  .epoque-left,
+  .epoque-right {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .epoque-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .epoque-commands-overlay {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .epoque-actions {
+    padding-bottom: 10px;
+  }
+
+  .epoque-topstats {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .epoque-footer {
+    text-align: center;
+  }
+}
+
