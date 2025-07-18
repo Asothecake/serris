@@ -275,7 +275,7 @@
     max-width: 100% !important;
     box-sizing: border-box;
     padding: 10px;
-    overflow-x: hidden;
+    overflow: none;
   }
 
   .epoque-left,
@@ -292,7 +292,7 @@
 
   .epoque-commands-overlay {
     max-height: 300px;
-    overflow-y: auto;
+    overflow: none;
   }
 
   .epoque-actions {
