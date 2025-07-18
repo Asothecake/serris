@@ -273,14 +273,14 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    overflow: hidden; /* Prevent scrolling altogether */
+    overflow: none; 
   }
 
   .epoque-container {
     height: 100vh !important;
     width: 100% !important;
     max-width: 100% !important;
-    overflow: hidden;
+    overflow: none;
     display: flex;
     flex-direction: column;
     border-radius: 0; /* optional: edge-to-edge on mobile */
@@ -293,7 +293,7 @@
     width: 100% !important;
     max-width: 100% !important;
     max-height: 50%;
-    overflow: auto;
+    overflow: none;
   }
 
   .epoque-image {
@@ -303,7 +303,7 @@
   }
 
   .epoque-actions {
-    overflow-y: auto;
+    overflow: none;
     max-height: 100%;
     margin-left: 0;
     width: 100%;
