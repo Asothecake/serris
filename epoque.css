@@ -269,43 +269,33 @@
 }
 
 @media (max-width: 767px) {
+  html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-y: hidden; /* This disables vertical scrolling */
+  }
+
   .epoque-container {
-    flex-direction: column;       /* Stack left/right sections */
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box;
+    height: 100vh !important; /* Stretch to full screen height */
+    overflow-y: auto; /* Enable scrolling **within** container if needed */
     padding: 10px;
-    overflow: none;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 
   .epoque-left,
   .epoque-right {
-    width: 100% !important;
-    max-width: 100% !important;
+    flex: 1;
+    max-height: 50%;
+    overflow: hidden;
   }
 
   .epoque-image {
     width: 100%;
     height: auto;
-    object-fit: contain;
-  }
-
-  .epoque-commands-overlay {
-    max-height: 300px;
-    overflow: none;
-  }
-
-  .epoque-actions {
-    padding-bottom: 10px;
-  }
-
-  .epoque-topstats {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .epoque-footer {
-    text-align: center;
   }
 }
+
 
