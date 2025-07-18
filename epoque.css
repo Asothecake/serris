@@ -270,7 +270,6 @@
 
 @media (max-width: 767px) {
   html, body {
-    height: 100%;
     padding: 0;
     margin: 0;
     overflow: visible; 
@@ -292,7 +291,7 @@
     flex: 1;
     width: 100% !important;
     max-width: 100% !important;
-    max-height: 50%;
+    max-height: none;
     overflow: none;
   }
 
@@ -310,7 +309,7 @@
   }
 
   .epoque-commands-overlay {
-    max-height: 100%;
+    max-height: none;
   }
 }
 
