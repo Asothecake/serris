@@ -273,14 +273,14 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    overflow: none; 
+    overflow: visible; 
   }
 
   .epoque-container {
-    height: 100vh !important;
+    max-height: none;
     width: 100% !important;
     max-width: 100% !important;
-    overflow: none;
+    overflow: visible;
     display: flex;
     flex-direction: column;
     border-radius: 0; /* optional: edge-to-edge on mobile */
