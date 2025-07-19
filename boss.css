@@ -119,7 +119,7 @@
 }
 
 .boss-stat label {
-  font-size: 6px;
+  font-size: 10px;
   color: var(--boss-accent);
   display: block;
 }
