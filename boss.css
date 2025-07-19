@@ -18,7 +18,7 @@ height: auto;
 margin: 0 auto;
 background: var(--boss-bg);
 color: var(--boss-text);
-border: 2px solid var(--boss-border);
+border: 0px solid var(--boss-border);
 font-family: 'Arial', sans-serif;
 border-radius: 12px;
 overflow: hidden;
