@@ -1,0 +1,67 @@
+{
+  "whitelioness": {
+    "bg": "#e8e5e2",
+    "accent": "#B02C6E",
+    "border": "#c6b8de",
+    "text": "#2e2b34",
+    "muted": "#777",
+    "hpBg": "#ded9d2",
+    "hpStart": "#B02C6E",
+    "hpEnd": "#8C2358",
+    "fieldBg": "rgba(162, 92, 246, 0.1)",
+    "statBg": "#f2f0f0",
+    "src": "https://i.imgur.com/IU21mg7.png"
+  },
+  "noctis": {
+    "bg": "#2c2f3a",
+    "accent": "#ff6f61",
+    "border": "#1a1f2e",
+    "text": "#ffffff",
+    "muted": "#ce93d8",
+    "hpBg": "#3a3f51",
+    "hpStart": "#ffccbc",
+    "hpEnd": "#ff8a65",
+    "fieldBg": "rgba(255, 111, 97, 0.12)",
+    "statBg": "#5e6094",
+    "src": "https://i.imgur.com/vZuD22w.png"
+  },
+  "halemercer": {
+    "bg": "#f5f5f5",
+    "accent": "#9b59b6",
+    "border": "#8e44ad",
+    "text": "#2c2c2c",
+    "muted": "#95a5a6",
+    "hpBg": "#e0e0e0",
+    "hpStart": "#c39bd3",
+    "hpEnd": "#9b59b6",
+    "fieldBg": "rgba(155, 89, 182, 0.12)",
+    "statBg": "#e6e6e6",
+    "src": "https://i.imgur.com/yXl4YaV.png"
+  },
+  "Auron": {
+    "bg": "#1e1a18",
+    "accent": "#c08c68",
+    "border": "#8f5e44",
+    "text": "#dbcbbf",
+    "muted": "#72655e",
+    "hpBg": "#2b2320",
+    "hpStart": "#e7a37d",
+    "hpEnd": "#935642",
+    "fieldBg": "rgba(46, 38, 34, 0.65)",
+    "statBg": "#2a2422",
+    "src": "https://i.imgur.com/oZaINXc.png"
+  },
+  "Royale": {
+    "bg": "#2a2a2a",
+    "accent": "#b3e6ff",
+    "border": "#555",
+    "text": "#e0e0e0",
+    "muted": "#888",
+    "hpBg": "#1a1a1a",
+    "hpStart": "#34c1e2",
+    "hpEnd": "#004c66",
+    "fieldBg": "rgba(255, 255, 255, 0.05)",
+    "statBg": "#1a1a1a",
+    "src": "https://i.imgur.com/ErdGp8W.png"
+  }
+}
