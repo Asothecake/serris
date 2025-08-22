@@ -63,5 +63,31 @@
     "fieldBg": "rgba(255, 255, 255, 0.05)",
     "statBg": "#1a1a1a",
     "src": "https://i.imgur.com/ErdGp8W.png"
+  },
+  "tomomi2": {
+    "bg": "black",
+    "accent": "silver",
+    "border": "silver",
+    "text": "white",
+    "muted": "white",
+    "hpBg": "green",
+    "hpStart": "cyan",
+    "hpEnd": "lightgreen",
+    "fieldBg": "#2F4F4F",
+    "statBg": "black",
+    "src": "https://imgur.com/18KEynO.png"
+  },
+  "tomomi1": {
+    "bg": "skyblue",
+    "accent": "Deeppink",
+    "border": "",
+    "text": "black",
+    "muted": "",
+    "hpBg": "",
+    "hpStart": "springgreen",
+    "hpEnd": "green",
+    "fieldBg": "lightgrey",
+    "statBg": "white",
+    "src": "https://imgur.com/hJ7cm40.png"
   }
 }
