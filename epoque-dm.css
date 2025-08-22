@@ -1,0 +1,128 @@
+:root {
+  --epoque-dm-bg: #2c2c2c;
+  --epoque-dm-accent: #c5b077;
+  --epoque-dm-border: #c5b077;
+  --epoque-dm-text: #d9d1b0;
+  --epoque-dm-hp-bg: #2a2a2a;
+  --epoque-dm-hp-start: #04d9d9;
+  --epoque-dm-hp-end: #0070dd;
+  --epoque-dm-field-bg: rgba(44, 44, 44, 0.8);
+  --epoque-dm-muted: #888;
+}
+
+/* ===== Epoque DM Layout ===== */
+.epoque-dm-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 489px;
+  height: 420px;
+  margin: 0 auto;
+  background: var(--epoque-dm-bg);
+  color: var(--epoque-dm-text);
+  border: 2px solid var(--epoque-dm-border);
+  font-family: 'Arial', sans-serif;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.epoque-dm-header {
+  padding: 10px;
+  background: var(--epoque-dm-accent);
+  color: var(--epoque-dm-bg);
+  text-align: center;
+  font-weight: bold;
+}
+
+.epoque-dm-enemies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  gap: 10px;
+}
+
+.epoque-dm-enemy {
+  flex: 1 1 45%; /* Auto-adjust: 1-2 per row for 1-2 enemies, smaller for more */
+  min-width: 150px;
+  background: var(--epoque-dm-field-bg);
+  border: 1px solid var(--epoque-dm-border);
+  border-radius: 8px;
+  padding: 10px;
+  display: none; /* Hidden by default; JS shows based on data-enemies */
+}
+
+.epoque-dm-enemy-name {
+  font-weight: bold;
+  color: var(--epoque-dm-accent);
+  margin-bottom: 5px;
+}
+
+.epoque-dm-hpbar-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.epoque-dm-hp-label {
+  color: var(--epoque-dm-accent);
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.epoque-dm-hpbar {
+  background: var(--epoque-dm-hp-bg);
+  height: 6px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.epoque-dm-hp-fill {
+  background: linear-gradient(to right, var(--epoque-dm-hp-start), var(--epoque-dm-hp-end));
+  height: 100%;
+  width: 0;
+  transition: width 0.6s ease-in-out;
+}
+
+.epoque-dm-actions .epoque-dm-field {
+  margin: 4px 0;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: var(--epoque-dm-bg);
+  color: var(--epoque-dm-text);
+}
+
+.epoque-dm-actions .epoque-dm-field::before {
+  content: attr(data-label);
+  color: var(--epoque-dm-accent);
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.epoque-dm-footer {
+  padding: 10px;
+  text-align: center;
+  color: var(--epoque-dm-muted);
+  font-size: 12px;
+  border-top: 1px solid var(--epoque-dm-border);
+}
+
+@media (max-width: 767px) {
+  .epoque-dm-container {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible;
+  }
+  .epoque-dm-enemies {
+    flex-direction: column;
+    align-items: center;
+  }
+  .epoque-dm-enemy {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}
