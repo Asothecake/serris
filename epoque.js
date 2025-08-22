@@ -2,7 +2,18 @@
   if (window.epoqueInit) return;
   window.epoqueInit = true;
 
-  function initEpoqueTemplate(container) {
+  async function fetchProfileData(url) {
+    try {
+      const response = await fetch(url, { cache: "no-cache" });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return await response.json();
+    } catch (e) {
+      console.error("Error fetching profile data from GitHub:", e);
+      return null;
+    }
+  }
+
+  async function initEpoqueTemplate(container) {
     if (container.dataset.epoqueInitialized === "true") return;
     container.dataset.epoqueInitialized = "true";
 
@@ -10,13 +21,24 @@
     let profileData = {};
     const profileName = container.dataset.profile;
     if (profileName) {
-      const profilesElement = container.querySelector(".epoque-profiles");
-      if (profilesElement) {
-        try {
-          const profiles = JSON.parse(profilesElement.textContent);
-          profileData = profiles[profileName] || {};
-        } catch (e) {
-          console.error("Error parsing epoque-profiles JSON:", e);
+      // Try fetching from external URL first
+      const profileUrl = container.dataset.profileUrl;
+      if (profileUrl) {
+        const profiles = await fetchProfileData(profileUrl);
+        if (profiles && profiles[profileName]) {
+          profileData = profiles[profileName];
+        }
+      }
+      // Fallback to local profiles if no URL or fetch fails
+      if (!profileData.src) {
+        const profilesElement = container.querySelector(".epoque-profiles");
+        if (profilesElement) {
+          try {
+            const profiles = JSON.parse(profilesElement.textContent);
+            profileData = profiles[profileName] || {};
+          } catch (e) {
+            console.error("Error parsing local epoque-profiles JSON:", e);
+          }
         }
       }
     }
@@ -116,7 +138,9 @@
 
   // Run for all
   function runInit() {
-    document.querySelectorAll(".epoque-container").forEach(initEpoqueTemplate);
+    document.querySelectorAll(".epoque-container").forEach(async (container) => {
+      await initEpoqueTemplate(container);
+    });
   }
 
   if (document.readyState === "loading") {
