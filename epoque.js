@@ -6,6 +6,29 @@
     if (container.dataset.epoqueInitialized === "true") return;
     container.dataset.epoqueInitialized = "true";
 
+    // Retrieve profile data
+    let profileData = {};
+    const profileName = container.dataset.profile;
+    if (profileName) {
+      const profilesElement = container.querySelector(".epoque-profiles");
+      if (profilesElement) {
+        try {
+          const profiles = JSON.parse(profilesElement.textContent);
+          profileData = profiles[profileName] || {};
+        } catch (e) {
+          console.error("Error parsing epoque-profiles JSON:", e);
+        }
+      }
+    }
+
+    // Apply profile image if specified
+    if (profileData.src) {
+      const image = container.querySelector(".epoque-image");
+      if (image) {
+        image.src = profileData.src;
+      }
+    }
+
     // HP bar fill
     const hpFill = container.querySelector(".epoque-hp-fill");
     const current = parseInt(container.getAttribute("data-epoque-hp"), 10);
@@ -15,20 +38,19 @@
       hpFill.style.width = `${percent}%`;
     }
 
-    // Theming
+    // Theming (use profile data if available, fall back to dataset attributes)
     const themeVars = {
-      "--epoque-bg": container.dataset.bg,
-      "--epoque-accent": container.dataset.accent,
-      "--epoque-border": container.dataset.border,
-      "--epoque-text": container.dataset.text,
-      "--epoque-hp-bg": container.dataset.hpBg,
-      "--epoque-hp-start": container.dataset.hpStart,
-      "--epoque-hp-end": container.dataset.hpEnd,
-      "--epoque-field-bg": container.dataset.fieldBg,
-      "--epoque-muted": container.dataset.muted,
-      "--epoque-stat-bg": container.dataset.statBg,
+      "--epoque-bg": profileData.bg || container.dataset.bg,
+      "--epoque-accent": profileData.accent || container.dataset.accent,
+      "--epoque-border": profileData.border || container.dataset.border,
+      "--epoque-text": profileData.text || container.dataset.text,
+      "--epoque-hp-bg": profileData.hpBg || container.dataset.hpBg,
+      "--epoque-hp-start": profileData.hpStart || container.dataset.hpStart,
+      "--epoque-hp-end": profileData.hpEnd || container.dataset.hpEnd,
+      "--epoque-field-bg": profileData.fieldBg || container.dataset.fieldBg,
+      "--epoque-muted": profileData.muted || container.dataset.muted,
+      "--epoque-stat-bg": profileData.statBg || container.dataset.statBg,
     };
-
     for (const [key, val] of Object.entries(themeVars)) {
       if (val) container.style.setProperty(key, val);
     }
@@ -68,12 +90,10 @@
       stat.addEventListener("click", () => {
         const label = stat.querySelector("label")?.innerText;
         if (!label || !commandOverlay || commandOverlay.classList.contains("hidden")) return;
-
         // Remove highlight
         if (lastStat === label) {
           commands.forEach(cmd => cmd.classList.remove("dimmed", "highlighted"));
           lastStat = null;
-
           // Reapply cooldowns
           commands.forEach(cmd => {
             const name = cmd.textContent.trim().toLowerCase();
@@ -81,10 +101,8 @@
               cmd.classList.add("dimmed");
             }
           });
-
           return;
         }
-
         // Apply stat filter
         lastStat = label;
         commands.forEach(cmd => {
