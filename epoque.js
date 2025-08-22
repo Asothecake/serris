@@ -2,46 +2,6 @@
   if (window.epoqueInit) return;
   window.epoqueInit = true;
 
-  // 🎨 Predefined theme profiles
-  const epoqueProfiles = {
-    1: {
-      "--epoque-bg": "#2c2c2c",
-      "--epoque-accent": "#c5b077",
-      "--epoque-border": "#c5b077",
-      "--epoque-text": "#d9d1b0",
-      "--epoque-hp-bg": "#2a2a2a",
-      "--epoque-hp-start": "#04d9d9",
-      "--epoque-hp-end": "#0070dd",
-      "--epoque-field-bg": "rgba(44, 44, 44, 0.8)",
-      "--epoque-muted": "#888",
-      "--epoque-stat-bg": "#3b3b3b",
-    },
-    2: {
-      "--epoque-bg": "#1d1b2f",
-      "--epoque-accent": "#e63973",
-      "--epoque-border": "#e63973",
-      "--epoque-text": "#f5e9ff",
-      "--epoque-hp-bg": "#292342",
-      "--epoque-hp-start": "#ff7f50",
-      "--epoque-hp-end": "#ff1493",
-      "--epoque-field-bg": "rgba(29, 27, 47, 0.85)",
-      "--epoque-muted": "#aaa",
-      "--epoque-stat-bg": "#352f57",
-    },
-    3: {
-      "--epoque-bg": "#182c25",
-      "--epoque-accent": "#4caf50",
-      "--epoque-border": "#4caf50",
-      "--epoque-text": "#e0f2e9",
-      "--epoque-hp-bg": "#0d1f18",
-      "--epoque-hp-start": "#66ff99",
-      "--epoque-hp-end": "#33cc66",
-      "--epoque-field-bg": "rgba(24, 44, 37, 0.85)",
-      "--epoque-muted": "#8fa396",
-      "--epoque-stat-bg": "#234235",
-    }
-  };
-
   function initEpoqueTemplate(container) {
     if (container.dataset.epoqueInitialized === "true") return;
     container.dataset.epoqueInitialized = "true";
@@ -55,15 +15,7 @@
       hpFill.style.width = `${percent}%`;
     }
 
-    // 🎨 Profile theming first
-    const profileNum = parseInt(container.dataset.profile, 10);
-    if (!isNaN(profileNum) && epoqueProfiles[profileNum]) {
-      for (const [key, val] of Object.entries(epoqueProfiles[profileNum])) {
-        container.style.setProperty(key, val);
-      }
-    }
-
-    // 🎨 Inline overrides (always win if present)
+    // Theming
     const themeVars = {
       "--epoque-bg": container.dataset.bg,
       "--epoque-accent": container.dataset.accent,
