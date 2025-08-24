@@ -25,6 +25,13 @@ if (typeof DossierController === "function") {
       this.timelines = this.getTimelines();
 
       this.currentPanel = 0;
+      this.badgeMap = {
+        "Nobody": "https://i.imgur.com/1QNGfY5.png",
+        "Heartless": "https://i.imgur.com/4CUgNR7.png",
+        "Wielder": "https://i.imgur.com/nKDoVDC.png",
+        "Legendary": "https://i.imgur.com/hLnG0K7.png",
+        "Misc": "https://i.imgur.com/lNVK2mN.png"
+      };
     }
 
     getFirst(id) {
@@ -69,6 +76,8 @@ if (typeof DossierController === "function") {
         this.getConfigProperty(mirageConfig) || "no",
         this.getConfigProperty(linkConfig) || "no",
         this.getConfigProperty(timelineConfig) || "no",
+        this.getConfigProperty(children[6]) || "Heartless", // Enemy Type
+        this.getConfigProperty(children[7]) || "single" // Icon Variation
       ];
     }
 
@@ -152,9 +161,11 @@ if (typeof DossierController === "function") {
     }
 
     htmlify() {
-      const [primaryColor, accentColor, textColor, useMirage, useLinks, useTimeline] = this.config;
+      const [primaryColor, accentColor, textColor, useMirage, useLinks, useTimeline, enemyType, iconVariation] = this.config;
+      const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"];
       return `
-        <div class="dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor};">
+        <div class="dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor}; --badge-url: url('${badgeUrl}');">
+          <div class="dossier-header-graphic"></div>
           <div class="dossier-tabs">
             <div class="dossier-tab active">Stats</div>
             <div class="dossier-tab">Reactions</div>
@@ -194,6 +205,7 @@ if (typeof DossierController === "function") {
       ` : "";
       return `
         <div class="dossier-section">
+          <div class="dossier-icon">${this.getIconHtml(0, this.config[7])}</div>
           <div class="dossier-header">Stats</div>
           <div class="dossier-row">
             <div class="dossier-stat"><b>${str}</b> STR</div>
@@ -219,6 +231,7 @@ if (typeof DossierController === "function") {
     htmlReactionsSection() {
       return `
         <div class="dossier-section">
+          <div class="dossier-icon">${this.getIconHtml(1, this.config[7])}</div>
           <div class="dossier-header">Reactions</div>
           ${this.reactions.map(r => `
             <div class="dossier-item"><b>${r.name}</b></div>
@@ -232,6 +245,7 @@ if (typeof DossierController === "function") {
     htmlLoreSection() {
       return `
         <div class="dossier-section">
+          <div class="dossier-icon">${this.getIconHtml(2, this.config[7])}</div>
           <div class="dossier-header">Lore</div>
           ${this.lore.map(item => `
             <div class="dossier-item"><b>${item.name}</b></div>
@@ -245,6 +259,7 @@ if (typeof DossierController === "function") {
       const { name, details, stats } = this.style;
       return `
         <div class="dossier-section">
+          <div class="dossier-icon">${this.getIconHtml(3, this.config[7])}</div>
           <div class="dossier-header">Style</div>
           <div class="dossier-item"><b>${name}</b></div>
           <p>${details || "N/A"}</p>
@@ -256,6 +271,7 @@ if (typeof DossierController === "function") {
     htmlCommandSection() {
       return `
         <div class="dossier-section">
+          <div class="dossier-icon">${this.getIconHtml(4, this.config[7])}</div>
           <div class="dossier-header">Commands</div>
           ${this.commands.map(c => `
             <div class="dossier-item"><b>${c.name}</b></div>
@@ -269,6 +285,7 @@ if (typeof DossierController === "function") {
     htmlProvisionSection() {
       return `
         <div class="dossier-section">
+          <div class="dossier-icon">${this.getIconHtml(5, this.config[7])}</div>
           <div class="dossier-header">Provisions</div>
           <div class="dossier-stat"><b>${this.stats[10] || "d6"}</b> Provision Die</div>
           ${this.provisions.map(p => `
@@ -283,6 +300,7 @@ if (typeof DossierController === "function") {
     htmlLinkSection() {
       return `
         <div class="dossier-section">
+          <div class="dossier-icon">${this.getIconHtml(6, this.config[7])}</div>
           <div class="dossier-header">Links</div>
           ${this.links.map(l => `
             <div class="dossier-item"><b>${l.name}</b></div>
@@ -302,8 +320,9 @@ if (typeof DossierController === "function") {
     }
 
     htmlTimelineSections() {
-      return this.timelines.map(t => `
+      return this.timelines.map((t, index) => `
         <div class="dossier-section">
+          <div class="dossier-icon">${this.getIconHtml(7 + index, this.config[7])}</div>
           <div class="dossier-header">${t.name}</div>
           ${t.events.map(e => `
             <div class="dossier-item"><b>${e.name}</b></div>
@@ -312,6 +331,20 @@ if (typeof DossierController === "function") {
           `).join("")}
         </div>
       `).join("");
+    }
+
+    getIconHtml(index, variation) {
+      const icons = {
+        0: '<div class="icon-shield"></div>', // Stats
+        1: '<div class="icon-target"></div>', // Reactions
+        2: '<div class="icon-quill"></div>', // Lore
+        3: '<div class="icon-star"></div>', // Style
+        4: '<div class="icon-sword"></div>', // Commands
+        5: '<div class="icon-bag"></div>', // Provisions
+        6: '<div class="icon-link"></div>', // Links
+        7: '<div class="icon-timeline"></div>' // Timelines (default for extras)
+      };
+      return variation === "multi" && icons[index] ? icons[index] : '<div class="icon-dossier"></div>';
     }
   }
 
