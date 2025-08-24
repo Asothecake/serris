@@ -24,41 +24,40 @@
   border: 2px solid black;
   background-color: var(--primary-color);
   overflow: hidden;
-  padding-top: 1rem; /* Reduced top padding to minimize empty space */
+  padding-top: 0; /* Remove top padding to allow banner to fill */
 }
 
 .cineplex-bio {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-top: 0; /* Remove default padding to allow overlap */
+  padding-top: 0; /* Remove default padding */
+  min-height: 300px; /* Ensure space for banner */
 }
 
 .cineplex-name {
   text-align: right;
   font-size: xx-large;
-  margin: 0.2rem; /* Reduced margin for less space */
+  margin: 0.2rem;
   font-family: "Poiret One", sans-serif;
   color: var(--accent-color);
   text-shadow: var(--primary-color) 1px 1px;
   position: relative;
   z-index: 2;
+  padding-right: 1rem; /* Add padding to avoid edge clipping */
 }
 
-.cineplex-card {
-  width: 200px;
-  height: 300px;
-  perspective: 1000px;
-  margin: 0 auto;
-  transition: all 1s ease;
-  position: absolute; /* Changed to absolute for overlap */
-  top: 2rem; /* Position card higher, adjust as needed */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1; /* Below name, above fluff if needed */
+.cineplex-banner {
+  width: 100%;
+  height: 250px; /* Adjust height to cover down to origin, tweak as needed */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Below name and fluff */
+  overflow: hidden;
 }
 
-.card-inner {
+.banner-inner {
   width: 100%;
   height: 100%;
   transition: transform 1s;
@@ -66,31 +65,31 @@
   position: relative;
 }
 
-.card-front, .card-back {
+.banner-front, .banner-back {
   width: 100%;
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
   background-size: cover;
-  border: 2px solid var(--accent-color);
-  border-radius: 8px;
+  background-position: center;
 }
 
-.card-back {
+.banner-back {
   transform: rotateY(180deg);
 }
 
-.flipped .card-inner {
+.flipped .banner-inner {
   transform: rotateY(180deg);
 }
 
 .cineplex-fluff {
   display: flex;
   flex-direction: column;
-  z-index: 0; /* Below card if overlapped */
+  z-index: 1; /* Above banner */
   align-items: end;
   text-align: right;
-  margin-top: 10rem; /* Adjusted to start below card, tweak as needed */
+  margin-top: 10rem; /* Adjusted to start below banner height, tweak as needed */
+  padding-right: 1rem; /* Match name padding */
 }
 .cineplex-fluff p {
   margin-block-start: 0.2rem;
