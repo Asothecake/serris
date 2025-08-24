@@ -1,69 +1,27 @@
 window.BookCount = window.BookCount >= 0 ? window.BookCount + 1 : 0;
 
-if (typeof CineplexController === "function") {
+if (typeof DossierController === "function") {
   console.log(window.BookCount);
-  new CineplexController(window.BookCount).initiate();
+  new DossierController(window.BookCount).initiate();
 } else {
-  class CineplexController {
+  class DossierController {
     constructor(bookCount) {
       this.bookCount = bookCount;
       this.TempButton = document.getElementsByClassName("temporary")[bookCount];
-      this.Template = document.getElementsByClassName("cineplex-template")[bookCount];
-
-      // data vars
-      this.DataContainer = document.getElementsByClassName("cineplex-placeholder")[bookCount];
+      this.Template = document.getElementsByClassName("dossier-template")[bookCount];
+      this.DataContainer = document.getElementsByClassName("dossier-placeholder")[bookCount];
 
       this.config = this.getConfig(this.getFirst("config"));
       this.bio = this.arrayify(this.getFirst("bio"));
       this.stats = this.arrayify(this.getFirst("stats"));
-
-      if (this.config[3]) {
-        this.mirage = this.arrayify(this.getFirst("mirage"));
-      } else {
-        this.mirage = [];
-      }
-
-      this.style = this.objectify([
-        "style",
-        "style-details",
-        "style-points",
-      ])[0];
-
+      if (this.config[3] === "yes") this.mirage = this.arrayify(this.getFirst("mirage"));
+      else this.mirage = [];
+      this.style = this.objectify(["style", "style-details", "style-points"])[0];
       this.lore = this.objectify(["lore-item", "lore-details"]);
-      this.mirageMasteries = this.objectify([
-        "mir-mastery",
-        "mir-mastery-details",
-      ]);
-
-      this.commands = this.objectify([
-        "command",
-        "command-details",
-        "command-stats",
-      ]);
-
-      this.provisions = this.objectify([
-        "provision",
-        "provision-details",
-        "provision-stats",
-      ]);
-
-      this.reactions = this.objectify([
-        "reaction",
-        "reaction-details",
-        "reaction-stats",
-      ]);
-
-      this.links = this.compoundObjectify([
-        "link",
-        "link-details",
-        "link-rank",
-        "link-command-name",
-        "link-command-details",
-        "link-command-stat",
-        "link-command-cp",
-        "link-style",
-      ]);
-
+      this.commands = this.objectify(["command", "command-details", "command-stats"]);
+      this.provisions = this.objectify(["provision", "provision-details", "provision-stats"]);
+      this.reactions = this.objectify(["reaction", "reaction-details", "reaction-stats"]);
+      this.links = this.compoundObjectify(["link", "link-details", "link-rank", "link-command-name", "link-command-details", "link-command-stat", "link-command-cp", "link-style"]);
       this.timelines = this.getTimelines();
 
       this.currentPanel = 0;
@@ -76,23 +34,22 @@ if (typeof CineplexController === "function") {
       return this.DataContainer.getElementsByClassName(id);
     }
     getBook() {
-      this.BookContainer = document.getElementsByClassName("cineplex-wrapper")[this.bookCount];
+      this.BookContainer = document.getElementsByClassName("dossier-container")[this.bookCount];
     }
-    getBookSections() {
-      return this.BookContainer.getElementsByClassName("cineplex-section");
+    getBookTabs() {
+      return this.BookContainer.getElementsByClassName("dossier-tab");
     }
-    getBookButtons() {
-      return this.BookContainer.getElementsByClassName("cineplex-buttons")[0].children;
+    getBookContent() {
+      return this.BookContainer.getElementsByClassName("dossier-content")[0];
     }
-    getCard() {
-      return this.BookContainer.getElementsByClassName("cineplex-banner")[0];
+    getPhoto() {
+      return this.BookContainer.getElementsByClassName("dossier-photo")[0];
     }
 
     getConfigProperty(element) {
       if (!element) return "";
       const fullString = element.innerHTML;
-      const value = fullString.split("</b>")?.[1] || "";
-      return value.trim();
+      return fullString.split("</b>")[1]?.trim() || "";
     }
 
     hasBonusConfig(element, configName) {
@@ -101,16 +58,10 @@ if (typeof CineplexController === "function") {
 
     getConfig(element) {
       if (!element) return [];
-      const children = Array.from(element?.children);
-      const mirageConfig = children.find((child) => {
-        return this.hasBonusConfig(child, "Mirage");
-      });
-      const linkConfig = children.find((child) => {
-        return this.hasBonusConfig(child, "Link");
-      });
-      const timelineConfig = children.find((child) => {
-        return this.hasBonusConfig(child, "Timeline");
-      });
+      const children = Array.from(element.children);
+      const mirageConfig = children.find(child => this.hasBonusConfig(child, "Mirage"));
+      const linkConfig = children.find(child => this.hasBonusConfig(child, "Link"));
+      const timelineConfig = children.find(child => this.hasBonusConfig(child, "Timeline"));
       return [
         this.getConfigProperty(children[0]),
         this.getConfigProperty(children[1]),
@@ -123,438 +74,243 @@ if (typeof CineplexController === "function") {
 
     arrayify(element) {
       if (!element) return [];
-      const children = element?.children;
-      return Array.from(children).map((element) => {
-        return this.getConfigProperty(element);
-      });
+      return Array.from(element.children).map(child => this.getConfigProperty(child));
     }
+
     objectify(keyList = []) {
-      const resourceList = keyList.map((key) => this.getAll(key));
-      const names = Array.from(resourceList[0]);
-      const details = Array.from(resourceList[1]);
-      const stats = resourceList[2] ? Array.from(resourceList[2]) : [];
-      return names.map((input, index) => {
-        return {
-          name: input.innerHTML,
-          details: details[index]?.innerHTML,
-          stats: stats[index]?.innerHTML,
-        };
-      });
+      const resources = keyList.map(key => this.getAll(key));
+      const names = Array.from(resources[0]);
+      const details = Array.from(resources[1]);
+      const stats = resources[2] ? Array.from(resources[2]) : [];
+      return names.map((name, index) => ({
+        name: name.innerHTML,
+        details: details[index]?.innerHTML,
+        stats: stats[index]?.innerHTML,
+      }));
     }
+
     compoundObjectify(keyList = []) {
-      const resourceList = keyList.map((key) => this.getAll(key));
-      const names = Array.from(resourceList[0]);
-      return names.map((input, resIndex) => {
-        const obj = { name: input.innerHTML };
-        keyList.forEach(
-          (key, keyIndex) =>
-            (obj[key] = resourceList[keyIndex][resIndex]?.innerHTML || "")
-        );
+      const resources = keyList.map(key => this.getAll(key));
+      const names = Array.from(resources[0]);
+      return names.map((name, index) => {
+        const obj = { name: name.innerHTML };
+        keyList.forEach((key, i) => obj[key] = resources[i][index]?.innerHTML || "");
         return obj;
       });
     }
 
     getTimelines() {
       const timelines = this.getAll("timeline");
-      return Array.from(timelines).map((timeline) => {
-        const timelineName = timeline.getAttribute("name");
-        const names = timeline.getElementsByClassName("event");
-        const details = timeline.getElementsByClassName("event-details");
-        const links = timeline.getElementsByClassName("event-link");
-        const events = Array.from(names).map((name, index) => {
-          return {
-            name: name.innerHTML,
-            details: details[index]?.innerHTML,
-            stats: links[index]?.innerHTML,
-          };
-        });
-        return {
-          name: timelineName,
-          events,
-        };
+      return Array.from(timelines).map(timeline => {
+        const name = timeline.getAttribute("name");
+        const events = Array.from(timeline.getElementsByClassName("event")).map((event, i) => ({
+          name: event.innerHTML,
+          details: timeline.getElementsByClassName("event-details")[i]?.innerHTML,
+          link: timeline.getElementsByClassName("event-link")[i]?.innerHTML,
+        }));
+        return { name, events };
       });
     }
 
     updatePage(pageNumber = this.currentPanel) {
       this.currentPanel = pageNumber;
-      const sections = this.getBookSections();
-      const banner = this.getCard();
-      if (sections.length > 0) {
-        Array.from(sections).forEach((section, index) => {
-          section.style.display = index === this.currentPanel ? "block" : "none";
+      const tabs = this.getBookTabs();
+      const content = this.getBookContent();
+      if (tabs.length > 0 && content) {
+        Array.from(tabs).forEach((tab, index) => {
+          tab.classList.toggle("active", index === this.currentPanel);
+          const section = content.children[index];
+          if (section) section.style.display = index === this.currentPanel ? "block" : "none";
         });
-      }
-      if (banner) {
-        if (this.currentPanel === 0) {
-          banner.classList.remove("flipped");
-        } else {
-          banner.classList.add("flipped");
-        }
+        const photo = this.getPhoto();
+        if (photo) photo.style.display = this.currentPanel === 0 ? "block" : "none";
       }
     }
 
     assignButtonHandlers() {
-      const buttons = this.getBookButtons();
-      if (buttons.length > 0) {
-        Array.from(buttons).forEach((button, index) => {
-          button.addEventListener("click", () => this.updatePage(index));
+      const tabs = this.getBookTabs();
+      if (tabs.length > 0) {
+        Array.from(tabs).forEach((tab, index) => {
+          tab.addEventListener("click", () => this.updatePage(index));
         });
       }
     }
 
     initiate() {
       try {
-        // setup initial html
         this.Template.innerHTML = this.htmlify();
-        // setup handlers and pagecounter
         this.getBook();
         this.assignButtonHandlers();
         this.updatePage();
-        // Hide button only if template loads successfully
-        if (this.Template.innerHTML) {
-          this.TempButton.style.display = "none";
-        }
+        if (this.Template.innerHTML) this.TempButton.style.display = "none";
       } catch (e) {
-        console.error("Template load failed:", e);
-        // Button remains visible if there's an error
+        console.error("Dossier load failed:", e);
       }
     }
 
-    // The icky bit
     htmlify() {
-      const primaryColor = this.config[0];
-      const accentColor = this.config[1];
-      const textColor = this.config[2];
-      const usesLinks = this.config[4]?.toLowerCase() === "yes";
-      const usesTimeline = this.config[5]?.toLowerCase() === "yes";
-
+      const [primaryColor, accentColor, textColor, useMirage, useLinks, useTimeline] = this.config;
       return `
-        <div class="cineplex-wrapper" style="
-            --primary-color: ${primaryColor};
-            --accent-color: ${accentColor};
-            --text-color: ${textColor};
-          ">
-          <div class="cineplex-body">
-            ${this.htmlBio()}
-            <div class="cineplex-interact">
-              <div class="cineplex-buttons">
-                <button>Stats</button>
-                <button>Reactions</button>
-                <button>Lore</button>
-                <button>Style</button>
-                <button>Commands</button>
-                <button>Provisions</button>
-                ${usesLinks ? `<button>Links</button>` : ""}
-                ${
-                  usesTimeline
-                    ? `<div class="cineplex-header"><b>Timelines</b></div>`
-                    : ""
-                }
-                ${
-                  usesTimeline && this.timelines[0]
-                    ? this.htmlTimelineButtons()
-                    : ""
-                }
-              </div>
-              <div class="cineplex-window">
-                ${this.htmlStatSection()}
-                ${this.htmlReactionsSection()}
-                ${this.htmlLoreSection()}
-                ${this.htmlStyleSection()}
-                ${this.htmlCommandSection()}
-                ${this.htmlProvisionSection()}
-                ${usesLinks ? this.htmlLinkSection() : ""}
-                ${usesTimeline ? this.htmlTimelineSections() : ""}
-              </div>
-            </div>
+        <div class="dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor};">
+          <div class="dossier-tabs">
+            <div class="dossier-tab active">Stats</div>
+            <div class="dossier-tab">Reactions</div>
+            <div class="dossier-tab">Lore</div>
+            <div class="dossier-tab">Style</div>
+            <div class="dossier-tab">Commands</div>
+            <div class="dossier-tab">Provisions</div>
+            ${useLinks === "yes" ? '<div class="dossier-tab">Links</div>' : ""}
+            ${useTimeline === "yes" ? '<div class="dossier-tab">Timelines</div>' : ""}
           </div>
-        </div>
-      `;
-    }
-
-    htmlTimelineButtons() {
-      return this.timelines
-        .map((timeline) => {
-          return `<button>${timeline.name}</button>`;
-        })
-        .join("");
-    }
-
-    htmlTimelineSections() {
-      return this.timelines
-        .map((timeline) => {
-          return this.htmlDynamicTimelineSection(timeline);
-        })
-        .join("");
-    }
-
-    htmlDynamicTimelineSection(timeline) {
-      return `
-      <div class="cineplex-section" key="${timeline.name}">
-        ${timeline.events
-          .map((event) => {
-            const eventLink = `<a href="${event.stats}">Thread Link</a>`;
-            return this.htmlWindowItem(event.name, event.details, eventLink);
-          })
-          .join("")}
-      </div>
-      `;
-    }
-
-    htmlWindowItem(name, details, stats) {
-      return `
-        <div class="cineplex-header"><b>${name}</b></div>
-        <p>${details}</p>
-        ${stats ? `<div class="cineplex-footer"><b>${stats}</b></div>` : ""}
-      `;
-    }
-
-    htmlLinkItem(linkDetails) {
-      const {
-        name,
-        "link-details": details,
-        "link-rank": stats,
-        "link-command-name": commandName,
-        "link-command-details": commandDetails,
-        "link-command-stat": commandStat,
-        "link-command-cp": commandCP,
-        "link-style": linkStyle,
-      } = linkDetails;
-      return `
-        <div class="cineplex-header"><b>${name}</b></div>
-        <p>${details}</p>
-        ${
-          commandName
-            ? `<hr>
-        <p><b>${commandName}</b> [${commandStat}/${commandCP}cp]
-        <br>${commandDetails}</p>`
-            : ""
-        }
-        ${
-          linkStyle
-            ? `<hr>
-        <p><b>Link Style</b>
-        <br>${linkStyle}</p>`
-            : ""
-        }
-        ${stats ? `<div class="cineplex-footer"><b>Rank: ${stats}</b></div>` : ""}
-      `;
-    }
-
-    htmlBio() {
-      const name = this.bio[0];
-      const title = this.bio[1];
-      const jobClass = this.bio[2];
-      const role = this.bio[3];
-      const alignment = this.bio[4];
-      const origin = this.bio[5];
-      const frontImg = this.bio[6];
-      const backImg = this.bio[7];
-
-      const toHtmlImage = (imageUrl) => {
-        if (!imageUrl.includes("http")) return "";
-        return imageUrl;
-      };
-
-      return `
-        <div class="cineplex-bio" style="position: relative;">
-          <div class="cineplex-name"><b>${name}</b></div>
-          
-          <div class="cineplex-fluff">
-            <p>${title}</p>
-            <p>${jobClass}</p>
-            <p>${role}</p>
-            <p>${alignment}</p>
-            <p>${origin}</p>
+          <div class="dossier-content">
+            ${this.htmlStatSection()}
+            ${this.htmlReactionsSection()}
+            ${this.htmlLoreSection()}
+            ${this.htmlStyleSection()}
+            ${this.htmlCommandSection()}
+            ${this.htmlProvisionSection()}
+            ${useLinks === "yes" ? this.htmlLinkSection() : ""}
+            ${useTimeline === "yes" ? this.htmlTimelineSections() : ""}
           </div>
-
-          <div class="cineplex-banner" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-            <div class="banner-inner">
-              <div class="banner-front" style="background-image: url('${toHtmlImage(frontImg)}'); height: 100%;"></div>
-              <div class="banner-back" style="background-image: url('${toHtmlImage(backImg)}'); height: 100%;"></div>
-            </div>
-          </div>
+          <div class="dossier-name"><b>${this.bio[0]}</b></div>
         </div>
       `;
     }
 
     htmlStatSection() {
-      const hp = this.stats[0];
-      const ip = this.stats[1];
-      const cd = this.stats[2];
-      const rea = this.stats[3];
-
-      const str = this.stats[4];
-      const mag = this.stats[5];
-      const def = this.stats[6];
-      const agl = this.stats[7];
-
-      const weak = this.stats[8];
-      const res = this.stats[9];
-      const imm = this.stats[11];
-
-      const shouldUseMirage = this.config[3]?.toLowerCase() === "yes";
-      const medals = this.mirage[0];
-      const mMas = this.mirage[1];
-      const mPro = this.mirage[2];
-      const mCom = this.mirage[3];
-
+      const [hp, ip, cd, reactions, str, mag, def, agl, weak, res, , imm] = this.stats;
+      const mirageContent = this.config[3] === "yes" ? `
+        <div class="dossier-header">Mirage</div>
+        <div class="dossier-row">
+          <div class="dossier-stat"><b>${this.mirage[0] || 0}</b> Medals</div>
+          <div class="dossier-stat"><b>${this.mirage[1] || 0}</b> Masteries</div>
+          <div class="dossier-stat"><b>${this.mirage[2] || 0}</b> Provisions</div>
+          <div class="dossier-stat"><b>${this.mirage[3] || 0}</b> Commands</div>
+        </div>
+      ` : "";
       return `
-        <div class="cineplex-section">
-          <div class="cineplex-header"><b>Stats</b></div>
-          <div class="cineplex-stat-row">
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${str}</b></div>
-              <div class="cineplex-stat-label">STRENGTH</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${mag}</b></div>
-              <div class="cineplex-stat-label">MAGIC</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${def}</b></div>
-              <div class="cineplex-stat-label">DEFENSE</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${agl}</b></div>
-              <div class="cineplex-stat-label">AGILITY</div>
-            </div>
+        <div class="dossier-section">
+          <div class="dossier-photo"></div>
+          <div class="dossier-header">Stats</div>
+          <div class="dossier-row">
+            <div class="dossier-stat"><b>${str}</b> STR</div>
+            <div class="dossier-stat"><b>${mag}</b> MAG</div>
+            <div class="dossier-stat"><b>${def}</b> DEF</div>
+            <div class="dossier-stat"><b>${agl}</b> AGL</div>
           </div>
-
-          <div class="cineplex-header"><b>Resources</b></div>
-          <div class="cineplex-stat-row">
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${hp}</b></div>
-              <div class="cineplex-stat-label">HP</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${ip}</b></div>
-              <div class="cineplex-stat-label">IP</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${cd}</b></div>
-              <div class="cineplex-stat-label">DECK</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${rea}</b></div>
-              <div class="cineplex-stat-label">REACTIONS</div>
-            </div>
+          <div class="dossier-header">Resources</div>
+          <div class="dossier-row">
+            <div class="dossier-stat"><b>${hp}</b> HP</div>
+            <div class="dossier-stat"><b>${ip}</b> IP</div>
+            <div class="dossier-stat"><b>${cd}</b> Deck</div>
+            <div class="dossier-stat"><b>${reactions}</b> Reactions</div>
           </div>
-
-          ${
-            shouldUseMirage
-              ? `
-            <div class="cineplex-header"><b>Mirage</b></div>
-          <div class="cineplex-stat-row">
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${medals}</b></div>
-              <div class="cineplex-stat-label">MEDAL</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${mMas}</b></div>
-              <div class="cineplex-stat-label">MASTERY</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${mPro}</b></div>
-              <div class="cineplex-stat-label">PROVISION</div>
-            </div>
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${mCom}</b></div>
-              <div class="cineplex-stat-label">COMMAND</div>
-            </div>
-          </div>
-            `
-              : ""
-          }
-
-          <div class="cineplex-header"><b>Weaknesses</b></div>
-          <p>${weak}</p>
-          <div class="cineplex-header"><b>Resistances</b></div>
-          <p>${res}</p>
-          <div class="cineplex-header"><b>Immunities</b></div>
-          <p>${imm}</p>
+          ${mirageContent}
+          <div class="dossier-header">Weaknesses</div><p>${weak}</p>
+          <div class="dossier-header">Resistances</div><p>${res}</p>
+          <div class="dossier-header">Immunities</div><p>${imm}</p>
         </div>
       `;
     }
 
     htmlReactionsSection() {
       return `
-        <div class="cineplex-section">
-          ${this.reactions
-            .map((reaction) =>
-              this.htmlWindowItem(reaction.name, reaction.details, reaction.stats)
-            )
-            .join("")}
+        <div class="dossier-section">
+          <div class="dossier-header">Reactions</div>
+          ${this.reactions.map(r => `
+            <div class="dossier-item"><b>${r.name}</b></div>
+            <p>${r.details || "N/A"}</p>
+            <div class="dossier-stat">${r.stats || "N/A"}</div>
+          `).join("")}
         </div>
       `;
     }
 
     htmlLoreSection() {
       return `
-        <div class="cineplex-section">
-          ${this.lore
-            .map((item) =>
-              this.htmlWindowItem(item.name, item.details)
-            )
-            .join("")}
+        <div class="dossier-section">
+          <div class="dossier-header">Lore</div>
+          ${this.lore.map(item => `
+            <div class="dossier-item"><b>${item.name}</b></div>
+            <p>${item.details || "N/A"}</p>
+          `).join("")}
         </div>
       `;
     }
 
     htmlStyleSection() {
+      const { name, details, stats } = this.style;
       return `
-        <div class="cineplex-section">
-          ${this.htmlWindowItem(
-            this.style.name,
-            this.style.details,
-            this.style.stats + " points"
-          )}
+        <div class="dossier-section">
+          <div class="dossier-header">Style</div>
+          <div class="dossier-item"><b>${name}</b></div>
+          <p>${details || "N/A"}</p>
+          <div class="dossier-stat">${stats || "0"} points</div>
         </div>
       `;
     }
 
     htmlCommandSection() {
       return `
-        <div class="cineplex-section">
-          ${this.commands
-            .map((command) =>
-              this.htmlWindowItem(command.name, command.details, command.stats)
-            )
-            .join("")}
+        <div class="dossier-section">
+          <div class="dossier-header">Commands</div>
+          ${this.commands.map(c => `
+            <div class="dossier-item"><b>${c.name}</b></div>
+            <p>${c.details || "N/A"}</p>
+            <div class="dossier-stat">${c.stats || "N/A"}</div>
+          `).join("")}
         </div>
       `;
     }
 
     htmlProvisionSection() {
       return `
-        <div class="cineplex-section">
-          <div class="cineplex-stat-row cineplex-left">
-            <div class="cineplex-stat-box">
-              <div class="cineplex-stat"><b>${this.stats[10] || "d6"}</b></div>
-              <div class="cineplex-stat-label">PROVISION</div>
-            </div>
-          </div>
-          ${this.provisions
-            .map((provision) =>
-              this.htmlWindowItem(
-                provision.name,
-                provision.details,
-                provision.stats
-              )
-            )
-            .join("")}
+        <div class="dossier-section">
+          <div class="dossier-header">Provisions</div>
+          <div class="dossier-stat"><b>${this.stats[10] || "d6"}</b> Provision Die</div>
+          ${this.provisions.map(p => `
+            <div class="dossier-item"><b>${p.name}</b></div>
+            <p>${p.details || "N/A"}</p>
+            <div class="dossier-stat">${p.stats || "N/A"}</div>
+          `).join("")}
         </div>
       `;
     }
 
     htmlLinkSection() {
       return `
-        <div class="cineplex-section">
-          ${this.links.map((link) => this.htmlLinkItem(link)).join("")}
+        <div class="dossier-section">
+          <div class="dossier-header">Links</div>
+          ${this.links.map(l => `
+            <div class="dossier-item"><b>${l.name}</b></div>
+            <p>${l["link-details"] || "N/A"}</p>
+            <div class="dossier-stat">Rank: ${l["link-rank"] || 0}</div>
+            ${l["link-command-name"] ? `
+              <div class="dossier-item"><b>${l["link-command-name"]}</b> [${l["link-command-stat"] || "---"}/${l["link-command-cp"] || 0}cp]</div>
+              <p>${l["link-command-details"] || "N/A"}</p>
+            ` : ""}
+            ${l["link-style"] ? `
+              <div class="dossier-item"><b>Link Style</b></div>
+              <p>${l["link-style"] || "N/A"}</p>
+            ` : ""}
+          `).join("")}
         </div>
       `;
     }
+
+    htmlTimelineSections() {
+      return this.timelines.map(t => `
+        <div class="dossier-section">
+          <div class="dossier-header">${t.name}</div>
+          ${t.events.map(e => `
+            <div class="dossier-item"><b>${e.name}</b></div>
+            <p>${e.details || "N/A"}</p>
+            ${e.link ? `<div class="dossier-stat"><a href="${e.link}">Thread</a></div>` : ""}
+          `).join("")}
+        </div>
+      `).join("");
+    }
   }
 
-  new CineplexController(window.BookCount).initiate();
+  new DossierController(window.BookCount).initiate();
 }
