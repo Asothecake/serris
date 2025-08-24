@@ -85,7 +85,7 @@ if (typeof CineplexController === "function") {
       return this.BookContainer.getElementsByClassName("cineplex-buttons")[0].children;
     }
     getCard() {
-      return this.BookContainer.getElementsByClassName("cineplex-banner")[0]; // Updated to match CSS
+      return this.BookContainer.getElementsByClassName("cineplex-banner")[0];
     }
 
     getConfigProperty(element) {
@@ -357,7 +357,7 @@ if (typeof CineplexController === "function") {
       };
 
       return `
-        <div class="cineplex-bio">
+        <div class="cineplex-bio" style="position: relative;">
           <div class="cineplex-name"><b>${name}</b></div>
           
           <div class="cineplex-fluff">
@@ -368,10 +368,10 @@ if (typeof CineplexController === "function") {
             <p>${origin}</p>
           </div>
 
-          <div class="cineplex-banner">
+          <div class="cineplex-banner" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
             <div class="banner-inner">
-              <div class="banner-front" style="background-image: url('${toHtmlImage(frontImg)}');"></div>
-              <div class="banner-back" style="background-image: url('${toHtmlImage(backImg)}');"></div>
+              <div class="banner-front" style="background-image: url('${toHtmlImage(frontImg)}'); height: 100%;"></div>
+              <div class="banner-back" style="background-image: url('${toHtmlImage(backImg)}'); height: 100%;"></div>
             </div>
           </div>
         </div>
