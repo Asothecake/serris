@@ -341,42 +341,42 @@ if (typeof CineplexController === "function") {
       `;
     }
 
-    htmlBio() {
-      const name = this.bio[0];
-      const title = this.bio[1];
-      const jobClass = this.bio[2];
-      const role = this.bio[3];
-      const alignment = this.bio[4];
-      const origin = this.bio[5];
-      const frontImg = this.bio[6];
-      const backImg = this.bio[7];
+   htmlBio() {
+  const name = this.bio[0];
+  const title = this.bio[1];
+  const jobClass = this.bio[2];
+  const role = this.bio[3];
+  const alignment = this.bio[4];
+  const origin = this.bio[5];
+  const frontImg = this.bio[6];
+  const backImg = this.bio[7];
 
-      const toHtmlImage = (imageUrl) => {
-        if (!imageUrl.includes("http")) return "";
-        return imageUrl;
-      };
+  const toHtmlImage = (imageUrl) => {
+    if (!imageUrl.includes("http")) return "";
+    return imageUrl;
+  };
 
-      return `
-        <div class="cineplex-bio">
-          <div class="cineplex-name"><b>${name}</b></div>
-          
-          <div class="cineplex-fluff">
-            <p>${title}</p>
-            <p>${jobClass}</p>
-            <p>${role}</p>
-            <p>${alignment}</p>
-            <p>${origin}</p>
-          </div>
+  return `
+    <div class="cineplex-bio">
+      <div class="cineplex-name"><b>${name}</b></div>
+      
+      <div class="cineplex-fluff">
+        <p>${title}</p>
+        <p>${jobClass}</p>
+        <p>${role}</p>
+        <p>${alignment}</p>
+        <p>${origin}</p>
+      </div>
 
-          <div class="cineplex-banner">
-            <div class="banner-inner">
-              <div class="banner-front" style="background-image: url('${toHtmlImage(frontImg)}');"></div>
-              <div class="banner-back" style="background-image: url('${toHtmlImage(backImg)}');"></div>
-            </div>
-          </div>
+      <div class="cineplex-banner">
+        <div class="banner-inner">
+          <div class="banner-front" style="background-image: url('${toHtmlImage(frontImg)}');"></div>
+          <div class="banner-back" style="background-image: url('${toHtmlImage(backImg)}');"></div>
         </div>
-      `;
-    }
+      </div>
+    </div>
+  `;
+}
 
     htmlStatSection() {
       const hp = this.stats[0];
