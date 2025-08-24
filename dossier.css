@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   min-height: 600px; /* Increased for bottom space */
-  padding-bottom: 150px; /* Ensure space for photo and name */
+  padding-bottom: 200px; /* More space for photo and name */
 }
 
 .dossier-tabs {
@@ -114,8 +114,8 @@
 
 .dossier-photo {
   position: absolute;
-  bottom: 100px; /* Position above bottom padding */
-  right: 20px; /* Right-aligned */
+  bottom: 50px; /* Lowered further down */
+  right: 20px;
   width: 150px;
   height: 200px;
   background-size: cover;
@@ -128,12 +128,12 @@
 
 .dossier-name {
   position: absolute;
-  bottom: 20px; /* Above photo */
+  bottom: 30px; /* Lowered and shortened */
   left: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Reduced size for compactness */
   color: var(--accent-color);
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 0.3rem 0.5rem;
+  padding: 0.2rem 0.3rem; /* Reduced padding */
   border: 1px solid #444;
   z-index: 2;
 }
