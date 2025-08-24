@@ -173,6 +173,7 @@ if (typeof DossierController === "function") {
             ${useTimeline === "yes" ? this.htmlTimelineSections() : ""}
           </div>
           <div class="dossier-name"><b>${this.bio[0]}</b></div>
+          <div class="dossier-photo"></div>
         </div>
       `;
     }
@@ -190,7 +191,6 @@ if (typeof DossierController === "function") {
       ` : "";
       return `
         <div class="dossier-section">
-          <div class="dossier-photo"></div>
           <div class="dossier-header">Stats</div>
           <div class="dossier-row">
             <div class="dossier-stat"><b>${str}</b> STR</div>
