@@ -6,13 +6,11 @@
   --primary-color: white;
   --accent-color: purple;
   --text-color: black;
-
   width: 100%;
   max-width: 450px;
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: normal;
-
   border: 1px solid black;
   background-color: var(--accent-color);
   padding: 2px;
@@ -24,36 +22,33 @@
   border: 2px solid black;
   background-color: var(--primary-color);
   overflow: hidden;
-  padding-top: 0; /* Remove top padding to allow banner to fill */
+  padding: 1rem 0; /* Adjusted to match original flow */
 }
 
 .cineplex-bio {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-top: 0; /* Remove default padding */
-  min-height: 300px; /* Ensure space for banner */
+  padding: 0;
 }
 
 .cineplex-name {
   text-align: right;
   font-size: xx-large;
-  margin: 0.2rem;
+  margin: 0.4rem;
   font-family: "Poiret One", sans-serif;
   color: var(--accent-color);
   text-shadow: var(--primary-color) 1px 1px;
   position: relative;
   z-index: 2;
-  padding-right: 1rem; /* Add padding to avoid edge clipping */
+  padding-right: 1rem;
 }
 
 .cineplex-banner {
   width: 100%;
-  height: 250px; /* Adjust height to cover down to origin, tweak as needed */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0; /* Below name and fluff */
+  height: 200px; /* Adjusted to reduce gap, tweak as needed */
+  position: relative; /* Changed from absolute to maintain flow */
+  z-index: 0;
   overflow: hidden;
 }
 
@@ -85,11 +80,11 @@
 .cineplex-fluff {
   display: flex;
   flex-direction: column;
-  z-index: 1; /* Above banner */
+  z-index: 1;
   align-items: end;
   text-align: right;
-  margin-top: 10rem; /* Adjusted to start below banner height, tweak as needed */
-  padding-right: 1rem; /* Match name padding */
+  margin-top: 6rem; /* Reduced to raise text, adjust as needed */
+  padding-right: 1rem;
 }
 .cineplex-fluff p {
   margin-block-start: 0.2rem;
