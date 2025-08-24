@@ -15,14 +15,14 @@
   background-color: var(--accent-color);
   padding: 2px;
   position: relative;
-  min-height: 600px; /* Ensure minimum height to avoid collapse */
+  min-height: 600px;
 }
 
 .cineplex-body {
   border: 2px solid black;
   background-color: var(--primary-color);
   overflow: hidden;
-  padding: 1rem 0; /* Adjusted to match original flow */
+  padding: 1rem 0;
 }
 
 .cineplex-bio {
@@ -30,6 +30,7 @@
   flex-direction: column;
   position: relative;
   padding: 0;
+  min-height: 200px; /* Adjusted to fit content */
 }
 
 .cineplex-name {
@@ -45,10 +46,12 @@
 }
 
 .cineplex-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 200px; /* Adjusted to reduce gap, tweak as needed */
-  position: relative; /* Changed from absolute to maintain flow */
-  z-index: 0;
+  height: 200px; /* Match bio min-height, adjust as needed */
+  z-index: -1; /* Under name and fluff */
   overflow: hidden;
 }
 
@@ -83,8 +86,8 @@
   z-index: 1;
   align-items: end;
   text-align: right;
-  margin-top: 6rem; /* Reduced to raise text, adjust as needed */
   padding-right: 1rem;
+  margin-top: 2rem; /* Reduced to sit closer, adjust as needed */
 }
 .cineplex-fluff p {
   margin-block-start: 0.2rem;
