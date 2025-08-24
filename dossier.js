@@ -116,6 +116,7 @@ if (typeof DossierController === "function") {
       this.currentPanel = pageNumber;
       const tabs = this.getBookTabs();
       const content = this.getBookContent();
+      const maxTabs = Math.min(6, tabs.length); // Limit to 6 photos
       if (tabs.length > 0 && content) {
         Array.from(tabs).forEach((tab, index) => {
           tab.classList.toggle("active", index === this.currentPanel);
@@ -123,7 +124,9 @@ if (typeof DossierController === "function") {
           if (section) section.style.display = index === this.currentPanel ? "block" : "none";
         });
         const photo = this.getPhoto();
-        if (photo) photo.style.display = this.currentPanel === 0 ? "block" : "none";
+        if (photo && this.bio[6 + this.currentPanel]) { // Use photo url based on tab index (6-11 in bio array)
+          photo.style.backgroundImage = `url('${this.bio[6 + this.currentPanel] || this.bio[6]}')`; // Fallback to first photo if none
+        }
       }
     }
 
