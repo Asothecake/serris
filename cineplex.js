@@ -8,12 +8,10 @@ if (typeof CineplexController === "function") {
     constructor(bookCount) {
       this.bookCount = bookCount;
       this.TempButton = document.getElementsByClassName("temporary")[bookCount];
-      this.Template =
-        document.getElementsByClassName("cineplex-template")[bookCount];
+      this.Template = document.getElementsByClassName("cineplex-template")[bookCount];
 
       // data vars
-      this.DataContainer =
-        document.getElementsByClassName("cineplex-placeholder")[bookCount];
+      this.DataContainer = document.getElementsByClassName("cineplex-placeholder")[bookCount];
 
       this.config = this.getConfig(this.getFirst("config"));
       this.bio = this.arrayify(this.getFirst("bio"));
@@ -78,15 +76,13 @@ if (typeof CineplexController === "function") {
       return this.DataContainer.getElementsByClassName(id);
     }
     getBook() {
-      this.BookContainer =
-        document.getElementsByClassName("cineplex-wrapper")[this.bookCount];
+      this.BookContainer = document.getElementsByClassName("cineplex-wrapper")[this.bookCount];
     }
     getBookSections() {
       return this.BookContainer.getElementsByClassName("cineplex-section");
     }
     getBookButtons() {
-      return this.BookContainer.getElementsByClassName("cineplex-buttons")[0]
-        .children;
+      return this.BookContainer.getElementsByClassName("cineplex-buttons")[0].children;
     }
     getCard() {
       return this.BookContainer.getElementsByClassName("cineplex-banner")[0];
