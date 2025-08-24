@@ -8,12 +8,10 @@ if (typeof CineplexController === "function") {
     constructor(bookCount) {
       this.bookCount = bookCount;
       this.TempButton = document.getElementsByClassName("temporary")[bookCount];
-      this.Template =
-        document.getElementsByClassName("cineplex-template")[bookCount];
+      this.Template = document.getElementsByClassName("cineplex-template")[bookCount];
 
       // data vars
-      this.DataContainer =
-        document.getElementsByClassName("cineplex-placeholder")[bookCount];
+      this.DataContainer = document.getElementsByClassName("cineplex-placeholder")[bookCount];
 
       this.config = this.getConfig(this.getFirst("config"));
       this.bio = this.arrayify(this.getFirst("bio"));
@@ -78,18 +76,16 @@ if (typeof CineplexController === "function") {
       return this.DataContainer.getElementsByClassName(id);
     }
     getBook() {
-      this.BookContainer =
-        document.getElementsByClassName("cineplex-wrapper")[this.bookCount];
+      this.BookContainer = document.getElementsByClassName("cineplex-wrapper")[this.bookCount];
     }
     getBookSections() {
       return this.BookContainer.getElementsByClassName("cineplex-section");
     }
     getBookButtons() {
-      return this.BookContainer.getElementsByClassName("cineplex-buttons")[0]
-        .children;
+      return this.BookContainer.getElementsByClassName("cineplex-buttons")[0].children;
     }
     getCard() {
-      return this.BookContainer.getElementsByClassName("cineplex-card")[0];
+      return this.BookContainer.getElementsByClassName("cineplex-banner")[0]; // Updated to match CSS
     }
 
     getConfigProperty(element) {
@@ -115,7 +111,6 @@ if (typeof CineplexController === "function") {
       const timelineConfig = children.find((child) => {
         return this.hasBonusConfig(child, "Timeline");
       });
-
       return [
         this.getConfigProperty(children[0]),
         this.getConfigProperty(children[1]),
@@ -138,7 +133,6 @@ if (typeof CineplexController === "function") {
       const names = Array.from(resourceList[0]);
       const details = Array.from(resourceList[1]);
       const stats = resourceList[2] ? Array.from(resourceList[2]) : [];
-
       return names.map((input, index) => {
         return {
           name: input.innerHTML,
@@ -150,7 +144,6 @@ if (typeof CineplexController === "function") {
     compoundObjectify(keyList = []) {
       const resourceList = keyList.map((key) => this.getAll(key));
       const names = Array.from(resourceList[0]);
-
       return names.map((input, resIndex) => {
         const obj = { name: input.innerHTML };
         keyList.forEach(
@@ -185,38 +178,46 @@ if (typeof CineplexController === "function") {
     updatePage(pageNumber = this.currentPanel) {
       this.currentPanel = pageNumber;
       const sections = this.getBookSections();
-      const card = this.getCard();
-      Array.from(sections)?.forEach((section, index) => {
-        if (index === this.currentPanel) {
-          section.style.display = "block";
+      const banner = this.getCard();
+      if (sections.length > 0) {
+        Array.from(sections).forEach((section, index) => {
+          section.style.display = index === this.currentPanel ? "block" : "none";
+        });
+      }
+      if (banner) {
+        if (this.currentPanel === 0) {
+          banner.classList.remove("flipped");
         } else {
-          section.style.display = "none";
+          banner.classList.add("flipped");
         }
-      });
-      if (this.currentPanel === 0) {
-        card.classList.remove("flipped");
-      } else {
-        card.classList.add("flipped");
       }
     }
 
     assignButtonHandlers() {
-      const buttons = Array.from(this.getBookButtons()).filter(
-        (button) => button.nodeName === "BUTTON"
-      );
-      buttons?.forEach((button, index) => {
-        button.addEventListener("click", () => this.updatePage(index));
-      });
+      const buttons = this.getBookButtons();
+      if (buttons.length > 0) {
+        Array.from(buttons).forEach((button, index) => {
+          button.addEventListener("click", () => this.updatePage(index));
+        });
+      }
     }
 
     initiate() {
-      // setup initial html
-      this.Template.innerHTML = this.htmlify();
-      // setup handlers and pagecounter
-      this.getBook();
-      this.assignButtonHandlers();
-      this.updatePage();
-      this.TempButton.style.display = "none";
+      try {
+        // setup initial html
+        this.Template.innerHTML = this.htmlify();
+        // setup handlers and pagecounter
+        this.getBook();
+        this.assignButtonHandlers();
+        this.updatePage();
+        // Hide button only if template loads successfully
+        if (this.Template.innerHTML) {
+          this.TempButton.style.display = "none";
+        }
+      } catch (e) {
+        console.error("Template load failed:", e);
+        // Button remains visible if there's an error
+      }
     }
 
     // The icky bit
@@ -340,42 +341,42 @@ if (typeof CineplexController === "function") {
       `;
     }
 
-htmlBio() {
-  const name = this.bio[0];
-  const title = this.bio[1];
-  const jobClass = this.bio[2];
-  const role = this.bio[3];
-  const alignment = this.bio[4];
-  const origin = this.bio[5];
-  const frontImg = this.bio[6];
-  const backImg = this.bio[7];
+    htmlBio() {
+      const name = this.bio[0];
+      const title = this.bio[1];
+      const jobClass = this.bio[2];
+      const role = this.bio[3];
+      const alignment = this.bio[4];
+      const origin = this.bio[5];
+      const frontImg = this.bio[6];
+      const backImg = this.bio[7];
 
-  const toHtmlImage = (imageUrl) => {
-    if (!imageUrl.includes("http")) return "";
-    return imageUrl;
-  };
+      const toHtmlImage = (imageUrl) => {
+        if (!imageUrl.includes("http")) return "";
+        return imageUrl;
+      };
 
-  return `
-    <div class="cineplex-bio">
-      <div class="cineplex-name"><b>${name}</b></div>
-      
-      <div class="cineplex-fluff">
-        <p>${title}</p>
-        <p>${jobClass}</p>
-        <p>${role}</p>
-        <p>${alignment}</p>
-        <p>${origin}</p>
-      </div>
+      return `
+        <div class="cineplex-bio">
+          <div class="cineplex-name"><b>${name}</b></div>
+          
+          <div class="cineplex-fluff">
+            <p>${title}</p>
+            <p>${jobClass}</p>
+            <p>${role}</p>
+            <p>${alignment}</p>
+            <p>${origin}</p>
+          </div>
 
-      <div class="cineplex-banner">
-        <div class="banner-inner">
-          <div class="banner-front" style="background-image: url('${toHtmlImage(frontImg)}');"></div>
-          <div class="banner-back" style="background-image: url('${toHtmlImage(backImg)}');"></div>
+          <div class="cineplex-banner">
+            <div class="banner-inner">
+              <div class="banner-front" style="background-image: url('${toHtmlImage(frontImg)}');"></div>
+              <div class="banner-back" style="background-image: url('${toHtmlImage(backImg)}');"></div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  `;
-}
+      `;
+    }
 
     htmlStatSection() {
       const hp = this.stats[0];
