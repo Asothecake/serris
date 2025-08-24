@@ -8,10 +8,12 @@ if (typeof CineplexController === "function") {
     constructor(bookCount) {
       this.bookCount = bookCount;
       this.TempButton = document.getElementsByClassName("temporary")[bookCount];
-      this.Template = document.getElementsByClassName("cineplex-template")[bookCount];
+      this.Template =
+        document.getElementsByClassName("cineplex-template")[bookCount];
 
       // data vars
-      this.DataContainer = document.getElementsByClassName("cineplex-placeholder")[bookCount];
+      this.DataContainer =
+        document.getElementsByClassName("cineplex-placeholder")[bookCount];
 
       this.config = this.getConfig(this.getFirst("config"));
       this.bio = this.arrayify(this.getFirst("bio"));
@@ -76,19 +78,18 @@ if (typeof CineplexController === "function") {
       return this.DataContainer.getElementsByClassName(id);
     }
     getBook() {
-      this.BookContainer = document.getElementsByClassName("cineplex-wrapper")[this.bookCount];
-      if (!this.BookContainer) {
-        console.warn("cineplex-wrapper not found");
-      }
+      this.BookContainer =
+        document.getElementsByClassName("cineplex-wrapper")[this.bookCount];
     }
     getBookSections() {
-      return this.BookContainer ? this.BookContainer.getElementsByClassName("cineplex-section") : [];
+      return this.BookContainer.getElementsByClassName("cineplex-section");
     }
     getBookButtons() {
-      return this.BookContainer ? this.BookContainer.getElementsByClassName("cineplex-buttons")[0]?.children : [];
+      return this.BookContainer.getElementsByClassName("cineplex-buttons")[0]
+        .children;
     }
     getCard() {
-      return this.BookContainer ? this.BookContainer.getElementsByClassName("cineplex-banner")[0] : null;
+      return this.BookContainer.getElementsByClassName("cineplex-card")[0];
     }
 
     getConfigProperty(element) {
@@ -184,46 +185,38 @@ if (typeof CineplexController === "function") {
     updatePage(pageNumber = this.currentPanel) {
       this.currentPanel = pageNumber;
       const sections = this.getBookSections();
-      const banner = this.getCard();
-      if (sections.length > 0) {
-        Array.from(sections).forEach((section, index) => {
-          section.style.display = index === this.currentPanel ? "block" : "none";
-        });
-      }
-      if (banner) {
-        if (this.currentPanel === 0) {
-          banner.classList.remove("flipped");
+      const card = this.getCard();
+      Array.from(sections)?.forEach((section, index) => {
+        if (index === this.currentPanel) {
+          section.style.display = "block";
         } else {
-          banner.classList.add("flipped");
+          section.style.display = "none";
         }
+      });
+      if (this.currentPanel === 0) {
+        card.classList.remove("flipped");
+      } else {
+        card.classList.add("flipped");
       }
     }
 
     assignButtonHandlers() {
-      const buttons = this.getBookButtons();
-      if (buttons.length > 0) {
-        Array.from(buttons).forEach((button, index) => {
-          button.addEventListener("click", () => this.updatePage(index));
-        });
-      }
+      const buttons = Array.from(this.getBookButtons()).filter(
+        (button) => button.nodeName === "BUTTON"
+      );
+      buttons?.forEach((button, index) => {
+        button.addEventListener("click", () => this.updatePage(index));
+      });
     }
 
     initiate() {
-      try {
-        // setup initial html
-        this.Template.innerHTML = this.htmlify();
-        // setup handlers and pagecounter
-        this.getBook();
-        this.assignButtonHandlers();
-        this.updatePage();
-        // Hide button only if template loads successfully
-        if (this.Template.innerHTML) {
-          this.TempButton.style.display = "none";
-        }
-      } catch (e) {
-        console.error("Template load failed:", e);
-        // Button remains visible if there's an error
-      }
+      // setup initial html
+      this.Template.innerHTML = this.htmlify();
+      // setup handlers and pagecounter
+      this.getBook();
+      this.assignButtonHandlers();
+      this.updatePage();
+      this.TempButton.style.display = "none";
     }
 
     // The icky bit
@@ -235,37 +228,43 @@ if (typeof CineplexController === "function") {
       const usesTimeline = this.config[5]?.toLowerCase() === "yes";
 
       return `
-        <div class="cineplex-body">
-          ${this.htmlBio()}
-          <div class="cineplex-interact">
-            <div class="cineplex-buttons">
-              <button>Stats</button>
-              <button>Reactions</button>
-              <button>Lore</button>
-              <button>Style</button>
-              <button>Commands</button>
-              <button>Provisions</button>
-              ${usesLinks ? `<button>Links</button>` : ""}
-              ${
-                usesTimeline
-                  ? `<div class="cineplex-header"><b>Timelines</b></div>`
-                  : ""
-              }
-              ${
-                usesTimeline && this.timelines[0]
-                  ? this.htmlTimelineButtons()
-                  : ""
-              }
-            </div>
-            <div class="cineplex-window">
-              ${this.htmlStatSection()}
-              ${this.htmlReactionsSection()}
-              ${this.htmlLoreSection()}
-              ${this.htmlStyleSection()}
-              ${this.htmlCommandSection()}
-              ${this.htmlProvisionSection()}
-              ${usesLinks ? this.htmlLinkSection() : ""}
-              ${usesTimeline ? this.htmlTimelineSections() : ""}
+        <div class="cineplex-wrapper" style="
+            --primary-color: ${primaryColor};
+            --accent-color: ${accentColor};
+            --text-color: ${textColor};
+          ">
+          <div class="cineplex-body">
+            ${this.htmlBio()}
+            <div class="cineplex-interact">
+              <div class="cineplex-buttons">
+                <button>Stats</button>
+                <button>Reactions</button>
+                <button>Lore</button>
+                <button>Style</button>
+                <button>Commands</button>
+                <button>Provisions</button>
+                ${usesLinks ? `<button>Links</button>` : ""}
+                ${
+                  usesTimeline
+                    ? `<div class="cineplex-header"><b>Timelines</b></div>`
+                    : ""
+                }
+                ${
+                  usesTimeline && this.timelines[0]
+                    ? this.htmlTimelineButtons()
+                    : ""
+                }
+              </div>
+              <div class="cineplex-window">
+                ${this.htmlStatSection()}
+                ${this.htmlReactionsSection()}
+                ${this.htmlLoreSection()}
+                ${this.htmlStyleSection()}
+                ${this.htmlCommandSection()}
+                ${this.htmlProvisionSection()}
+                ${usesLinks ? this.htmlLinkSection() : ""}
+                ${usesTimeline ? this.htmlTimelineSections() : ""}
+              </div>
             </div>
           </div>
         </div>
@@ -341,7 +340,7 @@ if (typeof CineplexController === "function") {
       `;
     }
 
-   htmlBio() {
+htmlBio() {
   const name = this.bio[0];
   const title = this.bio[1];
   const jobClass = this.bio[2];
