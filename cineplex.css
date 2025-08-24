@@ -1,0 +1,220 @@
+.cineplex-placeholder {
+  display: none;
+}
+
+.cineplex-wrapper {
+  --primary-color: white;
+  --accent-color: purple;
+  --text-color: black;
+
+  width: 100%;
+  max-width: 450px;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: normal;
+
+  border: 1px solid black;
+  background-color: var(--accent-color);
+  padding: 2px;
+}
+
+.cineplex-body {
+  border: 2px solid black;
+  background-color: var(--primary-color);
+  overflow: hidden;
+}
+
+.cineplex-bio {
+  display: flex;
+  flex-direction: column;
+}
+
+.cineplex-name {
+  text-align: right;
+  font-size: xx-large;
+  margin: 0.4rem;
+  font-family: "Poiret One", sans-serif;
+  color: var(--accent-color);
+  text-shadow: var(--primary-color) 1px 1px;
+  position: relative;
+  z-index: 2;
+}
+
+.cineplex-card {
+  width: 200px;
+  height: 300px;
+  perspective: 1000px;
+  margin: 1rem auto;
+  transition: all 1s ease;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card-front, .card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  background-size: cover;
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.cineplex-fluff {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  align-items: end;
+  text-align: right;
+}
+.cineplex-fluff p {
+  margin-block-start: 0.2rem;
+  margin-block-end: 0.2rem;
+  padding: 0.2rem 0.4rem;
+  width: 100px;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  text-shadow: black 1px 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    var(--accent-color)
+  );
+}
+
+.cineplex-interact {
+  display: flex;
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 5;
+}
+
+.cineplex-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.cineplex-buttons button,
+.cineplex-buttons button:hover {
+  border: none;
+  margin: 0;
+  margin-block-start: 0.2rem;
+  margin-block-end: 0.2rem;
+  padding: 0.2rem 0.4rem;
+  width: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  text-transform: none;
+  letter-spacing: normal;
+  text-shadow: black 1px 1px;
+  background-color: transparent;
+  background-image: linear-gradient(
+    to left,
+    rgba(255, 0, 0, 0),
+    var(--accent-color)
+  );
+}
+.cineplex-buttons button:hover {
+  opacity: 0.8;
+}
+
+.cineplex-window {
+  flex-grow: 1;
+  border: 3px dashed var(--accent-color);
+  border-radius: 8px;
+  margin: 0 1rem;
+  padding: 1rem;
+  font-size: 0.7rem;
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color),
+    rgba(255, 255, 255, 0.6)
+  );
+  backdrop-filter: blur(10px);
+}
+.cineplex-window hr {
+  border-block-color: var(--accent-color);
+}
+
+.cineplex-section {
+  display: none;
+  color: var(--text-color);
+}
+
+.cineplex-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+}
+.cineplex-left {
+  justify-content: left;
+  padding: 0 1rem 1rem 1rem;
+}
+.cineplex-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+.cineplex-stat {
+  width: 35px;
+  height: 35px;
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px -1px var(--accent-color);
+
+  font-family: "Poiret One", sans-serif;
+  color: var(--accent-color);
+  text-shadow: black 1px 1px;
+  font-size: 1.2rem;
+}
+.cineplex-stat-label {
+  color: var(--accent-color);
+  text-shadow: black 0.5px 0.5px;
+  font-size: 0.5rem;
+}
+.cineplex-header {
+  margin-top: 0.2rem;
+  border-bottom: 1px solid var(--accent-color);
+}
+.cineplex-footer {
+  border-top: 1px solid var(--accent-color);
+  margin-bottom: 0.6rem;
+  text-align: right;
+}
+.cineplex-footer a {
+  text-decoration: none;
+}
+.cineplex-header b {
+  padding: 0 0.2rem;
+  border-radius: 8px 8px 0px 0px;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+.cineplex-footer b {
+  padding: 0 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0 0 8px 8px;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
