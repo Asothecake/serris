@@ -367,10 +367,10 @@ htmlBio() {
         <p>${origin}</p>
       </div>
 
-      <div class="cineplex-card" style="position: absolute; top: 2rem; left: 50%; transform: translateX(-50%); z-index: 1;">
-        <div class="card-inner">
-          <div class="card-front" style="background-image: url('${toHtmlImage(frontImg)}');"></div>
-          <div class="card-back" style="background-image: url('${toHtmlImage(backImg)}');"></div>
+      <div class="cineplex-banner">
+        <div class="banner-inner">
+          <div class="banner-front" style="background-image: url('${toHtmlImage(frontImg)}');"></div>
+          <div class="banner-back" style="background-image: url('${toHtmlImage(backImg)}');"></div>
         </div>
       </div>
     </div>
