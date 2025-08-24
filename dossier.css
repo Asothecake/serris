@@ -17,8 +17,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 500px; /* Ensure space at bottom */
-  padding-bottom: 100px; /* Add space at bottom */
+  min-height: 600px; /* Increased for bottom space */
+  padding-bottom: 150px; /* Ensure space for photo and name */
 }
 
 .dossier-tabs {
@@ -37,12 +37,32 @@
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
   margin-right: 2px;
+  position: relative;
+  overflow: hidden;
 }
 
 .dossier-tab.active {
   background-color: var(--accent-color);
   transform: translateY(-2px);
   z-index: 1;
+}
+
+.dossier-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+  transform: skewX(20deg);
+  transform-origin: bottom left;
+  transition: transform 0.5s ease-out;
+  z-index: 0;
+}
+
+.dossier-tab.active::before {
+  transform: skewX(20deg) translateY(100%);
 }
 
 .dossier-content {
@@ -52,6 +72,7 @@
   border-left: 2px solid #444;
   position: relative;
   min-height: 400px;
+  transition: transform 0.5s ease-out;
 }
 
 .dossier-section {
@@ -93,21 +114,21 @@
 
 .dossier-photo {
   position: absolute;
-  bottom: 20px; /* Position from bottom */
+  bottom: 100px; /* Position above bottom padding */
   right: 20px; /* Right-aligned */
   width: 150px;
   height: 200px;
   background-size: cover;
   background-position: center;
   transform: rotate(-5deg); /* Angled inward */
-  border: 1px dashed #666;
+  border: 1px solid #666;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 0; /* Behind content */
 }
 
 .dossier-name {
   position: absolute;
-  bottom: 10px; /* Above photo space */
+  bottom: 20px; /* Above photo */
   left: 1rem;
   font-size: 1.5rem;
   color: var(--accent-color);
