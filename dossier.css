@@ -17,6 +17,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  min-height: 500px; /* Ensure space at bottom */
+  padding-bottom: 100px; /* Add space at bottom */
 }
 
 .dossier-tabs {
@@ -91,29 +93,26 @@
 
 .dossier-photo {
   position: absolute;
-  top: 2rem;
-  right: -20px; /* Overlap slightly to tuck under */
+  bottom: 20px; /* Position from bottom */
+  right: 20px; /* Right-aligned */
   width: 150px;
   height: 200px;
   background-size: cover;
   background-position: center;
-  transform: rotate(-5deg);
+  transform: rotate(-5deg); /* Angled inward */
   border: 1px dashed #666;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
   z-index: 0; /* Behind content */
 }
 
 .dossier-name {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
+  bottom: 10px; /* Above photo space */
+  left: 1rem;
   font-size: 1.5rem;
   color: var(--accent-color);
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 0.5rem 0;
-  border-top: 2px solid #444;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #444;
   z-index: 2;
 }
