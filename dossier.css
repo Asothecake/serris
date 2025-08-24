@@ -6,6 +6,7 @@
   --primary-color: #333333;
   --accent-color: #6ec7c2;
   --text-color: #d5dfe3;
+  --badge-url: url('https://i.imgur.com/lNVK2mN.png'); /* Default Misc badge */
   width: 100%;
   max-width: 600px;
   box-sizing: border-box;
@@ -17,8 +18,21 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 600px; /* Increased for bottom space */
-  padding-bottom: 200px; /* More space for photo and name */
+  min-height: 700px; /* Adjusted for header and icons */
+  padding-bottom: 200px;
+}
+
+.dossier-header-graphic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: var(--badge-url) no-repeat center;
+  background-size: contain;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
+  z-index: 1;
 }
 
 .dossier-tabs {
@@ -27,6 +41,8 @@
   background-color: #222;
   border-bottom: 2px solid #444;
   padding: 0.2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .dossier-tab {
@@ -78,6 +94,7 @@
 .dossier-section {
   display: none;
   color: var(--text-color);
+  position: relative;
 }
 
 .dossier-section:first-child {
@@ -112,28 +129,111 @@
   margin-top: 0.5rem;
 }
 
+.dossier-icon {
+  position: absolute;
+  bottom: 120px; /* Above Boss Name */
+  left: 1rem;
+  width: 150px;
+  height: 150px;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  background-color: var(--accent-color);
+  transition: transform 0.3s;
+}
+.dossier-icon:hover {
+  transform: scale(1.1);
+}
+
+.icon-shield {
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  width: 80%;
+  height: 80%;
+}
+.icon-target {
+  border-radius: 50%;
+  position: relative;
+}
+.icon-target::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  border: 2px solid var(--text-color);
+  top: 20%;
+  left: 20%;
+}
+.icon-quill {
+  width: 80%;
+  height: 80%;
+  background: linear-gradient(to right, transparent 70%, var(--text-color) 70%);
+}
+.icon-star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  width: 80%;
+  height: 80%;
+}
+.icon-sword {
+  width: 80%;
+  height: 80%;
+  background: linear-gradient(to bottom right, transparent 50%, var(--text-color) 50%);
+  border: 2px solid var(--text-color);
+}
+.icon-bag {
+  width: 80%;
+  height: 80%;
+  border-bottom-left-radius: 20%;
+  border-bottom-right-radius: 20%;
+  background-color: var(--text-color);
+}
+.icon-link {
+  width: 80%;
+  height: 80%;
+  border: 2px dashed var(--text-color);
+}
+.icon-timeline {
+  width: 80%;
+  height: 80%;
+  background: repeating-linear-gradient(45deg, var(--text-color) 0, var(--text-color) 10%, transparent 10%, transparent 20%);
+}
+.icon-dossier {
+  width: 80%;
+  height: 80%;
+  border: 2px solid var(--text-color);
+  border-radius: 10%;
+}
+
 .dossier-photo {
   position: absolute;
-  bottom: 50px; /* Lowered further down */
+  bottom: 50px;
   right: 20px;
   width: 150px;
   height: 200px;
   background-size: cover;
   background-position: center;
-  transform: rotate(-5deg); /* Angled inward */
+  transform: rotate(-5deg);
   border: 1px solid #666;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  z-index: 0; /* Behind content */
+  z-index: 0;
 }
 
 .dossier-name {
   position: absolute;
-  bottom: 30px; /* Lowered and shortened */
+  bottom: 30px;
   left: 1rem;
-  font-size: 1.2rem; /* Reduced size for compactness */
+  font-size: 1.2rem;
   color: var(--accent-color);
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 0.2rem 0.3rem; /* Reduced padding */
+  padding: 0.2rem 0.3rem;
   border: 1px solid #444;
   z-index: 2;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
