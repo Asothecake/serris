@@ -77,15 +77,18 @@ if (typeof CineplexController === "function") {
     }
     getBook() {
       this.BookContainer = document.getElementsByClassName("cineplex-wrapper")[this.bookCount];
+      if (!this.BookContainer) {
+        console.warn("cineplex-wrapper not found");
+      }
     }
     getBookSections() {
-      return this.BookContainer.getElementsByClassName("cineplex-section");
+      return this.BookContainer ? this.BookContainer.getElementsByClassName("cineplex-section") : [];
     }
     getBookButtons() {
-      return this.BookContainer.getElementsByClassName("cineplex-buttons")[0].children;
+      return this.BookContainer ? this.BookContainer.getElementsByClassName("cineplex-buttons")[0]?.children : [];
     }
     getCard() {
-      return this.BookContainer.getElementsByClassName("cineplex-banner")[0];
+      return this.BookContainer ? this.BookContainer.getElementsByClassName("cineplex-banner")[0] : null;
     }
 
     getConfigProperty(element) {
@@ -182,27 +185,27 @@ if (typeof CineplexController === "function") {
       this.currentPanel = pageNumber;
       const sections = this.getBookSections();
       const banner = this.getCard();
-      Array.from(sections)?.forEach((section, index) => {
-        if (index === this.currentPanel) {
-          section.style.display = "block";
+      if (sections.length > 0) {
+        Array.from(sections).forEach((section, index) => {
+          section.style.display = index === this.currentPanel ? "block" : "none";
+        });
+      }
+      if (banner) {
+        if (this.currentPanel === 0) {
+          banner.classList.remove("flipped");
         } else {
-          section.style.display = "none";
+          banner.classList.add("flipped");
         }
-      });
-      if (this.currentPanel === 0) {
-        banner.classList.remove("flipped");
-      } else {
-        banner.classList.add("flipped");
       }
     }
 
     assignButtonHandlers() {
-      const buttons = Array.from(this.getBookButtons()).filter(
-        (button) => button.nodeName === "BUTTON"
-      );
-      buttons?.forEach((button, index) => {
-        button.addEventListener("click", () => this.updatePage(index));
-      });
+      const buttons = this.getBookButtons();
+      if (buttons.length > 0) {
+        Array.from(buttons).forEach((button, index) => {
+          button.addEventListener("click", () => this.updatePage(index));
+        });
+      }
     }
 
     initiate() {
