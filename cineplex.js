@@ -210,13 +210,21 @@ if (typeof CineplexController === "function") {
     }
 
     initiate() {
-      // setup initial html
-      this.Template.innerHTML = this.htmlify();
-      // setup handlers and pagecounter
-      this.getBook();
-      this.assignButtonHandlers();
-      this.updatePage();
-      this.TempButton.style.display = "none"; // This line hides the button after initiation, which might be why it's not showing—let's adjust logic below
+      try {
+        // setup initial html
+        this.Template.innerHTML = this.htmlify();
+        // setup handlers and pagecounter
+        this.getBook();
+        this.assignButtonHandlers();
+        this.updatePage();
+        // Hide button only if template loads successfully
+        if (this.Template.innerHTML) {
+          this.TempButton.style.display = "none";
+        }
+      } catch (e) {
+        console.error("Template load failed:", e);
+        // Button remains visible if there's an error
+      }
     }
 
     // The icky bit
@@ -228,44 +236,37 @@ if (typeof CineplexController === "function") {
       const usesTimeline = this.config[5]?.toLowerCase() === "yes";
 
       return `
-        <div class="cineplex-wrapper" style="
-            --primary-color: ${primaryColor};
-            --accent-color: ${accentColor};
-            --text-color: ${textColor};
-          ">
-          <button class="temporary" onclick="location.reload()">Click Here to activate template</button>
-          <div class="cineplex-body">
-            ${this.htmlBio()}
-            <div class="cineplex-interact">
-              <div class="cineplex-buttons">
-                <button>Stats</button>
-                <button>Reactions</button>
-                <button>Lore</button>
-                <button>Style</button>
-                <button>Commands</button>
-                <button>Provisions</button>
-                ${usesLinks ? `<button>Links</button>` : ""}
-                ${
-                  usesTimeline
-                    ? `<div class="cineplex-header"><b>Timelines</b></div>`
-                    : ""
-                }
-                ${
-                  usesTimeline && this.timelines[0]
-                    ? this.htmlTimelineButtons()
-                    : ""
-                }
-              </div>
-              <div class="cineplex-window">
-                ${this.htmlStatSection()}
-                ${this.htmlReactionsSection()}
-                ${this.htmlLoreSection()}
-                ${this.htmlStyleSection()}
-                ${this.htmlCommandSection()}
-                ${this.htmlProvisionSection()}
-                ${usesLinks ? this.htmlLinkSection() : ""}
-                ${usesTimeline ? this.htmlTimelineSections() : ""}
-              </div>
+        <div class="cineplex-body">
+          ${this.htmlBio()}
+          <div class="cineplex-interact">
+            <div class="cineplex-buttons">
+              <button>Stats</button>
+              <button>Reactions</button>
+              <button>Lore</button>
+              <button>Style</button>
+              <button>Commands</button>
+              <button>Provisions</button>
+              ${usesLinks ? `<button>Links</button>` : ""}
+              ${
+                usesTimeline
+                  ? `<div class="cineplex-header"><b>Timelines</b></div>`
+                  : ""
+              }
+              ${
+                usesTimeline && this.timelines[0]
+                  ? this.htmlTimelineButtons()
+                  : ""
+              }
+            </div>
+            <div class="cineplex-window">
+              ${this.htmlStatSection()}
+              ${this.htmlReactionsSection()}
+              ${this.htmlLoreSection()}
+              ${this.htmlStyleSection()}
+              ${this.htmlCommandSection()}
+              ${this.htmlProvisionSection()}
+              ${usesLinks ? this.htmlLinkSection() : ""}
+              ${usesTimeline ? this.htmlTimelineSections() : ""}
             </div>
           </div>
         </div>
