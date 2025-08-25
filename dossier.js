@@ -49,9 +49,6 @@ if (typeof DossierController === "function") {
     getBookContent() {
       return this.BookContainer.getElementsByClassName("dossier-content")[0];
     }
-    getPhoto() {
-      return this.BookContainer.getElementsByClassName("dossier-photo")[0];
-    }
 
     getConfigProperty(element) {
       if (!element) return "";
@@ -125,17 +122,12 @@ if (typeof DossierController === "function") {
       this.currentPanel = pageNumber;
       const tabs = this.getBookTabs();
       const content = this.getBookContent();
-      const maxTabs = Math.min(6, tabs.length);
       if (tabs.length > 0 && content) {
         Array.from(tabs).forEach((tab, index) => {
           tab.classList.toggle("active", index === this.currentPanel);
           const section = content.children[index];
           if (section) section.style.display = index === this.currentPanel ? "block" : "none";
         });
-        const photo = this.getPhoto();
-        if (photo && this.bio[6 + this.currentPanel]) {
-          photo.style.backgroundImage = `url('${this.bio[6 + this.currentPanel] || this.bio[6]}')`;
-        }
       }
     }
 
@@ -164,8 +156,7 @@ if (typeof DossierController === "function") {
       const [primaryColor, accentColor, textColor, useMirage, useLinks, useTimeline, enemyType, iconVariation] = this.config;
       const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"];
       return `
-        <div class="dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor}; --badge-url: url('${badgeUrl}');">
-          <div class="dossier-header-graphic"></div>
+        <div class="dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor};">
           <div class="dossier-tabs">
             <div class="dossier-tab active">Stats</div>
             <div class="dossier-tab">Reactions</div>
@@ -175,6 +166,7 @@ if (typeof DossierController === "function") {
             <div class="dossier-tab">Provisions</div>
             ${useLinks === "yes" ? '<div class="dossier-tab">Links</div>' : ""}
             ${useTimeline === "yes" ? '<div class="dossier-tab">Timelines</div>' : ""}
+            <div class="dossier-badge" style="background-image: url('${badgeUrl}');"></div>
           </div>
           <div class="dossier-content">
             ${this.htmlStatSection()}
@@ -187,7 +179,6 @@ if (typeof DossierController === "function") {
             ${useTimeline === "yes" ? this.htmlTimelineSections() : ""}
           </div>
           <div class="dossier-name"><b>${this.bio[0]}</b></div>
-          <div class="dossier-photo"></div>
         </div>
       `;
     }
