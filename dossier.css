@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   min-height: 700px;
-  padding-bottom: 60px; /* Reduced to match new layout */
+  padding-bottom: 60px;
 }
 
 .dossier-header-graphic {
@@ -73,15 +73,14 @@
 }
 
 .dossier-badge {
-  position: absolute;
-  bottom: 30px;
-  left: calc(1rem + 100px); /* Adjust based on Boss Name width */
+  margin-left: 0.5rem; /* Inline with Boss Name */
   width: 70px;
   height: 70px;
   background: var(--badge-url) no-repeat center;
   background-size: contain;
   border: none;
-  z-index: 2;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .dossier-content {
@@ -98,6 +97,7 @@
   display: none;
   color: var(--text-color);
   position: relative;
+  min-height: 300px; /* Ensure space for icon */
 }
 
 .dossier-section:first-child {
@@ -134,8 +134,8 @@
 
 .dossier-icon {
   position: absolute;
-  bottom: 120px;
-  left: 1rem;
+  bottom: 0;
+  right: 0;
   width: 150px;
   height: 150px;
   border: none;
@@ -212,6 +212,20 @@
   background: radial-gradient(circle, var(--text-color) 30%, transparent 30%);
 }
 
+.dossier-photo {
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  width: 150px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  transform: rotate(-5deg);
+  border: 1px solid #666;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
 .dossier-name {
   position: absolute;
   bottom: 30px;
@@ -219,11 +233,12 @@
   font-size: 1.1rem;
   color: var(--accent-color);
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 0.1rem 0.2rem; /* Reduced for compactness */
+  padding: 0.1rem 0.2rem;
   border: 1px solid #444;
   z-index: 2;
   display: flex;
   align-items: center;
+  gap: 0.5rem; /* Space between name and badge */
 }
 
 @keyframes fadeIn {
