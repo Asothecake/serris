@@ -134,8 +134,12 @@ if (typeof DossierController === "function") {
         });
         if (photo && this.bio[6 + this.currentPanel]) {
           photo.style.backgroundImage = `url('${this.bio[6 + this.currentPanel] || this.bio[6]}')`;
+        } else {
+          console.error("Photo element not found or no URL for panel", this.currentPanel);
         }
       }
+      const icons = this.BookContainer.getElementsByClassName("dossier-icon");
+      console.log("Icons found:", icons.length, "Panel:", this.currentPanel);
     }
 
     assignButtonHandlers() {
