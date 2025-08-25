@@ -132,114 +132,33 @@
   margin-top: 0.5rem;
 }
 
-.dossier-icon {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 150px;
-  height: 150px;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-color);
-  background-color: var(--accent-color);
-  transition: transform 0.3s;
-}
-.dossier-icon:hover {
-  transform: scale(1.1);
-}
-
-.icon-shield {
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-  width: 80%;
-  height: 80%;
-  background-color: var(--text-color);
-}
-.icon-target {
-  border-radius: 50%;
-  position: relative;
-  width: 80%;
-  height: 80%;
-}
-.icon-target::after {
-  content: '';
-  position: absolute;
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
-  border: 2px solid var(--text-color);
-  top: 20%;
-  left: 20%;
-}
-.icon-quill {
-  width: 80%;
-  height: 80%;
-  background: linear-gradient(to right, transparent 70%, var(--text-color) 70%);
-}
-.icon-star {
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  width: 80%;
-  height: 80%;
-  background-color: var(--text-color);
-}
-.icon-sword {
-  width: 80%;
-  height: 80%;
-  background: linear-gradient(to bottom right, transparent 50%, var(--text-color) 50%);
-}
-.icon-bag {
-  width: 80%;
-  height: 80%;
-  border-bottom-left-radius: 20%;
-  border-bottom-right-radius 20%;
-  background-color: var(--text-color);
-}
-.icon-link {
-  width: 80%;
-  height: 80%;
-  border: 2px dashed var(--text-color);
-}
-.icon-timeline {
-  width: 80%;
-  height: 80%;
-  background: repeating-linear-gradient(45deg, var(--text-color) 0, var(--text-color) 10%, transparent 10%, transparent 20%);
-}
-.icon-dossier {
-  width: 80%;
-  height: 80%;
-  background: radial-gradient(circle, var(--text-color) 30%, transparent 30%);
-}
-
 .dossier-photo {
   position: absolute;
   bottom: 60px;
   right: 20px;
   width: 150px;
-  height: 200px;
+  height: 150px;
   background-size: cover;
   background-position: center;
-  transform: rotate(-5deg);
-  border: 1px solid #666;
+  border-radius: 50%; /* Radial style */
+  border: none; /* No border */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
 
 .dossier-name {
   position: absolute;
-  bottom: 30px;
+  bottom: 0;
   left: 1rem;
   font-size: 1.1rem;
   color: var(--accent-color);
   background-color: rgba(0, 0, 0, 0.7);
   padding: 0.1rem 0.2rem;
-  border: 1px solid #444;
+  border: none; /* No border */
   z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  max-width: 200px; /* Limit name width to prevent overflow */
 }
 
 @keyframes fadeIn {
