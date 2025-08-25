@@ -27,13 +27,7 @@ if (typeof DossierController === "function") {
       this.timelines = this.getTimelines();
 
       this.currentPanel = 0;
-      this.badgeMap = {
-        "Nobody": "https://i.imgur.com/1QNGfY5.png",
-        "Heartless": "https://i.imgur.com/4CUgNR7.png",
-        "Wielder": "https://i.imgur.com/nKDoVDC.png",
-        "Legendary": "https://i.imgur.com/hLnG0K7.png",
-        "Misc": "https://i.imgur.com/lNVK2mN.png"
-      };
+      this.badgeMap = {}; // Will be populated from JSON
     }
 
     getFirst(id) {
@@ -125,6 +119,35 @@ if (typeof DossierController === "function") {
       });
     }
 
+    async initiate() {
+      try {
+        const response = await fetch('https://asothecake.github.io/serris/dossier.json');
+        if (!response.ok) throw new Error("Failed to fetch dossier.json");
+        const data = await response.json();
+        this.badgeMap = data.types || {}; // Populate badgeMap from JSON
+        console.log("Loaded Badge Map:", this.badgeMap);
+        this.Template.innerHTML = this.htmlify();
+        this.getBook();
+        this.assignButtonHandlers();
+        this.updatePage();
+        if (this.Template.innerHTML) this.TempButton.style.display = "none";
+      } catch (e) {
+        console.error("Dossier load failed:", e);
+        this.badgeMap = {
+          "Nobody": "https://i.imgur.com/1QNGfY5.png",
+          "Heartless": "https://i.imgur.com/4CUgNR7.png",
+          "Wielder": "https://i.imgur.com/nKDoVDC.png",
+          "Legendary": "https://i.imgur.com/hLnG0K7.png",
+          "Misc": "https://i.imgur.com/lNVK2mN.png"
+        }; // Fallback to hardcoded map
+        this.Template.innerHTML = this.htmlify();
+        this.getBook();
+        this.assignButtonHandlers();
+        this.updatePage();
+        if (this.Template.innerHTML) this.TempButton.style.display = "none";
+      }
+    }
+
     updatePage(pageNumber = this.currentPanel) {
       this.currentPanel = pageNumber;
       const tabs = this.getBookTabs();
@@ -142,6 +165,14 @@ if (typeof DossierController === "function") {
           console.error("Photo element not found or no URL for panel", this.currentPanel);
         }
       }
+      const badge = this.BookContainer.getElementsByClassName("dossier-badge")[0];
+      if (badge) {
+        const badgeUrl = this.badgeMap[this.config[6]] || this.badgeMap["Misc"] || "https://i.imgur.com/lNVK2mN.png";
+        badge.style.backgroundImage = `url('${badgeUrl}')`; // Force update
+        console.log("Updated Badge Style:", badge.style.backgroundImage, "for Enemy Type:", this.config[6]);
+      } else {
+        console.error("Badge element not found");
+      }
     }
 
     assignButtonHandlers() {
@@ -153,21 +184,9 @@ if (typeof DossierController === "function") {
       }
     }
 
-    initiate() {
-      try {
-        this.Template.innerHTML = this.htmlify();
-        this.getBook();
-        this.assignButtonHandlers();
-        this.updatePage();
-        if (this.Template.innerHTML) this.TempButton.style.display = "none";
-      } catch (e) {
-        console.error("Dossier load failed:", e);
-      }
-    }
-
     htmlify() {
       const [primaryColor, accentColor, textColor, useMirage, useLinks, useTimeline, enemyType] = this.config;
-      const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"];
+      const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"] || "https://i.imgur.com/lNVK2mN.png";
       console.log("Enemy Type:", enemyType, "Badge URL:", badgeUrl); // Debug badge update
       return `
         <div class="dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor};">
