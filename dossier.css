@@ -19,11 +19,11 @@
   display: flex;
   flex-direction: column;
   min-height: 700px;
-  padding-bottom: 200px;
+  padding-bottom: 60px; /* Reduced to match new layout */
 }
 
 .dossier-header-graphic {
-  display: none; /* Removed as badge is now in tabs */
+  display: none; /* Removed as badge is now in dossier-name */
 }
 
 .dossier-tabs {
@@ -74,15 +74,14 @@
 
 .dossier-badge {
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 70px; /* Adjust based on badge image size */
+  bottom: 30px;
+  left: calc(1rem + 100px); /* Adjust based on Boss Name width */
+  width: 70px;
   height: 70px;
   background: var(--badge-url) no-repeat center;
   background-size: contain;
-  border: none; /* Remove border */
-  z-index: 3;
+  border: none;
+  z-index: 2;
 }
 
 .dossier-content {
@@ -139,8 +138,8 @@
   left: 1rem;
   width: 150px;
   height: 150px;
-  border: none; /* Remove border as requested */
-  border-radius: 50%; /* Keep circular shape without border */
+  border: none;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,12 +216,14 @@
   position: absolute;
   bottom: 30px;
   left: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--accent-color);
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 0.2rem 0.3rem;
+  padding: 0.1rem 0.2rem; /* Reduced for compactness */
   border: 1px solid #444;
   z-index: 2;
+  display: flex;
+  align-items: center;
 }
 
 @keyframes fadeIn {
