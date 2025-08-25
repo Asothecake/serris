@@ -134,13 +134,13 @@
 
 .dossier-photo {
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   right: 20px;
   width: 150px;
   height: 150px;
   background-size: cover;
   background-position: center;
-  border-radius: 5%; /* Radial style */
+  border-radius: 0; /* Ensure square shape */
   border: none;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 0;
@@ -172,6 +172,3 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
-
-
