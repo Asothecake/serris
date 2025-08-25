@@ -1,7 +1,7 @@
 window.BookCount = window.BookCount >= 0 ? window.BookCount + 1 : 0;
 
 if (typeof DossierController === "function") {
-  console.log(window.BookCount);
+  console.log("Script loaded, BookCount:", window.BookCount);
   new DossierController(window.BookCount).initiate();
 } else {
   class DossierController {
@@ -10,6 +10,7 @@ if (typeof DossierController === "function") {
       this.TempButton = document.getElementsByClassName("temporary")[bookCount];
       this.Template = document.getElementsByClassName("dossier-template")[bookCount];
       this.DataContainer = document.getElementsByClassName("dossier-placeholder")[bookCount];
+      console.log("DataContainer found:", !!this.DataContainer);
 
       this.config = this.getConfig(this.getFirst("config"));
       console.log("Initial Config:", this.config); // Debug config on init
