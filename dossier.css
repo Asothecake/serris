@@ -74,8 +74,8 @@
 
 .dossier-badge {
   margin-left: auto; /* Right-align within flex container */
-  width: 36px; /* New size */
-  height: 36px; /* New size */
+  width: 36px; /* Match requested size */
+  height: 36px; /* Match requested size */
   background: var(--badge-url) no-repeat center;
   background-size: contain;
   border: none;
@@ -149,16 +149,23 @@
 .dossier-name {
   position: absolute;
   bottom: 0;
-  left: 1rem;
-  font-size: 1.1rem;
+  left: 0;
+  right: 0;
+  font-size: 1.5rem; /* Increased for spanning */
   color: var(--accent-color);
   background-color: transparent;
-  padding: 0.1rem 0.2rem;
+  padding: 0.5rem; /* Increased padding for spacing */
   border: none;
   z-index: 2;
   display: flex;
+  justify-content: space-between; /* Spread text and badge */
   align-items: center;
-  gap: 0.5rem;
+  letter-spacing: 0.1rem; /* Added for spacing */
+}
+
+.boss-name-text {
+  flex-grow: 1; /* Allow text to expand */
+  overflow-wrap: break-word; /* Handle long names */
 }
 
 @keyframes fadeIn {
