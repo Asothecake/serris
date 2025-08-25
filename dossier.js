@@ -12,6 +12,7 @@ if (typeof DossierController === "function") {
       this.DataContainer = document.getElementsByClassName("dossier-placeholder")[bookCount];
 
       this.config = this.getConfig(this.getFirst("config"));
+      console.log("Initial Config:", this.config); // Debug config on init
       this.bio = this.arrayify(this.getFirst("bio"));
       this.stats = this.arrayify(this.getFirst("stats"));
       if (this.config[3] === "yes") this.mirage = this.arrayify(this.getFirst("mirage"));
@@ -69,7 +70,7 @@ if (typeof DossierController === "function") {
       const mirageConfig = children.find(child => this.hasBonusConfig(child, "Mirage"));
       const linkConfig = children.find(child => this.hasBonusConfig(child, "Link"));
       const timelineConfig = children.find(child => this.hasBonusConfig(child, "Timeline"));
-      return [
+      const configArray = [
         this.getConfigProperty(children[0]),
         this.getConfigProperty(children[1]),
         this.getConfigProperty(children[2]),
@@ -79,6 +80,8 @@ if (typeof DossierController === "function") {
         this.getConfigProperty(children[6]) || "Heartless", // Enemy Type
         this.getConfigProperty(children[7]) || "single" // Icon Variation (unused now)
       ];
+      console.log("Parsed Config:", configArray); // Debug parsed config
+      return configArray;
     }
 
     arrayify(element) {
