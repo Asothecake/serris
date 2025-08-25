@@ -164,6 +164,7 @@ if (typeof DossierController === "function") {
     htmlify() {
       const [primaryColor, accentColor, textColor, useMirage, useLinks, useTimeline, enemyType] = this.config;
       const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"];
+      console.log("Enemy Type:", enemyType, "Badge URL:", badgeUrl); // Debug badge update
       return `
         <div class="dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor};">
           <div class="dossier-tabs">
