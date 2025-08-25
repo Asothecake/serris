@@ -49,6 +49,9 @@ if (typeof DossierController === "function") {
     getBookContent() {
       return this.BookContainer.getElementsByClassName("dossier-content")[0];
     }
+    getPhoto() {
+      return this.BookContainer.getElementsByClassName("dossier-photo")[0];
+    }
 
     getConfigProperty(element) {
       if (!element) return "";
@@ -122,12 +125,16 @@ if (typeof DossierController === "function") {
       this.currentPanel = pageNumber;
       const tabs = this.getBookTabs();
       const content = this.getBookContent();
-      if (tabs.length > 0 && content) {
+      const photo = this.getPhoto();
+      if (tabs.length > 0 && content && photo) {
         Array.from(tabs).forEach((tab, index) => {
           tab.classList.toggle("active", index === this.currentPanel);
           const section = content.children[index];
           if (section) section.style.display = index === this.currentPanel ? "block" : "none";
         });
+        if (photo && this.bio[6 + this.currentPanel]) {
+          photo.style.backgroundImage = `url('${this.bio[6 + this.currentPanel] || this.bio[6]}')`;
+        }
       }
     }
 
@@ -166,7 +173,6 @@ if (typeof DossierController === "function") {
             <div class="dossier-tab">Provisions</div>
             ${useLinks === "yes" ? '<div class="dossier-tab">Links</div>' : ""}
             ${useTimeline === "yes" ? '<div class="dossier-tab">Timelines</div>' : ""}
-            <div class="dossier-badge" style="background-image: url('${badgeUrl}');"></div>
           </div>
           <div class="dossier-content">
             ${this.htmlStatSection()}
@@ -178,7 +184,8 @@ if (typeof DossierController === "function") {
             ${useLinks === "yes" ? this.htmlLinkSection() : ""}
             ${useTimeline === "yes" ? this.htmlTimelineSections() : ""}
           </div>
-          <div class="dossier-name"><b>${this.bio[0]}</b></div>
+          <div class="dossier-name"><b>${this.bio[0]}</b><div class="dossier-badge" style="background-image: url('${badgeUrl}');"></div></div>
+          <div class="dossier-photo"></div>
         </div>
       `;
     }
