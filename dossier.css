@@ -134,7 +134,7 @@
 
 .dossier-photo {
   position: absolute;
-  bottom: 60px;
+  bottom: 50px;
   right: 20px;
   width: 150px;
   height: 150px;
@@ -172,4 +172,5 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
 
