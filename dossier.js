@@ -186,7 +186,7 @@ if (typeof DossierController === "function") {
             ${useLinks === "yes" ? this.htmlLinkSection() : ""}
             ${useTimeline === "yes" ? this.htmlTimelineSections() : ""}
           </div>
-          <div class="dossier-name"><b>${this.bio[0]}</b><div class="dossier-badge" style="background-image: url('${badgeUrl}');"></div></div>
+          <div class="dossier-name"><span class="boss-name-text"><b>${this.bio[0]}</b></span><div class="dossier-badge" style="background-image: url('${badgeUrl}');"></div></div>
           <div class="dossier-photo"></div>
         </div>
       `;
