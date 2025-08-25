@@ -136,7 +136,6 @@ if (typeof DossierController === "function") {
           photo.style.backgroundImage = `url('${this.bio[6 + this.currentPanel] || this.bio[6]}')`;
         }
       }
-      console.log("Current panel:", this.currentPanel, "Photo URL:", photo ? photo.style.backgroundImage : "No photo element");
     }
 
     assignButtonHandlers() {
