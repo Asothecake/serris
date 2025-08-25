@@ -73,7 +73,7 @@
 }
 
 .dossier-badge {
-  margin-left: 0.5rem; /* Inline with Boss Name */
+  margin-left: 0.5rem;
   width: 70px;
   height: 70px;
   background: var(--badge-url) no-repeat center;
@@ -97,7 +97,7 @@
   display: none;
   color: var(--text-color);
   position: relative;
-  min-height: 300px; /* Ensure space for icon */
+  min-height: 300px;
 }
 
 .dossier-section:first-child {
@@ -193,7 +193,7 @@
   width: 80%;
   height: 80%;
   border-bottom-left-radius: 20%;
-  border-bottom-right-radius: 20%;
+  border-bottom-right-radius 20%;
   background-color: var(--text-color);
 }
 .icon-link {
@@ -236,9 +236,10 @@
   padding: 0.1rem 0.2rem;
   border: 1px solid #444;
   z-index: 2;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem; /* Space between name and badge */
+  gap: 0.5rem;
+  max-width: 200px; /* Limit name width to prevent overflow */
 }
 
 @keyframes fadeIn {
