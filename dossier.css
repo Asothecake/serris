@@ -73,9 +73,9 @@
 }
 
 .dossier-badge {
-  margin-left: 0.5rem;
-  width: 70px; /* Match Boss Name text height approximation */
-  height: 70px;
+  margin-left: auto; /* Right-align within flex container */
+  width: 36px; /* New size */
+  height: 36px; /* New size */
   background: var(--badge-url) no-repeat center;
   background-size: contain;
   border: none;
@@ -152,11 +152,11 @@
   left: 1rem;
   font-size: 1.1rem;
   color: var(--accent-color);
-  background-color: transparent; /* Removed background */
+  background-color: transparent;
   padding: 0.1rem 0.2rem;
   border: none;
   z-index: 2;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
 }
