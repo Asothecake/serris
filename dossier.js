@@ -10,7 +10,7 @@ if (typeof DossierController === "function") {
       this.TempButton = document.getElementsByClassName("temporary")[bookCount];
       this.Template = document.getElementsByClassName("dossier-template")[bookCount];
       this.DataContainer = document.getElementsByClassName("dossier-placeholder")[bookCount];
-      console.log("DataContainer found:", !!this.DataContainer);
+      console.log("DataContainer found:", !!this.DataContainer, "HTML Content:", this.DataContainer ? this.DataContainer.innerHTML : "Not found");
 
       this.config = this.getConfig(this.getFirst("config"));
       console.log("Initial Config:", this.config); // Debug config on init
@@ -52,6 +52,7 @@ if (typeof DossierController === "function") {
     getConfigProperty(element) {
       if (!element) return "";
       const fullString = element.innerHTML;
+      if (fullString.includes("Enemy Type:")) console.log("Enemy Type Raw:", fullString); // Debug specific line
       return fullString.split("</b>")[1]?.trim() || "";
     }
 
@@ -127,6 +128,12 @@ if (typeof DossierController === "function") {
         this.badgeMap = data.types || {}; // Populate badgeMap from JSON
         console.log("Loaded Badge Map:", this.badgeMap);
         this.Template.innerHTML = this.htmlify();
+        const badge = this.BookContainer.getElementsByClassName("dossier-badge")[0];
+        if (badge) {
+          const badgeUrl = this.badgeMap[this.config[6]] || this.badgeMap["Misc"] || "https://i.imgur.com/lNVK2mN.png";
+          badge.style.backgroundImage = `url('${badgeUrl}')`; // Force initial update
+          console.log("Initial Badge Style:", badge.style.backgroundImage);
+        }
         this.getBook();
         this.assignButtonHandlers();
         this.updatePage();
@@ -141,6 +148,12 @@ if (typeof DossierController === "function") {
           "Misc": "https://i.imgur.com/lNVK2mN.png"
         }; // Fallback to hardcoded map
         this.Template.innerHTML = this.htmlify();
+        const badge = this.BookContainer.getElementsByClassName("dossier-badge")[0];
+        if (badge) {
+          const badgeUrl = this.badgeMap[this.config[6]] || this.badgeMap["Misc"] || "https://i.imgur.com/lNVK2mN.png";
+          badge.style.backgroundImage = `url('${badgeUrl}')`; // Force initial update
+          console.log("Initial Badge Style (Fallback):", badge.style.backgroundImage);
+        }
         this.getBook();
         this.assignButtonHandlers();
         this.updatePage();
@@ -321,7 +334,7 @@ if (typeof DossierController === "function") {
           <div class="dossier-header">Links</div>
           ${this.links.map(l => `
             <div class="dossier-item"><b>${l.name}</b></div>
-            <p>${l["link-details"] || "N/A"}</p>
+            <p>${l["link-details"] || "N/A"</p>
             <div class="dossier-stat">Rank: ${l["link-rank"] || 0}</div>
             ${l["link-command-name"] ? `
               <div class="dossier-item"><b>${l["link-command-name"]}</b> [${l["link-command-stat"] || "---"}/${l["link-command-cp"] || 0}cp]</div>
