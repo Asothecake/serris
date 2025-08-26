@@ -21,8 +21,11 @@ if (typeof DossierController === "function") {
       console.log("Style Object:", this.style); // Debug style object
       this.lore = this.objectify(["lore-item", "lore-details"]);
       this.commands = this.objectify(["command", "command-details", "command-stats"]);
+      console.log("Commands Object:", this.commands); // Debug commands object
       this.provisions = this.objectify(["provision", "provision-details", "provision-stats"]);
+      console.log("Provisions Object:", this.provisions); // Debug provisions object
       this.reactions = this.objectify(["reaction", "reaction-details", "reaction-stats"]);
+      console.log("Reactions Object:", this.reactions); // Debug reactions object
       this.links = this.compoundObjectify(["link", "link-details", "link-rank", "link-command-name", "link-command-details", "link-command-stat", "link-command-cp", "link-style"]);
       this.timelines = this.getTimelines();
       this.currentPanel = 0;
@@ -100,12 +103,12 @@ if (typeof DossierController === "function") {
       const resources = keyList.map(key => this.getAll(key));
       const names = Array.from(resources[0] || []);
       const details = Array.from(resources[1] || []);
-      const statsElements = this.getAll(keyList[2]); // Get all style-points divs
-      const stats = statsElements.length > 0 ? Array.from(statsElements).map(sp => sp.innerHTML) : [];
-      return names.map((name, index) => ({
-        name: name ? name.innerHTML : "",
+      const stats = resources[2] ? Array.from(resources[2] || []) : [];
+      const maxLength = Math.min(names.length, details.length, stats.length); // Use minimum length to avoid overreach
+      return Array.from({ length: maxLength }, (_, index) => ({
+        name: names[index] ? names[index].innerHTML : "",
         details: details[index] ? details[index].innerHTML : "",
-        stats: stats, // Use all collected stats for this style
+        stats: stats[index] ? [stats[index].innerHTML] : [], // Ensure stats is an array per entry
       }));
     }
     compoundObjectify(keyList = []) {
@@ -251,7 +254,7 @@ if (typeof DossierController === "function") {
             <div class="ds-dossier-reaction">
               <div class="ds-dossier-item"><b>${r.name || "N/A"}</b></div>
               <p>${r.details || "N/A"}</p>
-              <div class="ds-dossier-stat">${r.stats || "N/A"}</div>
+              <div class="ds-dossier-stat">${r.stats[0] || "N/A"}</div> <!-- Use first stat value only -->
             </div>
           `).join("") : '<div class="ds-dossier-reaction"><p>No reactions available</p></div>'}
         </div>
@@ -291,7 +294,7 @@ if (typeof DossierController === "function") {
             <div class="ds-dossier-command">
               <div class="ds-dossier-item"><b>${c.name || "N/A"}</b></div>
               <p>${c.details || "N/A"}</p>
-              <div class="ds-dossier-stat">${c.stats || "N/A"}</div>
+              <div class="ds-dossier-stat">${c.stats[0] || "N/A"}</div> <!-- Use first stat value only -->
             </div>
           `).join("") : '<div class="ds-dossier-command"><p>No commands available</p></div>'}
         </div>
@@ -306,7 +309,7 @@ if (typeof DossierController === "function") {
             <div class="ds-dossier-provision">
               <div class="ds-dossier-item"><b>${p.name || "N/A"}</b></div>
               <p>${p.details || "N/A"}</p>
-              <div class="ds-dossier-stat">${p.stats || "N/A"}</div>
+              <div class="ds-dossier-stat">${p.stats[0] || "N/A"}</div> <!-- Use first stat value only -->
             </div>
           `).join("") : '<div class="ds-dossier-provision"><p>No provisions available</p></div>'}
         </div>
