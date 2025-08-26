@@ -149,8 +149,12 @@ if (typeof DossierController === "function") {
       const badge = this.BookContainer.getElementsByClassName("ds-dossier-badge")[0];
       if (badge) {
         const badgeUrl = this.badgeMap[this.config[5]] || this.badgeMap["Misc"];
-        badge.style.backgroundImage = `url('${badgeUrl}')`; // Force update
-        console.log("Updated Badge Style:", badge.style.backgroundImage, "for Enemy Type:", this.config[5]);
+        if (badgeUrl) {
+          badge.style.backgroundImage = `url('${badgeUrl}')`; // Force update with validation
+          console.log("Updated Badge Style:", badge.style.backgroundImage, "for Enemy Type:", this.config[5]);
+        } else {
+          console.warn("Badge URL not found for Enemy Type:", this.config[5]);
+        }
       } else {
         console.error("Badge element not found");
       }
@@ -200,7 +204,7 @@ if (typeof DossierController === "function") {
             ${useLinks === "yes" ? this.htmlLinkSection() : ""}
             ${this.timelines.length > 0 ? this.htmlTimelineSections() : ""}
           </div>
-          <div class="ds-dossier-name"><span class="ds-boss-name-text"><b>${this.bio[0]}</b></span><div class="ds-dossier-badge" style="background-image: url('${badgeUrl}');"></div></div>
+          <div class="ds-dossier-name"><span class="ds-boss-name-text"><b>${this.bio[0]}</b></span><div class="ds-dossier-badge"></div></div>
           <div class="ds-dossier-photo"></div>
         </div>
       `;
