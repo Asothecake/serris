@@ -84,7 +84,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  border: 1px solid var(--accent-color); /* Optional border for visibility */
+  border: 0px solid var(--accent-color); /* Optional border for visibility */
   /* Background image set via JS style attribute */
 }
 .ds-dossier-content {
@@ -183,5 +183,6 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
 
 
