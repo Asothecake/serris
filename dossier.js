@@ -11,7 +11,6 @@ if (typeof DossierController === "function") {
       this.Template = document.getElementsByClassName("dossier-template")[bookCount];
       this.DataContainer = document.getElementsByClassName("dossier-placeholder")[bookCount];
       console.log("DataContainer found:", !!this.DataContainer);
-
       this.config = this.getConfig(this.getFirst("config"));
       console.log("Initial Config:", this.config); // Debug config on init
       this.bio = this.arrayify(this.getFirst("bio"));
@@ -25,7 +24,6 @@ if (typeof DossierController === "function") {
       this.reactions = this.objectify(["reaction", "reaction-details", "reaction-stats"]);
       this.links = this.compoundObjectify(["link", "link-details", "link-rank", "link-command-name", "link-command-details", "link-command-stat", "link-command-cp", "link-style"]);
       this.timelines = this.getTimelines();
-
       this.currentPanel = 0;
       this.badgeMap = {
         "Nobody": "https://i.imgur.com/1QNGfY5.png",
@@ -58,6 +56,9 @@ if (typeof DossierController === "function") {
     getConfigProperty(element) {
       if (!element) return "";
       const fullString = element.innerHTML;
+      if (fullString.includes("Enemy Type:") || fullString.includes("Icon Variation:")) {
+        console.log("Config Property Raw:", fullString); // Debug specific lines
+      }
       return fullString.split("</b>")[1]?.trim() || "";
     }
 
@@ -70,16 +71,16 @@ if (typeof DossierController === "function") {
       const children = Array.from(element.children);
       const mirageConfig = children.find(child => this.hasBonusConfig(child, "Mirage"));
       const linkConfig = children.find(child => this.hasBonusConfig(child, "Link"));
-      const timelineConfig = children.find(child => this.hasBonusConfig(child, "Timeline"));
+      const enemyTypeConfig = children.find(child => this.hasBonusConfig(child, "Enemy Type"));
+      const iconVariationConfig = children.find(child => this.hasBonusConfig(child, "Icon Variation"));
       const configArray = [
-        this.getConfigProperty(children[0]),
-        this.getConfigProperty(children[1]),
-        this.getConfigProperty(children[2]),
-        this.getConfigProperty(mirageConfig) || "no",
-        this.getConfigProperty(linkConfig) || "no",
-        this.getConfigProperty(timelineConfig) || "no",
-        this.getConfigProperty(children[6]) || "Heartless", // Enemy Type
-        this.getConfigProperty(children[7]) || "single" // Icon Variation (unused now)
+        this.getConfigProperty(children[0]), // Primary Color
+        this.getConfigProperty(children[1]), // Accent Color
+        this.getConfigProperty(children[2]), // Text Color
+        this.getConfigProperty(mirageConfig) || "no", // Use Mirage
+        this.getConfigProperty(linkConfig) || "no", // Use Links
+        this.getConfigProperty(enemyTypeConfig) || "Heartless", // Enemy Type
+        this.getConfigProperty(iconVariationConfig) || "single" // Icon Variation
       ];
       console.log("Parsed Config:", configArray); // Debug parsed config
       return configArray;
@@ -142,6 +143,14 @@ if (typeof DossierController === "function") {
           console.error("Photo element not found or no URL for panel", this.currentPanel);
         }
       }
+      const badge = this.BookContainer.getElementsByClassName("dossier-badge")[0];
+      if (badge) {
+        const badgeUrl = this.badgeMap[this.config[5]] || this.badgeMap["Misc"];
+        badge.style.backgroundImage = `url('${badgeUrl}')`; // Force update
+        console.log("Updated Badge Style:", badge.style.backgroundImage, "for Enemy Type:", this.config[5]);
+      } else {
+        console.error("Badge element not found");
+      }
     }
 
     assignButtonHandlers() {
@@ -166,7 +175,7 @@ if (typeof DossierController === "function") {
     }
 
     htmlify() {
-      const [primaryColor, accentColor, textColor, useMirage, useLinks, useTimeline, enemyType] = this.config;
+      const [primaryColor, accentColor, textColor, useMirage, useLinks, enemyType, iconVariation] = this.config;
       const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"];
       console.log("Enemy Type:", enemyType, "Badge URL:", badgeUrl); // Debug badge update
       return `
