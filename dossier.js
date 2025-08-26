@@ -243,11 +243,13 @@ if (typeof DossierController === "function") {
       return `
         <div class="ds-dossier-section">
           <div class="ds-dossier-header">Reactions</div>
-          ${this.reactions.map(r => `
-            <div class="ds-dossier-item"><b>${r.name}</b></div>
-            <p>${r.details || "N/A"}</p>
-            <div class="ds-dossier-stat">${r.stats || "N/A"}</div>
-          `).join("")}
+          ${Array.isArray(this.reactions) && this.reactions.length > 0 ? this.reactions.map(r => `
+            <div class="ds-dossier-reaction">
+              <div class="ds-dossier-item"><b>${r.name || "N/A"}</b></div>
+              <p>${r.details || "N/A"}</p>
+              <div class="ds-dossier-stat">${r.stats || "N/A"}</div>
+            </div>
+          `).join("") : '<div class="ds-dossier-reaction"><p>No reactions available</p></div>'}
         </div>
       `;
     }
