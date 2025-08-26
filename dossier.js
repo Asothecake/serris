@@ -61,7 +61,8 @@ if (typeof DossierController === "function") {
     getConfigProperty(element) {
       if (!element) return "";
       const fullString = element.innerHTML;
-      if (fullString.includes("Enemy Type:") || fullString.includes("Icon Variation:")) {
+      if (fullString.includes("Enemy Type:") || fullString.includes("Icon Variation:") || 
+          fullString.includes("Content BG Color:") || fullString.includes("Stat BG Color:")) {
         console.log("Config Property Raw:", fullString); // Debug specific lines
       }
       return fullString.split("</b>")[1]?.trim() || "";
@@ -78,14 +79,18 @@ if (typeof DossierController === "function") {
       const linkConfig = children.find(child => this.hasBonusConfig(child, "Link"));
       const enemyTypeConfig = children.find(child => this.hasBonusConfig(child, "Enemy Type"));
       const iconVariationConfig = children.find(child => this.hasBonusConfig(child, "Icon Variation"));
+      const contentBgConfig = children.find(child => this.hasBonusConfig(child, "Content BG Color"));
+      const statBgConfig = children.find(child => this.hasBonusConfig(child, "Stat BG Color"));
       const configArray = [
-        this.getConfigProperty(children[0]), // Primary Color
-        this.getConfigProperty(children[1]), // Accent Color
-        this.getConfigProperty(children[2]), // Text Color
-        this.getConfigProperty(mirageConfig) || "no", // Use Mirage
-        this.getConfigProperty(linkConfig) || "no", // Use Links
+        this.getConfigProperty(children[0]) || "#333333", // Primary Color (default to original)
+        this.getConfigProperty(children[1]) || "#6ec7c2", // Accent Color (default to original)
+        this.getConfigProperty(children[2]) || "#d5dfe3", // Text Color (default to original)
+        this.getConfigProperty(mirageConfig) || "no",     // Use Mirage
+        this.getConfigProperty(linkConfig) || "no",       // Use Links
         this.getConfigProperty(enemyTypeConfig) || "Heartless", // Enemy Type
-        this.getConfigProperty(iconVariationConfig) || "single" // Icon Variation
+        this.getConfigProperty(iconVariationConfig) || "single", // Icon Variation
+        this.getConfigProperty(contentBgConfig) || "#1a1a1a",   // Content BG Color
+        this.getConfigProperty(statBgConfig) || "#2a2a2a"       // Stat BG Color
       ];
       console.log("Parsed Config:", configArray); // Debug parsed config
       return configArray;
@@ -180,11 +185,11 @@ if (typeof DossierController === "function") {
     }
 
     htmlify() {
-      const [primaryColor, accentColor, textColor, useMirage, useLinks, enemyType, iconVariation] = this.config;
+      const [primaryColor, accentColor, textColor, useMirage, useLinks, enemyType, iconVariation, contentBgColor, statBgColor] = this.config;
       const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"];
       console.log("Enemy Type:", enemyType, "Badge URL:", badgeUrl); // Debug badge update
       return `
-        <div class="ds-dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor}; --secondary-primary-color: ${primaryColor};">
+        <div class="ds-dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor}; --content-bg-color: ${contentBgColor}; --stat-bg-color: ${statBgColor};">
           <div class="ds-dossier-tabs">
             <div class="ds-dossier-tab active">Stats</div>
             <div class="ds-dossier-tab">Reactions</div>
