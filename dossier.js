@@ -31,6 +31,10 @@ if (typeof DossierController === "function") {
         "Wielder": "https://i.imgur.com/nKDoVDC.png",
         "Legendary": "https://i.imgur.com/hLnG0K7.png",
         "Steelguard": "https://i.imgur.com/NsTbs8w.png",
+        "Support": "https://i.imgur.com/HSoJfIL.png",
+        "Beast": "https://i.imgur.com/Y94PMHD.png",
+        "Fantasy": "https://i.imgur.com/HwOHDOM.png",
+        "Nightmare": "https://i.imgur.com/62gXQfh.png",
         "Misc": "https://i.imgur.com/lNVK2mN.png"
       };
     }
@@ -343,4 +347,5 @@ if (typeof DossierController === "function") {
 
   new DossierController(window.BookCount).initiate();
 }
+
 
