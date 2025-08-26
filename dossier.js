@@ -64,7 +64,7 @@ if (typeof DossierController === "function") {
           fullString.includes("Content BG Color:") || fullString.includes("Stat BG Color:")) {
         console.log("Config Property Raw:", fullString); // Debug specific lines
       }
-      return fullString; // Changed to return full string instead of splitting on </b>
+      return fullString.split("</b>")[1]?.trim() || ""; // Reverted to original parsing
     }
     hasBonusConfig(element, configName) {
       return element.innerHTML.includes(configName);
@@ -98,20 +98,20 @@ if (typeof DossierController === "function") {
     }
     objectify(keyList = []) {
       const resources = keyList.map(key => this.getAll(key));
-      const names = Array.from(resources[0]);
-      const details = Array.from(resources[1]);
-      const stats = resources[2] ? Array.from(resources[2]) : [];
+      const names = Array.from(resources[0] || []);
+      const details = Array.from(resources[1] || []);
+      const stats = resources[2] ? Array.from(resources[2] || []) : [];
       return names.map((name, index) => ({
-        name: name,
-        details: details[index],
-        stats: stats[index] ? [stats[index]] : [], // Ensure stats is an array, even with one item
+        name: name ? name.innerHTML : "",
+        details: details[index] ? details[index].innerHTML : "",
+        stats: stats[index] ? [stats[index].innerHTML] : [], // Ensure stats is an array
       }));
     }
     compoundObjectify(keyList = []) {
       const resources = keyList.map(key => this.getAll(key));
-      const names = Array.from(resources[0]);
+      const names = Array.from(resources[0] || []);
       return names.map((name, index) => {
-        const obj = { name: name.innerHTML };
+        const obj = { name: name ? name.innerHTML : "" };
         keyList.forEach((key, i) => obj[key] = resources[i][index]?.innerHTML || "");
         return obj;
       });
