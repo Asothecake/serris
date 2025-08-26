@@ -267,9 +267,9 @@ if (typeof DossierController === "function") {
           <div class="ds-dossier-header">Style</div>
           <div class="ds-dossier-item"><b>${name}</b></div>
           <p>${details || "N/A"}</p>
-          ${stats ? stats.map(stat => `
+          ${Array.isArray(stats) ? stats.map(stat => `
             <div class="ds-dossier-style-point">
-              <p>${stat}</p>
+              <p>${stat || "N/A"}</p>
             </div>
           `).join("") : '<div class="ds-dossier-style-point"><p>0 points</p></div>'}
         </div>
@@ -281,7 +281,7 @@ if (typeof DossierController === "function") {
           <div class="ds-dossier-header">Commands</div>
           ${this.commands.map(c => `
             <div class="ds-dossier-command">
-              <div class="ds-dossier-item"><b>${c.name}</b></div>
+              <div class="ds-dossier-item"><b>${c.name || "N/A"}</b></div>
               <p>${c.details || "N/A"}</p>
               <div class="ds-dossier-stat">${c.stats || "N/A"}</div>
             </div>
@@ -296,7 +296,7 @@ if (typeof DossierController === "function") {
           <div class="ds-dossier-stat"><b>${this.stats[11] || "d6"}</b> Provision Die</div>
           ${this.provisions.map(p => `
             <div class="ds-dossier-provision">
-              <div class="ds-dossier-item"><b>${p.name}</b></div>
+              <div class="ds-dossier-item"><b>${p.name || "N/A"}</b></div>
               <p>${p.details || "N/A"}</p>
               <div class="ds-dossier-stat">${p.stats || "N/A"}</div>
             </div>
