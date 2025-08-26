@@ -77,6 +77,16 @@
   border: 1px solid var(--accent-color); /* Optional border for visibility */
   /* Add style="background-image: url('your-image-url');" in HTML to set the image */
 }
+.ds-dossier-badge {
+  margin-left: auto; /* Right-align within flex container */
+  width: 33px; /* Match requested size */
+  height: 33px; /* Match requested size */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid var(--accent-color); /* Optional border for visibility */
+  /* Background image set via JS style attribute */
+}
 .ds-dossier-content {
   flex-grow: 1;
   padding: 1rem;
@@ -173,4 +183,5 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
 
