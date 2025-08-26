@@ -87,6 +87,12 @@
   min-height: 400px;
   transition: transform 0.5s ease-out;
 }
+.ds-dossier-reaction {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--stat-bg-color);
+  border: 1px solid var(--accent-color);
+}
 .ds-dossier-section {
   display: none;
   color: var(--text-color);
@@ -167,3 +173,4 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
