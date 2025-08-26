@@ -3,10 +3,12 @@
 }
 
 .ds-dossier-container {
-  --primary-color: #333333;
-  --secondary-primary-color: #1a1a1a; /* Consistent background for dossier-content */
-  --accent-color: #6ec7c2;
-  --text-color: #d5dfe3;
+  --primary-color: #333333; /* Reverted to original */
+  --secondary-primary-color: #1a1a1a; /* Default, can be overridden */
+  --accent-color: #6ec7c2; /* Reverted to original */
+  --text-color: #d5dfe3; /* Reverted to original */
+  --content-bg-color: #1a1a1a; /* New setter, defaults to original */
+  --stat-bg-color: #2a2a2a; /* New setter, defaults to original */
   --badge-url: url('https://i.imgur.com/lNVK2mN.png'); /* Default - can be ignored if using your fix */
   width: 100%;
   max-width: 600px;
@@ -30,7 +32,7 @@
 .ds-dossier-tabs {
   display: flex;
   flex-direction: row;
-  background-color: var(--primary-color); /* Updated to use primary-color */
+  background-color: var(--primary-color); /* Uses primary-color */
   border-bottom: 2px solid #444;
   padding: 0.2rem;
   position: relative;
@@ -40,7 +42,7 @@
 .ds-dossier-tab {
   padding: 0.5rem 1rem;
   color: var(--text-color);
-  background-color: var(--primary-color); /* Updated to use primary-color */
+  background-color: var(--primary-color); /* Uses primary-color */
   border-right: 1px solid #444;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
@@ -87,7 +89,7 @@
 .ds-dossier-content {
   flex-grow: 1;
   padding: 1rem;
-  background-color: var(--secondary-primary-color); /* Use secondary-primary-color */
+  background-color: var(--content-bg-color); /* Uses new setter */
   border-left: 2px solid #444;
   position: relative;
   min-height: 400px;
@@ -123,7 +125,7 @@
   flex: 1;
   text-align: center;
   padding: 0.3rem;
-  background-color: #2a2a2a;
+  background-color: var(--stat-bg-color); /* Uses new setter */
   border: 1px solid #555;
   border-radius: 3px;
 }
@@ -146,7 +148,7 @@
   border-top: 2px double var(--accent-color);
   border-left: 2px double var(--accent-color);
   border-right: 2px double var(--accent-color);
-  border-bottom: none; /* Corrected from your version */
+  border-bottom: none;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
