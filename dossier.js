@@ -38,7 +38,6 @@ if (typeof DossierController === "function") {
         "Misc": "https://i.imgur.com/lNVK2mN.png"
       };
     }
-
     getFirst(id) {
       return this.DataContainer.getElementsByClassName(id)[0];
     }
@@ -57,21 +56,18 @@ if (typeof DossierController === "function") {
     getPhoto() {
       return this.BookContainer.getElementsByClassName("ds-dossier-photo")[0];
     }
-
     getConfigProperty(element) {
       if (!element) return "";
       const fullString = element.innerHTML;
-      if (fullString.includes("Enemy Type:") || fullString.includes("Icon Variation:") || 
+      if (fullString.includes("Enemy Type:") || fullString.includes("Icon Variation:") ||
           fullString.includes("Content BG Color:") || fullString.includes("Stat BG Color:")) {
         console.log("Config Property Raw:", fullString); // Debug specific lines
       }
       return fullString.split("</b>")[1]?.trim() || "";
     }
-
     hasBonusConfig(element, configName) {
       return element.innerHTML.includes(configName);
     }
-
     getConfig(element) {
       if (!element) return [];
       const children = Array.from(element.children);
@@ -85,22 +81,20 @@ if (typeof DossierController === "function") {
         this.getConfigProperty(children[0]) || "#333333", // Primary Color (default to original)
         this.getConfigProperty(children[1]) || "#6ec7c2", // Accent Color (default to original)
         this.getConfigProperty(children[2]) || "#d5dfe3", // Text Color (default to original)
-        this.getConfigProperty(mirageConfig) || "no",     // Use Mirage
-        this.getConfigProperty(linkConfig) || "no",       // Use Links
+        this.getConfigProperty(mirageConfig) || "no", // Use Mirage
+        this.getConfigProperty(linkConfig) || "no", // Use Links
         this.getConfigProperty(enemyTypeConfig) || "Heartless", // Enemy Type
         this.getConfigProperty(iconVariationConfig) || "single", // Icon Variation
-        this.getConfigProperty(contentBgConfig) || "#1a1a1a",   // Content BG Color
-        this.getConfigProperty(statBgConfig) || "#2a2a2a"       // Stat BG Color
+        this.getConfigProperty(contentBgConfig) || "#1a1a1a", // Content BG Color
+        this.getConfigProperty(statBgConfig) || "#2a2a2a" // Stat BG Color
       ];
       console.log("Parsed Config:", configArray); // Debug parsed config
       return configArray;
     }
-
     arrayify(element) {
       if (!element) return [];
       return Array.from(element.children).map(child => this.getConfigProperty(child));
     }
-
     objectify(keyList = []) {
       const resources = keyList.map(key => this.getAll(key));
       const names = Array.from(resources[0]);
@@ -112,7 +106,6 @@ if (typeof DossierController === "function") {
         stats: stats[index]?.innerHTML,
       }));
     }
-
     compoundObjectify(keyList = []) {
       const resources = keyList.map(key => this.getAll(key));
       const names = Array.from(resources[0]);
@@ -122,7 +115,6 @@ if (typeof DossierController === "function") {
         return obj;
       });
     }
-
     getTimelines() {
       const timelines = this.getAll("timeline");
       return Array.from(timelines).map(timeline => {
@@ -135,7 +127,6 @@ if (typeof DossierController === "function") {
         return { name, events };
       });
     }
-
     updatePage(pageNumber = this.currentPanel) {
       this.currentPanel = pageNumber;
       const tabs = this.getBookTabs();
@@ -162,7 +153,6 @@ if (typeof DossierController === "function") {
         console.error("Badge element not found");
       }
     }
-
     assignButtonHandlers() {
       const tabs = this.getBookTabs();
       if (tabs.length > 0) {
@@ -171,7 +161,6 @@ if (typeof DossierController === "function") {
         });
       }
     }
-
     initiate() {
       try {
         this.Template.innerHTML = this.htmlify();
@@ -183,7 +172,6 @@ if (typeof DossierController === "function") {
         console.error("Dossier load failed:", e);
       }
     }
-
     htmlify() {
       const [primaryColor, accentColor, textColor, useMirage, useLinks, enemyType, iconVariation, contentBgColor, statBgColor] = this.config;
       const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"];
@@ -215,9 +203,8 @@ if (typeof DossierController === "function") {
         </div>
       `;
     }
-
     htmlStatSection() {
-      const [hp, ip, cd, reactions, str, mag, def, agl, weak, res, , imm] = this.stats;
+      const [hp, ip, cd, reactions, str, mag, def, agl, weak, res, immunities, provDie] = this.stats; // Fixed destructuring
       const mirageContent = this.config[3] === "yes" ? `
         <div class="ds-dossier-header">Mirage</div>
         <div class="ds-dossier-row">
@@ -246,11 +233,10 @@ if (typeof DossierController === "function") {
           ${mirageContent}
           <div class="ds-dossier-header">Weaknesses</div><p>${weak}</p>
           <div class="ds-dossier-header">Resistances</div><p>${res}</p>
-          <div class="ds-dossier-header">Immunities</div><p>${imm}</p>
+          <div class="ds-dossier-header">Immunities</div><p>${immunities || "N/A"}</p> <!-- Use immunities variable -->
         </div>
       `;
     }
-
     htmlReactionsSection() {
       return `
         <div class="ds-dossier-section">
@@ -263,7 +249,6 @@ if (typeof DossierController === "function") {
         </div>
       `;
     }
-
     htmlLoreSection() {
       return `
         <div class="ds-dossier-section">
@@ -275,7 +260,6 @@ if (typeof DossierController === "function") {
         </div>
       `;
     }
-
     htmlStyleSection() {
       const { name, details, stats } = this.style;
       return `
@@ -287,7 +271,6 @@ if (typeof DossierController === "function") {
         </div>
       `;
     }
-
     htmlCommandSection() {
       return `
         <div class="ds-dossier-section">
@@ -300,12 +283,11 @@ if (typeof DossierController === "function") {
         </div>
       `;
     }
-
     htmlProvisionSection() {
       return `
         <div class="ds-dossier-section">
           <div class="ds-dossier-header">Provisions</div>
-          <div class="ds-dossier-stat"><b>${this.stats[10] || "d6"}</b> Provision Die</div>
+          <div class="ds-dossier-stat"><b>${this.stats[11] || "d6"}</b> Provision Die</div> <!-- Updated to index 11 -->
           ${this.provisions.map(p => `
             <div class="ds-dossier-item"><b>${p.name}</b></div>
             <p>${p.details || "N/A"}</p>
@@ -314,7 +296,6 @@ if (typeof DossierController === "function") {
         </div>
       `;
     }
-
     htmlLinkSection() {
       return `
         <div class="ds-dossier-section">
@@ -335,7 +316,6 @@ if (typeof DossierController === "function") {
         </div>
       `;
     }
-
     htmlTimelineSections() {
       return this.timelines.map((t, index) => `
         <div class="ds-dossier-section">
@@ -349,6 +329,5 @@ if (typeof DossierController === "function") {
       `).join("");
     }
   }
-
   new DossierController(window.DossierCount).initiate();
 }
