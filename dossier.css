@@ -80,6 +80,7 @@
 .ds-dossier-content {
   flex-grow: 1;
   padding: 1rem;
+  padding-bottom: 170px; /* Added to ensure space for the 150px photo + buffer */
   background-color: var(--content-bg-color); /* Uses new setter */
   border-left: 2px solid #444;
   position: relative;
@@ -121,7 +122,7 @@
 }
 .ds-dossier-photo {
   position: absolute;
-  bottom: 60px; /* Adjusted to align with border */
+  bottom: 60px; /* Adjusted to align with border, relative to container bottom */
   right: 20px;
   width: 150px;
   height: 150px;
