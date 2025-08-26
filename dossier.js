@@ -1,15 +1,15 @@
-window.BookCount = window.BookCount >= 0 ? window.BookCount + 1 : 0;
+window.DossierCount = window.DossierCount >= 0 ? window.DossierCount + 1 : 0;
 
 if (typeof DossierController === "function") {
-  console.log("Script loaded, BookCount:", window.BookCount);
-  new DossierController(window.BookCount).initiate();
+  console.log("Script loaded, DossierCount:", window.DossierCount);
+  new DossierController(window.DossierCount).initiate();
 } else {
   class DossierController {
-    constructor(bookCount) {
-      this.bookCount = bookCount;
-      this.TempButton = document.getElementsByClassName("temporary")[bookCount];
-      this.Template = document.getElementsByClassName("dossier-template")[bookCount];
-      this.DataContainer = document.getElementsByClassName("dossier-placeholder")[bookCount];
+    constructor(dossierCount) {
+      this.dossierCount = dossierCount;
+      this.TempButton = document.getElementsByClassName("ds-temporary")[dossierCount];
+      this.Template = document.getElementsByClassName("ds-dossier-template")[dossierCount];
+      this.DataContainer = document.getElementsByClassName("ds-dossier-placeholder")[dossierCount];
       console.log("DataContainer found:", !!this.DataContainer);
       this.config = this.getConfig(this.getFirst("config"));
       console.log("Initial Config:", this.config); // Debug config on init
@@ -30,6 +30,11 @@ if (typeof DossierController === "function") {
         "Heartless": "https://i.imgur.com/4CUgNR7.png",
         "Wielder": "https://i.imgur.com/nKDoVDC.png",
         "Legendary": "https://i.imgur.com/hLnG0K7.png",
+        "Steelguard": "https://i.imgur.com/NsTbs8w.png",
+        "Support": "https://i.imgur.com/HSoJfIL.png",
+        "Beast": "https://i.imgur.com/Y94PMHD.png",
+        "Fantasy": "https://i.imgur.com/HwOHDOM.png",
+        "Nightmare": "https://i.imgur.com/62gXQfh.png",
         "Misc": "https://i.imgur.com/lNVK2mN.png"
       };
     }
@@ -41,21 +46,25 @@ if (typeof DossierController === "function") {
       return this.DataContainer.getElementsByClassName(id);
     }
     getBook() {
-      this.BookContainer = document.getElementsByClassName("dossier-container")[this.bookCount];
+      this.BookContainer = document.getElementsByClassName("ds-dossier-container")[this.dossierCount];
     }
     getBookTabs() {
-      return this.BookContainer.getElementsByClassName("dossier-tab");
+      return this.BookContainer.getElementsByClassName("ds-dossier-tab");
     }
     getBookContent() {
-      return this.BookContainer.getElementsByClassName("dossier-content")[0];
+      return this.BookContainer.getElementsByClassName("ds-dossier-content")[0];
     }
     getPhoto() {
-      return this.BookContainer.getElementsByClassName("dossier-photo")[0];
+      return this.BookContainer.getElementsByClassName("ds-dossier-photo")[0];
     }
 
     getConfigProperty(element) {
       if (!element) return "";
       const fullString = element.innerHTML;
+      if (fullString.includes("Enemy Type:") || fullString.includes("Icon Variation:") || 
+          fullString.includes("Content BG Color:") || fullString.includes("Stat BG Color:")) {
+        console.log("Config Property Raw:", fullString); // Debug specific lines
+      }
       return fullString.split("</b>")[1]?.trim() || "";
     }
 
@@ -68,16 +77,20 @@ if (typeof DossierController === "function") {
       const children = Array.from(element.children);
       const mirageConfig = children.find(child => this.hasBonusConfig(child, "Mirage"));
       const linkConfig = children.find(child => this.hasBonusConfig(child, "Link"));
-      const timelineConfig = children.find(child => this.hasBonusConfig(child, "Timeline"));
+      const enemyTypeConfig = children.find(child => this.hasBonusConfig(child, "Enemy Type"));
+      const iconVariationConfig = children.find(child => this.hasBonusConfig(child, "Icon Variation"));
+      const contentBgConfig = children.find(child => this.hasBonusConfig(child, "Content BG Color"));
+      const statBgConfig = children.find(child => this.hasBonusConfig(child, "Stat BG Color"));
       const configArray = [
-        this.getConfigProperty(children[0]),
-        this.getConfigProperty(children[1]),
-        this.getConfigProperty(children[2]),
-        this.getConfigProperty(mirageConfig) || "no",
-        this.getConfigProperty(linkConfig) || "no",
-        this.getConfigProperty(timelineConfig) || "no",
-        this.getConfigProperty(children[6]) || "Heartless", // Enemy Type
-        this.getConfigProperty(children[7]) || "single" // Icon Variation (unused now)
+        this.getConfigProperty(children[0]) || "#333333", // Primary Color (default to original)
+        this.getConfigProperty(children[1]) || "#6ec7c2", // Accent Color (default to original)
+        this.getConfigProperty(children[2]) || "#d5dfe3", // Text Color (default to original)
+        this.getConfigProperty(mirageConfig) || "no",     // Use Mirage
+        this.getConfigProperty(linkConfig) || "no",       // Use Links
+        this.getConfigProperty(enemyTypeConfig) || "Heartless", // Enemy Type
+        this.getConfigProperty(iconVariationConfig) || "single", // Icon Variation
+        this.getConfigProperty(contentBgConfig) || "#1a1a1a",   // Content BG Color
+        this.getConfigProperty(statBgConfig) || "#2a2a2a"       // Stat BG Color
       ];
       console.log("Parsed Config:", configArray); // Debug parsed config
       return configArray;
@@ -140,7 +153,14 @@ if (typeof DossierController === "function") {
           console.error("Photo element not found or no URL for panel", this.currentPanel);
         }
       }
-      // Badge slot is static, no update needed unless a new URL field is added
+      const badge = this.BookContainer.getElementsByClassName("ds-dossier-badge")[0];
+      if (badge) {
+        const badgeUrl = this.badgeMap[this.config[5]] || this.badgeMap["Misc"];
+        badge.style.backgroundImage = `url('${badgeUrl}')`; // Force update
+        console.log("Updated Badge Style:", badge.style.backgroundImage, "for Enemy Type:", this.config[5]);
+      } else {
+        console.error("Badge element not found");
+      }
     }
 
     assignButtonHandlers() {
@@ -165,23 +185,22 @@ if (typeof DossierController === "function") {
     }
 
     htmlify() {
-      const [primaryColor, accentColor, textColor, useMirage, useLinks, useTimeline, enemyType] = this.config;
-      // Static badge slot with optional URL field (commented for now)
-      const badgeSlot = '<div class="badge-slot"></div>'; // You can add style="background-image: url('your-url');" in HTML
-      console.log("Enemy Type:", enemyType); // Debug for reference
+      const [primaryColor, accentColor, textColor, useMirage, useLinks, enemyType, iconVariation, contentBgColor, statBgColor] = this.config;
+      const badgeUrl = this.badgeMap[enemyType] || this.badgeMap["Misc"];
+      console.log("Enemy Type:", enemyType, "Badge URL:", badgeUrl); // Debug badge update
       return `
-        <div class="dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor};">
-          <div class="dossier-tabs">
-            <div class="dossier-tab active">Stats</div>
-            <div class="dossier-tab">Reactions</div>
-            <div class="dossier-tab">Lore</div>
-            <div class="dossier-tab">Style</div>
-            <div class="dossier-tab">Commands</div>
-            <div class="dossier-tab">Provisions</div>
-            ${useLinks === "yes" ? '<div class="dossier-tab">Links</div>' : ""}
-            ${useTimeline === "yes" ? '<div class="dossier-tab">Timelines</div>' : ""}
+        <div class="ds-dossier-container" style="--primary-color: ${primaryColor}; --accent-color: ${accentColor}; --text-color: ${textColor}; --content-bg-color: ${contentBgColor}; --stat-bg-color: ${statBgColor};">
+          <div class="ds-dossier-tabs">
+            <div class="ds-dossier-tab active">Stats</div>
+            <div class="ds-dossier-tab">Reactions</div>
+            <div class="ds-dossier-tab">Lore</div>
+            <div class="ds-dossier-tab">Style</div>
+            <div class="ds-dossier-tab">Commands</div>
+            <div class="ds-dossier-tab">Provisions</div>
+            ${useLinks === "yes" ? '<div class="ds-dossier-tab">Links</div>' : ""}
+            ${this.timelines.length > 0 ? '<div class="ds-dossier-tab">Timelines</div>' : ""}
           </div>
-          <div class="dossier-content">
+          <div class="ds-dossier-content">
             ${this.htmlStatSection()}
             ${this.htmlReactionsSection()}
             ${this.htmlLoreSection()}
@@ -189,57 +208,57 @@ if (typeof DossierController === "function") {
             ${this.htmlCommandSection()}
             ${this.htmlProvisionSection()}
             ${useLinks === "yes" ? this.htmlLinkSection() : ""}
-            ${useTimeline === "yes" ? this.htmlTimelineSections() : ""}
+            ${this.timelines.length > 0 ? this.htmlTimelineSections() : ""}
           </div>
-          <div class="dossier-name"><span class="boss-name-text"><b>${this.bio[0]}</b></span>${badgeSlot}</div>
-          <div class="dossier-photo"></div>
+          <div class="ds-dossier-name"><span class="ds-boss-name-text"><b>${this.bio[0]}</b></span><div class="ds-dossier-badge" style="background-image: url('${badgeUrl}');"></div></div>
+          <div class="ds-dossier-photo"></div>
         </div>
       `;
     }
 
     htmlStatSection() {
-      const [hp, ip, cd, reactions, str, mag, def, agl, weak, res, provDie, imm] = this.stats; // Fixed destructuring
+      const [hp, ip, cd, reactions, str, mag, def, agl, weak, res, , imm] = this.stats;
       const mirageContent = this.config[3] === "yes" ? `
-        <div class="dossier-header">Mirage</div>
-        <div class="dossier-row">
-          <div class="dossier-stat"><b>${this.mirage[0] || 0}</b> Medals</div>
-          <div class="dossier-stat"><b>${this.mirage[1] || 0}</b> Masteries</div>
-          <div class="dossier-stat"><b>${this.mirage[2] || 0}</b> Provisions</div>
-          <div class="dossier-stat"><b>${this.mirage[3] || 0}</b> Commands</div>
+        <div class="ds-dossier-header">Mirage</div>
+        <div class="ds-dossier-row">
+          <div class="ds-dossier-stat"><b>${this.mirage[0] || 0}</b> Medals</div>
+          <div class="ds-dossier-stat"><b>${this.mirage[1] || 0}</b> Masteries</div>
+          <div class="ds-dossier-stat"><b>${this.mirage[2] || 0}</b> Provisions</div>
+          <div class="ds-dossier-stat"><b>${this.mirage[3] || 0}</b> Commands</div>
         </div>
       ` : "";
       return `
-        <div class="dossier-section">
-          <div class="dossier-header">Stats</div>
-          <div class="dossier-row">
-            <div class="dossier-stat"><b>${str}</b> STR</div>
-            <div class="dossier-stat"><b>${mag}</b> MAG</div>
-            <div class="dossier-stat"><b>${def}</b> DEF</div>
-            <div class="dossier-stat"><b>${agl}</b> AGL</div>
+        <div class="ds-dossier-section">
+          <div class="ds-dossier-header">Stats</div>
+          <div class="ds-dossier-row">
+            <div class="ds-dossier-stat"><b>${str}</b> STR</div>
+            <div class="ds-dossier-stat"><b>${mag}</b> MAG</div>
+            <div class="ds-dossier-stat"><b>${def}</b> DEF</div>
+            <div class="ds-dossier-stat"><b>${agl}</b> AGL</div>
           </div>
-          <div class="dossier-header">Resources</div>
-          <div class="dossier-row">
-            <div class="dossier-stat"><b>${hp}</b> HP</div>
-            <div class="dossier-stat"><b>${ip}</b> IP</div>
-            <div class="dossier-stat"><b>${cd}</b> Deck</div>
-            <div class="dossier-stat"><b>${reactions}</b> Reactions</div>
+          <div class="ds-dossier-header">Resources</div>
+          <div class="ds-dossier-row">
+            <div class="ds-dossier-stat"><b>${hp}</b> HP</div>
+            <div class="ds-dossier-stat"><b>${ip}</b> IP</div>
+            <div class="ds-dossier-stat"><b>${cd}</b> Deck</div>
+            <div class="ds-dossier-stat"><b>${reactions}</b> Reactions</div>
           </div>
           ${mirageContent}
-          <div class="dossier-header">Weaknesses</div><p>${weak}</p>
-          <div class="dossier-header">Resistances</div><p>${res}</p>
-          <div class="dossier-header">Immunities</div><p>${imm || "N/A"}</p> <!-- Fallback for undefined -->
+          <div class="ds-dossier-header">Weaknesses</div><p>${weak}</p>
+          <div class="ds-dossier-header">Resistances</div><p>${res}</p>
+          <div class="ds-dossier-header">Immunities</div><p>${imm}</p>
         </div>
       `;
     }
 
     htmlReactionsSection() {
       return `
-        <div class="dossier-section">
-          <div class="dossier-header">Reactions</div>
+        <div class="ds-dossier-section">
+          <div class="ds-dossier-header">Reactions</div>
           ${this.reactions.map(r => `
-            <div class="dossier-item"><b>${r.name}</b></div>
+            <div class="ds-dossier-item"><b>${r.name}</b></div>
             <p>${r.details || "N/A"}</p>
-            <div class="dossier-stat">${r.stats || "N/A"}</div>
+            <div class="ds-dossier-stat">${r.stats || "N/A"}</div>
           `).join("")}
         </div>
       `;
@@ -247,10 +266,10 @@ if (typeof DossierController === "function") {
 
     htmlLoreSection() {
       return `
-        <div class="dossier-section">
-          <div class="dossier-header">Lore</div>
+        <div class="ds-dossier-section">
+          <div class="ds-dossier-header">Lore</div>
           ${this.lore.map(item => `
-            <div class="dossier-item"><b>${item.name}</b></div>
+            <div class="ds-dossier-item"><b>${item.name}</b></div>
             <p>${item.details || "N/A"}</p>
           `).join("")}
         </div>
@@ -260,23 +279,23 @@ if (typeof DossierController === "function") {
     htmlStyleSection() {
       const { name, details, stats } = this.style;
       return `
-        <div class="dossier-section">
-          <div class="dossier-header">Style</div>
-          <div class="dossier-item"><b>${name}</b></div>
+        <div class="ds-dossier-section">
+          <div class="ds-dossier-header">Style</div>
+          <div class="ds-dossier-item"><b>${name}</b></div>
           <p>${details || "N/A"}</p>
-          <div class="dossier-stat">${stats || "0"} points</div>
+          <div class="ds-dossier-stat">${stats || "0"} points</div>
         </div>
       `;
     }
 
     htmlCommandSection() {
       return `
-        <div class="dossier-section">
-          <div class="dossier-header">Commands</div>
+        <div class="ds-dossier-section">
+          <div class="ds-dossier-header">Commands</div>
           ${this.commands.map(c => `
-            <div class="dossier-item"><b>${c.name}</b></div>
+            <div class="ds-dossier-item"><b>${c.name}</b></div>
             <p>${c.details || "N/A"}</p>
-            <div class="dossier-stat">${c.stats || "N/A"}</div>
+            <div class="ds-dossier-stat">${c.stats || "N/A"}</div>
           `).join("")}
         </div>
       `;
@@ -284,13 +303,13 @@ if (typeof DossierController === "function") {
 
     htmlProvisionSection() {
       return `
-        <div class="dossier-section">
-          <div class="dossier-header">Provisions</div>
-          <div class="dossier-stat"><b>${this.stats[10] || "d6"}</b> Provision Die</div>
+        <div class="ds-dossier-section">
+          <div class="ds-dossier-header">Provisions</div>
+          <div class="ds-dossier-stat"><b>${this.stats[10] || "d6"}</b> Provision Die</div>
           ${this.provisions.map(p => `
-            <div class="dossier-item"><b>${p.name}</b></div>
+            <div class="ds-dossier-item"><b>${p.name}</b></div>
             <p>${p.details || "N/A"}</p>
-            <div class="dossier-stat">${p.stats || "N/A"}</div>
+            <div class="ds-dossier-stat">${p.stats || "N/A"}</div>
           `).join("")}
         </div>
       `;
@@ -298,18 +317,18 @@ if (typeof DossierController === "function") {
 
     htmlLinkSection() {
       return `
-        <div class="dossier-section">
-          <div class="dossier-header">Links</div>
+        <div class="ds-dossier-section">
+          <div class="ds-dossier-header">Links</div>
           ${this.links.map(l => `
-            <div class="dossier-item"><b>${l.name}</b></div>
+            <div class="ds-dossier-item"><b>${l.name}</b></div>
             <p>${l["link-details"] || "N/A"}</p>
-            <div class="dossier-stat">Rank: ${l["link-rank"] || 0}</div>
+            <div class="ds-dossier-stat">Rank: ${l["link-rank"] || 0}</div>
             ${l["link-command-name"] ? `
-              <div class="dossier-item"><b>${l["link-command-name"]}</b> [${l["link-command-stat"] || "---"}/${l["link-command-cp"] || 0}cp]</div>
+              <div class="ds-dossier-item"><b>${l["link-command-name"]}</b> [${l["link-command-stat"] || "---"}/${l["link-command-cp"] || 0}cp]</div>
               <p>${l["link-command-details"] || "N/A"}</p>
             ` : ""}
             ${l["link-style"] ? `
-              <div class="dossier-item"><b>Link Style</b></div>
+              <div class="ds-dossier-item"><b>Link Style</b></div>
               <p>${l["link-style"] || "N/A"}</p>
             ` : ""}
           `).join("")}
@@ -319,17 +338,17 @@ if (typeof DossierController === "function") {
 
     htmlTimelineSections() {
       return this.timelines.map((t, index) => `
-        <div class="dossier-section">
-          <div class="dossier-header">${t.name}</div>
+        <div class="ds-dossier-section">
+          <div class="ds-dossier-header">${t.name}</div>
           ${t.events.map(e => `
-            <div class="dossier-item"><b>${e.name}</b></div>
+            <div class="ds-dossier-item"><b>${e.name}</b></div>
             <p>${e.details || "N/A"}</p>
-            ${e.link ? `<div class="dossier-stat"><a href="${e.link}">Thread</a></div>` : ""}
+            ${e.link ? `<div class="ds-dossier-stat"><a href="${e.link}">Thread</a></div>` : ""}
           `).join("")}
         </div>
       `).join("");
     }
   }
 
-  new DossierController(window.BookCount).initiate();
+  new DossierController(window.DossierCount).initiate();
 }
