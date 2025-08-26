@@ -1,7 +1,6 @@
 .ds-dossier-placeholder {
   display: none;
 }
-
 .ds-dossier-container {
   --primary-color: #333333; /* Reverted to original */
   --secondary-primary-color: #1a1a1a; /* Default, can be overridden */
@@ -24,11 +23,9 @@
   min-height: 700px;
   padding-bottom: 60px;
 }
-
 .ds-dossier-header-graphic {
   display: none; /* Removed as badge is now in dossier-name */
 }
-
 .ds-dossier-tabs {
   display: flex;
   flex-direction: row;
@@ -38,7 +35,6 @@
   position: relative;
   z-index: 2;
 }
-
 .ds-dossier-tab {
   padding: 0.5rem 1rem;
   color: var(--text-color);
@@ -50,13 +46,11 @@
   position: relative;
   overflow: hidden;
 }
-
 .ds-dossier-tab.active {
   background-color: var(--accent-color);
   transform: translateY(-2px);
   z-index: 1;
 }
-
 .ds-dossier-tab::before {
   content: '';
   position: absolute;
@@ -70,22 +64,19 @@
   transition: transform 0.5s ease-out;
   z-index: 0;
 }
-
 .ds-dossier-tab.active::before {
   transform: skewX(20deg) translateY(100%);
 }
-
-.ds-dossier-badge {
+.badge-slot { /* Replaced ds-dossier-badge with badge-slot to match JS */
   margin-left: auto; /* Right-align within flex container */
-  width: 36px; /* Match requested size */
-  height: 36px; /* Match requested size */
-  background: var(--badge-url) no-repeat center;
+  width: 33px; /* Match requested size */
+  height: 33px; /* Match requested size */
   background-size: contain;
-  border: none;
-  display: inline-block;
-  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid var(--accent-color); /* Optional border for visibility */
+  /* Add style="background-image: url('your-image-url');" in HTML to set the image */
 }
-
 .ds-dossier-content {
   flex-grow: 1;
   padding: 1rem;
@@ -95,18 +86,15 @@
   min-height: 400px;
   transition: transform 0.5s ease-out;
 }
-
 .ds-dossier-section {
   display: none;
   color: var(--text-color);
   position: relative;
   min-height: 300px;
 }
-
 .ds-dossier-section:first-child {
   display: block;
 }
-
 .ds-dossier-header {
   font-size: 1.2rem;
   font-weight: bold;
@@ -114,13 +102,11 @@
   border-bottom: 1px dashed var(--accent-color);
   padding-bottom: 0.2rem;
 }
-
 .ds-dossier-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
-
 .ds-dossier-stat {
   flex: 1;
   text-align: center;
@@ -129,12 +115,10 @@
   border: 1px solid #555;
   border-radius: 3px;
 }
-
 .ds-dossier-item {
   font-weight: bold;
   margin-top: 0.5rem;
 }
-
 .ds-dossier-photo {
   position: absolute;
   bottom: 60px; /* Adjusted to align with border */
@@ -152,7 +136,6 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
-
 .ds-dossier-name {
   position: absolute;
   bottom: 0;
@@ -169,12 +152,16 @@
   align-items: center;
   letter-spacing: 0.1rem; /* Added for spacing */
 }
-
 .ds-boss-name-text {
   flex-grow: 1; /* Allow text to expand */
   overflow-wrap: break-word; /* Handle long names */
 }
-
+.ds-dossier-style-point, .ds-dossier-command, .ds-dossier-provision {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--stat-bg-color);
+  border: 1px solid var(--accent-color);
+}
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
