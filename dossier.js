@@ -100,11 +100,12 @@ if (typeof DossierController === "function") {
       const resources = keyList.map(key => this.getAll(key));
       const names = Array.from(resources[0] || []);
       const details = Array.from(resources[1] || []);
-      const stats = resources[2] ? Array.from(resources[2] || []) : [];
+      const statsElements = this.getAll(keyList[2]); // Get all style-points divs
+      const stats = statsElements.length > 0 ? Array.from(statsElements).map(sp => sp.innerHTML) : [];
       return names.map((name, index) => ({
         name: name ? name.innerHTML : "",
         details: details[index] ? details[index].innerHTML : "",
-        stats: stats[index] ? [stats[index].innerHTML] : [], // Ensure stats is an array
+        stats: stats, // Use all collected stats for this style
       }));
     }
     compoundObjectify(keyList = []) {
