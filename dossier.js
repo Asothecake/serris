@@ -261,13 +261,13 @@ if (typeof DossierController === "function") {
       `;
     }
     htmlStyleSection() {
-      const { name, details, stats } = this.style;
+      const { name, details, stats } = this.style || { name: "", details: "", stats: [] }; // Fallback to empty object if undefined
       return `
         <div class="ds-dossier-section">
           <div class="ds-dossier-header">Style</div>
-          <div class="ds-dossier-item"><b>${name}</b></div>
+          <div class="ds-dossier-item"><b>${name || "N/A"}</b></div>
           <p>${details || "N/A"}</p>
-          ${Array.isArray(stats) ? stats.map(stat => `
+          ${Array.isArray(stats) && stats.length > 0 ? stats.map(stat => `
             <div class="ds-dossier-style-point">
               <p>${stat || "N/A"}</p>
             </div>
@@ -279,13 +279,13 @@ if (typeof DossierController === "function") {
       return `
         <div class="ds-dossier-section">
           <div class="ds-dossier-header">Commands</div>
-          ${this.commands.map(c => `
+          ${Array.isArray(this.commands) && this.commands.length > 0 ? this.commands.map(c => `
             <div class="ds-dossier-command">
               <div class="ds-dossier-item"><b>${c.name || "N/A"}</b></div>
               <p>${c.details || "N/A"}</p>
               <div class="ds-dossier-stat">${c.stats || "N/A"}</div>
             </div>
-          `).join("")}
+          `).join("") : '<div class="ds-dossier-command"><p>No commands available</p></div>'}
         </div>
       `;
     }
@@ -294,13 +294,13 @@ if (typeof DossierController === "function") {
         <div class="ds-dossier-section">
           <div class="ds-dossier-header">Provisions</div>
           <div class="ds-dossier-stat"><b>${this.stats[11] || "d6"}</b> Provision Die</div>
-          ${this.provisions.map(p => `
+          ${Array.isArray(this.provisions) && this.provisions.length > 0 ? this.provisions.map(p => `
             <div class="ds-dossier-provision">
               <div class="ds-dossier-item"><b>${p.name || "N/A"}</b></div>
               <p>${p.details || "N/A"}</p>
               <div class="ds-dossier-stat">${p.stats || "N/A"}</div>
             </div>
-          `).join("")}
+          `).join("") : '<div class="ds-dossier-provision"><p>No provisions available</p></div>'}
         </div>
       `;
     }
