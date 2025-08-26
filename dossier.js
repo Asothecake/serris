@@ -18,6 +18,7 @@ if (typeof DossierController === "function") {
       if (this.config[3] === "yes") this.mirage = this.arrayify(this.getFirst("mirage"));
       else this.mirage = [];
       this.style = this.objectify(["style", "style-details", "style-points"])[0];
+      console.log("Style Object:", this.style); // Debug style object
       this.lore = this.objectify(["lore-item", "lore-details"]);
       this.commands = this.objectify(["command", "command-details", "command-stats"]);
       this.provisions = this.objectify(["provision", "provision-details", "provision-stats"]);
@@ -63,7 +64,7 @@ if (typeof DossierController === "function") {
           fullString.includes("Content BG Color:") || fullString.includes("Stat BG Color:")) {
         console.log("Config Property Raw:", fullString); // Debug specific lines
       }
-      return fullString.split("</b>")[1]?.trim() || "";
+      return fullString; // Changed to return full string instead of splitting on </b>
     }
     hasBonusConfig(element, configName) {
       return element.innerHTML.includes(configName);
@@ -101,9 +102,9 @@ if (typeof DossierController === "function") {
       const details = Array.from(resources[1]);
       const stats = resources[2] ? Array.from(resources[2]) : [];
       return names.map((name, index) => ({
-        name: name.innerHTML,
-        details: details[index]?.innerHTML,
-        stats: stats[index]?.innerHTML,
+        name: name,
+        details: details[index],
+        stats: stats[index] ? [stats[index]] : [], // Ensure stats is an array, even with one item
       }));
     }
     compoundObjectify(keyList = []) {
@@ -271,7 +272,7 @@ if (typeof DossierController === "function") {
             <div class="ds-dossier-style-point">
               <p>${stat || "N/A"}</p>
             </div>
-          `).join("") : '<div class="ds-dossier-style-point"><p>0 points</p></div>'}
+          `).join("") : '<div class="ds-dossier-style-point"><p>No style points</p></div>'} <!-- Updated fallback -->
         </div>
       `;
     }
