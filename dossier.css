@@ -6,7 +6,7 @@
   --primary-color: #333333;
   --accent-color: #6ec7c2;
   --text-color: #d5dfe3;
-  --badge-url: url('https://i.imgur.com/lNVK2mN.png'); /* Default Misc badge */
+  --badge-url: url('https://i.imgur.com/lNVK2mN.png'); /* Default - can be ignored if using your fix */
   width: 100%;
   max-width: 600px;
   box-sizing: border-box;
@@ -140,8 +140,12 @@
   height: 150px;
   background-size: cover;
   background-position: center;
-  border-radius: 10% / 50%; /* Ensure square shape */
-  border: none;
+  border-radius: 0; /* Ensure square shape */
+  /* Double border: outer accent, inner primary, no bottom */
+  border-top: 2px double var(--accent-color);
+  border-left: 2px double var(--accent-color);
+  border-right: 2px double var(--accent-color);
+  border-bottom: none;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
@@ -172,7 +176,3 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
-
-
-
