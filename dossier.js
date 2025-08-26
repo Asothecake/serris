@@ -30,6 +30,7 @@ if (typeof DossierController === "function") {
         "Heartless": "https://i.imgur.com/4CUgNR7.png",
         "Wielder": "https://i.imgur.com/nKDoVDC.png",
         "Legendary": "https://i.imgur.com/hLnG0K7.png",
+        "Steelguard": "https://i.imgur.com/NsTbs8w.png",
         "Misc": "https://i.imgur.com/lNVK2mN.png"
       };
     }
@@ -342,3 +343,4 @@ if (typeof DossierController === "function") {
 
   new DossierController(window.BookCount).initiate();
 }
+
