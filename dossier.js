@@ -8,6 +8,7 @@ if (typeof DossierController === "function") {
     constructor(dossierCount) {
       this.dossierCount = dossierCount;
       this.TempButton = document.getElementsByClassName("ds-temporary")[dossierCount];
+      console.log("TempButton assigned:", this.TempButton); // Debug button assignment
       this.Template = document.getElementsByClassName("ds-dossier-template")[dossierCount];
       this.DataContainer = document.getElementsByClassName("ds-dossier-placeholder")[dossierCount];
       console.log("DataContainer found:", !!this.DataContainer);
@@ -176,6 +177,16 @@ if (typeof DossierController === "function") {
         this.Template.innerHTML = this.htmlify();
         this.getBook();
         this.assignButtonHandlers();
+        // Add refresh button handler for this instance
+        if (this.TempButton) {
+          this.TempButton.addEventListener("click", () => {
+            this.Template.innerHTML = this.htmlify(); // Re-render this template
+            this.getBook();
+            this.assignButtonHandlers();
+            this.updatePage(this.currentPanel);
+            if (this.Template.innerHTML) this.TempButton.style.display = "none";
+          });
+        }
         this.updatePage();
         if (this.Template.innerHTML) this.TempButton.style.display = "none";
       } catch (e) {
