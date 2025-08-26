@@ -20,6 +20,7 @@ if (typeof DossierController === "function") {
       this.style = this.objectify(["style", "style-details", "style-points"])[0];
       console.log("Style Object:", this.style); // Debug style object
       this.lore = this.objectify(["lore-item", "lore-details"]);
+      console.log("Lore Object:", this.lore); // Debug lore object
       this.commands = this.objectify(["command", "command-details", "command-stats"]);
       console.log("Commands Object:", this.commands); // Debug commands object
       this.provisions = this.objectify(["provision", "provision-details", "provision-stats"]);
@@ -103,8 +104,8 @@ if (typeof DossierController === "function") {
       const resources = keyList.map(key => this.getAll(key));
       const names = Array.from(resources[0] || []);
       const details = Array.from(resources[1] || []);
-      const stats = resources[2] ? Array.from(resources[2] || []) : [];
-      const maxLength = Math.min(names.length, details.length, stats.length); // Use minimum length to avoid overreach
+      const stats = resources[2] ? Array.from(resources[2] || []) : []; // Only include stats if provided
+      const maxLength = keyList.length === 2 ? Math.min(names.length, details.length) : Math.min(names.length, details.length, stats.length); // Adjust for 2 or 3 args
       return Array.from({ length: maxLength }, (_, index) => ({
         name: names[index] ? names[index].innerHTML : "",
         details: details[index] ? details[index].innerHTML : "",
@@ -264,10 +265,10 @@ if (typeof DossierController === "function") {
       return `
         <div class="ds-dossier-section">
           <div class="ds-dossier-header">Lore</div>
-          ${this.lore.map(item => `
-            <div class="ds-dossier-item"><b>${item.name}</b></div>
+          ${Array.isArray(this.lore) && this.lore.length > 0 ? this.lore.map(item => `
+            <div class="ds-dossier-item"><b>${item.name || "N/A"}</b></div>
             <p>${item.details || "N/A"}</p>
-          `).join("")}
+          `).join("") : '<div><p>No lore available</p></div>'}
         </div>
       `;
     }
