@@ -140,12 +140,12 @@
   height: 150px;
   background-size: cover;
   background-position: center;
-  border-radius: 0; /* Ensure square shape */
+  border-radius: 25px 5px 15px 10px; /* Ensure square shape */
   /* Double border: outer accent, inner primary, no bottom */
   border-top: 2px double var(--accent-color);
   border-left: 2px double var(--accent-color);
   border-right: 2px double var(--accent-color);
-  border-bottom: none;
+  border-bottom: 2px double var(--accent-color)
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
@@ -176,4 +176,5 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
 
