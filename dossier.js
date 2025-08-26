@@ -188,7 +188,7 @@ if (typeof DossierController === "function") {
             <div class="dossier-tab">Commands</div>
             <div class="dossier-tab">Provisions</div>
             ${useLinks === "yes" ? '<div class="dossier-tab">Links</div>' : ""}
-            ${useTimeline === "yes" ? '<div class="dossier-tab">Timelines</div>' : ""}
+            <!-- Removed useTimeline reference since it's not in config -->
           </div>
           <div class="dossier-content">
             ${this.htmlStatSection()}
@@ -198,7 +198,7 @@ if (typeof DossierController === "function") {
             ${this.htmlCommandSection()}
             ${this.htmlProvisionSection()}
             ${useLinks === "yes" ? this.htmlLinkSection() : ""}
-            ${useTimeline === "yes" ? this.htmlTimelineSections() : ""}
+            ${this.timelines.length > 0 ? this.htmlTimelineSections() : ""} <!-- Use timelines array instead -->
           </div>
           <div class="dossier-name"><span class="boss-name-text"><b>${this.bio[0]}</b></span><div class="dossier-badge" style="background-image: url('${badgeUrl}');"></div></div>
           <div class="dossier-photo"></div>
