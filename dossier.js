@@ -105,23 +105,13 @@ if (typeof DossierController === "function") {
       const resources = keyList.map(key => this.getAll(key));
       const names = Array.from(resources[0] || []);
       const details = Array.from(resources[1] || []);
-      const statsElements = this.getAll(keyList[2]); // Get all style-points divs
-      const stats = statsElements.length > 0 ? Array.from(statsElements).flatMap(sp => {
-        const paragraphs = sp.getElementsByTagName("p");
-        if (paragraphs.length > 0) {
-          return Array.from(paragraphs).map(p => p.innerHTML);
-        } else if (sp.innerHTML.trim()) {
-          console.warn("Style point div without <p> tag, using innerHTML:", sp.innerHTML);
-          return [sp.innerHTML];
-        }
-        return [];
-      }) : [];
-      console.log("Collected Stats:", stats); // Debug stats collection
+      const statsElements = this.getAll(keyList[2]); // Get all style-points or other stats divs
+      const stats = statsElements.length > 0 && statsElements[0] ? Array.from(statsElements[0].getElementsByTagName("p")).map(p => p.innerHTML) : [];
       const maxLength = keyList.length === 2 ? Math.min(names.length, details.length) : Math.min(names.length, details.length, stats.length); // Adjust for 2 or 3 args
       return Array.from({ length: maxLength }, (_, index) => ({
         name: names[index] ? names[index].innerHTML : "",
         details: details[index] ? details[index].innerHTML : "",
-        stats: stats.length > index ? [stats[index]] : [], // Assign corresponding stats
+        stats: stats.length > index ? [stats[index]] : [], // Use stats array for single container
       }));
     }
     compoundObjectify(keyList = []) {
@@ -301,9 +291,9 @@ if (typeof DossierController === "function") {
           <div class="ds-dossier-header">Style</div>
           <div class="ds-dossier-item"><b>${name || "N/A"}</b></div>
           <p>${details || "N/A"}</p>
-          ${Array.isArray(stats) && stats.length > 0 ? stats.map((stat, index) => `
+          ${Array.isArray(stats) && stats.length > 0 ? stats.map(stat => `
             <div class="ds-dossier-style-point">
-              <p>${stat || `Style Point ${index + 1}`}</p> <!-- Fallback with index -->
+              <p>${stat || "N/A"}</p>
             </div>
           `).join("") : '<div class="ds-dossier-style-point"><p>No style points</p></div>'}
         </div>
