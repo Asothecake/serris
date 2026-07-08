@@ -3,24 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderRegalPosts() {
-  // Find all elements that might contain post text on a Jcink forum. 
-  // .postcolor is the universal standard for Jcink post content.
   const posts = document.querySelectorAll('.postcolor, .entry-content, .message, .post-content');
-  
   if (posts.length === 0) return;
 
   posts.forEach(post => {
-    // Quick check before running expensive regex
     if (!post.innerHTML.includes('[REGAL')) return;
 
     let newHTML = post.innerHTML;
-    
-    // Regex matches [REGAL attrs...] ... [/REGAL] across multiple lines
     const regalRegex = /\[REGAL([^\]]*)\]([\s\S]*?)\[\/REGAL\]/gi;
     
     newHTML = newHTML.replace(regalRegex, (match, attrString, innerContent) => {
-      
-      // 1. Parse attributes from the opening [REGAL] tag
       const getAttr = (name, def) => {
         const regex = new RegExp(`${name}=["'](.*?)["']`, 'i');
         const m = attrString.match(regex);
@@ -36,12 +28,11 @@ function renderRegalPosts() {
       const textCol = getAttr('text', '');
       const boxbg = getAttr('boxbg', '');
 
-      // 2. Parse stats from innerContent
       let statsHTML = `<div style="text-align: center; color: var(--regal-muted); font-style: italic; margin-top: 50%;">No stats registered for this post.</div>`;
       let cleanContent = innerContent;
       
       const statsRegex = /\[REGAL-STATS([^\]]*)\]/gi;
-      let originalStatsAttr = null; // Save this to recreate the code later
+      let originalStatsAttr = null;
 
       cleanContent = cleanContent.replace(statsRegex, (statMatch, statAttrStr) => {
         originalStatsAttr = statAttrStr;
@@ -121,19 +112,13 @@ function renderRegalPosts() {
             </div>
           </div>
         `;
-        return ''; // Remove the [REGAL-STATS] tag from text
+        return '';
       });
 
-      // Strip potential closing [/REGAL-STATS] if they used one
       cleanContent = cleanContent.replace(/\[\/REGAL-STATS\]/gi, '');
-      
-      // Clean up stray Jcink <br> tags left behind from the stats block and edges
       cleanContent = cleanContent.replace(/^(<br\s*\/?>\s*)+/, '');
       cleanContent = cleanContent.replace(/(<br\s*\/?>\s*)+$/, '');
 
-      // 3. Dialogue coloring
-      // Create a temporary DOM node to parse text nodes and apply quotes,
-      // avoiding HTML tag corruption.
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = cleanContent;
       
@@ -154,7 +139,6 @@ function renderRegalPosts() {
 
       cleanContent = tempDiv.innerHTML;
 
-      // 4. Construct inline styles for scoped CSS variables
       const inlineStyles = `
         ${color ? `--regal-accent: ${color}; --regal-border: ${color};` : ''}
         ${bg ? `--regal-bg: ${bg};` : ''}
@@ -163,11 +147,7 @@ function renderRegalPosts() {
         ${boxbg ? `--regal-boxbg: ${boxbg};` : ''}
       `;
 
-      // 5. Build the final HTML replacement
-      // Generate a unique ID to attach events later without using Web Components
       const uniqueId = 'regal-' + Math.random().toString(36).substr(2, 9);
-      
-      // Encode the original raw attributes so we can reconstruct the exact BBCode block on copy
       const encodedAttrs = encodeURIComponent(attrString || '');
       const encodedStats = originalStatsAttr !== null ? encodeURIComponent(originalStatsAttr) : 'NONE';
       
@@ -198,9 +178,7 @@ function renderRegalPosts() {
     post.innerHTML = newHTML;
   });
 
-  // Attach event listeners for all the newly generated containers
   document.querySelectorAll('.regal-rp-container').forEach(container => {
-    // Only attach once
     if (container.dataset.initialized) return;
     container.dataset.initialized = 'true';
 
@@ -231,7 +209,6 @@ function renderRegalPosts() {
     const copyBtn = container.querySelector('.regal-copy-btn');
     if (copyBtn) {
       copyBtn.addEventListener('click', () => {
-        // Decode the saved attributes to reconstruct the BBCode exactly as typed
         const attrStr = decodeURIComponent(container.getAttribute('data-attrs') || '');
         const statsStrRaw = container.getAttribute('data-stats');
         
