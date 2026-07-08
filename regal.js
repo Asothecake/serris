@@ -1,187 +1,231 @@
-class RegalPost extends HTMLElement {
-  connectedCallback() {
-    // Jcink loads the script in the header of the doHTML block, meaning this fires
-    // before the browser actually finishes reading the text inside the tag.
-    // We defer execution by a few milliseconds so the browser can finish injecting the innerHTML!
-    setTimeout(() => {
-      this.render();
-    }, 10);
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  renderRegalPosts();
+});
 
-  render() {
-    const name = this.getAttribute('name') || 'Unknown Character';
-    const icon = this.getAttribute('icon') || 'https://placehold.co/100x100/2c2c2c/c5b077?text=Icon';
-    const image = this.getAttribute('image') || 'https://placehold.co/300x500/2c2c2c/c5b077?text=Full';
-    const color = this.getAttribute('color');
-    const bg = this.getAttribute('bg');
-    const bg2 = this.getAttribute('bg2'); 
-    const textCol = this.getAttribute('text');
-    const boxbg = this.getAttribute('boxbg');
+function renderRegalPosts() {
+  // Find all elements that might contain post text on a Jcink forum. 
+  // .postcolor is the universal standard for Jcink post content.
+  const posts = document.querySelectorAll('.postcolor, .entry-content, .message, .post-content');
+  
+  if (posts.length === 0) return;
+
+  posts.forEach(post => {
+    // Quick check before running expensive regex
+    if (!post.innerHTML.includes('[REGAL')) return;
+
+    let newHTML = post.innerHTML;
     
-    // Parse stats if the author included the <regal-stats> tag
-    const statsEl = this.querySelector('regal-stats');
-    let statsHTML = '';
+    // Regex matches [REGAL attrs...] ... [/REGAL] across multiple lines
+    const regalRegex = /\[REGAL([^\]]*)\]([\s\S]*?)\[\/REGAL\]/gi;
     
-    if (statsEl) {
-      const body = parseInt(statsEl.getAttribute('body') || 0);
-      const dex = parseInt(statsEl.getAttribute('dex') || 0);
-      const prec = parseInt(statsEl.getAttribute('prec') || 0);
-      const pot = parseInt(statsEl.getAttribute('pot') || 0);
-      const spirit = parseInt(statsEl.getAttribute('spirit') || 0);
-
-      const calculateGrade = (xp) => {
-        if(xp < 10) return 'D-';
-        if(xp < 20) return 'D';
-        if(xp < 35) return 'D+';
-        if(xp < 60) return 'C-';
-        if(xp < 95) return 'C';
-        if(xp < 150) return 'C+';
-        if(xp < 225) return 'B-';
-        if(xp < 340) return 'B';
-        if(xp < 495) return 'B+';
-        if(xp < 690) return 'A-';
-        if(xp < 925) return 'A';
-        if(xp < 1200) return 'A+';
-        if(xp < 1515) return 'S-';
-        if(xp < 1880) return 'S';
-        return 'S+';
+    newHTML = newHTML.replace(regalRegex, (match, attrString, innerContent) => {
+      
+      // 1. Parse attributes from the opening [REGAL] tag
+      const getAttr = (name, def) => {
+        const regex = new RegExp(`${name}=["'](.*?)["']`, 'i');
+        const m = attrString.match(regex);
+        return m ? m[1] : def;
       };
+      
+      const name = getAttr('name', 'Unknown Character');
+      const icon = getAttr('icon', 'https://placehold.co/100x100/2c2c2c/c5b077?text=Icon');
+      const image = getAttr('image', 'https://placehold.co/300x500/2c2c2c/c5b077?text=Full');
+      const color = getAttr('color', '');
+      const bg = getAttr('bg', '');
+      const bg2 = getAttr('bg2', ''); 
+      const textCol = getAttr('text', '');
+      const boxbg = getAttr('boxbg', '');
 
-      const calculateSP = (grade) => {
-        const map = {
-          'D-': 5, 'D': 10, 'D+': 15,
-          'C-': 25, 'C': 30, 'C+': 35,
-          'B-': 45, 'B': 50, 'B+': 55,
-          'A-': 70, 'A': 85, 'A+': 100,
-          'S-': 115, 'S': 130, 'S+': 150
-        };
-        return map[grade] || 5;
-      };
+      // 2. Parse stats from innerContent
+      let statsHTML = `<div style="text-align: center; color: var(--regal-muted); font-style: italic; margin-top: 50%;">No stats registered for this post.</div>`;
+      let cleanContent = innerContent;
+      
+      const statsRegex = /\[REGAL-STATS([^\]]*)\]/gi;
 
-      const getPercent = (xp) => Math.min(100, (xp / 1880) * 100);
-
-      const spiritGrade = calculateGrade(spirit);
-      const spTotal = calculateSP(spiritGrade);
-      const spRegen = Math.ceil(spTotal * 0.20);
-
-      const makeStatRow = (label, xp) => {
-        const gradeStr = calculateGrade(xp);
-        const letter = gradeStr.charAt(0);
-        const mod = gradeStr.length > 1 ? gradeStr.substring(1) : '&nbsp;';
+      cleanContent = cleanContent.replace(statsRegex, (statMatch, statAttrStr) => {
+        const getStat = (n) => parseInt(statAttrStr.match(new RegExp(`${n}=["'](\\d+)["']`, 'i'))?.[1] || 0);
         
-        const pct = getPercent(xp);
-        return `
-          <div class="regal-stat-row">
-            <div class="regal-stat-label">
-              <span>${label}: ${xp}</span> 
-              <span class="regal-stat-grade">
-                <span class="grade-letter">${letter}</span><span class="grade-mod">${mod}</span>
-              </span>
+        const body = getStat('body');
+        const dex = getStat('dex');
+        const prec = getStat('prec');
+        const pot = getStat('pot');
+        const spirit = getStat('spirit');
+
+        const calculateGrade = (xp) => {
+          if(xp < 10) return 'D-';
+          if(xp < 20) return 'D';
+          if(xp < 35) return 'D+';
+          if(xp < 60) return 'C-';
+          if(xp < 95) return 'C';
+          if(xp < 150) return 'C+';
+          if(xp < 225) return 'B-';
+          if(xp < 340) return 'B';
+          if(xp < 495) return 'B+';
+          if(xp < 690) return 'A-';
+          if(xp < 925) return 'A';
+          if(xp < 1200) return 'A+';
+          if(xp < 1515) return 'S-';
+          if(xp < 1880) return 'S';
+          return 'S+';
+        };
+
+        const calculateSP = (grade) => {
+          const map = {
+            'D-': 5, 'D': 10, 'D+': 15,
+            'C-': 25, 'C': 30, 'C+': 35,
+            'B-': 45, 'B': 50, 'B+': 55,
+            'A-': 70, 'A': 85, 'A+': 100,
+            'S-': 115, 'S': 130, 'S+': 150
+          };
+          return map[grade] || 5;
+        };
+
+        const getPercent = (xp) => Math.min(100, (xp / 1880) * 100);
+
+        const spiritGrade = calculateGrade(spirit);
+        const spTotal = calculateSP(spiritGrade);
+        const spRegen = Math.ceil(spTotal * 0.20);
+
+        const makeStatRow = (label, xp) => {
+          const gradeStr = calculateGrade(xp);
+          const letter = gradeStr.charAt(0);
+          const mod = gradeStr.length > 1 ? gradeStr.substring(1) : '&nbsp;';
+          const pct = getPercent(xp);
+          return `
+            <div class="regal-stat-row">
+              <div class="regal-stat-label">
+                <span>${label}: ${xp}</span> 
+                <span class="regal-stat-grade">
+                  <span class="grade-letter">${letter}</span><span class="grade-mod">${mod}</span>
+                </span>
+              </div>
+              <div class="regal-stat-bar-bg">
+                <div class="regal-stat-bar-fill" style="width: 0%" data-width="${pct}%"></div>
+              </div>
             </div>
-            <div class="regal-stat-bar-bg">
-              <div class="regal-stat-bar-fill" style="width: 0%" data-width="${pct}%"></div>
+          `;
+        };
+
+        statsHTML = `
+          <div class="regal-stats-container">
+            ${makeStatRow('Body', body)}
+            ${makeStatRow('Dexterity', dex)}
+            ${makeStatRow('Precision', prec)}
+            ${makeStatRow('Potency', pot)}
+            ${makeStatRow('Spirit', spirit)}
+            <div class="regal-sp-info">
+              <div><span class="regal-accent-text">SP Total:</span> ${spTotal}</div>
+              <div><span class="regal-accent-text">SP Regen:</span> ${spRegen}</div>
             </div>
           </div>
         `;
-      };
+        return ''; // Remove the [REGAL-STATS] tag from text
+      });
 
-      statsHTML = `
-        <div class="regal-stats-container">
-          ${makeStatRow('Body', body)}
-          ${makeStatRow('Dexterity', dex)}
-          ${makeStatRow('Precision', prec)}
-          ${makeStatRow('Potency', pot)}
-          ${makeStatRow('Spirit', spirit)}
-          <div class="regal-sp-info">
-            <div><span class="regal-accent-text">SP Total:</span> ${spTotal}</div>
-            <div><span class="regal-accent-text">SP Regen:</span> ${spRegen}</div>
+      // Strip potential closing [/REGAL-STATS] if they used one
+      cleanContent = cleanContent.replace(/\[\/REGAL-STATS\]/gi, '');
+      
+      // Clean up stray Jcink <br> tags left behind from the stats block and edges
+      cleanContent = cleanContent.replace(/^(<br\s*\/?>\s*)+/, '');
+      cleanContent = cleanContent.replace(/(<br\s*\/?>\s*)+$/, '');
+
+      // 3. Dialogue coloring
+      // Create a temporary DOM node to parse text nodes and apply quotes,
+      // avoiding HTML tag corruption.
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = cleanContent;
+      
+      const walk = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
+      let n;
+      const nodesToReplace = [];
+      while(n = walk.nextNode()) {
+        if (n.nodeValue.match(/["“].*?["”]/)) {
+          nodesToReplace.push(n);
+        }
+      }
+
+      nodesToReplace.forEach(textNode => {
+        const span = document.createElement('span');
+        span.innerHTML = textNode.nodeValue.replace(/(["“].*?["”])/g, '<span class="regal-dialogue">$1</span>');
+        textNode.parentNode.replaceChild(span, textNode);
+      });
+
+      cleanContent = tempDiv.innerHTML;
+
+      // 4. Construct inline styles for scoped CSS variables
+      const inlineStyles = `
+        ${color ? `--regal-accent: ${color}; --regal-border: ${color};` : ''}
+        ${bg ? `--regal-bg: ${bg};` : ''}
+        ${bg2 ? `--regal-bg2: ${bg2};` : ''}
+        ${textCol ? `--regal-text: ${textCol};` : ''}
+        ${boxbg ? `--regal-boxbg: ${boxbg};` : ''}
+      `;
+
+      // 5. Build the final HTML replacement
+      // Generate a unique ID to attach events later without using Web Components
+      const uniqueId = 'regal-' + Math.random().toString(36).substr(2, 9);
+      
+      return `
+        <div class="regal-rp-container" id="${uniqueId}" style="${inlineStyles}">
+          <div class="regal-overlay">
+            <img src="${image}" class="regal-overlay-image" alt="Full Image">
+            <div class="regal-overlay-content">
+              ${statsHTML}
+            </div>
+            <button class="regal-close-btn" title="Close">✕</button>
           </div>
+
+          <div class="regal-rp-content-wrap">
+            <div class="regal-rp-header">
+              <h1 class="regal-rp-name">${name}</h1>
+              <img src="${icon}" class="regal-rp-icon" alt="${name}" title="View Stats & Image">
+            </div>
+            <div class="regal-rp-content">
+              ${cleanContent}
+            </div>
+          </div>
+          <button class="regal-copy-btn" title="Copy Template Code">📋</button>
         </div>
       `;
-    } else {
-      statsHTML = `<div style="text-align: center; color: var(--regal-muted); font-style: italic; margin-top: 50%;">No stats registered for this post.</div>`;
-    }
-
-    if (statsEl) statsEl.remove();
-
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = this.innerHTML;
-    
-    const walk = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
-    let n;
-    const nodesToReplace = [];
-    while(n = walk.nextNode()) {
-      if (n.nodeValue.match(/["“].*?["”]/)) {
-        nodesToReplace.push(n);
-      }
-    }
-
-    nodesToReplace.forEach(textNode => {
-      const regex = /(["“].*?["”])/g;
-      const span = document.createElement('span');
-      span.innerHTML = textNode.nodeValue.replace(regex, '<span class="regal-dialogue">$1</span>');
-      textNode.parentNode.replaceChild(span, textNode);
     });
 
-    const rpText = tempDiv.innerHTML;
-    
-    this.innerHTML = '';
+    post.innerHTML = newHTML;
+  });
 
-    const container = document.createElement('div');
-    container.className = 'regal-rp-container';
-    
-    if (color) container.style.setProperty('--regal-accent', color);
-    if (color) container.style.setProperty('--regal-border', color);
-    if (bg) container.style.setProperty('--regal-bg', bg);
-    if (bg2) container.style.setProperty('--regal-bg2', bg2);
-    if (textCol) container.style.setProperty('--regal-text', textCol);
-    if (boxbg) container.style.setProperty('--regal-boxbg', boxbg);
-
-    container.innerHTML = `
-      <div class="regal-overlay">
-        <img src="${image}" class="regal-overlay-image" alt="Full Image">
-        <div class="regal-overlay-content">
-          ${statsHTML}
-        </div>
-        <button class="regal-close-btn" title="Close">✕</button>
-      </div>
-
-      <div class="regal-rp-content-wrap">
-        <div class="regal-rp-header">
-          <h1 class="regal-rp-name">${name}</h1>
-          <img src="${icon}" class="regal-rp-icon" alt="${name}" title="View Stats & Image">
-        </div>
-        <div class="regal-rp-content">
-          ${rpText}
-        </div>
-      </div>
-      <button class="regal-copy-btn" title="Copy Template Code">📋</button>
-    `;
+  // Attach event listeners for all the newly generated containers
+  document.querySelectorAll('.regal-rp-container').forEach(container => {
+    // Only attach once
+    if (container.dataset.initialized) return;
+    container.dataset.initialized = 'true';
 
     const iconEl = container.querySelector('.regal-rp-icon');
-    iconEl.addEventListener('click', () => {
-      container.classList.add('show-overlay');
-      setTimeout(() => {
-        const bars = container.querySelectorAll('.regal-stat-bar-fill');
-        bars.forEach(bar => {
-          bar.style.width = bar.getAttribute('data-width');
-        });
-      }, 100);
-    });
+    if (iconEl) {
+      iconEl.addEventListener('click', () => {
+        container.classList.add('show-overlay');
+        setTimeout(() => {
+          const bars = container.querySelectorAll('.regal-stat-bar-fill');
+          bars.forEach(bar => {
+            bar.style.width = bar.getAttribute('data-width');
+          });
+        }, 100);
+      });
+    }
 
     const closeBtn = container.querySelector('.regal-close-btn');
-    closeBtn.addEventListener('click', () => {
-      container.classList.remove('show-overlay');
-      const bars = container.querySelectorAll('.regal-stat-bar-fill');
-      bars.forEach(bar => {
-        bar.style.width = '0%';
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        container.classList.remove('show-overlay');
+        const bars = container.querySelectorAll('.regal-stat-bar-fill');
+        bars.forEach(bar => {
+          bar.style.width = '0%';
+        });
       });
-    });
+    }
 
     const copyBtn = container.querySelector('.regal-copy-btn');
     if (copyBtn) {
       copyBtn.addEventListener('click', () => {
-        const blankCode = `[dohtml]\n<regal-post \n  name="Character Name" \n  icon="ICON_URL" \n  image="FULL_IMAGE_URL" \n  color="#c5b077" \n  bg="#2c2c2c"\n  bg2="#1a1a1a"\n  text="#d9d1b0"\n  boxbg="#2c2c2c">\n  <regal-stats body="10" dex="10" prec="10" pot="10" spirit="10"></regal-stats>\n  Write your RP text here... "Dialogue is auto-colored!"\n</regal-post>\n[/dohtml]`;
+        const blankCode = `[REGAL name="Character Name" icon="ICON_URL" image="FULL_IMAGE_URL" color="#c5b077" bg="#2c2c2c" bg2="#1a1a1a" text="#d9d1b0" boxbg="#2c2c2c"]\n[REGAL-STATS body="10" dex="10" prec="10" pot="10" spirit="10"]\n\nWrite your RP text here... "Dialogue is auto-colored!"\n[/REGAL]`;
         navigator.clipboard.writeText(blankCode).then(() => {
           const originalText = copyBtn.innerHTML;
           copyBtn.innerHTML = '✓';
@@ -189,11 +233,5 @@ class RegalPost extends HTMLElement {
         });
       });
     }
-
-    this.appendChild(container);
-  }
-}
-
-if (!customElements.get('regal-post')) {
-  customElements.define('regal-post', RegalPost);
+  });
 }
