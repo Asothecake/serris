@@ -232,4 +232,21 @@ function renderRegalPosts() {
     if (copyBtn) {
       copyBtn.addEventListener('click', () => {
         // Decode the saved attributes to reconstruct the BBCode exactly as typed
-        const attrStr = de
+        const attrStr = decodeURIComponent(container.getAttribute('data-attrs') || '');
+        const statsStrRaw = container.getAttribute('data-stats');
+        
+        let blankCode = `[REGAL${attrStr}]\n`;
+        if (statsStrRaw !== 'NONE') {
+          blankCode += `\n[REGAL-STATS${decodeURIComponent(statsStrRaw)}]\n`;
+        }
+        blankCode += `\nWrite your RP text here...\n[/REGAL]`;
+        
+        navigator.clipboard.writeText(blankCode).then(() => {
+          const originalText = copyBtn.innerHTML;
+          copyBtn.innerHTML = '✓';
+          setTimeout(() => copyBtn.innerHTML = originalText, 1500);
+        });
+      });
+    }
+  });
+}
