@@ -1,5 +1,14 @@
 class RegalPost extends HTMLElement {
   connectedCallback() {
+    // Jcink loads the script in the header of the doHTML block, meaning this fires
+    // before the browser actually finishes reading the text inside the tag.
+    // We defer execution by a few milliseconds so the browser can finish injecting the innerHTML!
+    setTimeout(() => {
+      this.render();
+    }, 10);
+  }
+
+  render() {
     const name = this.getAttribute('name') || 'Unknown Character';
     const icon = this.getAttribute('icon') || 'https://placehold.co/100x100/2c2c2c/c5b077?text=Icon';
     const image = this.getAttribute('image') || 'https://placehold.co/300x500/2c2c2c/c5b077?text=Full';
