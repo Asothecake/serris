@@ -41,8 +41,10 @@ function renderRegalPosts() {
       let cleanContent = innerContent;
       
       const statsRegex = /\[REGAL-STATS([^\]]*)\]/gi;
+      let originalStatsAttr = null; // Save this to recreate the code later
 
       cleanContent = cleanContent.replace(statsRegex, (statMatch, statAttrStr) => {
+        originalStatsAttr = statAttrStr;
         const getStat = (n) => parseInt(statAttrStr.match(new RegExp(`${n}=["'](\\d+)["']`, 'i'))?.[1] || 0);
         
         const body = getStat('body');
@@ -165,8 +167,12 @@ function renderRegalPosts() {
       // Generate a unique ID to attach events later without using Web Components
       const uniqueId = 'regal-' + Math.random().toString(36).substr(2, 9);
       
+      // Encode the original raw attributes so we can reconstruct the exact BBCode block on copy
+      const encodedAttrs = encodeURIComponent(attrString || '');
+      const encodedStats = originalStatsAttr !== null ? encodeURIComponent(originalStatsAttr) : 'NONE';
+      
       return `
-        <div class="regal-rp-container" id="${uniqueId}" style="${inlineStyles}">
+        <div class="regal-rp-container" id="${uniqueId}" style="${inlineStyles}" data-attrs="${encodedAttrs}" data-stats="${encodedStats}">
           <div class="regal-overlay">
             <img src="${image}" class="regal-overlay-image" alt="Full Image">
             <div class="regal-overlay-content">
@@ -225,13 +231,5 @@ function renderRegalPosts() {
     const copyBtn = container.querySelector('.regal-copy-btn');
     if (copyBtn) {
       copyBtn.addEventListener('click', () => {
-        const blankCode = `[REGAL name="Character Name" icon="ICON_URL" image="FULL_IMAGE_URL" color="#c5b077" bg="#2c2c2c" bg2="#1a1a1a" text="#d9d1b0" boxbg="#2c2c2c"]\n[REGAL-STATS body="10" dex="10" prec="10" pot="10" spirit="10"]\n\nWrite your RP text here... "Dialogue is auto-colored!"\n[/REGAL]`;
-        navigator.clipboard.writeText(blankCode).then(() => {
-          const originalText = copyBtn.innerHTML;
-          copyBtn.innerHTML = '✓';
-          setTimeout(() => copyBtn.innerHTML = originalText, 1500);
-        });
-      });
-    }
-  });
-}
+        // Decode the saved attributes to reconstruct the BBCode exactly as typed
+        const attrStr = de
