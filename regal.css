@@ -73,7 +73,7 @@
   text-align: justify;
   
   /* Fixed size & scroll to ensure image and stats never break */
-  height: 380px;
+  height: 280px;
   overflow-y: auto;
   padding-right: 15px;
 }
