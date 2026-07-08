@@ -71,6 +71,24 @@
   font-size: 12px;
   line-height: 1.8;
   text-align: justify;
+  
+  /* Fixed size & scroll to ensure image and stats never break */
+  height: 380px;
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+/* Custom Scrollbar for the text area */
+.regal-rp-content::-webkit-scrollbar {
+  width: 4px;
+}
+.regal-rp-content::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--regal-border) 10%, transparent);
+  border-radius: 4px;
+}
+.regal-rp-content::-webkit-scrollbar-thumb {
+  background: var(--regal-accent);
+  border-radius: 4px;
 }
 
 .regal-rp-content p {
